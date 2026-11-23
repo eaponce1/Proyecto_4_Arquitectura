@@ -1,0 +1,31 @@
+segmento,ticks,estrategia,patrimonio_final,rentabilidad_pct,drawdown,drawdown_pct,comisiones,operaciones,compras,ventas,caja_final,acciones_finales,ciclos_kernel_tick_estimados_min,ciclos_kernel_tick_estimados_max,tiempo_kernel_tick_us_estimado_min,tiempo_kernel_tick_us_estimado_max,tiempo_kernel_segmento_ms_estimado_min,tiempo_kernel_segmento_ms_estimado_max,complejidad_RV32E
+Completa,20000,No operar,10000,0.0,0,0.0,0,0,0,0,10000,0,0,0,0.0,0.0,0.0,0.0,Sin aritmetica de estrategia; el core sigue atendiendo SPI.
+Completa,20000,Comprar y mantener,9695,-3.05,9300,60.4092,5,1,1,0,95,60,0,0,0.0,0.0,0.0,0.0,Orden preconfigurada; luego solo mantener.
+Completa,20000,Mejor activa anterior C q=16,7383,-26.17,6085,53.1024,3785,757,380,377,4823,16,80,136,3.2,5.44,64.0,108.8,"SMA5/10, momentum, cooldown y estado de fill."
+Completa,20000,A Momentum con umbral,103,-98.97,9908,98.9711,10050,2010,1005,1005,103,0,28,52,1.12,2.08,22.4,41.6,"Buffer de 5 precios, resta, dos comparaciones y estado plano/largo."
+Completa,20000,B Reversion a SMA10,4577,-54.23,5476,54.4713,4655,931,466,465,2017,16,54,89,2.16,3.56,43.2,71.2,"Buffer de 10 precios, suma y 4 sumas para 10*precio."
+Completa,20000,C Tendencia persistente,1710,-82.9,8387,83.0643,8620,1724,862,862,1710,0,68,115,2.72,4.6,54.4,92.0,SMA5/10 con sumas rodantes y confirmacion de dos cierres.
+Segmento 1,5000,No operar,10000,0.0,0,0.0,0,0,0,0,10000,0,0,0,0.0,0.0,0.0,0.0,Sin aritmetica de estrategia; el core sigue atendiendo SPI.
+Segmento 1,5000,Comprar y mantener,8495,-15.05,3900,32.4055,5,1,1,0,95,60,0,0,0.0,0.0,0.0,0.0,Orden preconfigurada; luego solo mantener.
+Segmento 1,5000,Mejor activa anterior C q=16,7677,-23.23,4056,35.3958,1020,204,104,100,117,54,80,136,3.2,5.44,16.0,27.2,"SMA5/10, momentum, cooldown y estado de fill."
+Segmento 1,5000,A Momentum con umbral,6473,-35.27,3592,35.8805,3415,683,342,341,4233,16,28,52,1.12,2.08,5.6,10.4,"Buffer de 5 precios, resta, dos comparaciones y estado plano/largo."
+Segmento 1,5000,B Reversion a SMA10,8828,-11.72,1268,12.6132,1220,244,122,122,8828,0,54,89,2.16,3.56,10.8,17.8,"Buffer de 10 precios, suma y 4 sumas para 10*precio."
+Segmento 1,5000,C Tendencia persistente,7461,-25.39,2706,26.8,2155,431,216,215,5221,16,68,115,2.72,4.6,13.6,23.0,SMA5/10 con sumas rodantes y confirmacion de dos cierres.
+Segmento 2,5000,No operar,10000,0.0,0,0.0,0,0,0,0,10000,0,0,0,0.0,0.0,0.0,0.0,Sin aritmetica de estrategia; el core sigue atendiendo SPI.
+Segmento 2,5000,Comprar y mantener,15287,52.87,1260,8.9027,5,1,1,0,1112,63,0,0,0.0,0.0,0.0,0.0,Orden preconfigurada; luego solo mantener.
+Segmento 2,5000,Mejor activa anterior C q=16,12295,22.95,1085,8.5561,825,165,84,81,5095,32,80,136,3.2,5.44,16.0,27.2,"SMA5/10, momentum, cooldown y estado de fill."
+Segmento 2,5000,A Momentum con umbral,7108,-28.92,2892,28.92,3180,636,318,318,7108,0,28,52,1.12,2.08,5.6,10.4,"Buffer de 5 precios, resta, dos comparaciones y estado plano/largo."
+Segmento 2,5000,B Reversion a SMA10,9519,-4.81,618,6.1001,1025,205,103,102,5919,16,54,89,2.16,3.56,10.8,17.8,"Buffer de 10 precios, suma y 4 sumas para 10*precio."
+Segmento 2,5000,C Tendencia persistente,8706,-12.94,1505,14.739,2110,422,211,211,8706,0,68,115,2.72,4.6,13.6,23.0,SMA5/10 con sumas rodantes y confirmacion de dos cierres.
+Segmento 3,5000,No operar,10000,0.0,0,0.0,0,0,0,0,10000,0,0,0,0.0,0.0,0.0,0.0,Sin aritmetica de estrategia; el core sigue atendiendo SPI.
+Segmento 3,5000,Comprar y mantener,7575,-24.25,3740,33.1825,5,1,1,0,51,44,0,0,0.0,0.0,0.0,0.0,Orden preconfigurada; luego solo mantener.
+Segmento 3,5000,Mejor activa anterior C q=16,8413,-15.87,1861,18.3025,715,143,72,71,5677,16,80,136,3.2,5.44,16.0,27.2,"SMA5/10, momentum, cooldown y estado de fill."
+Segmento 3,5000,A Momentum con umbral,6844,-31.56,3156,31.56,3060,612,306,306,6844,0,28,52,1.12,2.08,5.6,10.4,"Buffer de 5 precios, resta, dos comparaciones y estado plano/largo."
+Segmento 3,5000,B Reversion a SMA10,8726,-12.74,1436,14.1911,1050,210,105,105,8726,0,54,89,2.16,3.56,10.8,17.8,"Buffer de 10 precios, suma y 4 sumas para 10*precio."
+Segmento 3,5000,C Tendencia persistente,7301,-26.99,2726,27.1866,2155,431,216,215,4565,16,68,115,2.72,4.6,13.6,23.0,SMA5/10 con sumas rodantes y confirmacion de dos cierres.
+Segmento 4,5000,No operar,10000,0.0,0,0.0,0,0,0,0,10000,0,0,0,0.0,0.0,0.0,0.0,Sin aritmetica de estrategia; el core sigue atendiendo SPI.
+Segmento 4,5000,Comprar y mantener,9299,-7.01,4408,43.1016,5,1,1,0,19,58,0,0,0.0,0.0,0.0,0.0,Orden preconfigurada; luego solo mantener.
+Segmento 4,5000,Mejor activa anterior C q=16,9554,-4.46,3121,31.1229,1355,271,136,135,6994,16,80,136,3.2,5.44,16.0,27.2,"SMA5/10, momentum, cooldown y estado de fill."
+Segmento 4,5000,A Momentum con umbral,4712,-52.88,5316,53.0169,3720,744,372,372,4712,0,28,52,1.12,2.08,5.6,10.4,"Buffer de 5 precios, resta, dos comparaciones y estado plano/largo."
+Segmento 4,5000,B Reversion a SMA10,7471,-25.29,2530,25.2975,1345,269,135,134,4911,16,54,89,2.16,3.56,10.8,17.8,"Buffer de 10 precios, suma y 4 sumas para 10*precio."
+Segmento 4,5000,C Tendencia persistente,8108,-18.92,1892,18.92,2180,436,218,218,8108,0,68,115,2.72,4.6,13.6,23.0,SMA5/10 con sumas rodantes y confirmacion de dos cierres.

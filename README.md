@@ -1,4 +1,4 @@
-# Proyecto 4 — Pochoco Trader
+﻿# Proyecto 4 — Pochoco Trader
 
 Agente RV32E para Go Board. Espino ejecuta trade.hex y escribe DECISION. El periférico MMIO SMA10 acelera la suma móvil. La versión de competencia recibe precios por SPI externo.
 

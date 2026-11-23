@@ -1,0 +1,256 @@
+# Entorno de simulación del Proyecto 4
+
+Esta carpeta aísla los recursos de simulación del Proyecto 4. El RTL, assembler y
+pruebas del Proyecto 2 se conservan en sus ubicaciones originales. El programa
+`spi_smoke.s` solo valida el camino de MMIO/SPI: lee `STATUS`, lee `PRICE` y escribe
+el byte fijo `0x41` en `DECISION`; todavía no contiene estrategia de inversión.
+
+## Contenido
+
+- `tb/tb_proyecto_4.sv`: testbench de la FPGA maestra, adaptado desde el archivo entregado.
+- `data/practica_meta.csv`: serie de práctica completa, 20 000 ticks.
+- `sw/spi_smoke.s`: programa de humo para verificar acceso SPI desde el procesador.
+- `sw/spi_smoke.hex`: imagen generada con el assembler existente.
+- `decisiones.csv`: salida generada por cada ejecución del testbench.
+- `tb_proyecto_4.vvp`: ejecutable generado al compilar el testbench.
+
+Los cambios mantienen la contabilidad de la FPGA maestra y el protocolo de una
+transacción de desfase: el testbench contabiliza el byte recibido al inicio de cada
+tick, que corresponde a la decisión guardada antes de la transacción actual.
+
+## Preparación y pruebas
+
+Ejecutar desde la carpeta `pochoco_soc-main` en PowerShell:
+
+```powershell
+python sw/assembler.py proyecto4/sw/spi_smoke.s -o proyecto4/sw/spi_smoke.hex
+python -B tests/run_tests.py
+$rtl = (Get-ChildItem rtl -Recurse -Filter *.v).FullName
+iverilog -g2012 -s tb_proyecto_4 -o proyecto4/tb_proyecto_4.vvp $rtl tests/ram_model.v proyecto4/tb/tb_proyecto_4.sv
+vvp proyecto4/tb_proyecto_4.vvp +ROUND=3 +TICKS=100
+```
+
+`ROUND` selecciona el período entre transacciones: 1 = 10 ms, 2 = 1 ms,
+3 = 0,1 ms. `TICKS` limita los ticks simulados para pruebas rápidas; si se omite,
+el testbench procesa los 20 000 ticks. En todos los casos carga y valida la serie
+completa antes de iniciar la simulación. Para ejecutar cada ronda completa:
+
+```powershell
+vvp proyecto4/tb_proyecto_4.vvp +ROUND=1
+vvp proyecto4/tb_proyecto_4.vvp +ROUND=2
+vvp proyecto4/tb_proyecto_4.vvp +ROUND=3
+```
+
+El modelo `tests/ram_model.v` es funcional, no el modelo temporal del fabricante.
+Las simulaciones no programan la Go Board.
+
+## Estado de validación de esta etapa
+
+- Compilación del testbench Proyecto 4 con Icarus: aprobada.
+- Simulación de humo: 9/9 chequeos aprobados en las tres rondas. Se ejecutaron
+  100 ticks en ronda 3 y 2 ticks en cada una de las rondas 1 y 2; en cada ejecución
+  se cargó y validó el CSV completo de 20 000 filas.
+- Regresión Python del Proyecto 2: 11/11 pruebas aprobadas.
+- Banco `core_tb`: aprobado.
+- Banco existente `periph_tb`: falla en su expectativa de botones. El RTL invierte
+  `i_Switch` porque las entradas físicas son activas en bajo; el testbench antiguo
+  compara el valor lógico sin esa inversión. No se modificó el banco ni el RTL del
+  Proyecto 2.
+- Bancos `spi_tb` y `decoder_tb`, ejecutados por separado tras el fallo anterior:
+  aprobados; compilación completa de `game_top`: aprobada.
+- Icarus advierte que `spi_smoke.hex` contiene menos de 512 palabras. La imagen de
+  prueba sí se carga y simula; la advertencia no detuvo la ejecución.
+
+Las pruebas completas de 20 000 transacciones por ronda no se ejecutaron. El
+firmware smoke test no sustituye al futuro `trade.s` ni valida una estrategia.
+
+## Etapa 2: estrategia de referencia en Python
+
+Desde `pochoco_soc-main`, ejecutar:
+
+```powershell
+python -B -m unittest discover -s proyecto4/python -v
+python -B proyecto4/python/simulador.py
+```
+
+El simulador lee exactamente 20 000 filas con ticks secuenciales desde
+`proyecto4/data/practica_meta.csv`. Escribe `decisiones_trading.csv`,
+`comparacion_estrategias.csv`, `precio_serie.svg` y
+`patrimonio_estrategias.svg` en `proyecto4/resultados/`. El cálculo y los gráficos
+usan solo la biblioteca estándar de Python.
+
+La estrategia propia espera diez observaciones. Compara SMA 5 y SMA 10 con la
+comparación entera `2 * suma_5` contra `suma_10`, evitando divisiones. El momentum
+es `precio_actual - precio_de_hace_tres_ticks`. Compra una acción si ambas señales
+son alcistas; vende una si ambas son bajistas y hay acciones; en los demás casos
+mantiene. No se ajustaron parámetros a la rentabilidad. La referencia comprar y
+mantener coloca antes del primer tick una orden de 63 acciones; el simulador aplica
+el máximo asequible y conserva el resto de la caja. Así la orden inicial respeta
+el byte SPI de seis bits sin consultar precios futuros.
+
+Ejemplo con los cinco primeros precios reales:
+
+| Tick | Precio | Decisión recibida y ejecutada | Decisión calculada para el tick siguiente |
+|---:|---:|---|---|
+| 0 | 165 | Mantener (inicial) | Mantener (1 observación) |
+| 1 | 165 | Mantener | Mantener (2 observaciones) |
+| 2 | 165 | Mantener | Mantener (3 observaciones) |
+| 3 | 165 | Mantener | Mantener (4 observaciones) |
+| 4 | 166 | Mantener | Mantener (5 observaciones) |
+
+No hay señal hasta contar con diez precios. Cada decisión de la última columna
+queda pendiente para el siguiente tick, nunca se ejecuta contra el precio que la
+generó.
+
+### Resultados medidos sobre la serie completa
+
+| Estrategia | Patrimonio final | Caja final | Acciones | Rentabilidad | Órdenes | Comisiones | Pérdida máxima | Drawdown máximo |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| No operar | $10 000 | $10 000 | 0 | 0,00% | 0 | $0 | $0 | 0,00% |
+| Comprar y mantener | $9 695 | $95 | 60 | -3,05% | 1 | $5 | $9 300 | 60,41% |
+| Trading SMA 5/10 + momentum | $102 | $102 | 0 | -98,98% | 2 022 | $10 110 | $10 152 | 99,01% |
+
+Estos valores son la salida observada de `simulador.py`, no una expectativa de
+rentabilidad futura. El trading de referencia pierde casi todo el capital por la
+frecuencia de órdenes y las comisiones; se conserva como baseline transparente,
+sin afinar ventanas ni señales con la serie de práctica.
+
+Al traducirlo a Assembly, lo más costoso será mantener el historial de diez precios
+y actualizar las ventanas móviles: almacenamiento/lectura de los precios que salen
+de las ventanas, sumas/restas y control de un índice circular. También se necesitan
+comparaciones con branches y la resta de momentum. El criterio de SMA evita dividir
+y no requiere multiplicador: duplicar la suma corta equivale a una suma consigo
+mismo. La cantidad fija de una acción evita multiplicación para formar órdenes.
+
+En la validación inicial de etapa 2 pasaron sus 13 pruebas de estrategia y las
+11 pruebas Python heredadas. La suite ampliada de etapa 3 se describe a continuación.
+
+## Auditoría y sensibilidad de estrategias v2
+
+Para repetir la auditoría contable y generar la grilla v2:
+
+```powershell
+python -B -m unittest discover -s proyecto4/python -v
+python -B proyecto4/python/investigacion.py
+```
+
+La investigación ejecuta 24 escenarios: las dos referencias, la estrategia
+original y las variantes A/B/C con cantidades 1, 2, 4, 8, 16, 32 y 63. La grilla
+es descriptiva; no se escoge una cantidad maximizando esta serie.
+
+El drawdown de $10.152 se reproduce: peak $10.254 en tick 535 y valle $102 en
+tick 17.106. Caja y acciones son no negativas. El drawdown absoluto se mide desde
+el peak histórico, por eso puede superar el capital inicial sin que exista deuda.
+El informe FIFO incorpora comisiones al costo de compra y resta la comisión de
+venta al cerrar.
+
+Salidas: `resultados/comparacion_estrategias_v2.csv`,
+`resultados/operaciones_v2.csv`, `resultados/analisis_estrategias.md` y
+`resultados/patrimonio_estrategias_v2.svg`. Las 23 pruebas Python del Proyecto 4
+verifican contabilidad, FIFO, desfase, causalidad, variantes y cantidades. En la
+etapa v2 se ejecutaron 23 pruebas; la investigación final amplía el total a 29.
+La regresión Python heredada del Proyecto 2 conserva sus 11 pruebas.
+
+## Investigación final de estrategias
+
+```powershell
+python -B -m unittest discover -s proyecto4/python -v
+python -B proyecto4/python/investigacion_final.py
+```
+
+La corrida final evalúa 20.000 ticks y cuatro corridas independientes de 5.000
+ticks. Cada segmento comienza con $10.000, cero acciones e historial vacío. Los
+parámetros q=16 y las señales se fijan antes de comparar. El costo de decisión
+RV32E es una estimación de kernel a CPI 2,35, no una medición de `trade.s`.
+Entregables: `resultados/investigacion_final.md`,
+`resultados/comparacion_final.csv` y `resultados/patrimonio_final.svg`.
+
+## Etapa 3: firmware RV32E SMA10
+
+Generar y probar `trade.hex` desde la raíz `pochoco_soc-main`:
+
+```powershell
+python sw/assembler.py proyecto4/sw/trade.s -o proyecto4/sw/trade.hex
+python -B -m unittest discover -s proyecto4/python -v
+```
+
+`test_trade_equivalencia.py` interpreta las instrucciones reales del HEX y las compara tick por tick con `estrategia_reversion_media` sobre los 20.000 precios. Además compila el SoC RTL y `tb_trade_equivalencia.sv` con Icarus para verificar la decisión transmitida por SPI en una serie sintética. Esta segunda prueba es corta y de integración; no equivale a ejecutar el RTL durante los 20.000 ticks. La distribución de registros, las direcciones MMIO, el buffer, la estimación de ciclos, resultados y limitaciones están en `resultados/etapa3_assembly.md`.
+
+La regresión heredada se ejecuta con `python -B tests/run_tests.py`. Actualmente se detiene en `periph_tb` por su expectativa antigua de polaridad de botones; esto es independiente de `trade.s`. Las pruebas Python de Proyecto 2 se pueden ejecutar aparte con `python -B -m unittest discover -s tests`.
+
+## Etapa 3: medicion de rendimiento
+
+Desde `pochoco_soc-main`, ejecutar la medicion completa (20.000 ticks):
+
+```powershell
+python -B proyecto4/python/medir_rendimiento_trade.py
+```
+
+
+Por defecto el banco usa una cadencia custom de 30 us para reducir el largo periodo de polling en la simulacion. Compara MISO tick por tick con Python, cuenta IC con `instr_valid_id && !stall`, separa STATUS, PRICE y las secciones del algoritmo, y falla ante ticks perdidos. Los resultados medidos estan en `resultados/rendimiento_software.md`, `resultados/mediciones_software.csv` y `resultados/rendimiento_software.svg`. `--round 3` ejecuta a 100 us oficiales; `--round 1/2` corre a 10 ms/1 ms.
+
+## Cierre, co-diseño y preparación física
+
+La documentación de cierre, guía de preguntas y guion de presentación están en:
+
+- `documentacion/informe_final_proyecto4.md`: auditoría de arquitectura, estrategia/contabilidad, Assembly, SPI/MMIO, métricas de software/co-diseño, síntesis y límites de evidencia.
+- `documentacion/guia_defensa.md`: preguntas técnicas y respuestas breves.
+- `documentacion/guion_presentacion.md`: exposición de aproximadamente nueve minutos.
+
+La versión acelerada MMIO SMA10 base es la referencia de hardware. A 20.000 ticks mide 60,64 ciclos promedio y acelera 3,606× por ciclos frente al software original. La síntesis/P&R para HX1K informa 1055 LUT4, 1279/1280 LC, 13/16 BRAM y 40,50 MHz. La variante optimizada es independiente y baja a 1274 LC con los mismos ciclos; no alcanza la meta de área. custom-0 no cabe en HX1K (1350 LC).
+
+La imagen base está en `programacion_fisica/trade_mmio_base.bin`; `python proyecto4/programacion_fisica/generar_bitstream.py` regenera el build. El informe de programación indica que `iceprog` no se ejecutó. La placa programada con MMIO base es un estado comunicado por el usuario; el repositorio no incluye transcripción de `VERIFY OK`. La fixture `pruebas_fisicas/spi_slave/internal/` es una prueba separada: su testbench y P&R pasaron, pero no se programó la placa para ella. No se debe describir ninguno de esos resultados como ejecución física verificada.
+
+### Validación oficial de ronda 3
+
+Con el testbench publicado y 20.000 ticks, MMIO SMA10 base y software original aprobaron **4/4 criterios**. Las 20.000 decisiones coinciden exactamente entre ambas arquitecturas. Ambas terminaron con patrimonio de **$4.577**, 931 órdenes (466 compras y 465 ventas), $4.655 en comisiones y drawdown de $5.476. Los promedios enteros truncados que imprimió el testbench fueron 60 ciclos para MMIO y 218 para software; los peores casos fueron 255 y 413 ciclos, respectivamente. MMIO reduce el costo computacional sin cambiar la estrategia ni el resultado financiero.
+
+Rondas 1 y 2 siguen pendientes. También sigue pendiente la integración física con la FPGA maestra: estas cifras corresponden a simulación RTL. Logs, CSV tick a tick y limitaciones están en `resultados/validacion_oficial/`.
+
+### Comprobaciones al cierre
+
+Desde `pochoco_soc-main`:
+
+```powershell
+python -B -m unittest discover -s proyecto4/python -v
+python -B -m unittest proyecto4.alternativas.custom0.tb.test_assembler_custom0 -v
+python -B tests/run_tests.py
+```
+
+La suite Proyecto 4 se ejecutó al preparar el informe: 32/32 aprobadas. El test del assembler custom-0 está reportado con 3 pruebas aprobadas. La regresión heredada `tests/run_tests.py` tiene un fallo conocido en `periph_tb` (`debounced buttons`, expectativa de polaridad); los bancos `core_tb`, `spi_tb` y `decoder_tb` pasan por separado según los registros previos. No se modificaron fuentes funcionales en esta etapa de documentación.
+
+## Informe PDF y versiones de herramientas
+
+El informe técnico de entrega se genera desde `documentacion/informe_final_proyecto4.md` con ReportLab:
+
+```powershell
+python -B proyecto4/documentacion/generar_pdf.py
+```
+
+El PDF resultante queda en `proyecto4/entrega_final/informe_final_proyecto4.pdf`. La carpeta incluye un manifiesto; los fuentes, firmware y evidencias se conservan en sus ubicaciones canónicas para evitar duplicarlos.
+
+Versiones observadas al preparar y validar este árbol en Windows (no representan una garantía para otro equipo):
+
+| Herramienta | Versión detectada | Nota |
+|---|---|---|
+| Python | 3.13.3 | Intérprete usado para pruebas y scripts. |
+| Icarus Verilog (`iverilog`) | 14.0 devel, `s20260301-626-g7e3d0c6bd-dirty` | Compilador HDL de las simulaciones. |
+| Icarus runtime (`vvp`) | 14.0 devel, `s20260301-626-g7e3d0c6bd-dirty` | Ejecuta los `.vvp`. |
+| Yosys | 0.70+176, Git `365bb887b` | Síntesis observada. |
+| nextpnr-ice40 | 0.11.1-68, Git `g1daf1f5c` | Place and route observado. |
+| icepack | El ejecutable no informa versión por CLI | SHA-256 de `icepack.exe`: `A5BEEC407C1A0AE8D22547DB91F9818A182CF3D2BB5BE552ACBF97A77227CB7F`. No se infiere una versión a partir de Yosys. |
+| ReportLab | 5.0.1 | Renderizador PDF desde Markdown, mediante `documentacion/generar_pdf.py`. |
+| Assembler RV32E del repositorio | No tiene release independiente | `sw/assembler.py`; SHA-256: `1541359E87F59FEEDCE169EC58573EFA063316A7121A9EE27C37AEED8795184D`. |
+| Verilator | 5.053 devel `v5.052-507-g01770671e` | Evaluado para traducir RTL; no sustituye el check MISO de cuatro estados. |
+
+Los hashes fijan los ejecutables/fuentes usados cuando la herramienta no publica un número de versión utilizable. El árbol recibido no contiene metadata Git, por lo que no se informa un commit de origen.
+
+## Carpeta compacta de entrega
+
+`proyecto4/entrega_final/` contiene el PDF y `MANIFIESTO.md`, con rutas a fuentes y resultados conservados en sus ubicaciones originales. El bitstream final corresponde a MMIO SMA10 base. La ronda 3 oficial aprobó 4/4 criterios para ambas arquitecturas en 20.000 ticks; rondas 1 y 2 y la integración física con la FPGA maestra continúan pendientes. No se hicieron commit ni push.
+
+## Objetivos finales de Go Board
+
+La carpeta pruebas_fisicas/demo_autonoma_bus_detail contiene selftest y competition con hashes y programación manual. La matriz de requisitos está en documentacion/matriz_cierre_pochoco.md. El autotest local verifica 16 ticks en Icarus y la imagen competition implementa SPI externo con MMIO SMA10 base. Ambos builds cerraron 25 MHz. El primer error físico del autotest anterior sigue pendiente de identificar con la nueva imagen. La ronda 3 conserva 20.000 ticks y 4/4 criterios aprobados contra el emulador oficial. Las corridas 1 y 2 aún no tienen resultado completo.
+
+La actualización del 23 de noviembre incorpora la evidencia D1 del autotest, la guía de diagnóstico ampliada y el generador de un ZIP reproducible. El informe vigente y la matriz de cumplimiento están en documentacion/. La evidencia de ronda 3 y los insumos oficiales permanecen intactos. La imagen elegida para la actividad del curso sigue siendo programacion_fisica/trade_mmio_base.bin, con SPI externo.
