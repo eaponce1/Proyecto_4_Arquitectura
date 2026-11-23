@@ -10,8 +10,8 @@ Fuente: Proyecto_4_arq.pdf, cinco páginas, secciones 2 a 6. La entrega es el 24
 | Dos alternativas, Amdahl y roofline (§3.3) | comparacion_codisenio.csv e informe final. Custom-0 y MMIO base se comparan contra software. MMIO elegido por ciclos y porque enruta. | Custom-0 requiere 1.350 LC y carece de Fmax post-route. |
 | SPI externo y decisión en Espino (§2, §4) | trade_top de MMIO base. competition.py solo lee las fuentes de esa alternativa. MISO de ronda 3 coincide con la referencia desplazada un tick. | Validación eléctrica y competencia con la FPGA maestra pendientes. |
 | Tres rondas (§2.5, §3.4) | Ronda 3 completa 20.000 ticks y 4/4 en software y MMIO. Rondas 1/2 lanzadas con el emulador oficial y 20.000 ticks por corrida. | Rondas 1/2 sin resultado completo al cierre de esta revisión. No se acredita ningún PASS. |
-| Hardware y testbenches (§4) | Tests y logs de co-diseño, arranque y autotest. Yosys y nextpnr aprobados para competition y selftest. | Selftest anterior mostró 1111 en placa. El nuevo monitor registra el primer fallo para la siguiente prueba física. |
-| Informe, README y defensa (§4–6) | Informe Markdown/PDF, guía de defensa y comandos de compilación en los README. | Prueba física integral, publicación y defensa oral pendientes. |
+| Hardware y testbenches (§4) | Tests y logs de co-diseño, arranque y autotest. La Go Board completó 16 ticks en la demo autónoma a 12,5 MHz. Se obtuvo 1010, 0xAA y VERIFY OK. | Integración con la FPGA maestra pendiente. |
+| Informe, README y defensa (§4–6) | Informe Markdown/PDF, guía de defensa, ZIP reproducible y evidencia física de la demo autónoma. La evidencia oficial de ronda 3 está publicada. | Defensa oral pendiente. |
 
 ## Presupuestos y mediciones
 
@@ -27,4 +27,6 @@ Los ticks/s cuentan un precio consumido con su decisión escrita. No son el caud
 
 ### Evidencia física actualizada el 23 de noviembre
 
-El diagnóstico anterior dio D1 solo según el usuario. El byte llegó y no se observó PRICE antes del timeout de WAIT_ACK. La revisión separa el acceso a STATUS de la respuesta STATUS con new_price=1. Pasó Icarus y place-and-route, con 1.279 LC y Fmax de 40,25 MHz. Su prueba física y la competencia SPI externa siguen pendientes. Los hashes de los insumos adjuntos coinciden con las copias oficiales. Las corridas Icarus de rondas 1 y 2 aún no tienen salida completa.
+El diagnóstico físico situó un WAIT_ACK en el primer tick y registró 0x00000000 en PC 0x1C, donde `trade.hex` contiene 0xFE010CE3. Se probaron en placa las imágenes con `RE` y con entradas BRAM registradas medio ciclo antes. Ambas verificaron la grabación y terminaron en el código de watchdog 1111. La competencia SPI externa sigue pendiente de la FPGA maestra y las corridas Icarus de rondas 1 y 2 siguen incompletas. [CSV oficial publicado](https://github.com/eaponce1/Proyecto_4_Arquitectura/blob/main/proyecto4/resultados/validacion_oficial/comparacion_oficial.csv)
+
+La revisión a 12,5 MHz obtuvo PASS integral en la Go Board. La flash devolvió `VERIFY OK`, quedaron encendidos D2 y D4, y COM10 registró `0xAA` en tres arranques. El ZIP incluye el BIN probado y ambos registros físicos. La versión de competencia continúa siendo MMIO SMA10 base con SPI externo.

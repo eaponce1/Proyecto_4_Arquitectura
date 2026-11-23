@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module tb_demo_autonoma_bus_detail;
+module tb_demo_autonoma_bus_detail #(parameter TIMEOUT_DIAG=0, FETCH_ROM=0, SLOW_CLOCK=0);
   localparam integer N=16;
   reg clk=0;
   always #20 clk=~clk;
@@ -21,16 +21,22 @@ module tb_demo_autonoma_bus_detail;
   reg [7:0] prices[0:N-1];
   reg [7:0] writes_expected[0:N-1];
   reg [7:0] miso_expected[0:N-1];
+  reg [31:0] firmware[0:70];
+  integer checked_commits=0;
 
-  demo_autonoma_bus_detail_top dut(.i_Clk(clk),.o_LED(led));
+  demo_autonoma_bus_detail_top #(.TIMEOUT_DIAG(TIMEOUT_DIAG),.FETCH_ROM(FETCH_ROM),
+                                .SLOW_CLOCK(SLOW_CLOCK))
+    dut(.i_Clk(clk),.o_LED(led));
+  wire cycle_clk=dut.system_clk;
 
   initial begin
     $readmemh("proyecto4/pruebas_fisicas/demo_autonoma_bus_detail/data/prices.hex",prices);
     $readmemh("proyecto4/pruebas_fisicas/demo_autonoma_bus_detail/data/expected_writes.hex",writes_expected);
     $readmemh("proyecto4/pruebas_fisicas/demo_autonoma_bus_detail/data/expected_decisions.hex",miso_expected);
+    $readmemh("proyecto4/alternativas/mmio_sma10/sw/trade.hex",firmware);
   end
 
-  always @(posedge clk) begin
+  always @(posedge cycle_clk) begin
     cycle=cycle+1;
     if(cycle>=498 && cycle<=510)
       $display("TRACE %0d PC_ID=%08h instr=%08h commit=%b stall=%b byte_done=%b data_req=%b",
@@ -40,6 +46,18 @@ module tb_demo_autonoma_bus_detail;
 
     if(dut.rst_ni && dut.instr_req)
       fetch_seen=1;
+
+    if(FETCH_ROM && dut.rst_ni && dut.data_req && dut.data_addr[31]!==1'b1)
+      $fatal(1,"Immutable ROM demo unexpectedly used the RAM data port: %h",dut.data_addr);
+
+    if(dut.rst_ni && dut.commit_evt) begin
+      if($isunknown(dut.pc_id) || dut.pc_id[1:0]!=0 || dut.pc_id>=71*4)
+        $fatal(1,"commit outside firmware cycle=%0d PC_ID=%08h",cycle,dut.pc_id);
+      if(dut.instr_id!==firmware[dut.pc_id>>2])
+        $fatal(1,"fetch mismatch cycle=%0d PC_ID=%08h got=%08h expected=%08h",
+          cycle,dut.pc_id,dut.instr_id,firmware[dut.pc_id>>2]);
+      checked_commits=checked_commits+1;
+    end
 
     if(dut.spi_byte_done) begin
       if(byte_count>=N || dut.spi_price!==prices[byte_count])
@@ -132,7 +150,7 @@ module tb_demo_autonoma_bus_detail;
   end
 
   integer sma_tick=0, index, expected_sum;
-  always @(posedge clk) if(dut.spi_byte_done) begin
+  always @(posedge cycle_clk) if(dut.spi_byte_done) begin
     expected_sum=0;
     for(index=(sma_tick>=9 ? sma_tick-9 : 0);index<=sma_tick;index=index+1)
       expected_sum=expected_sum+prices[index];
@@ -148,13 +166,14 @@ module tb_demo_autonoma_bus_detail;
     wait(dut.master_done &&
          byte_count==N && price_count==N && sum_count==N && ready_count==N &&
          decision_count==N && miso_count==N);
-    repeat(20) @(posedge clk);
+    repeat(20) @(posedge cycle_clk);
     #1;
 
-    if(led!==4'ha || dut.monitor_error!==0) $fatal(1,"Physical monitor LED=%h error=%b",led,dut.monitor_error);
+    if(led!==(TIMEOUT_DIAG>=2 ? 4'h0 : 4'ha) || dut.monitor_error!==0) $fatal(1,"Physical monitor LED=%h error=%b",led,dut.monitor_error);
     if(!fetch_seen)
       $fatal(1,"Espino fetch was not observed");
-    if(first_post_commit_cycle!=501 || !first_post_commit_seen || !dut.pc_probe_valid)
+    if(first_post_commit_cycle!=(SLOW_CLOCK ? 1510 : 501) ||
+       !first_post_commit_seen || !dut.pc_probe_valid)
       $fatal(1,"first post-byte commit was not captured");
     if(dut.pc_probe_led!==4'b0101 ||
        dut.pc_probe_pc!==32'h14 ||
@@ -196,6 +215,7 @@ module tb_demo_autonoma_bus_detail;
 
     $display("PASS PC probe: first post-byte commit PC_ID=%08h instr=%08h LED=%b",
       dut.pc_probe_pc,dut.pc_probe_instr,dut.pc_probe_led);
+    $display("PASS firmware words at commit: %0d PC_ID/instruction pairs",checked_commits);
     $display("PASS full 16 ticks: prices=%0d STATUS reads=%0d PRICE=%0d SUM=%0d READY=%0d DECISION=%0d MISO=%0d ACK=%0d",
       byte_count,status_count,price_count,sum_count,ready_count,decision_count,miso_count,ack_count);
     $display("PASS first-tick order: byte=%0d commit=%0d PC14=%0d PC18=%0d PC1C=%0d request=%0d STATUS=%0d PRICE=%0d SUM/READY=%0d DECISION=%0d MISO=%0d",
@@ -212,6 +232,8 @@ module tb_demo_autonoma_bus_detail;
       dut.data_req,dut.core_stall,dut.lsu_busy);
   end
 endmodule
+
+
 
 
 

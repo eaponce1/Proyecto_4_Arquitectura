@@ -4,7 +4,7 @@
 
 La prueba se ejecutó en simulación RTL usando el testbench publicado como emulador de la FPGA maestra. La copia del testbench oficial y la serie CSV se conservan en esta carpeta; el ejecutor crea una fuente configurada separada para cada corrida. No se editaron los cuatro criterios, la contabilidad, el firmware, el RTL ni los resultados previos.
 
-Ronda 3 se conserva como resultado medido. Rondas 1 y 2 **no se ejecutaron**: el ejecutor actual usa Icarus, y las duraciones medidas de ronda 3 hacen que completar ambas variantes a los periodos de ronda 1/2 requiera muchas horas o días por corrida. Verilator traduce el RTL/testbench, pero su criterio de cuatro estados no es equivalente al de Icarus, y su compilación nativa no pudo completarse por falta de GNU Make y compilador C++. Por tanto, no se presentan resultados ni PASS inventados para las rondas pendientes.
+La ronda 3 es la única con resultados completos. Las corridas de las rondas 1 y 2 están iniciadas en Icarus y sus CSV son parciales. Durante la revisión del 23 de noviembre se observaron 526 ticks de ronda 1 y 5.365 de ronda 2 en ambas arquitecturas. Esos avances no acreditan los cuatro criterios ni permiten calcular resultados finales. Icarus requiere muchas horas a los periodos largos. Una corrida con Verilator en dos estados dejaría sin acreditar el criterio oficial de MISO sin X.
 
 ## Resultados comparables disponibles
 

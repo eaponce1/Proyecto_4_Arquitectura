@@ -8,10 +8,11 @@
 // Authors:
 // - Nicolás Villegas <navillegas@miuandes.cl>
 
-// Diagnostic clone of the original Espino core. Functional logic is copied
-// verbatim; only observation outputs are added and none feed back into it.
+// Diagnostic clone of the original Espino core with observation outputs.
+// The immutable demo ROM can use its verified, word-aligned address range.
 module espino_core_cpu_trace #(
-  parameter [31:0] BootAddr = 32'h0000_0000
+  parameter [31:0] BootAddr = 32'h0000_0000,
+  parameter integer FETCH_WORD_BITS = 0
 ) (
   input  wire        clk_i,
   input  wire        rst_ni,
@@ -31,7 +32,9 @@ module espino_core_cpu_trace #(
   output wire        dbg_instr_valid_o,
   output wire        dbg_lsu_busy_o,
   output wire [31:0] dbg_instr_id_o,
-  output wire [31:0] dbg_pc_id_o
+  output wire [31:0] dbg_pc_id_o,
+  output wire [31:0] dbg_operand_a_o, dbg_operand_b_o,
+  output wire dbg_branch_taken_o, dbg_pc_set_o
 );
 
   wire [31:0] pc_id;
@@ -60,18 +63,36 @@ module espino_core_cpu_trace #(
   assign dbg_lsu_busy_o = lsu_busy;
   assign dbg_instr_id_o = instr_rdata_i;
   assign dbg_pc_id_o  = pc_id;
+  assign dbg_operand_a_o = rf_rdata_a;
+  assign dbg_operand_b_o = rf_rdata_b;
+  assign dbg_branch_taken_o = branch_taken;
+  assign dbg_pc_set_o = pc_set;
 
-  espino_if_stage #(.BootAddr(BootAddr)) u_if (
-    .clk_i            (clk_i),
-    .rst_ni           (rst_ni),
-    .pc_set_i         (pc_set),
-    .pc_target_i      (pc_target),
-    .stall_i          (stall),
-    .instr_req_o      (instr_req_o),
-    .instr_addr_o     (instr_addr_o),
-    .pc_id_o          (pc_id),
-    .instr_valid_id_o (instr_valid_id)
-  );
+  generate if (FETCH_WORD_BITS==0) begin : g_full_fetch
+    espino_if_stage #(.BootAddr(BootAddr)) u_if (
+      .clk_i(clk_i), .rst_ni(rst_ni), .pc_set_i(pc_set), .pc_target_i(pc_target),
+      .stall_i(stall), .instr_req_o(instr_req_o), .instr_addr_o(instr_addr_o),
+      .pc_id_o(pc_id), .instr_valid_id_o(instr_valid_id)
+    );
+  end else begin : g_rom_fetch
+    reg [FETCH_WORD_BITS-1:0] fetch_word, id_word;
+    reg id_valid;
+    always @(posedge clk_i or negedge rst_ni) begin
+      if(!rst_ni) begin
+        fetch_word<=BootAddr[FETCH_WORD_BITS+1:2];
+        id_word<=BootAddr[FETCH_WORD_BITS+1:2];
+        id_valid<=0;
+      end else if(!stall) begin
+        fetch_word<=pc_set ? pc_target[FETCH_WORD_BITS+1:2] : fetch_word+1'b1;
+        id_word<=fetch_word;
+        id_valid<=!pc_set;
+      end
+    end
+    assign instr_req_o=!stall;
+    assign instr_addr_o={{(30-FETCH_WORD_BITS){1'b0}},fetch_word,2'b00};
+    assign pc_id={{(30-FETCH_WORD_BITS){1'b0}},id_word,2'b00};
+    assign instr_valid_id=id_valid;
+  end endgenerate
 
   espino_id_stage u_id (
     .clk_i          (clk_i),

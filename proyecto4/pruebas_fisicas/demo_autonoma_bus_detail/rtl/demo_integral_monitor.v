@@ -1,4 +1,4 @@
-module demo_integral_monitor #(parameter TIMEOUT_DIAG=0)(
+module demo_integral_monitor #(parameter TIMEOUT_DIAG=0, TERMINAL_ONLY=0)(
   input wire clk,rst,byte_done,first_commit,status_valid,
   input wire [3:0] access,frame_index,
   input wire transport_timeout,frame_start,response_ok,
@@ -74,7 +74,8 @@ module demo_integral_monitor #(parameter TIMEOUT_DIAG=0)(
     price_fault || (!decision_fault && (miso_fault || !sequence_fault))};
   wire [3:0] displayed_fault=(TIMEOUT_DIAG && timeout_fault && fault_code==15)
                             ? timeout_code : fault_code;
-  wire [3:0] displayed_stage=TIMEOUT_DIAG ? ((hits[9] && closing_hits) ? 4'ha : 4'h0) : stage;
+  wire [3:0] displayed_stage=TIMEOUT_DIAG ? ((hits[9] && closing_hits) ? 4'ha : 4'h0) :
+                             TERMINAL_ONLY ? (reached[9] ? 4'ha : 4'h0) : stage;
   always @(posedge clk) begin
     if (rst) begin
       previous_access<=0;

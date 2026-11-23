@@ -186,3 +186,189 @@ iceprog $bin
 
 El hash esperado del BIN diagnóstico es **FF757BD2942B489159B07F8D811E0F5B5F80F957B849E1FFD9F073BDD530899C**. El selftest corregido sigue en build/selftest.bin con SHA-256 50D8B7AE550978409E9EF97A324F09C3E13FDDD9D4B52D574D6376172FE5CF86. Tras VERIFY OK, reiniciar y registrar D4…D1. La imagen diagnóstica previa (SHA-256 9866F3D8D4F08241D59D3509B043AAF2508A2FCDDD174D6A2BBEDC0926C26742) mostró D1 solo según la observación del usuario. Eso identifica WAIT_ACK con el byte recibido y sin lectura PRICE. Su BIN y fuentes están archivados en timeout_diagnostico_d1_aprobado.zip. El nombre del ZIP indica una lectura diagnóstica confirmada, no un PASS integral. Falta probar la revisión nueva para separar 0001, 0110 y 0111 en placa.
 
+
+### Seguimiento tras observar D1 en la revisión FF757BD2
+
+La flash de la placa coincidió con la revisión FF757BD2 por iceprog -c (VERIFY OK). El usuario observó D1 solo, que en esa revisión confirma recepción del byte y ausencia de lectura STATUS posterior al byte y de lectura PRICE.
+
+La siguiente revisión mantiene la misma ruta build/timeout_diagnostico.bin y distingue el caso anterior con dos observaciones sticky por tick. 0001 significa sin commit ni solicitud de datos tras el byte. 1000 significa que Espino hizo commit pero no emitió una solicitud de datos. 1001 significa que hubo solicitud de datos y ninguna se reconoció como lectura STATUS. Los códigos 0110, 0111 y 1010 conservan su significado. Las tres inyecciones nuevas pasaron en Icarus y conservaron la captura. El nominal pasó 16 precios, decisiones y respuestas MISO con 15 ACK. Los bits de captura ACK aceptado y frame_start se reconstruyen como cero bajo timeout, porque sus transiciones llevan a GAP y LOW respectivamente. master_done se deriva del estado DONE en el flanco de timeout. El banco comprobó las reconstrucciones contra las señales originales.
+
+La nueva compilación ocupa 1.277/1.280 LC. Info: Max frequency for clock 'i_Clk$SB_IO_IN_$glb_clk': 39.69 MHz (PASS at 25.00 MHz). SHA-256: 4B839740C68EE945C18B85EAFCF310454C75AB7C0B965CF4B73C372B4EC1FA1E. El BIN FF757BD2 quedó en timeout_diagnostico_status_d1.zip. La revisión nueva aún no tiene resultado físico.
+
+### Seguimiento tras observar D4 en la revisión 4B839740
+
+La placa dio VERIFY OK con esta revisión y el usuario observó D4 solo. El monitor registró al menos un commit tras el byte SPI, sin solicitud de datos posterior. Este resultado no identifica todavía el PC donde se detuvo el flujo.
+
+La siguiente revisión clasifica el último PC que hizo commit en esa condición. 0101 es 0x14 (lw STATUS), 0110 es 0x18 (andi), 0111 es 0x1C (beq), y 1000 es un PC distinto. 0001 conserva la ausencia de commits y solicitudes. 1001 indica solicitud posterior sin PRICE observado. El watchdog final pendiente usa 0010. En esta revisión 0110 y 0111 tienen el significado de PC indicado aquí, no el significado STATUS de la versión anterior. 1010 conserva el PASS nominal.
+
+El BIN anterior está en timeout_diagnostico_bus_d4.zip. La revisión de PC pasó las inyecciones de cada clase, incluyendo una dirección 0x114 para descartar alias de bits bajos, e Icarus completo con 16 DECISION y MISO coincidentes con Python. El flujo completo se reproduce con sintetizar.ps1 -TimeoutDiagnostic -Mapping default. La imagen ocupa 1.280/1.280 LC. Info: Max frequency for clock 'i_Clk$SB_IO_IN_$glb_clk': 35.18 MHz (PASS at 25.00 MHz). SHA-256: E02DAC67FC7D0DDE0C268D50D37A04FCBC19926AA0BCA22D21D89F6D91182BD3. La nueva prueba física está pendiente.
+
+### Lectura completa por USB tras observar D4 en E02DAC67
+
+La flash coincidió con E02DAC67 (VERIFY OK). D4 en esa revisión identifica un timeout sin solicitud de datos posterior al byte y con último commit observado fuera de 0x14, 0x18 y 0x1C. No informa el PC exacto.
+
+La sonda temporal build/timeout_uart.bin toma PC_ID e instrucción completos antes del timeout y los envía por el USB de la Go Board a 115200 baudios, 8N1, en un registro A5 + PC_ID de 32 bits + instrucción de 32 bits, en little-endian. La captura usa cuatro BRAM y el TX usa el pin 74 ya usado para el eco UART. Los LEDs indican 0000 durante ejecución sin error observado, 1000 por timeout y 1101 por fallo MISO. Esta sonda físicamente conserva el control SPI, la decisión de Espino, el cálculo SMA10, el comparador MISO y el watchdog, que en esta imagen espera la DECISION al final. El monitor integral sigue cotejándose en simulación. La sonda no reemplaza el selftest ni la imagen de competencia.
+
+Ejecutar desde pochoco_soc-main:
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -TimeoutUART -Mapping default
+iceprog "$p/build/timeout_uart.bin"
+python "$p/leer_timeout_uart.py" --port COM10
+```
+
+El lector abre COM10 primero, verifica la flash con iceprog -c y deja salir a la FPGA de reset para capturar el informe breve. No escribe la flash. Devuelve PC_ID, INSN y la comparación contra trade.hex si el PC está dentro del código. Conservar la salida completa.
+
+La prueba de UART decodificó en Icarus 0x00004120 y 0xDEADBEEF después del timeout inyectado, y comprobó que un cambio de PC posterior conserva el registro enviado. El banco integral pasó los 16 precios y bytes MISO/DECISION frente a Python. Los logs están en build/compilacion_timeout_uart.log y build/timeout_uart_nextpnr.log.
+Sonda UART: 1.275/1.280 LC y 13 BRAM. Info: Max frequency for clock 'i_Clk$SB_IO_IN_$glb_clk': 38.86 MHz (PASS at 25.00 MHz). SHA-256: 681F0B048C11CF309D3114DD96B2A796B67403A79150B6DCE728BF5267CEDCE1.
+
+La lectura física de esa imagen devolvió dos veces `PC_ID=0x00000048 INSN=0x00048863`, con la palabra verificada contra `trade.hex`. D4 señala que se enclavó el timeout. El apagado entre encendidos concuerda con el reset de `iceprog -c` al verificar la flash y arrancar otra vez. La captura contiene el último commit registrado en la trama activa antes de vencer el watchdog. Para saber qué trama falló y cómo se comportó el branch, hacen falta el valor de `x9` y el estado del maestro.
+
+En `trade.s`, PC 0x48 es `beq x9,x0,REVISAR_COMISION_VENTA`, con destino 0x58. En la corrida RTL nominal, el branch se ejecutó únicamente en el tick 15, con `x9` de 16 a 0. Al comparar cero con cero, el branch se tomó y el firmware completó la venta. Las redes exportadas de Yosys y reconstruidas desde el ASC conservaron LED 0000 y UART inactiva tras 5 ms de simulación lógica. Las trazas están en `build/tb_uart_branch_ref.log`, `build/timeout_uart_netlist.log` y `build/timeout_uart_routed.log`.
+
+### Contexto del commit durante el timeout
+
+La sonda temporal conserva el reloj, SPI, el Espino, el firmware, el cálculo SMA10 y la comparación MISO. Devuelve el número de trama 1–16, el estado WAIT_ACK o DONE en el flanco del timeout, y el PC, el operando A y la señal de branch tomado registrados en el último commit de esa trama. RS1_VALUE captura la salida A del banco de registros. En PC 0x48, corresponde a `x9`. BRANCH_TAKEN observa la decisión real del comparador. Ese bit ocupa el bit 0 del campo de PC, que vale cero para las instrucciones alineadas del firmware.
+
+| D4…D1 | Estado en esta sonda |
+| --- | --- |
+| 0000 | Sin timeout ni fallo MISO enclavados |
+| 1000 | Timeout enclavado con contexto disponible por UART si hubo un commit en la trama |
+| 1101 | Error de comparación MISO enclavado |
+
+La cabecera UART es 0xC0 más el índice de trama para WAIT_ACK y 0xD0 más el índice para DONE. Siguen dos palabras de 32 bits en little-endian con el PC y el resultado del branch, y el operando A, respectivamente. La lectura verifica la flash y reinicia la FPGA antes de esperar los nueve bytes. La sonda sirve para diagnosticar el fallo físico del autotest integral.
+
+Icarus verificó el paquete WAIT_ACK a los 348,86 µs con ACK ausente y el paquete DONE a los 4,25786 ms al omitir el evento de la última DECISION en el monitor. La corrida nominal pasó con 16 precios, DECISION y MISO, 15 ACK en orden y cero diferencias con Python. El flujo para HX1K/VQ100 utilizó 1.277/1.280 LC, 1.098 LUT4 y 13 BRAM. El enrutado cerró a 25 MHz con Fmax de 39,85 MHz. La imagen diagnóstica tiene 32.220 bytes. Su SHA-256 es `18C60ADB78312791F5F0400C943BFCF154A54AC86BD704CBF40BE38234A0FA55`.
+
+Los resultados están en `build/compilacion_timeout_contexto.log`, `build/timeout_contexto_yosys.log` y `build/timeout_contexto_nextpnr.log`. La captura física con esta imagen está pendiente. Para reproducir el flujo y probar manualmente desde `pochoco_soc-main`:
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -TimeoutContext -Mapping default
+Get-FileHash "$p/build/timeout_contexto.bin"
+iceprog "$p/build/timeout_contexto.bin"
+python "$p/leer_timeout_uart.py" --port COM10 --contexto
+```
+
+### Salida prematura del sondeo de STATUS
+
+La imagen de contexto `18C60ADB…` dio `VERIFY OK` y `TIMEOUT=WAIT_ACK TICK=1 PC_ID=0x00000048 RS1_VALUE=0xFFFFFC3D BRANCH_TAKEN=0` en placa. En PC 0x48 se compara `x9` contra `x0`. El operando `0xFFFFFC3D` representa −963 y queda fuera de la cantidad inicial de venta, que el firmware limita a 0–63 antes de entrar al bucle. Las lecturas repetidas, con verificación y reset de solo lectura, registraron también PC 0x84 y 0xD0 en WAIT_ACK de la primera trama. Un reinicio se quedó sin bytes UART. Los últimos PCs observados dependen del arranque.
+
+En Icarus, el primer commit de PC 0x1C ocurre en el ciclo 33. Los operandos son cero y el BEQ redirige el siguiente commit a PC 0x14. El primer byte llega en el ciclo 500 y el Espino solicita PRICE en el 515. Al anular el resultado de los branches, o al bloquear solo su redirección y conservar JAL, PRICE se solicita en el ciclo 35, el bucle de venta entra con `x9=0` en el 56 y el watchdog vence en el 8722. Ambas inyecciones registran 963 commits en PC 0x48 hasta ese límite. Reproducen el mecanismo y el orden de magnitud del contador observado en placa. El PC muestreado justo antes del timeout en esas simulaciones puede diferir del PC físico. Esta evidencia ubica el problema en la ruta de ejecución temprana, con la etapa exacta todavía pendiente.
+
+La sonda de arranque observa el BEQ en PC 0x1C antes del primer byte. Enclava el primer salto cuyo siguiente commit se aparta de PC 0x14. Tras el watchdog emite un byte UART con los siguientes campos:
+
+| Campo del lector | Significado |
+| --- | --- |
+| `RS1_ZERO`, `RS2_ZERO` | Los operandos completos del BEQ son cero por cada puerto del banco |
+| `STATUS_NEW` | Se observó `new_price=1` en una respuesta de STATUS durante el sondeo anterior al primer byte |
+| `INSN_OK` | La palabra del BEQ coincide con `0xFE010CE3` |
+| `BRANCH_TAKEN` | Resultado del branch observado a la entrada del controlador |
+| `PC_SET` | Orden de redirección del controlador hacia fetch |
+| `NEXT_COMMIT_0X14` | El siguiente commit volvió a la instrucción LW STATUS |
+
+D4 permanece encendido tras el timeout. D4+D3+D1 identifican un fallo MISO. Si los operandos son cero, `BRANCH_TAKEN=0` apunta a decode o comparación. Si el branch se toma y `PC_SET=0`, la divergencia está en la redirección del controlador. Si ambas señales valen uno y el PC siguiente difiere, la comprobación pasa al destino y a fetch. Las sondas modifican únicamente la observación del clon diagnóstico.
+
+Icarus aprobó las inyecciones de comparación y redirección. También capturó una salida prematura luego de 21 saltos correctos y completó la secuencia nominal de 16 ticks con las 16 DECISION y respuestas MISO exactas frente a Python. Yosys obtuvo 1.080 LUT4 y 9 BRAM. nextpnr utilizó 1.262/1.280 LC y cerró timing a 25 MHz con Fmax enrutada de 42,24 MHz. Los logs están en `build/compilacion_timeout_arranque.log`, `build/timeout_arranque_yosys.log` y `build/timeout_arranque_nextpnr.log`. La imagen tiene SHA-256 `581B1D3CE7B29FE9B991FF9C82D3C4A2CE862BDAC07F2CD12170421B57C93D0A`. Queda pendiente la lectura en la Go Board.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -BootBranch -Mapping default
+Get-FileHash "$p/build/timeout_arranque.bin"
+iceprog "$p/build/timeout_arranque.bin"
+1..3 | ForEach-Object { python "$p/leer_timeout_uart.py" --port COM10 --arranque }
+```
+
+Las tres lecturas verifican la flash y reinician la FPGA sin volver a escribirla.
+
+### Verificación de la palabra que llega al decoder
+
+La Go Board verificó `581B1D3C…` y devolvió tres veces
+`RS1_ZERO=0 RS2_ZERO=1 STATUS_NEW=0 INSN_OK=0 BRANCH_TAKEN=0 PC_SET=0 NEXT_COMMIT_0X14=0`
+en PC_ID 0x1C. D4 parpadeó durante las lecturas que reinician la FPGA. En el commit capturado, el decoder recibió una palabra distinta del BEQ esperado con STATUS todavía sin precio. Por ello, los indicadores de comparación y redirección de ese commit se interpretan a partir de la instrucción realmente leída.
+
+Se verificaron las 71 palabras del firmware contra las dos copias de la RAM etiquetadas en el netlist de Yosys, deshaciendo la permutación de bits de `brams_map.v`. Las dos tienen `0xFE010CE3` en el índice 7, PC 0x1C. Tras desempaquetar `timeout_arranque.bin`, los nueve bloques de inicialización BRAM coinciden con el ASC enrutado. Los logs de la comprobación están en `build/timeout_arranque_bram_init_firmware.log` y `build/timeout_arranque_bram.log`.
+
+La sonda `timeout_fetch` captura los 32 bits observados por el decoder en el commit de PC_ID 0x1C. Si hay una salida prematura del sondeo, conserva la muestra que la precedió. Emite una cabecera 0xB4 o 0xB5 seguida de la palabra en little-endian. El lector compara la palabra contra el firmware y muestra sus direcciones de origen posibles en `MATCH_PC`. `EARLY_EXIT=1` indica que el siguiente commit se apartó de 0x14 antes del primer byte. Icarus verificó tanto el BEQ correcto como la recuperación exacta de un `LW PRICE` inyectado en esa posición.
+
+La corrida integrada aprobó los 16 ticks con coincidencia de DECISION y MISO respecto de Python. El banco integral cotejó 36.914 pares PC_ID/instrucción contra `trade.hex`. Yosys obtuvo 1.090 LUT4 y 11 BRAM. nextpnr utilizó 1.276/1.280 LC y cerró timing a 25 MHz con Fmax de 37,83 MHz. SHA-256 de la sonda `timeout_fetch.bin` `EC483AFD5E2F872DA9C200614E83A9645E8064E3CD352ACD112C7728E6818CBD`. La lectura física de la palabra está pendiente.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -FetchWord -Mapping default
+Get-FileHash "$p/build/timeout_fetch.bin"
+iceprog "$p/build/timeout_fetch.bin"
+python "$p/leer_timeout_uart.py" --port COM10 --fetch
+```
+
+### Ajuste del puerto de instrucciones en la demo integral
+
+La imagen `EC483AFD…` produjo `WORD=0x00000000 EXPECTED=0xFE010CE3 MATCH_PC=ninguna EARLY_EXIT=1` con D4 encendido. Dos reinicios con verificación de solo lectura repitieron la palabra nula. El tercero quedó sin bytes UART. La inyección `+zero_word` de Icarus devuelve la misma palabra y marca la salida prematura. La constatación física localiza el problema en el dato disponible al decoder durante el commit observado. El mecanismo eléctrico que produce ese cero requiere confirmación en placa.
+
+El candidato integral `selftest_fetch_re` cambia únicamente la conexión de habilitación de lectura de las dos BRAM x16 del puerto de instrucciones. La señal de solicitud pasa a `RE` y `RCLKE` queda a uno. El modelo lógico x16 actualiza RDATA con ambas entradas altas en el flanco de reloj. Lattice documenta el uso de RE en configuración x16. El mapeo conserva el mismo reloj, direcciones, datos, escritura, tiempos lógicos del ciclo y contenido INIT, además de la ruta de datos y el firmware. [Guía de memoria de iCE40](https://www.latticesemi.com/~/media/LatticeSemi/Documents/ApplicationNotes/MO/MemoryUsageGuideforiCE40Devices.pdf)
+
+El modo `-FetchReadEnable` sintetiza la demo con el monitor integral, aplica el cambio a las dos celdas verificadas en el netlist de Yosys, y simula ese netlist con las primitivas iCE40. Los bits de los LEDs se leen en orden D4…D1. `1010` en la imagen integral es D4 y D2 encendidos con D3 y D1 apagados, después de verificar los 16 ticks. La prueba física se realiza por programación manual.
+
+La regresión RTL aprobó 16 precios, 16 escrituras DECISION, 16 MISO, 15 ACK y 36.914 pares PC_ID/instrucción. También comprobó el watchdog, el reset y la inyección de error MISO. La simulación del netlist mantuvo `1010` hasta el ciclo 98.314. El mapeo `default` obtuvo 1.260/1.280 LC, 1.074 LUT4, 9 BRAM y Fmax enrutada de 35,25 MHz. `icetime` también aprobó la restricción de 25 MHz. El intento con `-Mapping dff` ocupó 1.289 LC y se descartó antes de generar BIN.
+
+SHA-256 de `build/selftest_fetch_re.bin` `E035B903938A4D933E1E13D88827A64629B3BDC24795C8C759F84489095F9FA0`. Los resultados están en `build/compilacion_selftest_fetch_re.log`, `build/selftest_fetch_re_mapped.log`, `build/selftest_fetch_re_nextpnr.log` y `build/selftest_fetch_re_icetime.log`. La prueba física reportó `VERIFY OK` y los cuatro LEDs encendidos (`1111`, watchdog). Seleccionar RE por sí solo no resolvió el fallo físico.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -FetchReadEnable -Mapping default
+Get-FileHash "$p/build/selftest_fetch_re.bin"
+iceprog "$p/build/selftest_fetch_re.bin"
+```
+
+### Registro de las entradas de lectura de instrucciones
+
+El modo `-FetchPhase` prepara las entradas RADDR y RE de las dos BRAM x16 de instrucciones en el flanco descendente. Las BRAM leen en el flanco ascendente. El cambio añade ocho flip-flops al mapeo de tecnología. La comparación del netlist comprueba que únicamente cambian esas conexiones de lectura y se agregan esos ocho registros. El puerto de datos, las operaciones de escritura, el contenido INIT y las comprobaciones de los 16 ticks se conservan. Así se prueba la estabilidad de las entradas de fetch alrededor del flanco de lectura como hipótesis del fallo físico.
+
+El primer mapeo con las señales declaradas en el top ocupaba 1.287 LC y se descartó. Insertar los registros después de sintetizar el RTL permitió mantener el resto del mapeo lógico. El nuevo enrutado utiliza 1.268/1.280 LC y 9 BRAM. El camino crítico es de flanco ascendente a descendente y la Fmax enrutada informada por nextpnr es 30,42 MHz. La restricción es de 25 MHz. La comparación estructural se guarda en `build/selftest_fetch_fase_diff.log` y la comprobación de timing en `build/selftest_fetch_fase_nextpnr.log`.
+
+La síntesis desde las fuentes actuales y el mapeo de entradas produjeron un netlist idéntico al simulado. La regresión contrastó 16 decisiones y 16 MISO con Python y la simulación del netlist mantuvo el código integral `1010` hasta el ciclo 98.314. `icepack` produjo 32.220 bytes. El SHA-256 de `build/selftest_fetch_fase.bin` es `19B504B6D81CDE36C0A81F3C7AE7C5D1D08A4F38B4E99CA0C0D49FDEC145FB55`. Los registros de reproducción, simulación y empaquetado están en `build/selftest_fetch_fase_repro.log`, `build/selftest_fetch_fase_mapped.log` y `build/selftest_fetch_fase_bin.log`.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -FetchPhase -Mapping default
+Get-FileHash "$p/build/selftest_fetch_fase.bin"
+iceprog "$p/build/selftest_fetch_fase.bin"
+```
+
+La Go Board verificó la grabación de la imagen `19B504B6…` y quedó en `1111` con los cuatro LEDs encendidos. El watchdog volvió a vencer en placa.
+
+### Demo autónoma con ROM de instrucciones en LUTs
+
+La imagen `selftest_fetch_rom.bin` carga las mismas 71 palabras de `trade.hex` en una ROM de LUTs. El puerto de datos conserva su RAM y direccionamiento MMIO. La demo compacta el PC a siete bits de dirección de palabra. El script comprueba que los 22 saltos directos están alineados y dentro del programa, y el banco integrado verifica que el firmware use MMIO para todos sus accesos de datos. El fetch mantiene la latencia síncrona y el enrutamiento del SoC y del monitor conserva la misma comprobación de precios, DECISION y MISO.
+
+La implementación con PC de 32 bits ocupó 1.422 LC. Con la dirección de palabra ajustada al firmware, el build obtuvo 1.234/1.280 LC, 1.096 LUT4, 7 BRAM y Fmax enrutada de 43,94 MHz. Yosys mapeó la ROM de instrucciones a lógica. Icarus cotejó 36.914 commits, 16 precios, 16 decisiones, 16 respuestas MISO y 15 ACK. La simulación del netlist conservó `1010` hasta el ciclo 98.314. El BIN tiene 32.220 bytes y SHA-256 `57EC067D20918FEE0C283AA1BD20A270C5ED5F1B711018D0057BCBCAD38A3068`.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -FetchROM -Mapping default
+Get-FileHash "$p/build/selftest_fetch_rom.bin"
+iceprog "$p/build/selftest_fetch_rom.bin"
+```
+
+En placa, `1010` corresponde a solo D4 y D2 encendidos de forma estable. El usuario reportó los cuatro LEDs encendidos con esta imagen. Una verificación de solo lectura devolvió `VERIFY OK` para el BIN exacto `57EC067D…`. El watchdog persiste con la ROM en LUTs y la evidencia de flash quedó en `build/confirmacion_rom_flash.log`.
+
+### Autotest con reloj dividido y confirmación por UART
+
+El modo `-SlowROM` usa la ROM de instrucciones en LUTs. Un flip-flop y un buffer global generan el reloj de 12,5 MHz nominal a partir del reloj de placa de 25 MHz. El reset se libera de forma registrada después de 1.024 ciclos del SoC, aproximadamente 81,92 µs. Este modo conserva la comprobación integral de los 16 precios, las decisiones y MISO. Los LEDs presentan el resultado terminal.
+
+La UART TX por pin 74 conserva 115200 baudios, 8N1, con el reloj de placa. Envía un byte con el prefijo 0xA y el código LED al terminar. `0xAA` es PASS, `0xAB` error de precio, `0xAC` error de decisión, `0xAD` error MISO, `0xAE` error de secuencia y `0xAF` watchdog. El lector abre COM10 antes de verificar la flash en modo de solo lectura y reiniciar la FPGA.
+
+La regresión RTL comprobó los 16 ticks, 15 ACK y 36.914 pares PC_ID/instrucción. La unidad UART simuló `0xAA` y `0xAF`. El enrutado con `-Mapping dff` registró 1.270/1.280 LC, 1.122 LUT4 y 7 BRAM. nextpnr informó 44,29 MHz para la red del SoC y aprobó una restricción de 25 MHz. La frecuencia operativa de este autotest sigue siendo 12,5 MHz. Las mediciones oficiales corresponden a las imágenes de competencia.
+
+La simulación del netlist conservó `1010` y transmitió `0xAA`. El BIN `build/selftest_fetch_rom_lento.bin` tiene 32.220 bytes y SHA-256 `0CCD156590DAECF3F9C3E6031E7E987B0CE6A0795BB801A9672C88CCC91FB9CC`.
+
+**PASS físico confirmado el 23 de noviembre de 2026.** En la Go Board se observaron únicamente D2 y D4 encendidos (`1010`). `iceprog -c` devolvió `VERIFY OK` para el BIN exacto y COM10 recibió `AUTOTEST LED=1010 UART=0xAA RESULT=PASS` en tres arranques. El código terminal acredita que el monitor completó los 16 ticks, con accesos MMIO, decisiones y MISO verificados. Los registros `build/confirmacion_rom_lento_flash.log` y `build/resultado_fisico_rom_lento.log` se incluyen en el ZIP de entrega.
+
+```powershell
+$p = 'proyecto4/pruebas_fisicas/demo_autonoma_bus_detail'
+powershell -ExecutionPolicy Bypass -File "$p/sintetizar.ps1" -SlowROM -Mapping dff
+Get-FileHash "$p/build/selftest_fetch_rom_lento.bin"
+iceprog "$p/build/selftest_fetch_rom_lento.bin"
+python "$p/leer_timeout_uart.py" --port COM10 --autotest
+```

@@ -1,4 +1,5 @@
-﻿$ErrorActionPreference='Stop'
+﻿param([switch]$FetchROM,[switch]$SlowROM)
+$ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
 Set-Location $repo
 
@@ -36,10 +37,18 @@ $src=@(
   'proyecto4/alternativas/mmio_sma10/tb/ram_model.v'
 )+(Get-ChildItem 'rtl/espino_core/*.v'|ForEach-Object{$_.FullName.Substring($repo.Length+1).Replace('\','/')})
 
-$out="$b/tb_demo_autonoma_bus_detail.vvp"
-& iverilog -g2012 -s tb_demo_autonoma_bus_detail -o $out $src
+$suffix=if($SlowROM){'_rom_lento'}elseif($FetchROM){'_rom'}else{''}
+$romValue=if($FetchROM -or $SlowROM){1}else{0}
+$parameter="-Ptb_demo_autonoma_bus_detail.FETCH_ROM=$romValue"
+$slowValue=if($SlowROM){1}else{0}
+$slowParameter="-Ptb_demo_autonoma_bus_detail.SLOW_CLOCK=$slowValue"
+if($SlowROM){
+  $src+=@("$PSScriptRoot/rtl/timeout_pc_uart.v","$PSScriptRoot/tb/clock_model.v")
+}
+$out="$b/tb_demo_autonoma_bus_detail$suffix.vvp"
+& iverilog -g2012 -s tb_demo_autonoma_bus_detail $parameter $slowParameter -o $out $src
 if($LASTEXITCODE -ne 0){throw 'Integrated Icarus compilation failed.'}
-& vvp $out | Tee-Object -FilePath "$b/simulacion_integrada.log"
+& vvp $out | Tee-Object -FilePath "$b/simulacion_integrada$suffix.log"
 if($LASTEXITCODE -ne 0){throw 'Integrated 16-tick test failed.'}
 
 

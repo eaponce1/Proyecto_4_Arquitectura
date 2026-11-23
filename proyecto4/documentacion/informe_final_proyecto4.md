@@ -91,7 +91,7 @@ Resultado: 5 LC menos (1279→1274, reducción aproximada 0,39%), LUT4 1055→10
 
 El build registrado para MMIO base usa `trade_top` bajo `alternativas/mmio_sma10`, `EnableSpi=1`, la imagen de esa misma variante y HX1K/VQ100, PCF `goboard.pcf`, objetivo de 25 MHz. El resultado empaquetado es `programacion_fisica/trade_mmio_base.bin` (32.220 bytes). Logs Yosys/nextpnr registran 1055 LUT4, 1279/1280 LC, 13/16 BRAM y Fmax 40,50 MHz. Se trata de síntesis, place-and-route e icepack.
 
-El informe de build dice explícitamente que `iceprog` no se ejecutó. El usuario informó que la Go Board ya estaba programada con MMIO SMA10 base; el repositorio no contiene un log de programación ni una captura de VERIFY OK. Por tanto, se registra como estado reportado por el usuario, no como verificación independiente de bitstream. No se afirma que la estrategia haya sido probada físicamente ni que haya participado en competencia.
+El registro de build acredita el bitstream SPI externo. El usuario informó la programación de esa imagen. La ejecución de competencia junto a la FPGA maestra sigue pendiente. La confirmación física de la demo con maestro interno consta en la sección de cierre.
 
 El fixture `pruebas_fisicas/spi_slave/internal/` conecta internamente maestro y slave, sin jumpers. Su TB simulado aprobó cinco tramas; el build HX1K/VQ100 reporta 161 LUT4, 220 LC, cero BRAM, Fmax 146,43 MHz y binario independiente de 32.220 bytes. Sus LEDs PASS/DONE se verificaron en simulación. No se ha programado ni ejecutado este fixture físicamente; además valida el SPI slave aislado, no el SoC completo con Espino y el agente de inversión.
 
@@ -152,24 +152,16 @@ Los promedios son los enteros truncados que produjo la instrumentación de esa c
 
 La versión publicada del testbench comprueba MISO sin X, que existan escrituras DECISION, que no queden precios sin consumir y que la respuesta llegue dentro del presupuesto. Ambas arquitecturas aprobaron los cuatro checks. Sus decisiones transmitidas coinciden exactamente tick a tick en los 20.000 ticks. Los artefactos y logs están en `resultados/validacion_oficial/informe_validacion_oficial.md`, `comparacion_oficial.csv` y `decisiones.csv`.
 
-**Alcance pendiente:** solo se ejecutó la ronda 3 (0,1 ms). Las rondas 1 (10 ms) y 2 (1 ms) siguen pendientes. La integración física del diseño con la FPGA maestra también sigue pendiente; estos resultados son de simulación RTL, no una prueba física.
+La ronda 3 (0,1 ms) es la única que produjo un resultado completo. Las corridas de rondas 1 (10 ms) y 2 (1 ms) tienen avance parcial. La integración física con la FPGA maestra sigue pendiente.
 
 ## 10. Pendientes y conclusión técnica
 
-1. Añadir/archivar evidencia del programador (`iceprog`/VERIFY OK) si se requiere afirmar programación física verificada.
-2. Completar las rondas oficiales 1 y 2 (20.000 ticks por ronda) para MMIO base y software original.
-3. Probar la integración física con la FPGA maestra; la prueba SPI interna aislada no reemplaza esta integración. La simulación no sustituye cableado/timing eléctrico.
-4. MMIO base queda al límite (1 LC libre); optimizada solo mejora 5 LC. Debe verificarse margen ante cualquier cambio de configuración.
-5. No se reporta participación en competencia ni resultado de rentabilidad real. La serie histórica no respalda recomendar una estrategia activa frente a no operar.
-Conclusión: existe equivalencia funcional demostrada para firmware/estrategia en el alcance de pruebas indicado. **MMIO SMA10 base se mantiene como arquitectura final seleccionada**: conserva la decisión final en Espino, pasó P&R y cuenta con comparación oficial de 20.000 ticks. La variante agente completo es solo una simulación RTL de diagnóstico; su implementación física excede el dispositivo por la lógica interna de prueba. El margen de LC de la arquitectura base es mínimo. Las rondas oficiales 1 y 2, y las pruebas físicas del agente con FPGA maestra siguen pendientes. El estado físico y la decisión de inversión deben describirse con esas limitaciones.
+1. Completar las rondas oficiales 1 y 2 (20.000 ticks por ronda) para MMIO base y software original.
+2. Probar las conexiones SPI externas y la ejecución física del diseño de competencia con la FPGA maestra.
+3. Revisar el margen de implementación si cambia la configuración. MMIO base tiene una LC libre y la variante optimizada mejora cinco LC.
+4. Medir el resultado de la competencia. En la serie histórica, no operar obtuvo mayor patrimonio final que la estrategia activa.
 
-## Imágenes finales y prueba física pendiente
-
-El autotest local de 16 precios y la imagen SPI externa tienen objetivos separados. La prueba física anterior del capturador dio 0101. La versión integral anterior dio 1111, un error genérico que no identifica la causa. La nueva imagen de autotest preserva el primer código de fallo. La causa física concreta se resolverá con ese código. En Icarus se reprodujo un fallo MISO inyectado en el flanco 531 y se obtuvo 1101.
-
-El autotest instrumentado verificó 16 precios, decisiones y respuestas MISO contra Python, y 15 ACK. Con mapeo Yosys -dff ocupa 1.089 LUT4, 1.279 LC y 9 BRAM, con Fmax 38,80 MHz. El top de competencia trade_top ocupa 1.055 LUT4, 1.279 LC y 13 BRAM, con Fmax 40,50 MHz. Ambos cerraron 25 MHz. El autotest local y la conexión a la maestra siguen pendientes en placa.
-
-La matriz requisito por requisito está en documentacion/matriz_cierre_pochoco.md. La ronda 3 mantiene sus 20.000 ticks y 4/4 PASS en cada arquitectura. Se relanzaron las rondas 1 y 2 con Icarus y no se dispone aún de resultados completos.
+**MMIO SMA10 base es la arquitectura final de competencia.** Conserva la decisión final en Espino, pasó P&R y cuenta con comparación oficial de 20.000 ticks. La demo autónoma independiente completó en placa su secuencia de 16 ticks con maestro SPI interno.
 
 ## Estado de entrega verificado el 23 de noviembre de 2026
 
@@ -177,8 +169,14 @@ Se verificó que el testbench y el CSV adjuntos coinciden byte a byte con sus co
 
 La imagen SPI externa MMIO SMA10 base es trade_mmio_base.bin, SHA-256 0150BF6FCE608FD463B15EB945F84354B151E581C71A36B47629E889EC0B6DFD. Ocupa 1.279 LC, 1.055 LUT4 y 13 BRAM. Fmax post-route de 40,50 MHz. La imagen solo se acredita con simulación e implementación y no hay una corrida física con FPGA maestra.
 
-El usuario observó D1 solamente en la imagen diagnóstica anterior. El código identifica WAIT_ACK después de recibir un byte, sin lectura PRICE observada. La revisión de diagnóstico distingue ausencia de consulta STATUS, consulta sin respuesta new_price=1 y respuesta new_price=1 sin lectura PRICE. Los tres casos se ejercitaron en Icarus, junto a DONE, MISO y el caso nominal de 16 ticks. La imagen temporal ocupa 1.279 LC y cerró a 25 MHz con Fmax de 40,25 MHz. Falta observar los códigos nuevos en placa para identificar el punto exacto de detención de Espino.
+La demostración autónoma mantiene el generador SPI de 16 precios, el Espino ejecutando el firmware y el verificador de DECISION y MISO. En Icarus aprobó los 16 ticks y 15 ACK. En placa, el capturador del primer commit dio 0101. El diagnóstico posterior registró WAIT_ACK en el primer tick y una instrucción nula en PC 0x1C, cuya palabra esperada en `trade.hex` es 0xFE010CE3. Tras verificarse manualmente la flash, las imágenes integrales con habilitación RE y con entradas de BRAM registradas volvieron a mostrar 1111, correspondiente al watchdog.
+
+La imagen independiente `selftest_fetch_rom.bin` implementa la memoria de instrucciones de la demo en LUTs. Usa las 71 palabras de `trade.hex` y un PC de siete bits de dirección de palabra, con 22 transferencias de control verificadas dentro del firmware. En Icarus aprobó 36.914 pares PC/instrucción y los 16 ticks frente a Python. La simulación del netlist alcanzó 1010. El enrutado utiliza 1.234/1.280 LC, 1.096 LUT4 y 7 BRAM con Fmax de 43,94 MHz. En placa se observó 1111 con la flash verificada mediante `iceprog -c`. La arquitectura de competencia es MMIO SMA10 base con SPI externo.
+
+La revisión autónoma `selftest_fetch_rom_lento.bin` usa la misma ROM, reset registrado y un reloj de 12,5 MHz nominal para el SoC. El oscilador de placa de 25 MHz mantiene la UART de confirmación. Las simulaciones RTL y del netlist completaron los 16 ticks. El enrutado ocupa 1.270/1.280 LC, 1.122 LUT4 y 7 BRAM, con Fmax de 44,29 MHz para la red del SoC bajo la restricción de 25 MHz.
+
+**La demo autónoma obtuvo PASS físico en la Go Board.** Se observaron D2 y D4 encendidos y D1 y D3 apagados, código 1010. La verificación de solo lectura de la flash devolvió `VERIFY OK`. Tres arranques devolvieron `AUTOTEST LED=1010 UART=0xAA RESULT=PASS` por COM10. El código confirma que se completó la comprobación integral de los 16 ticks con maestro interno. El BIN validado tiene SHA-256 `0CCD156590DAECF3F9C3E6031E7E987B0CE6A0795BB801A9672C88CCC91FB9CC`. El ZIP conserva los registros de flash y UART.
 
 La evidencia oficial completa sigue siendo la ronda 3 con 20.000 ticks y 4/4 para software y MMIO. Rondas 1 y 2 se están simulando con Icarus. Su avance parcial no acredita PASS. Verilator pudo traducir el banco y MSVC 2019 está instalado, pero el entorno carece de los encabezados del SDK/UCRT necesarios para compilarlo. Una corrida alternativa de dos estados tampoco acreditaría el criterio MISO sin X.
 
-La entrega incluye las dos alternativas de co-diseño, código y bancos de prueba, tablas de IC, CPI, ciclos, tiempo, recursos y roofline, el PDF y la guía de defensa. La demostración física con la maestra y la defensa presencial siguen pendientes.
+La entrega incluye las dos alternativas de co-diseño, código y bancos de prueba, tablas de IC, CPI, ciclos, tiempo, recursos y roofline, el PDF y la guía de defensa. La matriz de cierre identifica la evidencia por requisito. La demostración física con la maestra y la defensa presencial siguen pendientes.

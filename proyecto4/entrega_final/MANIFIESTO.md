@@ -19,7 +19,7 @@ Esta carpeta contiene el PDF solicitado y evita duplicar fuentes que ya viven en
 - Ronda 3: 20.000 ticks; 4/4 criterios para software y MMIO; decisiones idénticas.
 - Rondas 1 y 2: pendientes, no se reportan como aprobadas.
 - Integración física con FPGA maestra/competencia: pendiente.
-- `iceprog`: no ejecutado.
+- Demo autónoma de 16 ticks aprobada físicamente en Go Board a 12,5 MHz. Se verificó la flash, se observó 1010 y COM10 devolvió 0xAA en tres arranques. El ZIP incluye `selftest_fetch_rom_lento.bin`, los registros de simulación y timing y ambos logs físicos.
 
 El árbol de trabajo recibido no tiene metadata `.git`; verificar el checkout/remoto y el staging antes de entregar. No hacer commit ni push sin esa comprobación.
 
@@ -27,4 +27,4 @@ El árbol de trabajo recibido no tiene metadata `.git`; verificar el checkout/re
 
 Ejecuta python -B proyecto4/entrega_final/preparar_entrega.py desde la raíz para construir el ZIP de entrega. La validación de ronda 3, el informe PDF, la versión de competencia, las alternativas y sus bancos se incluyen. Las corridas parciales de rondas 1 y 2 y los ejecutables de simulación quedan fuera.
 
-La imagen diagnóstica anterior mostró D1 en placa. Icarus confirma los códigos de diagnóstico nuevos, cuya prueba física está pendiente. La imagen de competencia mantiene SPI externo y utiliza el firmware y SoC MMIO base. Consulta la matriz de cierre para distinguir cada evidencia.
+La imagen de competencia mantiene SPI externo y utiliza el firmware y SoC MMIO base. El autotest de 16 ticks aporta evidencia RTL, de implementación y de ejecución física con maestro interno. La [matriz de cierre](../documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito.

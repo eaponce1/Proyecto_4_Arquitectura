@@ -58,7 +58,7 @@ Duración objetivo: aproximadamente 9 minutos. El texto entre corchetes es guía
 
 “El flujo de MMIO base produjo un binario independiente y los logs reportan síntesis, place-and-route e icepack exitosos para HX1K/VQ100. El informe dice que iceprog no se ejecutó; el estado de placa programada con la base fue informado por el usuario, pero no hay en el repositorio un log VERIFY OK. La fixture interna de SPI pasó cinco tramas en simulación y P&R, pero no se programó ni se probó eléctricamente.”
 
-“En conclusión, demostramos causalidad y equivalencia dentro del alcance registrado, aceleración de SMA por MMIO y cabida de esa versión en el dispositivo con margen muy estrecho. Para cerrar hardware faltan evidencia de programación/verificación y una prueba física independiente. Además permanece una prueba heredada de botones con expectativa de polaridad incompatible. Esas limitaciones se distinguen de lo que sí medimos.”
+“Demostramos equivalencia en los 20.000 ticks de ronda 3 y aceleración de SMA por MMIO. La demo autónoma de 16 ticks también aprobó en la Go Board a 12,5 MHz. Verificamos la flash, vimos D2 y D4 encendidos y recibimos el byte de PASS 0xAA por COM10 en tres arranques. La integración externa con la FPGA maestra sigue pendiente.”
 
 ## Respaldo para preguntas
 

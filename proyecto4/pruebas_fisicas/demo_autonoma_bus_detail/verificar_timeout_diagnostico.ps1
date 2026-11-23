@@ -10,8 +10,10 @@ $rtl=@(Get-ChildItem "$p/rtl/*.v" | ForEach-Object FullName)
 $out="$b/tb_timeout_diagnostico.vvp"
 & iverilog -g2012 -s tb_timeout_diagnostico -o $out "$p/tb/tb_timeout_diagnostico.sv" @rtl @common
 if($LASTEXITCODE){throw 'Diagnostic test compilation failed'}
-foreach($test in @('ack_missing','status_zero','status_ready_no_price','price_read_no_ack','byte_missing','decision_missing','final_response_missing','normal')){
+foreach($test in @('no_commit_no_request','commit_status','commit_andi','commit_branch','commit_other','request_not_status','price_read_no_ack','byte_missing','decision_missing','final_response_missing','normal')){
   & vvp $out "+$test" | Tee-Object "$b/timeout_diagnostic_$test.log"
   if($LASTEXITCODE){throw "Diagnostic test failed: $test"}
 }
+
+
 

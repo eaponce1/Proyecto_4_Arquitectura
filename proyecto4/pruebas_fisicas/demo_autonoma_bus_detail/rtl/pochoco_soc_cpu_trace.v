@@ -2,6 +2,7 @@
 // unchanged; hierarchy taps only observe commit, stall, PC and the data bus.
 module pochoco_soc_cpu_trace #(
   parameter integer NumWords=128,
+  parameter FETCH_ROM=0, WARMUP=0,
   parameter MemFile="proyecto4/alternativas/mmio_sma10/sw/trade.hex"
 ) (
   input wire i_Clk,
@@ -19,12 +20,25 @@ module pochoco_soc_cpu_trace #(
   output wire dbg_status_read,dbg_price_read,dbg_sum_read,dbg_ready_read,
   output wire dbg_decision_write,dbg_spi_byte_done,
   output wire [7:0] dbg_price,
-  output wire [31:0] dbg_spi_rdata
+  output wire [31:0] dbg_spi_rdata,
+  output wire [31:0] dbg_operand_a, dbg_operand_b,
+  output wire dbg_branch_taken, dbg_pc_set
 );
   wire clk=i_Clk;
-  reg [3:0] por_cnt=0;
-  wire rst_ni=(por_cnt==4'hf);
-  always @(posedge clk) if(por_cnt!=4'hf) por_cnt<=por_cnt+1'b1;
+  wire rst_ni;
+  generate if(WARMUP) begin : g_registered_por
+    reg [9:0] count=0;
+    reg released=0;
+    always @(posedge clk) begin
+      if(&count) released<=1;
+      else count<=count+1'b1;
+    end
+    assign rst_ni=released;
+  end else begin : g_short_por
+    reg [3:0] count=0;
+    always @(posedge clk) if(!(&count)) count<=count+1'b1;
+    assign rst_ni=&count;
+  end endgenerate
   assign dbg_reset_released=rst_ni;
 
   wire instr_req,data_req,data_we;
@@ -32,13 +46,17 @@ module pochoco_soc_cpu_trace #(
   wire [31:0] core_pc_id;
   wire [31:0] instr_addr,instr_rdata,data_addr,data_wdata,data_rdata;
   wire [3:0] data_be;
-  espino_core_cpu_trace #(.BootAddr(32'h0)) u_core(
+  espino_core_cpu_trace #(
+    .BootAddr(32'h0),.FETCH_WORD_BITS(FETCH_ROM ? $clog2(NumWords) : 0)
+  ) u_core(
     .clk_i(clk),.rst_ni(rst_ni),.instr_req_o(instr_req),.instr_addr_o(instr_addr),
     .instr_rdata_i(instr_rdata),.data_req_o(data_req),.data_we_o(data_we),
     .data_be_o(data_be),.data_addr_o(data_addr),.data_wdata_o(data_wdata),
     .data_rdata_i(data_rdata),.dbg_commit_o(core_commit),
     .dbg_stall_o(core_stall),.dbg_instr_valid_o(dbg_instr_valid),
-    .dbg_lsu_busy_o(dbg_lsu_busy),.dbg_instr_id_o(dbg_instr_id),.dbg_pc_id_o(core_pc_id)
+    .dbg_lsu_busy_o(dbg_lsu_busy),.dbg_instr_id_o(dbg_instr_id),.dbg_pc_id_o(core_pc_id),
+    .dbg_operand_a_o(dbg_operand_a),.dbg_operand_b_o(dbg_operand_b),
+    .dbg_branch_taken_o(dbg_branch_taken),.dbg_pc_set_o(dbg_pc_set)
   );
   assign dbg_instr_req=instr_req;
   assign dbg_instr_addr=instr_addr;
@@ -66,8 +84,21 @@ module pochoco_soc_cpu_trace #(
   end
   assign data_rdata=rd_is_per ? 32'b0 : rd_is_spi ? spi_rdata : ram_b_rdata;
 
+  wire [31:0] ram_instruction;
+  generate if(FETCH_ROM) begin : g_instruction_rom
+    localparam integer ADDR_BITS=$clog2(NumWords);
+    (* ram_style="logic" *) reg [31:0] program_words[0:NumWords-1];
+    reg [31:0] instruction_word;
+    initial $readmemh(MemFile,program_words);
+    always @(posedge clk)
+      if(instr_req) instruction_word<=program_words[instr_addr[ADDR_BITS+1:2]];
+    assign instr_rdata=instruction_word;
+  end else begin : g_instruction_ram
+    assign instr_rdata=ram_instruction;
+  end endgenerate
+
   pochoco_ram #(.NumWords(NumWords),.MemFile(MemFile)) u_ram(
-    .clk_i(clk),.a_req_i(instr_req),.a_addr_i(instr_addr),.a_rdata_o(instr_rdata),
+    .clk_i(clk),.a_req_i(instr_req && !FETCH_ROM),.a_addr_i(instr_addr),.a_rdata_o(ram_instruction),
     .b_req_i(ram_b_req),.b_we_i(data_we),.b_be_i(data_be),.b_addr_i(data_addr),
     .b_wdata_i(data_wdata),.b_rdata_o(ram_b_rdata)
   );

@@ -9,7 +9,7 @@
 
 El proyecto tiene evidencia sólida de implementación y simulación RTL, incluida una reconstrucción aislada del bitstream MMIO base idéntica byte a byte al artefacto entregado. El PDF técnico ya se generó y el manifiesto de entrega apunta a fuentes/evidencia canónicas. **No está listo para afirmar que completó todo el Proyecto 4**: faltan las rondas oficiales 1 y 2, la integración/prueba con la FPGA maestra y resultados de competencia. Tampoco existe metadata Git en el árbol de trabajo revisado, por lo que no se pudo auditar el conjunto rastreado ni probar un `git clone` limpio.
 
-La versión final de hardware está documentada como **MMIO SMA10 base**. En la prueba oficial de ronda 3, software original y MMIO aprobaron 4/4 criterios en 20.000 ticks y produjeron decisiones idénticas. Esto es simulación del testbench oficial, no prueba física.
+La versión final de competencia es **MMIO SMA10 base**. En la simulación del testbench oficial de ronda 3, software original y MMIO aprobaron 4/4 criterios en 20.000 ticks y produjeron decisiones idénticas. En la Go Board, la demo autónoma de 16 ticks aprobó a 12,5 MHz con flash verificada, LEDs 1010 y 0xAA en tres arranques por COM10.
 
 ### Estados
 
@@ -21,12 +21,12 @@ La versión final de hardware está documentada como **MMIO SMA10 base**. En la 
 
 | # | Requisito del enunciado oficial | Estado | Evidencia / brecha concreta |
 |---:|---|---|---|
-| 1 | Agente sobre Pochoco SoC y Espino, precio por SPI y decisión compra/venta/mantener | **Completo en RTL simulado; física pendiente** | `proyecto4/alternativas/mmio_sma10/rtl/`, `trade_top.v`, `sw/trade.s`, testbench oficial derivado en `resultados/validacion_oficial/`. La Go Board y el maestro no se probaron juntos. |
+| 1 | Agente sobre Pochoco SoC y Espino, precio por SPI y decisión compra/venta/mantener | **Completo en RTL y en demo autónoma** | El testbench oficial aprobó en ronda 3. La Go Board aprobó 16 ticks con maestro SPI interno. Queda pendiente la FPGA maestra externa. |
 | 2 | Modo SPI 0, byte MSB-first, SCLK ≤1 MHz y niveles 3,3 V/GND común | **Parcial** | RTL/testbench y PCF identifican SPI y las señales. No hay captura de osciloscopio, medición eléctrica ni ensayo con la FPGA maestra. |
 | 3 | Desfase: MISO en tick n devuelve la decisión previa, ejecutada al precio n | **Completo en simulación** | `informe_final_proyecto4.md`, `guia_defensa.md`, prueba de equivalencia y validación oficial ronda 3. No se verificó eléctricamente con el maestro real. |
 | 4 | Codificación de decisión: acción [7:6], cantidad [5:0], 0–63; reservado se trata como mantener | **Completo en RTL/modelo y pruebas** | Decoder SPI, `trade.s`, documentación del protocolo y testbench. Cantidad del firmware elegido no excede 63. |
 | 5 | Caja inicial $10.000, comisión $5, máximo comprable/vendible, sin deuda ni corto | **Completo en simulación de práctica** | Contabilidad oficial conservada en `tb_proyecto_4_profesor.sv`; auditorías Python y resultados. La FPGA maestra real no está disponible para cotejo. |
-| 6 | Presupuestos de rondas: 250.000, 25.000 y 2.500 ciclos antes de descontar SPI/sincronización | **Parcial** | Ronda 3 oficial completa: 20.000 ticks, 4/4 para ambas arquitecturas; software peor 413 ciclos y MMIO peor 255, dentro del presupuesto efectivo de la copia TB (2.262 ciclos tras SPI). Rondas 1 y 2 no se ejecutaron. |
+| 6 | Presupuestos de rondas: 250.000, 25.000 y 2.500 ciclos antes de descontar SPI/sincronización | **Parcial** | Ronda 3 oficial completa: 20.000 ticks, 4/4 para ambas arquitecturas; software peor 413 ciclos y MMIO peor 255, dentro del presupuesto efectivo de la copia TB (2.262 ciclos tras SPI). Rondas 1 y 2 tienen corridas parciales. |
 | 7 | Diseñar/explicar algoritmo, validarlo con serie práctica y explicar cantidad q | **Completo para serie práctica** | Código en `proyecto4/python/`, análisis en `resultados/investigacion_final.md` y `documentacion/informe_final_proyecto4.md`. SMA10 usa enteros, ventana de diez precios y q solicitada de 16. |
 | 8 | Comparar contra no operar y comprar al inicio/mantener: patrimonio, órdenes, comisiones y drawdown | **Completo para la práctica; resultado activo desfavorable** | Tablas de estrategia y ronda 3 oficial. Oficial ronda 3: no operar $10.000, buy-and-hold $9.695, MMIO/software $4.577; 931 órdenes, $4.655 de comisión, drawdown $5.476. |
 | 9 | Implementar `trade.s` para RV32E y describir bucle, registros, memoria y operaciones no soportadas | **Completo** | `proyecto4/alternativas/mmio_sma10/sw/trade.s`, `trade.hex` y `resultados/etapa3_assembly.md`. Se describe historial de diez precios, subset de instrucciones y ausencia de shifts/MUL/DIV. |
@@ -35,7 +35,7 @@ La versión final de hardware está documentada como **MMIO SMA10 base**. En la 
 | 12 | Perfilar parte costosa, aplicar Amdahl y comparar ≥2 alternativas hardware con LUT/BRAM/Fmax/ciclos/CPI/Ops/s/speedup/roofline | **Completo documentalmente** | Custom-0 y MMIO SMA10 están separados, tienen pruebas y `resultados/co_disenio/informe_codisenio.md`/CSV incluye Ops/s, Amdahl, roofline y métricas. Custom-0 excede HX1K (1350 LC) y no routea; MMIO base routea. El informe PDF incluye estos apartados. |
 | 13 | Elegir variante final y justificar balance entre rendimiento, recursos y estrategia | **Completo con riesgo explícito** | Informe final selecciona MMIO SMA10 base como referencia de hardware, no por rentabilidad. Es 1279/1280 LC: queda una sola celda libre. |
 | 14 | Competencia en vivo en tres rondas, registro de patrimonio y comparación con buy-and-hold/otros grupos | **Pendiente** | No se dispone de FPGA maestra; no hay resultados de competencia. No se deben usar los resultados de la serie práctica como si fueran puntajes de competencia. |
-| 15 | Decisión final calculada por Espino; hardware adicional solo acelera | **Completo en diseño documentado** | MMIO mantiene la suma/READY; `trade.s` lee y decide. `pochoco_sma10.v` no implementa comprar/vender. Falta prueba física integrada. |
+| 15 | Decisión final calculada por Espino; hardware adicional solo acelera | **Completo en diseño y demo autónoma** | MMIO mantiene la suma/READY; Espino lee y decide con `trade.hex`. El monitor de la Go Board aprobó los 16 ticks con decisiones y MISO verificados. |
 | 16 | No usar datos externos ni almacenar otra serie de precios en el diseño | **Completo por inspección del diseño** | Firmware recibe precios SPI y conserva diez muestras de ventana. CSV se utiliza en pruebas, no está precargado en la lógica del bitstream. |
 | 17 | Cada hardware agregado en repo con testbench | **Completo en árbol local** | Testbenches de MMIO SMA10, custom-0 y fixture SPI independiente están presentes. En ausencia de Git no se pudo confirmar qué quedaría incluido en el remoto. |
 | 18 | README con síntesis/programación, ensamblado, testbenches, referencia Python y versiones de herramientas | **Completo con caveat** | `proyecto4/README.md` cubre comandos y versiones exactas observables. `icepack` no reporta versión por CLI; se documentó su SHA-256 en lugar de inventar una. El README raíz enlaza al específico. `iceprog` está documentado, no ejecutado. |
@@ -57,7 +57,7 @@ Ronda 3 (0,1 ms), testbench oficial y serie de 20.000 ticks:
 | Peor caso | 255 | 413 |
 | Decisiones diferentes entre variantes | 0/20.000 | 0/20.000 |
 
-La ronda 3 y su 4/4 aparecen en `proyecto4/README.md`, `documentacion/informe_final_proyecto4.md`, `documentacion/guia_defensa.md`, `documentacion/guion_presentacion.md`, `resultados/validacion_oficial/informe_validacion_oficial.md` y `comparacion_oficial.csv`. `informe_comparativo_tres_rondas.md` registra explícitamente que las rondas 1/2 no se ejecutaron. El guion conserva la distinción entre perfil a 30 μs y validación oficial.
+La ronda 3 y su 4/4 aparecen en `proyecto4/README.md`, `documentacion/informe_final_proyecto4.md`, `documentacion/guia_defensa.md`, `documentacion/guion_presentacion.md`, `resultados/validacion_oficial/informe_validacion_oficial.md` y `comparacion_oficial.csv`. `informe_comparativo_tres_rondas.md` registra que las corridas de rondas 1 y 2 están incompletas. El guion conserva la distinción entre perfil a 30 μs y validación oficial.
 
 ## Firmware y bitstream: trazabilidad comprobada
 
@@ -111,4 +111,4 @@ El `.gitignore` específico de `proyecto4/` solo ignora `/tb_proyecto_4.vvp` y `
 4. Preparar la defensa con la comparación honesta contra las referencias: MMIO mejora cómputo, no rentabilidad; no afirmar ganancia esperada en la serie oculta.
 5. Revisar el conjunto de subida según la lista anterior y las reglas de `.gitignore` antes de staging, sin borrar evidencia que se decida conservar.
 
-**Conclusión:** reproducibilidad local de firmware y bitstream: **confirmada** (suite 32/32 y hashes idénticos en copia temporal). Validación oficial: **solo ronda 3 completa**. Informe PDF generado; README con versiones observadas y guion oral actualizado. Procedencia/subida a GitHub debe verificarse en un checkout con `.git`. Preparación física/competencia en vivo: **pendiente**. No hacer commit ni push.
+**Conclusión.** Reproducibilidad local de firmware y bitstream confirmada con la suite 32/32 y hashes idénticos en copia temporal. Ronda oficial 3 completa y demo autónoma física aprobada. El informe PDF, la guía y el ZIP contienen la evidencia. Restan las rondas 1 y 2 completas y la integración con la FPGA maestra para competencia.

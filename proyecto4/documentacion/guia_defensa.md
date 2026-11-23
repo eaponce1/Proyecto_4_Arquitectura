@@ -38,14 +38,15 @@
 34. **¿Qué dicen los resultados de inversión?** La investigación final no recomienda una estrategia activa en esta serie: comisiones y pérdidas superan a las referencias; no operar es el baseline prudente.
 35. **¿La SMA10 seleccionada promete rentabilidad?** No. Se seleccionó para evaluar compatibilidad y aceleración; no por rendimiento financiero demostrado fuera de la serie.
 36. **¿Qué regresión queda en Proyecto 2?** La suite conjunta registra un fallo de expectativa `debounced buttons` en `periph_tb`; pruebas de core/SPI/decoder reportadas pasan por separado.
-37. **¿Qué evidencia falta antes de una defensa de hardware?** Log de programación/verificación, prueba real de la fixture o integración con maestro externo, y evidencia eléctrica/temporal en placa.
+37. **¿Qué evidencia física está disponible?** La demo autónoma aprobó en Go Board con `VERIFY OK`, LEDs 1010 y UART 0xAA. Queda pendiente la integración eléctrica con la FPGA maestra.
 
 38. **¿Cuál fue el resultado financiero de la validación oficial de ronda 3?** Ambas arquitecturas cerraron en $4.577, con 931 órdenes (466 compras y 465 ventas), $4.655 de comisiones y drawdown de $5.476.
 39. **¿Coincidieron las decisiones de software y MMIO SMA10?** Sí. Las decisiones de las 20.000 transacciones fueron idénticas.
 40. **¿Qué cambió MMIO SMA10 en rendimiento y estrategia?** Redujo el promedio entero truncado de 218 a 60 ciclos y el peor caso de 413 a 255. No cambió la secuencia de decisiones ni el resultado financiero.
 41. **¿Qué significan los promedios 60 y 218?** Son promedios enteros truncados por la instrumentación del testbench; no son decimales exactos.
 42. **¿La integración con la FPGA maestra ya se probó físicamente?** No. La validación oficial fue RTL; la integración física con la FPGA maestra sigue pendiente.
-43. **¿La ronda 3 significa que todas las rondas oficiales están verificadas?** No. Solo se ejecutó ronda 3; rondas 1 y 2 siguen pendientes.
+43. **¿Qué demostraron los LEDs de la demo autónoma?** D4 y D2 quedaron encendidos con los otros dos apagados. El código 1010 acredita los 16 ticks y coincidió con el byte 0xAA en tres arranques por COM10.
+44. **¿Qué rondas oficiales tienen resultados completos?** La ronda 3 aprobó 4/4 en ambas arquitecturas. Las rondas 1 y 2 tienen avance parcial.
 
 ## Mensaje de cierre sugerido
 

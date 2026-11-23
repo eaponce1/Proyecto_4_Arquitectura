@@ -16,18 +16,37 @@ module tb_timeout_diagnostico;
     $readmemh("proyecto4/pruebas_fisicas/demo_autonoma_bus_detail/data/expected_writes.hex",writes);
     $readmemh("proyecto4/pruebas_fisicas/demo_autonoma_bus_detail/data/expected_decisions.hex",miso);
 
-    if($test$plusargs("ack_missing")) begin
+    if($test$plusargs("no_commit_no_request")) begin
       expected_code=1;
-      // The SPI slave receives the byte. Espino's MMIO requests are inhibited.
+      force dut.commit_evt=1'b0;
       force dut.u_soc.data_req=1'b0;
-    end else if($test$plusargs("status_zero")) begin
-      expected_code=6;
+    end else if($test$plusargs("request_not_status")) begin
+      expected_code=9;
+      force dut.u_soc.spi_sel=1'b0;
       force dut.u_soc.data_rdata=32'd0;
-    end else if($test$plusargs("status_ready_no_price")) begin
-      expected_code=7;
-      force dut.u_soc.data_rdata=32'd0;
-      wait(dut.g_timeout_diag.status_poll_after_byte);
-      force dut.g_timeout_diag.status_ready_after_byte=1'b1;
+    end else if($test$plusargs("commit_status") || $test$plusargs("commit_andi") ||
+                $test$plusargs("commit_branch") || $test$plusargs("commit_other")) begin
+      force dut.u_soc.data_req=1'b0;
+      wait(dut.debug_in_tick);
+      // Inject the observed tag early, then replace it to prove the latch
+      // reports the last commit, rather than the first.
+      force dut.pc_id=32'h00000014;
+      repeat(5) @(negedge clk);
+      force dut.commit_evt=1'b1;
+      if($test$plusargs("commit_status")) begin
+        expected_code=5;
+        force dut.pc_id=32'h00000014;
+      end else if($test$plusargs("commit_andi")) begin
+        expected_code=6;
+        force dut.pc_id=32'h00000018;
+      end else if($test$plusargs("commit_branch")) begin
+        expected_code=7;
+        force dut.pc_id=32'h0000001c;
+      end else begin
+        expected_code=8;
+        // Same low bits as 0x14, outside the exact polling address.
+        force dut.pc_id=32'h00000114;
+      end
     end else if($test$plusargs("price_read_no_ack")) begin
       expected_code=3;
       force dut.price_ack_pending=1'b0;
@@ -39,7 +58,7 @@ module tb_timeout_diagnostico;
       // would otherwise rightly be diagnosed earlier as a sequence fault.
       force dut.u_monitor.response_valid=1'b0;
     end else if($test$plusargs("decision_missing")) begin
-      expected_code=5;
+      expected_code=2;
       wait(dut.frame_index==15);
       force dut.decision_write=1'b0;
     end else if($test$plusargs("final_response_missing")) begin
@@ -133,6 +152,9 @@ module tb_timeout_diagnostico;
     end
   end
 endmodule
+
+
+
 
 
 

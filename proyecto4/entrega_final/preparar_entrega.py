@@ -30,7 +30,8 @@ def include(relative: Path) -> bool:
             return "ronda_3" in parts and relative.name in {"decisiones.csv", "simulacion.log"}
         return len(parts) == 4 and not relative.name.startswith("verilator")
     if name.startswith("proyecto4/entrega_final/"):
-        return relative.parent.as_posix() == "proyecto4/entrega_final"
+        return (relative.parent.as_posix() == "proyecto4/entrega_final"
+                and relative.name not in {"verificacion_cierre.log", "pruebas_python_cierre.log"})
     if name.startswith("proyecto4/programacion_fisica/"):
         return relative.name in {"generar_bitstream.py", "informe_programacion_fisica.md",
                                  "yosys.log", "nextpnr.log"}
@@ -58,6 +59,29 @@ def main() -> None:
     if not all((ROOT / name).is_file() for name in required):
         parser.error("Falta al menos un archivo requerido")
     files = {ROOT / name for name in required}
+    demo_build = ROOT / PHYSICAL / "build"
+    slow_image = demo_build / "selftest_fetch_rom_lento.bin"
+    demo_image = slow_image if slow_image.is_file() else demo_build / "selftest_fetch_rom.bin"
+    if demo_image.is_file():
+        prefix = demo_image.stem
+        simulation = "simulacion_integrada_rom_lento.log" if demo_image == slow_image else "simulacion_integrada_rom.log"
+        demo_evidence = {
+            demo_image,
+            demo_build / "rom_pc_rango.log",
+            demo_build / simulation,
+            demo_build / f"{prefix}_mapped.log",
+            demo_build / f"{prefix}_nextpnr.log",
+            demo_build / f"{prefix}_yosys.log",
+        }
+        if not all(path.is_file() for path in demo_evidence):
+            parser.error("Falta evidencia de la demo ROM")
+        files.update(demo_evidence)
+        if demo_image == slow_image:
+            physical_results = (
+                demo_build / "confirmacion_rom_lento_flash.log",
+                demo_build / "resultado_fisico_rom_lento.log",
+            )
+            files.update(path for path in physical_results if path.is_file())
     for tree in ("rtl", "sw", "tests", "proyecto4"):
         files.update(p for p in (ROOT / tree).rglob("*")
                      if p.is_file() and include(p.relative_to(ROOT)))
