@@ -13,21 +13,39 @@ import re
 import shutil
 import subprocess
 from pathlib import Path
+from time import perf_counter
 
 OUT = Path(__file__).resolve().parent
 ROOT = OUT.parents[2]
 OFFICIAL_TB = OUT / "tb_proyecto_4_profesor.sv"
 SERIES = OUT / "practica_meta.csv"
 RUNS = OUT / "corridas"
+ACCELERATED_RUNS = OUT / "corridas_aceleradas"
+AUDITED_FINGERPRINT = {
+    "software": "bf0423f2595ce0782c5749c1f0ee0173647ccfcf5999e33351ef6025223fb175",
+    "mmio": "6290ecc139d10b3fd0085a96b3da6dec3fdf644472f23ed4c186018ddb0eb2b6",
+}
 
 
-def prepare_tb(variant: str, round_no: int, ticks: int, output_csv: Path) -> Path:
+def program_path(variant: str) -> Path:
+    return Path("proyecto4/sw/trade.hex" if variant == "software" else
+                "proyecto4/alternativas/mmio_sma10/sw/trade.hex")
+
+
+def check_accelerated_sources(variant: str, rtl: list[Path]) -> None:
+    sources = [*rtl, ROOT / program_path(variant), ROOT / "tests/ram_model.v", OFFICIAL_TB]
+    digest = hashlib.sha256()
+    for source in sorted(sources):
+        digest.update(source.relative_to(ROOT).as_posix().encode() + b"\0")
+        digest.update(source.read_bytes().replace(b"\r\n", b"\n") + b"\0")
+    if digest.hexdigest() != AUDITED_FINGERPRINT[variant]:
+        raise SystemExit("Las fuentes difieren del RTL auditado para la espera verificada")
+
+
+def prepare_tb(variant: str, round_no: int, ticks: int, output_csv: Path, fast_idle: bool = False) -> Path:
     source = OFFICIAL_TB.read_text(encoding="utf-8-sig")
     periods = {1: 10_000_000, 2: 1_000_000, 3: 100_000}
-    program = (
-        "proyecto4/sw/trade.hex" if variant == "software" else
-        "proyecto4/alternativas/mmio_sma10/sw/trade.hex"
-    )
+    program = program_path(variant).as_posix()
     replacements = {
         'localparam string PROGRAMA   = "sw/trade.hex";':
             f'localparam string PROGRAMA   = "{program}";',
@@ -66,6 +84,31 @@ def prepare_tb(variant: str, round_no: int, ticks: int, output_csv: Path) -> Pat
         '    $display("Suma de ciclos de respuesta: %0d", ciclos_acumulados);'
     )
 
+    if fast_idle:
+        source = source.replace(
+            '  always #20 clk = ~clk;',
+            '  time reanudar_reloj = 0;\n'
+            '  always begin\n'
+            '    #20;\n'
+            '    if ($time < reanudar_reloj) #(reanudar_reloj-$time);\n'
+            '    clk = ~clk;\n'
+            '  end',
+        )
+        source = source.replace(
+            '  // Simulación\n',
+            (OUT / "espera_verificada.svh").read_text(encoding="utf-8") + '\n  // Simulación\n',
+        )
+        source = source.replace(
+            '      #(PERIODO_NS - SPI_NS);',
+            '      esperar_periodo_verificado($time + PERIODO_NS - SPI_NS);',
+        )
+        source = source.replace(
+            '    $display("Testbenchs aprobados:',
+            '    $display("Espera verificada: %0d intervalos, %0d ciclos omitidos, time_ns=%0d",\n'
+            '             esperas_aceleradas, ciclos_omitidos, $time);\n'
+            '    $display("Testbenchs aprobados:',
+        )
+
     # Asegurar que el banco derivado conserva literalmente los cuatro criterios.
     checks = re.findall(r'chequear\((.*?);', source, flags=re.DOTALL)
     expected = [
@@ -99,6 +142,8 @@ def main() -> None:
     ap.add_argument("--variant", choices=("mmio", "software"), required=True)
     ap.add_argument("--round", type=int, choices=(1, 2, 3), required=True)
     ap.add_argument("--ticks", type=int, default=20_000)
+    ap.add_argument("--fast-idle", action="store_true")
+    ap.add_argument("--output-root", type=Path, help="Directorio separado para corridas de contraste")
     args = ap.parse_args()
     if not 1 <= args.ticks <= 20_000:
         ap.error("--ticks debe estar en 1..20000")
@@ -107,35 +152,47 @@ def main() -> None:
             raise SystemExit(f"No se encontró {tool} en PATH")
     validate_inputs()
     variant = "mmio_sma10_base" if args.variant == "mmio" else "software_original"
-    run_dir = RUNS / variant / f"ronda_{args.round}"
+    output_root = args.output_root or (ACCELERATED_RUNS if args.fast_idle else RUNS)
+    run_dir = output_root.resolve() / variant / f"ronda_{args.round}"
     run_dir.mkdir(parents=True, exist_ok=True)
     output_csv = run_dir / "decisiones.csv"
-    tb = prepare_tb(args.variant, args.round, args.ticks, output_csv)
+    tb = prepare_tb(args.variant, args.round, args.ticks, output_csv, args.fast_idle)
     rtl_dir = ROOT / ("proyecto4/alternativas/mmio_sma10/rtl" if args.variant == "mmio" else "rtl")
-    rtl = sorted(str(path) for path in rtl_dir.rglob("*.v"))
+    rtl_paths = sorted(rtl_dir.rglob("*.v"))
+    if args.fast_idle:
+        check_accelerated_sources(args.variant, rtl_paths)
+    rtl = list(map(str, rtl_paths))
+    defines = ["-DOFFICIAL_IDLE_MMIO"] if args.fast_idle and args.variant == "mmio" else []
     executable = run_dir / "tb_proyecto_4.vvp"
     compile_cmd = [shutil.which("iverilog"), "-g2012", "-s", "tb_proyecto_4", "-o", str(executable),
-                   *rtl, str(ROOT / "tests/ram_model.v"), str(tb)]
+                   *defines, *rtl, str(ROOT / "tests/ram_model.v"), str(tb)]
     with (run_dir / "compilacion.log").open("w", encoding="utf-8") as log:
         compiled = subprocess.run(compile_cmd, cwd=ROOT, text=True, stdout=log, stderr=subprocess.STDOUT)
     if compiled.returncode:
         print((run_dir / "compilacion.log").read_text(encoding="utf-8", errors="replace"))
         raise SystemExit(compiled.returncode)
     command = [shutil.which("vvp"), "-n", str(executable)]
+    started = perf_counter()
     run = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
+    elapsed = perf_counter() - started
     (run_dir / "simulacion.log").write_text(run.stdout + run.stderr, encoding="utf-8")
+    (run_dir / "duracion_simulacion.txt").write_text(f"{elapsed:.6f}\n", encoding="utf-8")
     print(run.stdout, end="")
     if run.stderr:
         print(run.stderr, end="")
     if run.returncode:
         raise SystemExit(run.returncode)
     result = re.search(r"Testbenchs aprobados:\s*(\d+)\s*/\s*(\d+)", run.stdout)
-    if not result or result.group(1) != result.group(2) or "FAIL " in run.stdout:
+    if not result or result.groups() != ("4", "4") or "FAIL " in run.stdout:
         raise SystemExit("El proceso terminó, pero los cuatro criterios oficiales no aprobaron; revisar simulacion.log")
     if not output_csv.is_file():
         raise RuntimeError("La simulación terminó sin crear decisiones.csv")
-    print(f"Decisiones: {output_csv.relative_to(ROOT)}")
-    print(f"Log: { (run_dir / 'simulacion.log').relative_to(ROOT) }")
+    with output_csv.open(encoding="utf-8", newline="") as stream:
+        if sum(1 for _ in csv.DictReader(stream)) != args.ticks:
+            raise RuntimeError(f"La simulación no generó las {args.ticks} decisiones")
+    print(f"Decisiones: {output_csv}")
+    print(f"Log: {run_dir / 'simulacion.log'}")
+    print(f"Duración de vvp: {elapsed:.2f} s")
 
 
 if __name__ == "__main__":

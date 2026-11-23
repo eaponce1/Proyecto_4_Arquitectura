@@ -22,19 +22,19 @@ Duración objetivo: aproximadamente 9 minutos. El texto entre corchetes es guía
 
 “El programa Assembly usa los registros RV32E x0 a x15 y un buffer circular de diez precios en RAM. Se generó trade.hex con el assembler. El subset utilizado incluye sumas, restas, cargas, stores y branches admitidos; no usa shifts ni multiplicación/división.”
 
-“El intérprete ejecuta la imagen HEX contra Python en la serie completa de 20.000 precios y compara las decisiones tick a tick. También hay un caso para fills parciales y una integración RTL SPI corta con serie sintética. En el cierre documental se ejecutaron 32 pruebas Python: todas pasaron. Es importante precisar que la equivalencia completa de 20.000 ticks es del intérprete HEX; no fue una simulación RTL de 20.000 ticks del firmware original.”
+“El intérprete ejecuta la imagen HEX contra Python en la serie completa de 20.000 precios y compara las decisiones tick a tick. También hay un caso para fills parciales y una integración RTL SPI corta con serie sintética. En el cierre documental se ejecutaron 32 pruebas Python: todas pasaron. El intérprete y las seis corridas RTL con la serie de práctica coincidieron tick a tick con Python.”
 
 ## 3:50–5:00 — Rendimiento y validación oficial
 
 “En RTL, el programa original promedió 91,9 instrucciones y 218,7 ciclos por tick, con CPI 2,379 y peor caso de 412 ciclos. La SMA consume aproximadamente 163,9 ciclos promedio. Se contaron instrucciones externamente en la condición de commit, sin cambiar el core.”
 
-“La corrida de perfil fue de 20.000 ticks a 30 microsegundos entre transacciones; esa medición no sustituye las rondas oficiales. En la validación oficial de ronda 3, el testbench publicó 20.000 ticks y ambos diseños aprobaron 4 de 4 criterios. Las 20.000 decisiones de MMIO y software coincidieron.”
+“La corrida de perfil fue de 20.000 ticks a 30 microsegundos entre transacciones; esa medición no sustituye las rondas oficiales. En la validación con el testbench del profesor, cada arquitectura completó 20.000 ticks y aprobó los cuatro criterios en cada ronda. Las seis secuencias de decisiones coincidieron con Python.”
 
 “Ambos cerraron con patrimonio de 4.577 dólares, 931 órdenes —466 compras y 465 ventas—, 4.655 dólares de comisiones y drawdown de 5.476. Es el mismo resultado financiero; MMIO reduce el trabajo computacional, no mejora la estrategia.”
 
 “En el perfil de co-diseño, MMIO promedió 60,64 ciclos frente a 218,66 del software original: speedup medido de 3,606 veces. En la corrida oficial la instrumentación imprimió promedios enteros truncados de 60 y 218; los peores casos fueron 255 y 413 ciclos. No calculo el speedup de la corrida oficial dividiendo esos promedios truncados.”
 
-“Las rondas oficiales 1 y 2, a 10 y 1 milisegundos, siguen pendientes: no las presentaré como aprobadas. Tampoco se completó la integración física con la FPGA maestra. La validación 4/4 citada es una simulación RTL de ronda 3.”
+“En rondas 1 y 2, a 10 y 1 milisegundos, MMIO promedió 60,66 ciclos y software 218,67. El máximo fue 254 y 413, respectivamente. La espera verificada de Icarus mantuvo el tiempo simulado y los cuatro criterios. La integración física con la FPGA maestra y la competencia siguen pendientes.”
 
 ## 4:45–6:15 — Co-diseño
 
@@ -58,7 +58,7 @@ Duración objetivo: aproximadamente 9 minutos. El texto entre corchetes es guía
 
 “El flujo de MMIO base produjo un binario independiente y los logs reportan síntesis, place-and-route e icepack exitosos para HX1K/VQ100. El informe dice que iceprog no se ejecutó; el estado de placa programada con la base fue informado por el usuario, pero no hay en el repositorio un log VERIFY OK. La fixture interna de SPI pasó cinco tramas en simulación y P&R, pero no se programó ni se probó eléctricamente.”
 
-“Demostramos equivalencia en los 20.000 ticks de ronda 3 y aceleración de SMA por MMIO. La demo autónoma de 16 ticks también aprobó en la Go Board a 12,5 MHz. Verificamos la flash, vimos D2 y D4 encendidos y recibimos el byte de PASS 0xAA por COM10 en tres arranques. La integración externa con la FPGA maestra sigue pendiente.”
+“Demostramos equivalencia en los 20.000 ticks de cada ronda de práctica y aceleración de SMA por MMIO. La demo autónoma de 16 ticks también aprobó en la Go Board a 12,5 MHz. Verificamos la flash, vimos D2 y D4 encendidos y recibimos el byte de PASS 0xAA por COM10 en tres arranques. La integración externa con la FPGA maestra sigue pendiente.”
 
 ## Respaldo para preguntas
 

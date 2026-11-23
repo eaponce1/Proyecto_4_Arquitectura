@@ -61,8 +61,9 @@ Las simulaciones no programan la Go Board.
 - Icarus advierte que `spi_smoke.hex` contiene menos de 512 palabras. La imagen de
   prueba sí se carga y simula; la advertencia no detuvo la ejecución.
 
-Las pruebas completas de 20 000 transacciones por ronda no se ejecutaron. El
-firmware smoke test no sustituye al futuro `trade.s` ni valida una estrategia.
+En esta etapa se comprobaron las transacciones de humo con `spi_smoke.s`.
+Las seis corridas completas con el agente se documentan en la
+[validación de las tres rondas](resultados/validacion_oficial/informe_comparativo_tres_rondas.md).
 
 ## Etapa 2: estrategia de referencia en Python
 
@@ -205,7 +206,7 @@ La imagen base está en `programacion_fisica/trade_mmio_base.bin`; `python proye
 
 Con el testbench publicado y 20.000 ticks, MMIO SMA10 base y software original aprobaron **4/4 criterios**. Las 20.000 decisiones coinciden exactamente entre ambas arquitecturas. Ambas terminaron con patrimonio de **$4.577**, 931 órdenes (466 compras y 465 ventas), $4.655 en comisiones y drawdown de $5.476. Los promedios enteros truncados que imprimió el testbench fueron 60 ciclos para MMIO y 218 para software; los peores casos fueron 255 y 413 ciclos, respectivamente. MMIO reduce el costo computacional sin cambiar la estrategia ni el resultado financiero.
 
-Rondas 1 y 2 siguen pendientes. También sigue pendiente la integración física con la FPGA maestra: estas cifras corresponden a simulación RTL. Logs, CSV tick a tick y limitaciones están en `resultados/validacion_oficial/`.
+Las rondas 1 y 2 también completaron 20.000 ticks y 4/4 criterios por arquitectura con Icarus y espera verificada. Todas las decisiones coincidieron. La integración física con la FPGA maestra sigue pendiente. [Comparación de las tres rondas](resultados/validacion_oficial/comparacion_tres_rondas.csv)
 
 ### Comprobaciones al cierre
 
@@ -247,10 +248,10 @@ Los hashes fijan los ejecutables/fuentes usados cuando la herramienta no publica
 
 ## Carpeta compacta de entrega
 
-`proyecto4/entrega_final/` contiene el PDF y `MANIFIESTO.md`, con rutas a fuentes y resultados conservados en sus ubicaciones originales. El bitstream final corresponde a MMIO SMA10 base. La ronda 3 oficial aprobó 4/4 criterios para ambas arquitecturas en 20.000 ticks; rondas 1 y 2 y la integración física con la FPGA maestra continúan pendientes. No se hicieron commit ni push.
+`proyecto4/entrega_final/` contiene el PDF, el ZIP y `MANIFIESTO.md`. La imagen final de competencia es MMIO SMA10 base. Las seis corridas de práctica aprobaron 4/4 criterios y la demo autónoma pasó en Go Board. Queda pendiente la integración física con la FPGA maestra.
 
 ## Objetivos finales de Go Board
 
-La imagen elegida para el curso es `programacion_fisica/trade_mmio_base.bin`, con MMIO SMA10 base y SPI externo. La ronda 3 conserva 20.000 ticks, 4/4 criterios para ambas versiones y equivalencia exacta de decisiones. Las rondas 1 y 2 tienen avance parcial.
+La imagen elegida para el curso es `programacion_fisica/trade_mmio_base.bin`, con MMIO SMA10 base y SPI externo. Las tres rondas de práctica completaron 20.000 ticks y 4/4 criterios para ambas arquitecturas, con equivalencia exacta de decisiones.
 
 La demo autónoma verificó físicamente los 16 precios, decisiones y MISO con la imagen `selftest_fetch_rom_lento.bin` a 12,5 MHz. La flash dio `VERIFY OK`, los LEDs mostraron `1010` y COM10 registró `0xAA` en tres arranques. La prueba con la FPGA maestra sigue pendiente. La [matriz de cierre](documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito y el [manifiesto](entrega_final/MANIFIESTO.md) describe el ZIP.

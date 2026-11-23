@@ -23,7 +23,7 @@
 19. **¿Qué instrucciones usa trade.s?** `lui`, `addi`, `lw`, `sw`, `andi`, `add`, `sub`, `beq`, `bne`, `bge` y `jal`.
 20. **¿Usa shifts o multiplicación/división?** No. El firmware evita esas operaciones y el Espino no ofrece una extensión M en esta configuración.
 21. **¿Cómo se valida equivalencia?** Un intérprete del HEX compara decisiones tick por tick contra Python en 20.000 precios; hay además caso de fill parcial e integración RTL sintética SPI.
-22. **¿Qué rondas oficiales se validaron con el testbench del profesor?** La ronda 3 (0,1 ms) se ejecutó con 20.000 ticks en ambas arquitecturas y aprobó 4/4 criterios. Las rondas 1 y 2 siguen pendientes. La medición a 30 μs es otro experimento.
+22. **¿Qué rondas oficiales se validaron con el testbench del profesor?** Las tres rondas de práctica (10 ms, 1 ms y 0,1 ms) completaron 20.000 ticks y 4/4 criterios en cada arquitectura. Para las rondas 1 y 2, Icarus omitió ciclos de sondeo repetidos tras verificar la equivalencia de estado. La medición a 30 μs es otro experimento.
 23. **¿Cómo se midió IC?** Con condición externa de commit `instr_valid_id && !stall`, sin instrumentar/modificar el core.
 24. **¿Cuál era el costo software?** 91,917 IC y 218,664 ciclos promedio por tick; SMA10 suma alrededor de 163,9 ciclos.
 25. **¿Cuál es el speedup de MMIO?** 3,606× por ciclos medios frente a software (218,6635/60,6398), sobre simulación de 20.000 ticks.
@@ -46,7 +46,7 @@
 41. **¿Qué significan los promedios 60 y 218?** Son promedios enteros truncados por la instrumentación del testbench; no son decimales exactos.
 42. **¿La integración con la FPGA maestra ya se probó físicamente?** No. La validación oficial fue RTL; la integración física con la FPGA maestra sigue pendiente.
 43. **¿Qué demostraron los LEDs de la demo autónoma?** D4 y D2 quedaron encendidos con los otros dos apagados. El código 1010 acredita los 16 ticks y coincidió con el byte 0xAA en tres arranques por COM10.
-44. **¿Qué rondas oficiales tienen resultados completos?** La ronda 3 aprobó 4/4 en ambas arquitecturas. Las rondas 1 y 2 tienen avance parcial.
+44. **¿Qué rondas oficiales tienen resultados completos?** Las seis corridas aprobaron 4/4 y las 20.000 decisiones de cada corrida coincidieron con Python. MMIO midió 60,66 ciclos promedio en rondas 1 y 2 frente a 218,67 de software.
 
 ## Mensaje de cierre sugerido
 
@@ -59,4 +59,4 @@ El resultado principal es una comparación reproducible: las decisiones del firm
 - ¿Por qué custom-0 no es la imagen final? Compara 1.350 LC con 1.280 disponibles y distingue speedup de frecuencia post-route.
 - ¿Por qué Ops/s no es el número de ticks que envía la maestra? Distingue el costo de cálculo, el período SPI y la operación elemental del roofline.
 - ¿Qué demuestra 1101? La primera causa retenida fue un bit MISO distinto de la referencia en el autotest. El patrón por sí solo no identifica el bit, la trama ni una causa eléctrica.
-- ¿Cuáles rondas puedes defender con resultados completos? Solo la 3 en simulación oficial. Distingue los presupuestos de las rondas 1 y 2 de sus resultados y de la competencia en placa.
+- ¿Cuáles rondas puedes defender con resultados completos? Las tres en simulación con la serie de práctica. Distingue la simulación de la demo autónoma en placa y de la competencia con la FPGA maestra.

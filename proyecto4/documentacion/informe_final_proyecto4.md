@@ -152,14 +152,23 @@ Los promedios son los enteros truncados que produjo la instrumentación de esa c
 
 La versión publicada del testbench comprueba MISO sin X, que existan escrituras DECISION, que no queden precios sin consumir y que la respuesta llegue dentro del presupuesto. Ambas arquitecturas aprobaron los cuatro checks. Sus decisiones transmitidas coinciden exactamente tick a tick en los 20.000 ticks. Los artefactos y logs están en `resultados/validacion_oficial/informe_validacion_oficial.md`, `comparacion_oficial.csv` y `decisiones.csv`.
 
-La ronda 3 (0,1 ms) es la única que produjo un resultado completo. Las corridas de rondas 1 (10 ms) y 2 (1 ms) tienen avance parcial. La integración física con la FPGA maestra sigue pendiente.
+### Validación de las tres rondas con la serie de práctica
+
+Se completaron 20.000 ticks y 4/4 criterios en cada arquitectura y cada ronda. Para los periodos de 10 ms y 1 ms se usó Icarus de cuatro estados con espera verificada. El ejecutor comprueba que el SoC repita su estado entre tramas, conserva el tiempo entre precios y simula las transacciones SPI y los cuatro criterios.
+
+| Ronda | MMIO promedio / peor (ciclos) | Software promedio / peor (ciclos) | Presupuesto efectivo (ciclos) |
+|---|---:|---:|---:|
+| 1 | 60,66 / 254 | 218,67 / 413 | 249.762 |
+| 2 | 60,66 / 254 | 218,67 / 413 | 24.762 |
+| 3 | 60 / 255 | 218 / 413 | 2.262 |
+
+Los promedios de ronda 3 conservan el truncamiento de la corrida histórica. Las seis corridas conservaron el patrimonio de $4.577, las 931 órdenes, las comisiones de $4.655 y el drawdown de $5.476. Cotejamos las 20.000 decisiones de cada corrida con la referencia. Los logs, resultados completos y tiempos de Icarus están en `resultados/validacion_oficial/`. La integración física con la FPGA maestra sigue pendiente.
 
 ## 10. Pendientes y conclusión técnica
 
-1. Completar las rondas oficiales 1 y 2 (20.000 ticks por ronda) para MMIO base y software original.
-2. Probar las conexiones SPI externas y la ejecución física del diseño de competencia con la FPGA maestra.
-3. Revisar el margen de implementación si cambia la configuración. MMIO base tiene una LC libre y la variante optimizada mejora cinco LC.
-4. Medir el resultado de la competencia. En la serie histórica, no operar obtuvo mayor patrimonio final que la estrategia activa.
+1. Probar las conexiones SPI externas y la ejecución física del diseño de competencia con la FPGA maestra.
+2. Revisar el margen de implementación si cambia la configuración. MMIO base tiene una LC libre y la variante optimizada mejora cinco LC.
+3. Medir el resultado de la competencia. En la serie histórica, no operar obtuvo mayor patrimonio final que la estrategia activa.
 
 **MMIO SMA10 base es la arquitectura final de competencia.** Conserva la decisión final en Espino, pasó P&R y cuenta con comparación oficial de 20.000 ticks. La demo autónoma independiente completó en placa su secuencia de 16 ticks con maestro SPI interno.
 
@@ -177,6 +186,6 @@ La revisión autónoma `selftest_fetch_rom_lento.bin` usa la misma ROM, reset re
 
 **La demo autónoma obtuvo PASS físico en la Go Board.** Se observaron D2 y D4 encendidos y D1 y D3 apagados, código 1010. La verificación de solo lectura de la flash devolvió `VERIFY OK`. Tres arranques devolvieron `AUTOTEST LED=1010 UART=0xAA RESULT=PASS` por COM10. El código confirma que se completó la comprobación integral de los 16 ticks con maestro interno. El BIN validado tiene SHA-256 `0CCD156590DAECF3F9C3E6031E7E987B0CE6A0795BB801A9672C88CCC91FB9CC`. El ZIP conserva los registros de flash y UART.
 
-La evidencia oficial completa sigue siendo la ronda 3 con 20.000 ticks y 4/4 para software y MMIO. Rondas 1 y 2 se están simulando con Icarus. Su avance parcial no acredita PASS. Verilator pudo traducir el banco y MSVC 2019 está instalado, pero el entorno carece de los encabezados del SDK/UCRT necesarios para compilarlo. Una corrida alternativa de dos estados tampoco acreditaría el criterio MISO sin X.
+El ZIP incluye las seis corridas de práctica completas, el código de la espera verificada, los contrastes con Icarus directo y `comparacion_tres_rondas.csv`. Las pruebas de práctica usan la serie publicada. El resultado de las series ocultas corresponde a la competencia en vivo.
 
 La entrega incluye las dos alternativas de co-diseño, código y bancos de prueba, tablas de IC, CPI, ciclos, tiempo, recursos y roofline, el PDF y la guía de defensa. La matriz de cierre identifica la evidencia por requisito. La demostración física con la maestra y la defensa presencial siguen pendientes.

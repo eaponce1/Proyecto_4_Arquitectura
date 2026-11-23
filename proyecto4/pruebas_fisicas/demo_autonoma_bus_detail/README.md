@@ -94,20 +94,20 @@ iceprog "$p/build/competition/competition.bin"
 
 Conecta GND común y señales de 3,3 V. PMOD PS4 SCLK (pin 62), PS2 MOSI (64), PS1 CS_n (65) y PS3 MISO (63), este último independiente del resto de los grupos. SPI modo 0, 8 bits, MSB primero y SCLK hasta 1 MHz. La trama n emite la DECISION que estaba escrita al iniciarla, calculada a partir del precio n−1. Conserva la misma imagen para las tres rondas. La competencia física sigue pendiente.
 
-## Reproducir las rondas pendientes
+## Reproducir las rondas 1 y 2 de práctica
 
 Desde pochoco_soc-main, cada comando genera una corrida oficial de 20.000 ticks. Los resultados de ronda 3 se conservan.
 
 ```powershell
 foreach ($r in 1,2) {
     foreach ($v in 'mmio','software') {
-        python -B proyecto4/resultados/validacion_oficial/ejecutar_validacion.py --variant $v --round $r
+        python -B proyecto4/resultados/validacion_oficial/ejecutar_validacion.py --variant $v --round $r --fast-idle
         if ($LASTEXITCODE -ne 0) { throw "Falló la corrida $v en ronda $r" }
     }
 }
 ```
 
-Las cuatro corridas se lanzaron en esta revisión y estaban en curso al generar el informe. El cotejo Python disponible compara los CSV completos de ronda 3. La herramienta de síntesis no usa esos CSV para construir competition.
+Las cuatro corridas completaron 20.000 ticks y aprobaron los cuatro criterios. Las decisiones coinciden con Python en las tres rondas. Los ciclos, los tiempos de ejecución de Icarus y los archivos de respaldo se detallan en el [informe de las tres rondas](../../resultados/validacion_oficial/informe_comparativo_tres_rondas.md).
 
 
 ## Regresión del watchdog corregido

@@ -20,15 +20,31 @@ python -B proyecto4/resultados/validacion_oficial/ejecutar_validacion.py --varia
 python -B proyecto4/resultados/validacion_oficial/resumir_corridas.py
 ```
 
+Para reproducir los periodos largos en Icarus con espera verificada, añade
+`--fast-idle` a cada comando de las rondas 1 y 2. El ejecutor guarda las
+corridas en `corridas_aceleradas/`. El banco derivado mantiene la fase de
+reloj y el tiempo de simulación de 10 ms o 1 ms entre precios. Tras completar
+DECISION y con CS_n inactivo, observa ocho ciclos y compara el estado del SoC.
+Si detecta el mismo estado y solo lecturas de STATUS, avanza por periodos
+enteros de sondeo y actualiza los contadores de forma exacta. Si la comprobación
+falla, simula todo el intervalo. Las tramas SPI y los cuatro criterios siguen
+ejecutándose en Icarus de cuatro estados.
+
+Cuando estén las seis corridas completas, genera un CSV nuevo con
+`python -B proyecto4/resultados/validacion_oficial/resumir_corridas.py --tres-rondas`.
+Ese CSV distingue el promedio decimal del entero truncado histórico.
+
 Rondas: 1=10 ms, 2=1 ms, 3=0,1 ms. Cada simulación completa ejecuta 20.000 ticks; Icarus simula el reloj de 25 MHz también durante los sondeos entre transacciones, por lo que las rondas lentas tienen un costo de cómputo muy alto.
 
 Resultados, tiempos y pendientes registrados en `informe_validacion_oficial.md`.
 
 ## Corridas registradas
 
-| Variante | Ronda | Serie | Checks | Ciclos promedio (truncado) | Peor caso |
+| Variante | Ronda | Serie | Checks | Ciclos promedio | Peor caso |
 |---|---:|---:|---:|---:|---:|
+| MMIO SMA10 base | 1 y 2 | 20.000 por ronda | 4/4 PASS | 60,66 | 254 |
+| Software original | 1 y 2 | 20.000 por ronda | 4/4 PASS | 218,67 | 413 |
 | MMIO SMA10 base | 3 | 20.000 | 4/4 PASS | 60 | 255 |
 | Software original | 3 | 20.000 | 4/4 PASS | 218 | 413 |
 
-Las dos secuencias de decisiones coinciden en 20.000/20.000 ticks y tienen igual contabilidad final. Rondas 1 y 2 están pendientes; la ronda 3 tomó aproximadamente 7 h 38 min (MMIO) y 2 h 30 min (software), y el informe explica la proyección por ciclos para los periodos más largos. El promedio impreso por la versión usada en estas corridas divide enteros y se etiqueta explícitamente como truncado.
+Las seis secuencias de decisiones coinciden en 20.000/20.000 ticks y tienen igual contabilidad final. Los valores 60 y 218 de ronda 3 son promedios enteros truncados. Las rondas largas se validaron con espera verificada. Consulta [el CSV comparativo](comparacion_tres_rondas.csv) y [el informe de las tres rondas](informe_comparativo_tres_rondas.md) para conocer tiempos, comprobaciones y comandos.

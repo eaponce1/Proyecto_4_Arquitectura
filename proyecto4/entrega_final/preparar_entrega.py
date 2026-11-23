@@ -13,7 +13,7 @@ OFFICIAL = "proyecto4/resultados/validacion_oficial"
 PHYSICAL = "proyecto4/pruebas_fisicas/demo_autonoma_bus_detail"
 IGNORED = {"__pycache__", ".git", "obj_dir"}
 SOURCE_EXTENSIONS = {
-    ".v", ".sv", ".vh", ".s", ".hex", ".py", ".ps1", ".pcf", ".md",
+    ".v", ".sv", ".vh", ".svh", ".s", ".hex", ".py", ".ps1", ".pcf", ".md",
     ".csv", ".svg", ".txt", ".log", ".pdf", ".png",
 }
 
@@ -28,10 +28,15 @@ def include(relative: Path) -> bool:
     if name.startswith(OFFICIAL + "/"):
         if "corridas" in parts:
             return "ronda_3" in parts and relative.name in {"decisiones.csv", "simulacion.log"}
+        if "corridas_aceleradas" in parts:
+            if relative.name not in {"decisiones.csv", "simulacion.log", "duracion_simulacion.txt"}:
+                return False
+            log = ROOT / relative.parent / "simulacion.log"
+            return log.is_file() and "Testbenchs aprobados: 4/4" in log.read_text(encoding="utf-8")
         return len(parts) == 4 and not relative.name.startswith("verilator")
     if name.startswith("proyecto4/entrega_final/"):
         return (relative.parent.as_posix() == "proyecto4/entrega_final"
-                and relative.name not in {"verificacion_cierre.log", "pruebas_python_cierre.log"})
+                and relative.name in {"MANIFIESTO.md", "informe_final_proyecto4.pdf", "preparar_entrega.py"})
     if name.startswith("proyecto4/programacion_fisica/"):
         return relative.name in {"generar_bitstream.py", "informe_programacion_fisica.md",
                                  "yosys.log", "nextpnr.log"}

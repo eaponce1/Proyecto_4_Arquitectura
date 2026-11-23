@@ -1,0 +1,7 @@
+variante,ronda,ticks,patrimonio_final,caja_final,acciones_finales,rentabilidad_pct,ordenes,compras,ventas,comisiones,drawdown_maximo,ciclos_peor_caso,criterios_aprobados,criterios_totales,diferencias_decision_vs_otra,CSV_decisiones,ciclos_promedio_tb,tipo_promedio,duracion_simulacion_s,ejecucion
+mmio_sma10_base,ronda_1,20000,4577,2017,16,-54.23,931,466,465,4655,5476,254,4,4,0,corridas_aceleradas/mmio_sma10_base/ronda_1/decisiones.csv,60.66,decimal,470.429559,Icarus con espera verificada
+mmio_sma10_base,ronda_2,20000,4577,2017,16,-54.23,931,466,465,4655,5476,254,4,4,0,corridas_aceleradas/mmio_sma10_base/ronda_2/decisiones.csv,60.66,decimal,470.079854,Icarus con espera verificada
+mmio_sma10_base,ronda_3,20000,4577,2017,16,-54.23,931,466,465,4655,5476,255,4,4,0,corridas/mmio_sma10_base/ronda_3/decisiones.csv,60,entero truncado,,Icarus directo
+software_original,ronda_1,20000,4577,2017,16,-54.23,931,466,465,4655,5476,413,4,4,0,corridas_aceleradas/software_original/ronda_1/decisiones.csv,218.67,decimal,659.787713,Icarus con espera verificada
+software_original,ronda_2,20000,4577,2017,16,-54.23,931,466,465,4655,5476,413,4,4,0,corridas_aceleradas/software_original/ronda_2/decisiones.csv,218.67,decimal,643.561662,Icarus con espera verificada
+software_original,ronda_3,20000,4577,2017,16,-54.23,931,466,465,4655,5476,413,4,4,0,corridas/software_original/ronda_3/decisiones.csv,218,entero truncado,,Icarus directo

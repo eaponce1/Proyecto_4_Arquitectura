@@ -2,13 +2,16 @@
 """Extrae resultados contables y compara las corridas oficiales disponibles."""
 from __future__ import annotations
 
+import argparse
 import csv
 import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 RUNS = HERE / "corridas"
+ACCELERATED_RUNS = HERE / "corridas_aceleradas"
 OUT_CSV = HERE / "comparacion_oficial.csv"
+THREE_ROUNDS_CSV = HERE / "comparacion_tres_rondas.csv"
 
 
 def number(log: str, pattern: str) -> int | None:
@@ -74,12 +77,35 @@ def summarize(path: Path) -> dict[str, object]:
 
 
 def main() -> None:
-    rows = []
-    for path in sorted(RUNS.glob("*/ronda_*")):
-        if (path / "simulacion.log").is_file() and (path / "decisiones.csv").is_file():
-            rows.append(summarize(path))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--tres-rondas", action="store_true",
+                        help="Guardar una comparación nueva de las seis corridas completas")
+    args = parser.parse_args()
+    output = THREE_ROUNDS_CSV if args.tres_rondas else OUT_CSV
+    if args.tres_rondas:
+        paths = []
+        for variant in ("mmio_sma10_base", "software_original"):
+            for round_no in (1, 2, 3):
+                direct = RUNS / variant / f"ronda_{round_no}"
+                accelerated = ACCELERATED_RUNS / variant / f"ronda_{round_no}"
+                path = direct if (direct / "simulacion.log").is_file() else accelerated
+                if not (path / "simulacion.log").is_file():
+                    raise SystemExit(f"Falta la corrida completa {variant} ronda {round_no}")
+                paths.append(path)
+    else:
+        paths = [p for p in sorted(RUNS.glob("*/ronda_*"))
+                 if (p / "simulacion.log").is_file() and (p / "decisiones.csv").is_file()]
+
+    rows = [summarize(path) for path in paths]
     if not rows:
         raise SystemExit("No hay corridas completas para resumir")
+    if args.tres_rondas:
+        for row, path in zip(rows, paths, strict=True):
+            row["ciclos_promedio_tb"] = row.pop("ciclos_promedio_tb_truncado")
+            row["tipo_promedio"] = "decimal" if "." in str(row["ciclos_promedio_tb"]) else "entero truncado"
+            duration = path / "duracion_simulacion.txt"
+            row["duracion_simulacion_s"] = duration.read_text(encoding="utf-8").strip() if duration.is_file() else ""
+            row["ejecucion"] = "Icarus con espera verificada" if ACCELERATED_RUNS in path.parents else "Icarus directo"
     by_key = {(row["variante"], row["ronda"]): row for row in rows}
     for row in rows:
         peer = "software_original" if row["variante"] == "mmio_sma10_base" else "mmio_sma10_base"
@@ -91,12 +117,12 @@ def main() -> None:
                 a["decision"].lower() != b["decision"].lower() for a, b in zip(current, matched)
             )
     fields = list(rows[0])
-    with OUT_CSV.open("w", newline="", encoding="utf-8") as handle:
+    with output.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
     print(f"Corridas resumidas: {len(rows)}")
-    print(f"Comparación: {OUT_CSV}")
+    print(f"Comparación: {output}")
     for row in rows:
         print(row)
 
