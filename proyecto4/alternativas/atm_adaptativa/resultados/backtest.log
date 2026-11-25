@@ -1,0 +1,102 @@
+PROTOCOLO CONGELADO 436ab1458a045a2d31052f980e2f007086a76c7c1ff88bfb2b6eb064e3aa604f 191 configuraciones
+PASS referencias 8 series, LOCO 5/8, LOSO 6/8, WF 14/24
+MEDIDO practica_amd_2022_may 8000
+MEDIDO practica_apple_2022 8000
+MEDIDO practica_amd_2022_ene 8000
+MEDIDO practica_apple_2023 8000
+MEDIDO practica_netflix_2022 8000
+MEDIDO practica_meta_2022 8000
+MEDIDO practica_netflix_2023 8000
+MEDIDO practica_tesla_2022 8000
+MEDIDO practica_amd_2022_ene 12000
+MEDIDO practica_apple_2022 12000
+MEDIDO practica_amd_2022_may 12000
+MEDIDO practica_apple_2023 12000
+MEDIDO practica_meta_2022 12000
+MEDIDO practica_netflix_2022 12000
+MEDIDO practica_netflix_2023 12000
+MEDIDO practica_tesla_2022 12000
+MEDIDO practica_amd_2022_ene 16000
+MEDIDO practica_amd_2022_may 16000
+MEDIDO practica_apple_2022 16000
+MEDIDO practica_apple_2023 16000
+MEDIDO practica_meta_2022 16000
+MEDIDO practica_netflix_2022 16000
+MEDIDO practica_netflix_2023 16000
+MEDIDO practica_tesla_2022 16000
+MEDIDO practica_amd_2022_ene 20000
+MEDIDO practica_amd_2022_may 20000
+MEDIDO practica_apple_2022 20000
+MEDIDO practica_apple_2023 20000
+MEDIDO practica_meta_2022 20000
+MEDIDO practica_netflix_2022 20000
+MEDIDO practica_netflix_2023 20000
+MEDIDO practica_tesla_2022 20000
+{
+  "estado": "NO-GO",
+  "seleccion": 4,
+  "config": {
+    "signal": "momentum",
+    "fast": 16,
+    "slow": 64,
+    "review": 8,
+    "entry": 4,
+    "exit": 4,
+    "stop": 12,
+    "vol_mult": 4,
+    "confirm": 2,
+    "exposure": 100,
+    "neutral": -1,
+    "bear": 0,
+    "reserve": 0,
+    "min_order": 4,
+    "min_hold": 16,
+    "progressive": 63,
+    "initial": 0
+  },
+  "puertas": {
+    "ventajas": false,
+    "mediana_dolares": false,
+    "mediana_pct": false,
+    "peor_relativo": false,
+    "drawdown": true,
+    "comisiones": false,
+    "loco": true,
+    "loso": false,
+    "walk": true,
+    "ternas_ventajas": false,
+    "ternas_peor": false
+  },
+  "baseline": {
+    "ventajas": 6,
+    "n": 8,
+    "mediana_dolares": 2513.5,
+    "mediana_pct": 24.90268896841056,
+    "media_dolares": 3045.625,
+    "media_pct": 33.07730319433053,
+    "peor_pct": -6.144460180847587,
+    "minimo": 8615,
+    "drawdown_max_pct": 61.10757985062768,
+    "comisiones_media": 270.625
+  },
+  "atm": {
+    "ventajas": 5,
+    "n": 8,
+    "mediana_dolares": 1657.0,
+    "mediana_pct": 16.496411814174003,
+    "media_dolares": 2134.625,
+    "media_pct": 22.69484455758027,
+    "peor_pct": -15.84514721919302,
+    "minimo": 7717,
+    "drawdown_max_pct": 49.3768761939416,
+    "comisiones_media": 411.875
+  },
+  "loco": 6,
+  "loso": 5,
+  "walk": 14,
+  "segundos": 159.84018360002665,
+  "protocolo_sha256": "436ab1458a045a2d31052f980e2f007086a76c7c1ff88bfb2b6eb064e3aa604f",
+  "siguientes_fases": "No aprobadas; solo se habilitan con GO cuantitativo"
+}
+
+Salida=0

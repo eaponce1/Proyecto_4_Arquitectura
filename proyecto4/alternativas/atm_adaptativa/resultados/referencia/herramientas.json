@@ -1,0 +1,35 @@
+{
+  "python": {
+    "path": "C:\\Python313\\python.EXE",
+    "version": "Python 3.13.3",
+    "sha256_ejecutable": "d87063e5597f257004c731b66c59c56c91038861c6877b1a3dca6b8c4e919125"
+  },
+  "iverilog": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\iverilog.EXE",
+    "version": "Icarus Verilog version 14.0 (devel) (s20260301-626-g7e3d0c6bd-dirty)\n\nCopyright (c) 2000-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 14.0 (devel) (s20260301-626-g7e3d0c6bd-dirty)\n\nCopyright (c) 1999-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 14.0 (devel) (s20260301-626-g7e3d0c6bd-dirty)\n\nCopyright (c) 1998-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 14.0 (devel) (s20260301-626-g7e3d0c6bd-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+    "sha256_ejecutable": "ed783633fe5ff079955fb35835d300ec825af932329f2f33a7937a896b0ed2b3"
+  },
+  "vvp": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\vvp.EXE",
+    "version": "Icarus Verilog runtime version 14.0 (devel) (s20260301-626-g7e3d0c6bd-dirty)\n\nCopyright (c) 2001-2026 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.",
+    "sha256_ejecutable": "937563fccac9722ec59344ee6cb3035ff749c0bf32dba77e41ae77fb363d7af4"
+  },
+  "yosys": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\yosys.EXE",
+    "version": "Yosys 0.70+176 (git sha1 365bb887b, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 15.2.1)",
+    "sha256_ejecutable": "5ea05b55ee5e7f193b0d9960460c2fcf12fc520aa1e494e972ad394795c1b431"
+  },
+  "nextpnr-ice40": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\nextpnr-ice40.EXE",
+    "version": "\"nextpnr-ice40\" -- Next Generation Place and Route (Version nextpnr-0.11.1-68-g1daf1f5c)",
+    "sha256_ejecutable": "e287c75c8c740d94193a6ecf3c01e9f6f8eca1e3ab25e595dcecb279ddb5a574"
+  },
+  "icepack": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\icepack.EXE",
+    "sha256_ejecutable": "a5beec407c1a0ae8d22547db91f9818a182cf3d2bb5be552acbf97a77227cb7f"
+  },
+  "icebox_vlog": {
+    "path": "C:\\Tools\\oss-cad-suite\\bin\\icebox_vlog.EXE",
+    "sha256_ejecutable": "6eccec0f9ef3e9e493b9b0ce7d60369a1ecf3fe0f20ec9ccce0b03f334a61811"
+  }
+}

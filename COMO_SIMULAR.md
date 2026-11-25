@@ -1,5 +1,11 @@
 # Ver Pochoco Trader en el computador
 
+La investigación ATM se reproduce con
+`python -X utf8 -B proyecto4/alternativas/atm_adaptativa/ejecutar_todo.py`.
+Su resultado es NO-GO financiero; no hay BIN ATM aprobado y el visor de esta
+guía continúa mostrando la política activa Momentum32. Consultar el informe
+cuantitativo de ATM para sus propias curvas y operaciones.
+
 Desde esta carpeta (`Proyecto_4_Arquitectura-main`) abre PowerShell y ejecuta:
 
 ```powershell

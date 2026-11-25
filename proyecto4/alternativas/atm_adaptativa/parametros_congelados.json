@@ -1,0 +1,24 @@
+{
+  "indice": 4,
+  "config": {
+    "signal": "momentum",
+    "fast": 16,
+    "slow": 64,
+    "review": 8,
+    "entry": 4,
+    "exit": 4,
+    "stop": 12,
+    "vol_mult": 4,
+    "confirm": 2,
+    "exposure": 100,
+    "neutral": -1,
+    "bear": 0,
+    "reserve": 0,
+    "min_order": 4,
+    "min_hold": 16,
+    "progressive": 63,
+    "initial": 0
+  },
+  "sha256_protocolo": "436ab1458a045a2d31052f980e2f007086a76c7c1ff88bfb2b6eb064e3aa604f",
+  "seleccion": "prefijos 12000, sin evaluacion posterior"
+}

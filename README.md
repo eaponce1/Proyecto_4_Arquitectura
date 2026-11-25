@@ -135,3 +135,16 @@ Los builds y documentos anteriores se conservan en el **historial Git**; el árb
 Los workflows de Actions comprueban la imagen actual y recompilan el informe desde LaTeX. Guardan los logs y el PDF generado como artefactos; no programan hardware ni escriben automáticamente en `main`.
 
 El [informe de desarrollo anterior](docs/INFORME_DESARROLLO.md) conserva los recursos de su build de 1.257 LC; para la versión actual usar el PDF principal y `build/trader/validacion.json`.
+
+## Investigación ATM: NO-GO
+
+La [familia ATM](proyecto4/alternativas/atm_adaptativa/README.md) se desarrolla en
+`codex/atm-adaptativa`, sin reemplazar esta imagen. Se evaluaron 191 configuraciones
+con selección por entrenamiento, LOCO, LOSO, walk-forward y ternas de rondas.
+La elegida obtuvo 5/8 ventajas y no superó las puertas frente al baseline 6/8:
+**NO-GO financiero; no se generó firmware ni BIN ATM**. El
+[informe cuantitativo](proyecto4/alternativas/atm_adaptativa/INFORME_CUANTITATIVO.pdf)
+y su matriz distinguen las pruebas Python de las fases hardware no habilitadas.
+
+Reproducción completa: `python -X utf8 -B proyecto4/alternativas/atm_adaptativa/ejecutar_todo.py`.
+La programación manual sigue usando `programar.ps1` y `competition.bin` de la raíz.
