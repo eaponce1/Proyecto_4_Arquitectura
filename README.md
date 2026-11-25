@@ -76,7 +76,16 @@ for the supported subset, game timing, updated MMIO registers and verification l
 
 ## Proyecto 4 — Pochoco Trader
 
-El desarrollo de Proyecto 4, construido sobre este Espino, está en [`proyecto4/`](proyecto4/README.md). Ese README contiene las instrucciones de ensamblado, simulación, síntesis/programación, versiones detectadas y estado de validación. La variante de hardware elegida es MMIO SMA10 base.
+**Inicio rápido y estado real:** [proyecto4/INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
 
-La [guía de Windows](proyecto4/README.md#repetir-la-validación-de-2000-ticks-en-windows) indica cómo ejecutar el banco de 2.000 ticks. El PDF y el manifiesto de entrega están en `proyecto4/entrega_final/`.
+La variante de referencia para la competencia es **MMIO SMA10 base**, implementada en `proyecto4/alternativas/mmio_sma10/`. La guía explica cómo ensamblar `trade.s`, ejecutar las pruebas Python y las tres rondas, sintetizar el bitstream y conectar SPI.
 
+> Importante: el `Makefile` de la raíz y `make all` construyen el top heredado `game_top` del Proyecto 2. No generan el bitstream del Pochoco Trader. Para Proyecto 4, sigue los comandos de [INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
+
+- [Informe final PDF](proyecto4/entrega_final/informe_final_proyecto4.pdf)
+- [Matriz de requisitos y evidencia](proyecto4/documentacion/matriz_cierre_pochoco.md)
+- [Auditoría final](proyecto4/documentacion/auditoria_final_cierre.md)
+- [Guía de defensa](proyecto4/documentacion/guia_defensa.md)
+- [Guion de presentación](proyecto4/documentacion/guion_presentacion.md)
+
+La validación de práctica en Icarus cubre las tres rondas y la demo autónoma de 16 ticks obtuvo PASS físico. La integración completa con la FPGA maestra, el cotejo MISO/BIN de la práctica y la defensa presencial siguen pendientes según la auditoría.
