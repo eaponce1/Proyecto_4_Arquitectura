@@ -29,7 +29,9 @@ El programa usa RV32E, x0–x15, y no necesita MUL, DIV ni instrucciones de shif
 python -B -m unittest discover -s proyecto4/python -v
 ```
 
-El repositorio registra 32 pruebas aprobadas para el Proyecto 4. Para la prueba del assembler custom-0:
+La suite actual registra **36/36 pruebas aprobadas** para el Proyecto 4 en GitHub Actions (25/11/2026). La misma ejecución aprobó también 11/11 pruebas Python del Proyecto 2, los cuatro bancos RTL heredados y el ensamblado final de 71 instrucciones. [Ver regresión aprobada](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/runs/45665702222). La generación del PDF también terminó correctamente: [ver render](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/runs/45665702176).
+
+Para la prueba del assembler custom-0:
 
 ```powershell
 python -B -m unittest proyecto4.alternativas.custom0.tb.test_assembler_custom0 -v
