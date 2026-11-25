@@ -1,22 +1,12 @@
-# Entorno de simulación del Proyecto 4
+# Proyecto 4 — Pochoco Trader
 
-Esta carpeta aísla los recursos de simulación del Proyecto 4. El RTL, assembler y
-pruebas del Proyecto 2 se conservan en sus ubicaciones originales. El programa
-`spi_smoke.s` solo valida el camino de MMIO/SPI: lee `STATUS`, lee `PRICE` y escribe
-el byte fijo `0x41` en `DECISION`; todavía no contiene estrategia de inversión.
+Este directorio reúne la investigación, firmware, alternativas de co-diseño, testbenches, resultados y documentación del Proyecto 4.
 
-## Contenido
+**Punto de entrada recomendado:** [INICIO_RAPIDO.md](INICIO_RAPIDO.md). Allí están la variante que se debe usar, los comandos de ensamblado, las pruebas por ronda, la síntesis, los pines SPI y los límites de la evidencia física.
 
-- `tb/tb_proyecto_4.sv`: testbench de la FPGA maestra, adaptado desde el archivo entregado.
-- `data/practica_meta.csv`: serie de práctica completa, 20 000 ticks.
-- `sw/spi_smoke.s`: programa de humo para verificar acceso SPI desde el procesador.
-- `sw/spi_smoke.hex`: imagen generada con el assembler existente.
-- `decisiones.csv`: salida generada por cada ejecución del testbench.
-- `tb_proyecto_4.vvp`: ejecutable generado al compilar el testbench.
+La arquitectura de referencia de competencia documentada es **MMIO SMA10 base**, en `alternativas/mmio_sma10/`. El firmware de humo `sw/spi_smoke.s` de la etapa inicial solo comprobó STATUS/PRICE/DECISION; no es el agente final. Las variantes `custom0`, `mmio_sma10_opt`, `candidata_final` y `agresiva` se conservan como experimentos o comparaciones y no sustituyen automáticamente a la imagen final.
 
-Los cambios mantienen la contabilidad de la FPGA maestra y el protocolo de una
-transacción de desfase: el testbench contabiliza el byte recibido al inicio de cada
-tick, que corresponde a la decisión guardada antes de la transacción actual.
+La carpeta contiene también documentación histórica de las etapas de desarrollo. Para conocer el estado real de cierre y las tareas que todavía requieren la FPGA maestra, consulta primero la guía de inicio rápido y la [matriz de cierre](documentacion/matriz_cierre_pochoco.md).
 
 ## Preparación y pruebas
 
