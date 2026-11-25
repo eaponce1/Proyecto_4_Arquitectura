@@ -2,21 +2,16 @@ name: Project 4 regression
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - "rtl/**"
-      - "sw/**"
-      - "tests/**"
-      - "proyecto4/**"
-      - ".github/workflows/test-project4.yml"
+      - 'rtl/**'
+      - 'sw/**'
+      - 'tools/**'
+      - 'proyecto4/**'
+      - 'competition.bin'
+      - '.gitattributes'
+      - '.github/workflows/test-project4.yml'
   pull_request:
-    paths:
-      - "rtl/**"
-      - "sw/**"
-      - "tests/**"
-      - "proyecto4/**"
-      - ".github/workflows/test-project4.yml"
   workflow_dispatch:
 
 permissions:
@@ -27,32 +22,33 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: "3.13"
-
-      - name: Install Icarus Verilog
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install RTL tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y iverilog
-
-      - name: Project 4 Python and RTL tests
-        run: python -B -m unittest discover -s proyecto4/python -v
-
-      - name: Project 2 legacy Python and RTL regression
-        run: python -B tests/run_tests.py
-
-      - name: Assemble final MMIO SMA10 firmware
-        run: |
-          python -B proyecto4/sw/assembler.py proyecto4/alternativas/mmio_sma10/sw/trade.s -o proyecto4/alternativas/mmio_sma10/sw/trade.hex
-          python - <<'PY'
-          from pathlib import Path
-          path = Path("proyecto4/alternativas/mmio_sma10/sw/trade.hex")
-          words = path.read_text(encoding="ascii").split()
-          assert words and all(len(word) == 8 for word in words), "HEX inválido"
-          print(f"PASS: {len(words)} instrucciones de 32 bits")
-          PY
+          sudo apt-get install -y iverilog yosys
+      - name: Check active image and source hashes
+        run: python -B tools/trader.py verify
+      - name: Accounting and causality invariants
+        run: python -B proyecto4/alternativas/competitiva_definitiva/test_invariantes.py
+      - name: Reassemble and compare Python with RV32E on 160000 ticks
+        run: python -B proyecto4/alternativas/competitiva_definitiva/validar_equivalencia.py
+      - name: Audit complete stored RTL evidence and Git history
+        run: python -B proyecto4/alternativas/competitiva_definitiva/auditar_entrega.py
+      - name: Simulate active RTL over SPI
+        run: python -B tools/trader.py test
+      - name: Upload current test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: project4-validation
+          path: |
+            build/trader/*.log
+            build/trader/rtl_*/decisiones.csv
+            proyecto4/alternativas/competitiva_definitiva/resultados/equivalencia_rv32e.json
+            proyecto4/alternativas/competitiva_definitiva/resultados/auditoria_entrega.json

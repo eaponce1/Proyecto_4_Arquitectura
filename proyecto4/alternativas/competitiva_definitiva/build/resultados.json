@@ -1,0 +1,42 @@
+{
+  "lc": 1257,
+  "bram": 9,
+  "clocks": {
+    "clk_soc": {
+      "achieved": 49.11591339111328,
+      "constraint": 25
+    },
+    "i_Clk$SB_IO_IN_$glb_clk": {
+      "achieved": 683.5269775390625,
+      "constraint": 25
+    }
+  },
+  "netlist": [
+    {
+      "nombre": "integracion_cadencias",
+      "ticks": 48,
+      "periodo_ns": 100000,
+      "fase_ns": 0,
+      "puertas": true,
+      "discrepancias": 0,
+      "log": "build\\rtl\\integracion_cadencias_48_100000_0_puertas.log",
+      "csv": "build\\rtl\\integracion_cadencias_48_100000_0_puertas.csv"
+    },
+    {
+      "nombre": "integracion_cadencias",
+      "ticks": 48,
+      "periodo_ns": 100000,
+      "fase_ns": 41,
+      "puertas": true,
+      "discrepancias": 0,
+      "log": "build\\rtl\\integracion_cadencias_48_100000_41_puertas.log",
+      "csv": "build\\rtl\\integracion_cadencias_48_100000_41_puertas.csv"
+    }
+  ],
+  "sha256_bin": "44e48b3701159a79148990e6610254d573985049dd4a0c4a0ab690461c838366",
+  "sha256_hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "physical_test": "PENDIENTE",
+  "top": "trade_spi_externo",
+  "soc_mhz": 12.5,
+  "input_mhz": 25
+}

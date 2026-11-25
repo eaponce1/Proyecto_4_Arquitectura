@@ -1,3 +1,5 @@
+> **Referencia de investigacion y validacion.** La imagen activa para programar se encuentra en la raiz del repositorio: [guia actual](../../../../README.md). Este directorio conserva fuentes que necesitan los comparadores y bancos; sus builds y documentos completos anteriores estan en el [historial previo](https://github.com/eaponce1/Proyecto_4_Arquitectura/tree/66eede4c46e211c02dc5ef22de18f86e22e775c5/proyecto4/alternativas/candidata_final/tb). Los comandos y resultados historicos de abajo no identifican el BIN vigente.
+
 # Banco integral de la candidata
 
 `tb_candidata.sv` instancia el top `trade_spi_externo`. El banco de RTL observa el Espino, el esclavo SPI, el acelerador SMA10 y la cartera emulada por la maestra. La opción `NETLIST` instancia el mismo top mapeado y verifica las salidas observables.

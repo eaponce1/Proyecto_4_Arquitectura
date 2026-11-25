@@ -1,5 +1,0 @@
-PASS serie oficial: 20000 ticks, MISO, DECISION y cartera; maximo de 83 instrucciones
-PASS entrenamiento frio: 12000 ticks, MISO, DECISION y cartera; maximo de 83 instrucciones
-PASS validacion fria: 4000 ticks, MISO, DECISION y cartera; maximo de 26 instrucciones
-PASS prueba fria: 4000 ticks, MISO, DECISION y cartera; maximo de 83 instrucciones
-PASS compra parcial y reintento de liquidacion: 85 ticks, MISO, DECISION y cartera; maximo de 77 instrucciones

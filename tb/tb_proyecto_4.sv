@@ -117,7 +117,7 @@ module tb_proyecto_4;
       if (dut.u_spi.byte_done) begin
         if (bytes_recibidos >= NTICKS || bytes_recibidos + 1 != tramas)
           $fatal(1, "SPI byte_done fuera de turno: trama %0d", tramas);
-        if (dut.u_spi.price_o !== precio[bytes_recibidos][7:0])
+        if ({dut.u_spi.rx_shift[6:0], dut.u_spi.mosi} !== precio[bytes_recibidos][7:0])
           $fatal(1, "Precio SPI incorrecto en tick %0d", bytes_recibidos);
         bytes_recibidos++;
       end

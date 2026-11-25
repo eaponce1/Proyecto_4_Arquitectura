@@ -1,0 +1,2 @@
+# Version usada para exportar los graficos y ejecutar el visor.
+matplotlib==3.10.8

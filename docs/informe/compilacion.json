@@ -1,0 +1,21 @@
+{
+  "pdf_sha256": "5c109bcfff44a2408fdf450c40018205234ea02c9caae17c526c7e7faef5e226",
+  "paginas": 22,
+  "compilador": "pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023",
+  "pasadas": 3,
+  "revisado": "portada, tablas y figura renderizadas; texto de las 8 series comprobado; sin cajas desbordadas",
+  "fuentes": {
+    "docs/informe/informe_final.tex": "b80d601c9d4e7ac08db314b1ac245b93d376929e8567fe6e9981f1a15322737c",
+    "docs/informe/datos_generados.tex": "54c58183cd88710add48eaaca6a7d331d7bbf38627eca425bb8517f7e65b09f3",
+    "docs/informe/graficos_series.tex": "83cc51474d5d981c227c6e65d9864bcd1ef0ca215c8c382e5b5acbc22077add8",
+    "docs/informe/figuras/amd_enero.png": "0d2c2d6e7ecaaef0329f91736fc33ecc0359f30969b5100343598df3864bfb8d",
+    "docs/informe/figuras/amd_mayo.png": "1357868f6ed17ab01f3867516a68474a62d8ab77fc69671e4cfd9c6474a86681",
+    "docs/informe/figuras/apple_2022.png": "c2f106aa6f78a9110a7f5e17f274fd2c45ccd7b3b04a4c137c1566fe5af50d41",
+    "docs/informe/figuras/apple_2023.png": "bc7f0137a7d33dda55325b8392fd3451a072bd74c8b0f8230c18221a9fa0eb55",
+    "docs/informe/figuras/meta_2022.png": "2cc12a3ca57fdaee6774d973ac2f6cbec2b2788271a2c13bcad930d20c4c4970",
+    "docs/informe/figuras/netflix_2022.png": "ef1a9a8534d3701c8523ca69756e905f21693415f2e598a409fa62ce364597aa",
+    "docs/informe/figuras/netflix_2023.png": "099330bfd7d1a9ccd87834aa3ff0a327cab3f778a6e67f5525d6d0ae6800146a",
+    "docs/informe/figuras/tesla_2022.png": "2cc0c587f88ae8863033a7fbf98983289a608454b9c8b67c1ccd6abf07687736"
+  },
+  "prueba_fisica": "PENDIENTE"
+}

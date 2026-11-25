@@ -1,0 +1,27 @@
+PROGRESO ticks=1000/20000
+PROGRESO ticks=2000/20000
+PROGRESO ticks=3000/20000
+PROGRESO ticks=4000/20000
+PROGRESO ticks=5000/20000
+PROGRESO ticks=6000/20000
+PROGRESO ticks=7000/20000
+PROGRESO ticks=8000/20000
+PROGRESO ticks=9000/20000
+PROGRESO ticks=10000/20000
+PROGRESO ticks=11000/20000
+PROGRESO ticks=12000/20000
+PROGRESO ticks=13000/20000
+PROGRESO ticks=14000/20000
+PROGRESO ticks=15000/20000
+PROGRESO ticks=16000/20000
+PROGRESO ticks=17000/20000
+PROGRESO ticks=18000/20000
+PROGRESO ticks=19000/20000
+PROGRESO ticks=20000/20000
+METRICAS ticks=20000 periodo_ns=100000 ciclos_total=3337856 ic_total=1486367 peor_caso=321 presupuesto=1131 peor_ic=147 status_y_byte_done=2492 cargas_mantenidas=142010 ciclos_promedio=166.892800 ic_promedio=74.318350 cpi_global=2.245647
+PASS 20000 STATUS, PRICE, SUM10, READY y DECISION; peor caso 321/1131 ciclos
+CARTERA patrimonio=13555 caja=25 acciones=123 compras=33 ventas=29 comisiones=310 drawdown=15881
+PASS 20000 MISO frente a Python, fase 0 ns, LED=1111
+- /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/proyecto4/alternativas/candidata_final/tb/tb_candidata.sv:302: Verilog $finish
+
+Salida=0; segundos=20.786052

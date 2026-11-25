@@ -1,0 +1,10 @@
+# Los artefactos verificados de entrega se versionan explicitamente.
+__pycache__/
+*.pyc
+*.vvp
+trade_reensamblado.hex
+.matplotlib/
+build/publicacion/
+docs/informe/build/
+# Ejecuciones nuevas del visor; se conserva solo el informe publicado.
+resultados_simulacion/20*/

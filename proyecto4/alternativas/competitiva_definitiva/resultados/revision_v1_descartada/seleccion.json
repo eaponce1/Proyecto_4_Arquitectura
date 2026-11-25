@@ -1,0 +1,18 @@
+{
+  "config": {
+    "family": "breakout",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 12,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "indice": 36,
+  "criterio": "rank: fraccion ventajas, mediana+0.25media+0.5peor-0.05DD, minimo patrimonio, comisiones",
+  "origen": "primeros 12000 ticks de ocho series conocidas; validacion interna, no OOS independiente",
+  "grilla_sha256": "201eed81875f87392223b6262015fb1ef2867e1429b73f359cd569369e7c05d6"
+}

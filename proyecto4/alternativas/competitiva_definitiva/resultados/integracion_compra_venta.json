@@ -1,0 +1,16 @@
+[
+  {
+    "tipo": "compra",
+    "tick_decision": 0,
+    "decision": "0x7F",
+    "tick_miso": 1,
+    "miso": "0x7F"
+  },
+  {
+    "tipo": "venta",
+    "tick_decision": 32,
+    "decision": "0xBF",
+    "tick_miso": 33,
+    "miso": "0xBF"
+  }
+]

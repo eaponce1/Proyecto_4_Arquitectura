@@ -1,4 +1,0 @@
-# Go Board V1, HX1K/VQ100. Dedicated FTDI UART pins.
-set_io i_Clk 15
-set_io i_UART_RX 73
-set_io o_UART_TX 74

@@ -1,0 +1,19 @@
+{
+  "nombre": "caida_brusca",
+  "ticks": 400,
+  "periodo_ns": 100000,
+  "fase_ns": 27,
+  "puertas": false,
+  "discrepancias": 0,
+  "log": "build\\rtl\\caida_brusca_400_100000_27.log",
+  "csv": "build\\rtl\\caida_brusca_400_100000_27.csv",
+  "ciclos_max": 258,
+  "ciclos_media": 132.645,
+  "ic_max": 115,
+  "ic_media": 58.5925,
+  "cpi": 2.2638562956009727,
+  "presupuesto": 1131,
+  "us_max": 20.64,
+  "margen_ciclos": 873,
+  "margen_us": 69.86
+}

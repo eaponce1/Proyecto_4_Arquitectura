@@ -1,6 +1,0 @@
-fin_ajuste,fin_validacion,fin_prueba,modo,periodo,entrada,salida,confirmacion,cantidad_suave,cantidad_fuerte,reserva,patrimonio,mantener,diferencia,drawdown
-4000,6000,8000,Activa,32,4,4,0,32,63,500,10147,11843,-1696,395
-6000,8000,10000,Activa,64,2,2,10,32,63,500,10000,10653,-653,0
-8000,10000,12000,Activa,64,1,1,10,16,63,500,9980,9555,425,607
-10000,12000,14000,Activa,128,8,8,10,32,63,500,10000,9029,971,0
-12000,14000,16000,Activa,256,1,1,0,32,63,500,8917,6845,2072,1517

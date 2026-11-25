@@ -1,9 +1,0 @@
-escenario,periodo_ns,ticks,compras,ventas,patrimonio,drawdown
-A_creciente,30000,386,1,0,11179,5
-B_decreciente,30000,386,0,0,10000,0
-C_lateral,30000,386,0,0,10000,0
-D_caida,30000,386,1,1,7770,2230
-E_subida,30000,386,1,0,9995,5
-F_recuperacion,30000,386,1,1,9176,824
-ronda_1_smoke,10000000,4,0,0,10000,0
-ronda_2_smoke,1000000,8,0,0,10000,0

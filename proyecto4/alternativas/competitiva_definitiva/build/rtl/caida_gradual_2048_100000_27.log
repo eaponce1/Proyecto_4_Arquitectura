@@ -1,0 +1,10 @@
+WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\mmio_sma10\rtl\pochoco_ram.v:36: $readmemh(proyecto4/alternativas/competitiva_definitiva/trade.hex): Not enough words in the file for the requested range [0:511].
+PROGRESO ticks=1000/2048
+PROGRESO ticks=2000/2048
+METRICAS ticks=2048 periodo_ns=100000 ciclos_total=217410 ic_total=95957 peor_caso=258 presupuesto=1131 peor_ic=115 status_y_byte_done=249 cargas_mantenidas=12901 ciclos_promedio=106.157227 ic_promedio=46.854004 cpi_global=2.265702
+PASS 2048 STATUS, PRICE, SUM10, READY y DECISION; peor caso 258/1131 ciclos
+CARTERA patrimonio=9210 caja=9210 acciones=0 compras=1 ventas=1 comisiones=10 drawdown=790
+PASS 2048 MISO frente a Python, fase 27 ns, LED=1111
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 204920140000 (1ps)
+
+Salida=0; segundos=103.984950

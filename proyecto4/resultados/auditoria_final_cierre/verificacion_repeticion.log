@@ -1,7 +1,0 @@
-PASS CSV 2000 identico byte por byte. SHA-256 0958C8F03CA72E77C215166B4FA6392A58E0C4CDDF8C18C15844B8B45A9C73DC
-PASS las seis columnas comunes coinciden con el prefijo historico de ronda 3 MMIO
-PASS MISO/DECISION con un tick de desfase. 2000 latencias; media 62.1035; minimo 35; maximo 253; presupuesto 2262; holgura 2009 ciclos
-PASS 55 compras y 54 ventas, patrimonio 9839, caja 6831, acciones 16, drawdown 396
-PASS Icarus/VVP, comparador, ejecutor y unittest con salida 0; 4/4 criterios y 32/32 Python
-PASS tareas SPI y contabilidad, y expresiones de los cuatro criterios identicas al archivo del profesor
-PASS 45 fuentes, configuraciones e imagenes protegidas, y 20 archivos oficiales coinciden con el commit

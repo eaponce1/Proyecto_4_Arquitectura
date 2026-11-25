@@ -1,0 +1,19 @@
+{
+  "nombre": "integracion_cadencias",
+  "ticks": 48,
+  "periodo_ns": 1000000,
+  "fase_ns": 41,
+  "puertas": false,
+  "discrepancias": 0,
+  "log": "build\\rtl\\integracion_cadencias_48_1000000_41.log",
+  "csv": "build\\rtl\\integracion_cadencias_48_1000000_41.csv",
+  "ciclos_max": 278,
+  "ciclos_media": 140.3125,
+  "ic_max": 125,
+  "ic_media": 61.604166666666664,
+  "cpi": 2.2776462631044976,
+  "presupuesto": 12381,
+  "us_max": 22.240000000000002,
+  "margen_ciclos": 12103,
+  "margen_us": 968.26
+}

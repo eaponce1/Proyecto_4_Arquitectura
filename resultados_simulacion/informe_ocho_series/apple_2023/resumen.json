@@ -1,0 +1,42 @@
+{
+  "serie": "Apple 2023",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "family": "trailing",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 20,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "csv_sha256": "6a28f5a36754f82cf17187100a5d1e55554ebc17b6c40528167e8525d16fa675",
+  "hex_sha256": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "bin_disponible_sha256": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 13555,
+    "caja": 25,
+    "acciones": 123,
+    "ordenes": 62,
+    "comisiones": 310,
+    "drawdown": 15881,
+    "drawdown_pct": 55.338351104606595,
+    "mantener_oficial": 10371,
+    "ventaja": 3184,
+    "ventaja_pct": 30.70099315398709,
+    "ticks_caja": 2802,
+    "ticks_exposicion_alta": 17168
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "127b598ce740ad16a62bc889954a1603995d724b650f5776a295f1b66912f44a",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

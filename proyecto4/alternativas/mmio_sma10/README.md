@@ -1,3 +1,5 @@
+> **Referencia de investigacion y validacion.** La imagen activa para programar se encuentra en la raiz del repositorio: [guia actual](../../../README.md). Este directorio conserva fuentes que necesitan los comparadores y bancos; sus builds y documentos completos anteriores estan en el [historial previo](https://github.com/eaponce1/Proyecto_4_Arquitectura/tree/66eede4c46e211c02dc5ef22de18f86e22e775c5/proyecto4/alternativas/mmio_sma10). Los comandos y resultados historicos de abajo no identifican el BIN vigente.
+
 # Alternativa MMIO SMA10
 
 El SoC recibe el byte al mismo evento `byte_done` ya usado por el SPI Slave.

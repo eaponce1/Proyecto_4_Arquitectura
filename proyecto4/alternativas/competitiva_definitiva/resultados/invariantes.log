@@ -1,0 +1,10 @@
+test_causalidad_y_reinicio (__main__.Invariantes.test_causalidad_y_reinicio) ... ok
+test_dominio_entero (__main__.Invariantes.test_dominio_entero) ... ok
+test_fills_frontera (__main__.Invariantes.test_fills_frontera) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.079s
+
+OK
+
+Salida=0
