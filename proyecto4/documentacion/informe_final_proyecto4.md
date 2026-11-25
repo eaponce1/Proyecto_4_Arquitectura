@@ -214,4 +214,4 @@ El registro publicado para Tesla enero de 2022, Fila 2, indica un patrimonio de 
 
 ### Separación respecto de la entrega original
 
-La primera publicación del PDF y del manifiesto figura el 23 de noviembre de 2026 a las 09:21, hora de Chile, antes del plazo del 24 de noviembre a las 10:00. La actualización de este informe incorpora experimentos del 25 de noviembre y no debe confundirse con el artefacto disponible antes del cierre. La guía de defensa y el guion de presentación permanecen como archivos independientes; este PDF se genera únicamente desde el informe técnico.
+La primera publicación del PDF y del manifiesto figura el 23 de noviembre de 2026 a las 09:21, hora de Chile, antes del plazo del 24 de noviembre a las 10:00. La actualización de este informe incorpora experimentos del 25 de noviembre y no debe confundirse con el artefacto disponible antes del cierre. El documento reúne exclusivamente el desarrollo técnico y la evidencia de validación del proyecto.
