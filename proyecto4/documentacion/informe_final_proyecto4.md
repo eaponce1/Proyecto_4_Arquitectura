@@ -189,3 +189,29 @@ La revisión autónoma `selftest_fetch_rom_lento.bin` usa la misma ROM, reset re
 El ZIP incluye las seis corridas de práctica completas, el código de la espera verificada, los contrastes con Icarus directo y `comparacion_tres_rondas.csv`. Las pruebas de práctica usan la serie publicada. El resultado de las series ocultas corresponde a la competencia en vivo.
 
 La entrega incluye las dos alternativas de co-diseño, código y bancos de prueba, tablas de IC, CPI, ciclos, tiempo, recursos y roofline, el PDF y la guía de defensa. La matriz de cierre identifica la evidencia por requisito. La demostración física con la maestra y la defensa presencial siguen pendientes.
+
+## 11. Investigación posterior al plazo (25 de noviembre de 2026)
+
+Esta sección incorpora evidencia publicada después del plazo de entrega del 24 de noviembre. Las variantes se mantienen como investigación posterior y no reemplazan la arquitectura MMIO SMA10 base seleccionada para la entrega original.
+
+### Candidata adaptativa RV32E
+
+La candidata utiliza una revisión cada 128 ticks, tendencia y confirmación SMA10, con posiciones objetivo de 32 o 63 acciones. Completó 20.000 ticks RTL a 30 μs y un ensayo de estrés de 386 ticks a 100 μs. El monitor cotejó MMIO, DECISION, MISO y cartera con Python. Registró 12,006 IC medios, 30,382 ciclos medios, CPI 2,531 y 161 ciclos de peor caso, equivalentes a 12,88 μs a 12,5 MHz. La síntesis reportó 1.174 Logic Cells, 1.060 LUT4, 7 BRAM y Fmax post-route de 50,85 MHz bajo restricción de 25 MHz.
+
+En la serie completa terminó con $10.198, $503 sobre comprar y mantener ($9.695). En el tramo temporal reservado de 4.000 ticks terminó con $10.000, frente a $11.633 de comprar y mantener. Por tanto, la mejora de la serie completa no se sostuvo en la prueba reservada. La nueva imagen no tiene validación física con la FPGA maestra.
+
+### Variante momentum agresiva
+
+La variante seleccionada usa momentum directo, exposición objetivo de 100 %, revisión cada 16 ticks y umbral de 8. El intérprete RV32E coincidió con Python en los 20.000 ticks. La cobertura RTL publicada incluye 2.000 ticks de práctica a 100 μs, pruebas de 4.000 ticks a 32 μs, ensayos de estrés y pruebas de netlist en dos fases SPI; no corresponde describirla como una corrida RTL continua de 20.000 ticks.
+
+En la prueba RTL de 2.000 ticks registró 20,227 IC medios, 47,644 ciclos medios, CPI 2,355 y 54 ciclos de peor caso. La síntesis reportó 1.193 Logic Cells, 1.079 LUT4, 7 BRAM y Fmax post-route de 50,70 MHz bajo restricción de 25 MHz.
+
+La variante terminó la serie completa con $15.232, pero en la prueba temporal reservada obtuvo $9.265 frente a $11.633 de comprar y mantener, una diferencia de −$2.368. En una serie de estrés adicional terminó con $84. Su nueva imagen no tiene prueba física con la FPGA maestra y no sustituye la arquitectura MMIO SMA10 base.
+
+### Registro de práctica con FPGA maestra
+
+El registro publicado para Tesla enero de 2022, Fila 2, indica un patrimonio de $5.329 y octavo lugar de ocho, aproximadamente 46,7 % por debajo de comprar y mantener ($9.995). No se conservaron la serie exacta, el MISO por tick ni el hash del BIN de esa sesión; el resultado no puede atribuirse de forma concluyente a una imagen concreta ni reproducirse exactamente. Otros registros reportan Apple F7 con $10.000 y cero órdenes, y Fila 5 con $10.000, cero acciones, cero órdenes y última respuesta `0x00`, también sin huella de flash verificable.
+
+### Separación respecto de la entrega original
+
+La primera publicación del PDF y del manifiesto figura el 23 de noviembre de 2026 a las 09:21, hora de Chile, antes del plazo del 24 de noviembre a las 10:00. La actualización de este informe incorpora experimentos del 25 de noviembre y no debe confundirse con el artefacto disponible antes del cierre. La guía de defensa y el guion de presentación permanecen como archivos independientes; este PDF se genera únicamente desde el informe técnico.
