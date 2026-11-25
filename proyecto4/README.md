@@ -228,7 +228,7 @@ python -B -m unittest proyecto4.alternativas.custom0.tb.test_assembler_custom0 -
 python -B tests/run_tests.py
 ```
 
-La suite Proyecto 4 se ejecutó al preparar el informe: 32/32 aprobadas. El test del assembler custom-0 está reportado con 3 pruebas aprobadas. La regresión heredada `tests/run_tests.py` tiene un fallo conocido en `periph_tb` (`debounced buttons`, expectativa de polaridad); los bancos `core_tb`, `spi_tb` y `decoder_tb` pasan por separado según los registros previos. No se modificaron fuentes funcionales en esta etapa de documentación.
+Al preparar el informe original, la suite Proyecto 4 tenía 32/32 pruebas aprobadas y `periph_tb` conservaba una discrepancia de polaridad. Como actualización posterior al plazo (25/11/2026), se corrigió el estímulo activo-bajo y GitHub Actions aprobó 36/36 pruebas Python del Proyecto 4, 11/11 pruebas Python del Proyecto 2, los cuatro bancos RTL (`core_tb`, `periph_tb`, `spi_tb`, `decoder_tb`) y el ensamblado del firmware MMIO final (71 instrucciones). Evidencia: [regresión automatizada](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/runs/45665702222).
 
 ## Informe PDF y versiones de herramientas
 
