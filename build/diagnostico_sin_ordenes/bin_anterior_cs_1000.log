@@ -1,0 +1,5 @@
+RESUMEN setup_ns=1000 fase_ns=0 precios=0 escrituras=0 diferencias=0 LED=1111
+PASS SPI CS corto 48 ticks; compra y venta MISO exactas
+tb/tb_spi_margen.sv:57: $finish called at 4920113000 (1ps)
+
+Salida=0

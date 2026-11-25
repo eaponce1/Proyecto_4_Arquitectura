@@ -304,6 +304,30 @@ tick 1 y compra 63. En tick 2 se recibe \texttt{0x64} y compra 36. La venta
 cero, cuatro órdenes y \$20 en comisiones. Si MISO fuera siempre cero, el banco
 fallaría por diferencia con los vectores esperados.
 
+\subsection{Corrección de recepción con CS corto}
+Ante el reporte de ausencia de compras y ventas se reprodujo un defecto del
+receptor SPI. Cuando CS precedía al primer SCLK por 20 o 40 ns, ambos eventos
+podían aparecer juntos tras la sincronización. La rama de selección descartaba
+el primer bit: no se completaba el precio y la CPU seguía esperando. La imagen
+anterior, reconstruida desde su BIN, devolvió cero en las 48 transferencias;
+con CS anticipado 1 us sí completó la prueba. Los bancos anteriores esperaban
+1 us y no cubrían esta condición.
+
+La revisión conserva ese primer bit y presenta el MSB de la respuesta antes del
+primer flanco físico. La regresión añade diez combinaciones de espera y fase,
+con precios y decisiones completos y compras y ventas exactas. También verifica
+CS de 20 ns, 40 ns y 1 us en la netlist y en el circuito reconstruido desde el
+BIN nuevo. La reconstrucción usa retardos funcionales uniformes de 1 ps para
+resolver las redes de puertas; no representa retardos físicos. El cierre de
+timing corresponde por separado al enrutador. El firmware y la política
+financiera se mantienen. La repetición de las ocho series contra el RTL activo
+corregido completó 160.000 ticks sin diferencias en precios, decisiones,
+respuestas MISO, cartera ni comisiones; su firma se conserva en
+\texttt{build/trader/equivalencia\_verilator.json}.
+Esta evidencia identifica y corrige un defecto
+reproducible; la causa del incidente concreto y el resultado en la placa
+requieren la prueba física con la maestra.
+
 \section{Latencia y tres rondas}
 El presupuesto descuenta 9,5 microsegundos de SPI por trama. Se mide desde
 \texttt{byte\_done} hasta la escritura efectiva de DECISION. IC es el número de

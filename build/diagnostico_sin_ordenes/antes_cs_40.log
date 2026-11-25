@@ -1,0 +1,10 @@
+WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\rtl\trader\pochoco_ram.v:36: $readmemh(sw/trade.hex): Not enough words in the file for the requested range [0:511].
+MISO tick=1 observado=00 esperado=7f
+MISO tick=2 observado=00 esperado=64
+MISO tick=33 observado=00 esperado=bf
+MISO tick=34 observado=00 esperado=a4
+RESUMEN setup_ns=40 fase_ns=0 precios=0 escrituras=0 diferencias=4 LED=0001
+FATAL: tb/tb_spi_margen.sv:45: Fallo SPI con CS corto
+       Time: 4920113000  Scope: tb_spi_margen
+
+Salida=1

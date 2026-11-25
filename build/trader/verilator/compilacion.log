@@ -1,0 +1,80 @@
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_instr_req'
+   20 |   ) u_soc (
+      |     ^~~~~
+                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.020
+                     ... Use "/* verilator lint_off PINMISSING */" and lint_on around source to disable this message.
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_instr_addr'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_core_stall'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_instr_valid'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_lsu_busy'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_pc'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_pc_id'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_instr_id'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_data_req'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_data_we'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_data_be'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_data_addr'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_data_rdata'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_status_read'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_spi_rdata'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_operand_a'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_operand_b'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_branch_taken'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-PINMISSING: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/rtl/trade_spi_externo.v:20:5: Cell has missing pin: 'dbg_pc_set'
+   20 |   ) u_soc (
+      |     ^~~~~
+%Warning-WIDTHEXPAND: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/proyecto4/alternativas/candidata_final/tb/tb_candidata.sv:208:24: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'latencia' generates 32 bits.
+                                                                                                                                                                                          : ... note: In instance 'tb_candidata'
+  208 |         ciclos_totales += latencia;
+      |                        ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/proyecto4/alternativas/candidata_final/tb/tb_candidata.sv:209:18: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'ic' generates 32 bits.
+                                                                                                                                                                                          : ... note: In instance 'tb_candidata'
+  209 |         ic_total += ic;
+      |                  ^~
+make: Entering directory '/tmp/pochoco_activo_spi_obj'
+g++ -Os  -I.  -MMD -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -c -o verilated.o /tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/verilated.cpp
+g++ -Os  -I.  -MMD -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -c -o verilated_timing.o /tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/verilated_timing.cpp
+g++ -Os  -I.  -MMD -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -c -o verilated_threads.o /tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/verilated_threads.cpp
+/usr/bin/python3 /tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_candidata.cpp Vtb_candidata___024root__DepSet_h80beec35__0.cpp Vtb_candidata___024root__DepSet_hc7af395c__0.cpp Vtb_candidata__main.cpp Vtb_candidata__ConstPool_0.cpp Vtb_candidata___024root__Slow.cpp Vtb_candidata___024root__DepSet_h80beec35__0__Slow.cpp Vtb_candidata___024root__DepSet_hc7af395c__0__Slow.cpp Vtb_candidata__Syms.cpp > Vtb_candidata__ALL.cpp
+echo "" > Vtb_candidata__ALL.verilator_deplist.tmp
+g++ -Os  -I.  -MMD -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include -I/tmp/pochoco_verilator_20261125/extracted/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -c -o Vtb_candidata__ALL.o Vtb_candidata__ALL.cpp
+Archive ar -rcs Vtb_candidata__ALL.a Vtb_candidata__ALL.o
+g++     verilated.o verilated_timing.o verilated_threads.o Vtb_candidata__ALL.a    -pthread -lpthread -latomic   -o Vtb_candidata
+rm Vtb_candidata__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/pochoco_activo_spi_obj'
+
+Salida=0; segundos=11.985717

@@ -8,3 +8,8 @@ build/publicacion/
 docs/informe/build/
 # Ejecuciones nuevas del visor; se conserva solo el informe publicado.
 resultados_simulacion/20*/
+respaldos/
+build/trader/bin_desempaquetado.*
+build/trader/decodificado.log
+build/diagnostico_sin_ordenes/actual_desempaquetado.*
+build/trader/verilator/*.csv

@@ -82,7 +82,10 @@ module pochoco_spi_slave (
       bit_cnt  <= 3'd0;
     end else if (cs_assert) begin
       tx_shift <= tx_hold;
-      bit_cnt  <= 3'd0;
+      // CS y el primer SCLK pueden caer en la misma muestra del reloj del SoC.
+      // Ese flanco ya contiene el primer bit; no descartarlo al seleccionar.
+      bit_cnt  <= sclk_r ? 3'd1 : 3'd0;
+      if (sclk_r) rx_shift <= {rx_shift[6:0], mosi};
     end else if (cs_active) begin
       if (sclk_r) begin
         rx_shift <= {rx_shift[6:0], mosi};
@@ -94,7 +97,11 @@ module pochoco_spi_slave (
     end
   end
 
-  assign spi_miso_o = cs_active ? tx_shift[7] : 1'b0;
+  // El primer bit debe estar disponible antes del primer SCLK fisico, incluso
+  // cuando CS todavia atraviesa los sincronizadores. tx_hold es un registro
+  // estable entre tramas; luego se usa el desplazador ya cargado.
+  assign spi_miso_o = spi_cs_n_i ? 1'b0 :
+                     ((!cs_active || cs_assert) ? tx_hold[7] : tx_shift[7]);
 
   // PRICE latch
   wire price_read = rd & (off == REG_PRICE);

@@ -24,10 +24,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\programar.ps1
 
 Agrega `-SoloVerificar` para comprobar los archivos sin acceder a la placa.
 
+Después de programar, reinicia la Go Board, espera D1 e inicia una serie nueva
+desde la maestra. Los LED quedan encendidos como registro: D1 CPU arrancó,
+D2 precio recibido, D3 precio leído y D4 orden distinta de cero.
+
+Esta versión corrige un bloqueo del receptor con CS poco antes del primer SCLK:
+se perdía el primer bit y no se recibía ningún precio. La prueba corta se repite con
+`python -B tools/trader.py spi`. La evidencia y el diagnóstico están en
+[Corrección de ausencia de órdenes](docs/CORRECCION_SIN_ORDENES.md).
+
 BIN SHA-256:
 
 ```text
-1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc
+5e1579caef1f8de2813b6cf50bb17c505e77b3a534787447d27660eaad63a606
 ```
 
 El top activo es `rtl/trade_spi_externo.v`, el firmware está en `sw/trade.s` / `sw/trade.hex` y las restricciones están en `goboard_trader.pcf`. El Makefile compila Trader. No ejecuta el juego de versiones anteriores.
@@ -60,8 +69,9 @@ Cada ejecución guarda PNG/SVG, CSV de ticks, operaciones y resumen con hashes. 
 | SPI y contabilidad | Escenarios Icarus, límites de inventario y comisiones |
 | Bancos oficiales | Dos bancos adaptados al top final, 4/4 y 2.000 ticks cada uno; diffs conservados |
 | Integración activa | Recuperación de 768 ticks, compra/venta de 48 y netlist en dos fases |
-| HX1K/VQ100 | 1.268/1.280 Logic Cells, 9/16 BRAM |
-| Relojes | Entrada 25 MHz; Espino 12,5 MHz; timing de enrutado 52,51 MHz |
+| Corrección SPI | CS de 20/40 ns y distintas fases; compras y ventas en RTL, netlist y BIN reconstruido |
+| HX1K/VQ100 | 1.260/1.280 Logic Cells, 9/16 BRAM |
+| Relojes | Entrada 25 MHz; Espino 12,5 MHz; timing de enrutado 50,19 MHz |
 | Plazo más rápido | Peor caso observado de 25,68 µs; margen conservador 64,58 µs |
 | Go Board y maestra reales | **Pendientes de prueba y registro físico** |
 

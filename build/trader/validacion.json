@@ -5,7 +5,7 @@
     "rtl/trader/pochoco_ram.v": "0eda65a86c53f468ec10342706a9be87c3cfdf1b64f4b7c6ec64c57db0ba1fd8",
     "rtl/trader/pochoco_sma10.v": "e1a1878e14a6c1e5b17d1ad97fb0703714f1e58bad84badf21a641ba9a44a7a8",
     "rtl/trader/pochoco_soc_cpu_trace.v": "d2f8ce256f16a7d0a9c801016613d2b5d96d386d4c9fcf6226a61995cbdead3e",
-    "rtl/trader/pochoco_spi_slave.v": "223f3ad6664efdf0f9f1aa3eb5484a07408a8e5eda029b82d013f553886f2ae1",
+    "rtl/trader/pochoco_spi_slave.v": "4703193b253b3f25b405bfca788c7cc1ad3b43a93182d47eafaf499dd3662553",
     "rtl/espino_core/espino_alu.v": "eaa8b0c5d36b298e5c29b7691cf6941c99c7952b7dbcf08f6e62bf1af4a472d7",
     "rtl/espino_core/espino_controller.v": "bd82d8404d8f09de2a6968da87e6a7e9c750af9138a4b74c43b3ec89a742c215",
     "rtl/espino_core/espino_core.v": "9e3e3cae616a4ff057ddcb01728bf8f912eab721d26e3a5fe68daf1c68e9905c",
@@ -18,13 +18,13 @@
     "sw/trade.hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
     "goboard_trader.pcf": "13c80dcf14120b1bbb4c0fda01aa4b3892b474bb4240c26c653e8f220b6d6656"
   },
-  "sha256_bin": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "sha256_bin": "5e1579caef1f8de2813b6cf50bb17c505e77b3a534787447d27660eaad63a606",
   "sha256_hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
-  "lc": 1268,
+  "lc": 1260,
   "bram": 9,
   "clocks": {
     "clk_soc": {
-      "achieved": 52.50997543334961,
+      "achieved": 50.18568420410156,
       "constraint": 25
     },
     "i_Clk$SB_IO_IN_$glb_clk": {
@@ -58,6 +58,118 @@
       "ticks": 48,
       "discrepancias": 0,
       "netlist": true
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase19",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 19
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase20",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 20
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase39",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 39
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase40",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 40
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase59",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 59
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase60",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 60
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase79",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 79
+    },
+    {
+      "nombre": "spi_rtl_cs40_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 40,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_rtl_cs1000_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 1000,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_netlist_cs20_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_netlist_cs40_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 40,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_netlist_cs1000_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 1000,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_bin_cs20_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_bin_cs40_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 40,
+      "fase_ns": 0
+    },
+    {
+      "nombre": "spi_bin_cs1000_fase0",
+      "ticks": 48,
+      "discrepancias": 0,
+      "setup_ns": 1000,
+      "fase_ns": 0
     }
   ],
   "prueba_fisica": "PENDIENTE"

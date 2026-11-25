@@ -40,22 +40,29 @@ humana y usa una traza precalculada. No recibe datos de la Go Board y no mide su
 
 ## Volver a ejecutar el testbench RTL
 
-Para una comprobacion nueva corta con Icarus:
+Para comprobar el RTL activo, incluyendo CS corto y compras/ventas:
 
 ```powershell
-python -X utf8 -B .\proyecto4\alternativas\competitiva_definitiva\validar_rtl.py --rapido
+python -B tools/trader.py spi
 ```
 
-Para las ocho series completas con el RTL y Verilator en Ubuntu WSL:
+Para la recuperacion, contabilidad e integracion completa:
 
 ```powershell
-wsl.exe -d Ubuntu -- bash proyecto4/alternativas/competitiva_definitiva/ejecutar_verilator_wsl.sh
+python -B tools/trader.py test
 ```
 
-Requiere WSL Ubuntu con Python, g++ y make. Los logs y CSV de esa corrida quedan en
-`proyecto4/alternativas/competitiva_definitiva/build/verilator/`. El comando vuelve
-a ejecutar el testbench y sus aserciones. Para repetir todo en Icarus, ejecutar
-`validar_rtl.py` sin opciones; es considerablemente mas lento.
+Para las ocho series completas contra el RTL activo en Ubuntu WSL, desde esta carpeta:
+
+```powershell
+wsl.exe -d Ubuntu -- bash tools/validar_activo_wsl.sh
+```
+
+Requiere WSL Ubuntu con Python, g++ y make. Los logs y CSV nuevos quedan en
+`build/trader/verilator/`, y su resumen con hashes en
+`build/trader/equivalencia_verilator.json`. Los bancos de
+`proyecto4/alternativas/competitiva_definitiva/` conservan la validacion de referencia
+anterior a la correccion de SPI.
 
 ## Competencia con la placa fisica
 

@@ -5,4 +5,4 @@ CARTERA patrimonio=9980 caja=9980 acciones=0 compras=2 ventas=2 comisiones=20 dr
 PASS 48 MISO frente a Python, fase 41 ns, LED=1111
 C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 4920154000 (1ps)
 
-Salida=0; segundos=2.919
+Salida=0; segundos=5.177

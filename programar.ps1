@@ -27,4 +27,7 @@ try {
     Ejecutar-Iceprog -Argumentos @('competition.bin')
     Ejecutar-Iceprog -Argumentos @('-c','competition.bin')
     Write-Host 'PASS escritura y verificacion de flash. Falta prueba fisica con la maestra.'
+    Write-Host 'Reinicia la Go Board, espera D1 y luego inicia una serie NUEVA en la maestra.'
+    Write-Host 'D1: CPU ejecuto instrucciones; D2: precio recibido; D3: precio leido; D4: orden distinta de cero.'
+    Write-Host 'Los LED quedan encendidos como registro de actividad; no parpadean por cada orden.'
 } finally { Pop-Location }
