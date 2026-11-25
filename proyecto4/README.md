@@ -42,10 +42,12 @@ Las simulaciones no programan la Go Board.
   se cargó y validó el CSV completo de 20 000 filas.
 - Regresión Python del Proyecto 2: 11/11 pruebas aprobadas.
 - Banco `core_tb`: aprobado.
-- Banco existente `periph_tb`: falla en su expectativa de botones. El RTL invierte
-  `i_Switch` porque las entradas físicas son activas en bajo; el testbench antiguo
-  compara el valor lógico sin esa inversión. No se modificó el banco ni el RTL del
-  Proyecto 2.
+- Banco `periph_tb`: se identificó que el estímulo final usaba `btn=3` aunque
+  las entradas físicas son activas en bajo. Se corrigió a `btn=4'b1100` para que,
+  tras la inversión del RTL, el valor lógico observado sea `0011`. El cambio está
+  en el commit `a4825d8`. Falta volver a ejecutar `python -B tests/run_tests.py`
+  con Icarus en el equipo local; no se declara una regresión completa aprobada
+  hasta repetirla.
 - Bancos `spi_tb` y `decoder_tb`, ejecutados por separado tras el fallo anterior:
   aprobados; compilación completa de `game_top`: aprobada.
 - Icarus advierte que `spi_smoke.hex` contiene menos de 512 palabras. La imagen de
