@@ -1,0 +1,58 @@
+name: Project 4 regression
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "rtl/**"
+      - "sw/**"
+      - "tests/**"
+      - "proyecto4/**"
+      - ".github/workflows/test-project4.yml"
+  pull_request:
+    paths:
+      - "rtl/**"
+      - "sw/**"
+      - "tests/**"
+      - "proyecto4/**"
+      - ".github/workflows/test-project4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Project 4 Python and RTL tests
+        run: python -B -m unittest discover -s proyecto4/python -v
+
+      - name: Project 2 legacy Python and RTL regression
+        run: python -B tests/run_tests.py
+
+      - name: Assemble final MMIO SMA10 firmware
+        run: |
+          python -B proyecto4/sw/assembler.py proyecto4/alternativas/mmio_sma10/sw/trade.s -o proyecto4/alternativas/mmio_sma10/sw/trade.hex
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("proyecto4/alternativas/mmio_sma10/sw/trade.hex")
+          words = path.read_text(encoding="ascii").split()
+          assert words and all(len(word) == 8 for word in words), "HEX inválido"
+          print(f"PASS: {len(words)} instrucciones de 32 bits")
+          PY
