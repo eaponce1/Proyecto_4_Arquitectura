@@ -120,9 +120,9 @@ El segundo comando programa la placa y no se ejecutó durante la documentación.
 
 ## 8. Pruebas y estado de regresión
 
-Ejecutadas al cerrar esta documentación: `python -B -m unittest discover -s proyecto4/python -v` — **32 pruebas, todas aprobadas**, incluyendo auditoría contable, causalidad, reglas, equivalencia de HEX en 20.000 precios, caso de fills parciales e integración RTL SPI. La integración RTL completa de rendimiento de las variantes base/MMIO/custom está además respaldada por los CSV/reportes de co-diseño.
+Al cerrar la documentación original: `python -B -m unittest discover -s proyecto4/python -v` — **32 pruebas, todas aprobadas**, incluyendo auditoría contable, causalidad, reglas, equivalencia de HEX en 20.000 precios, caso de fills parciales e integración RTL SPI. La suite ampliada ejecutada en CI el 25/11 aprobó 36/36 pruebas (sección 12). La integración RTL completa de rendimiento de las variantes base/MMIO/custom está además respaldada por los CSV/reportes de co-diseño.
 
-La suite heredada de Proyecto 2 no queda verde completa: los reportes previos documentan `periph_tb` fallando en `debounced buttons` por expectativa antigua de polaridad, mientras `core_tb`, `spi_tb` y `decoder_tb` pasan por separado y game_top compila. Esta condición es ajena a los cambios documentados de Proyecto 4; no se corrigió aquí. Para volver a comprobar:
+Al cerrar esta versión original, la suite heredada de Proyecto 2 todavía registraba un fallo en `periph_tb` (`debounced buttons`) por un estímulo que no respetaba la polaridad activa-baja; `core_tb`, `spi_tb` y `decoder_tb` pasaban por separado y `game_top` compilaba. La corrección del estímulo y la aprobación de la regresión completa se documentan como actualización posterior en la sección 12. Para volver a comprobar:
 
 ```powershell
 python -B -m unittest discover -s proyecto4/python -v
@@ -130,7 +130,7 @@ python -B -m unittest proyecto4.alternativas.custom0.tb.test_assembler_custom0 -
 python -B tests/run_tests.py
 ```
 
-El estado del segundo comando se registró aprobado (3 pruebas) en el informe de co-diseño. El tercero conserva el fallo conocido de `periph_tb`.
+El estado del segundo comando se registró aprobado (3 pruebas) en el informe de co-diseño. En este corte histórico, el tercer comando todavía registraba el fallo de `periph_tb`; la ejecución posterior aprobada consta en la sección 12.
 
 ## 9. Validación oficial del profesor - ronda 3
 
