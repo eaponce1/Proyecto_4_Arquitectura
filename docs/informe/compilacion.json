@@ -1,14 +1,14 @@
 {
-  "pdf_sha256": "279b786643eba7292e1734459f8c843a284563ebf61f2b77e9f9ca64f7787ef0",
+  "pdf_sha256": "fd4b9b6e012398dd437442ab697d06ee20d5d70f0adb193316da7840226c04a2",
   "paginas": 25,
-  "auditoria_pdf_sha256": "cd622a8ee08a9b2d6af5ea2dc5bd3dff9e45284c87f4909cbfc0f8c99fe1c9cf",
+  "auditoria_pdf_sha256": "3778f386b6018b7416a386110460a94d166811bbf086353b06ea8c402f4c7d1a",
   "paginas_auditoria": 3,
   "compilador": "pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023",
   "pasadas": 3,
   "pasadas_auditoria": 2,
   "revisado": "Autores, conclusiones, metricas, evidencia fisica, roofline y auditoria; sin cajas desbordadas",
   "fuentes": {
-    "docs/informe/auditoria_entrega.tex": "02a0d954a12728d83be3c9085df76ffdcc4a416e5394f75fc9807991b1d31b08",
+    "docs/informe/auditoria_entrega.tex": "78b2a8b2ab8333aa6186968f8fb65e43214358977b42bc8dedad1eef6514471e",
     "docs/informe/codisenio_historico.tex": "5d2aaa56b0060353f869feeb81d64401c11b8f1e2a292e7325d6811b4361a052",
     "docs/informe/compilar.sh": "d11baf67f1b07870919b2d01711939d30a74ce3089887ef619d311295de4ec2d",
     "docs/informe/datos_generados.tex": "ef7e571df0fd836aea1f9b3069fd3653adce909e98c1f448d35ba63d4ded2550",
@@ -22,7 +22,7 @@
     "docs/informe/figuras/roofline_historico.png": "661acd55325499bc883067876b69ec45cf7ebd77b0b8f1b03b986b5bb5bcb319",
     "docs/informe/figuras/tesla_2022.png": "2cc0c587f88ae8863033a7fbf98983289a608454b9c8b67c1ccd6abf07687736",
     "docs/informe/graficos_series.tex": "83cc51474d5d981c227c6e65d9864bcd1ef0ca215c8c382e5b5acbc22077add8",
-    "docs/informe/informe_final.tex": "b33d43208d9910e40c21e4285748c43f7f52226ee04746c2752e67a4c7d95504"
+    "docs/informe/informe_final.tex": "06110a46a07d265759623776b59f171668a04cb65b9aef4a2de85d263757388c"
   },
   "prueba_fisica": "CONFIRMADA_POR_EL_GRUPO; SIN RESULTADOS DE TRES RONDAS"
 }

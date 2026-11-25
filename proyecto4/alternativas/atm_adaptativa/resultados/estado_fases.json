@@ -1,0 +1,72 @@
+[
+  {
+    "fase": "Python y contabilidad independiente",
+    "estado": "PASS",
+    "evidencia": "validacion_modelo.json: 160000 ticks"
+  },
+  {
+    "fase": "Mejora financiera",
+    "estado": "NO-GO",
+    "evidencia": "decision.json, protocolo congelado"
+  },
+  {
+    "fase": "Assembly ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Equivalencia Python/RV32E ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "RTL ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Banco oficial ATM 4/4",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Tres cadencias ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Yosys ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Place and route ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Netlist ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "BIN ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Prueba fisica ATM",
+    "estado": "NO_EJECUTADA_POR_NO_GO",
+    "evidencia": "Puerta cuantitativa anterior no aprobada"
+  },
+  {
+    "fase": "Referencia activa",
+    "estado": "PASS_PRESERVADA",
+    "evidencia": "referencia/pruebas_actuales.json y SHA activos"
+  },
+  {
+    "fase": "Competencia oficial",
+    "estado": "NO_APORTADA",
+    "evidencia": "Sin patrimonios de tres rondas"
+  }
+]

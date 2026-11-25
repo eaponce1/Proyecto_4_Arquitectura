@@ -1,0 +1,5 @@
+build/
+resultados/decisiones_tick.csv
+.matplotlib/
+informe_build/
+*.vvp

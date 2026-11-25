@@ -517,6 +517,31 @@ ventaja en series ocultas. Para completar la evaluación académica se deben
 adjuntar los resultados de competencia y la defensa, y relacionar el perfil
 del kernel final con el estudio de co-diseño histórico incluido en este informe.
 
+\section{Investigación posterior: ATM y decisión NO-GO}
+En una rama separada se evaluó Adaptive Trend Momentum con 191 configuraciones,
+de las que 155 incorporan volatilidad y son elegibles. Se compararon señales de
+momentum 16/64 y otros horizontes, medias, pendiente, persistencia y rupturas;
+exposiciones 25/50/75/90/100\% y dinámica, reservas, confirmación y stops.
+La selección usó exclusivamente los primeros 12000 ticks de cada serie y el
+ranking se fijó antes de medir. La grilla completa, incluidas las pérdidas,
+se conserva en \path{proyecto4/alternativas/atm_adaptativa/}.
+
+La elegida obtuvo ventaja en 5/8 frente a 6/8 del baseline. Su mediana relativa
+fue 16,50\% frente a 24,90\%, y su peor ventaja -15,85\% frente a -6,14\%.
+Redujo el drawdown máximo a 49,38\%, pero aumentó la comisión media a
+\$411,88 frente a \$270,63. LOCO produjo 6/8, LOSO 5/8 y walk-forward 14/24.
+Las 56 ternas distintas y 120 con repetición por política constan en los CSV;
+no son resultados físicos de las tres rondas. Se verificaron 160000 ticks de
+cartera y decisiones Python contra una implementación independiente.
+
+El dictamen es \textbf{NO-GO financiero}. No se relajaron los criterios ni se
+eligió otra configuración mirando el test. Ninguna variante elegible cumplió
+simultáneamente las seis puertas descriptivas principales. Por ello no se
+generaron Assembly ni BIN ATM ni se ejecutaron sus fases RTL/síntesis. Esta
+decisión preserva la imagen física funcional y no implica que toda familia
+adaptativa sea inferior. El informe cuantitativo separado detalla la evidencia
+y distingue las pruebas Python de las fases hardware no habilitadas.
+
 \appendix
 \clearpage\section{Reproducción exacta de Momentum32 original}
 Antes de seleccionar la revisión se reprodujeron los ocho patrimonios

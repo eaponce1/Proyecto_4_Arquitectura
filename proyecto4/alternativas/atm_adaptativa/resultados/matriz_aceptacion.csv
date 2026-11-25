@@ -1,0 +1,26 @@
+criterio,resultado
+ventajas,FAIL
+mediana_dolares,FAIL
+mediana_pct,FAIL
+peor_relativo,FAIL
+drawdown,PASS
+comisiones,FAIL
+loco,PASS
+loso,FAIL
+walk,PASS
+ternas_ventajas,FAIL
+ternas_peor,FAIL
+Python y contabilidad independiente,PASS
+Mejora financiera,NO-GO
+Assembly ATM,NO_EJECUTADA_POR_NO_GO
+Equivalencia Python/RV32E ATM,NO_EJECUTADA_POR_NO_GO
+RTL ATM,NO_EJECUTADA_POR_NO_GO
+Banco oficial ATM 4/4,NO_EJECUTADA_POR_NO_GO
+Tres cadencias ATM,NO_EJECUTADA_POR_NO_GO
+Yosys ATM,NO_EJECUTADA_POR_NO_GO
+Place and route ATM,NO_EJECUTADA_POR_NO_GO
+Netlist ATM,NO_EJECUTADA_POR_NO_GO
+BIN ATM,NO_EJECUTADA_POR_NO_GO
+Prueba fisica ATM,NO_EJECUTADA_POR_NO_GO
+Referencia activa,PASS_PRESERVADA
+Competencia oficial,NO_APORTADA

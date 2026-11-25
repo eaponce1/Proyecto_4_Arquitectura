@@ -1,0 +1,19 @@
+{
+  "folds_comprobados": 16,
+  "seleccion_loco_loso": "Matriz historica completa, solo empresas/series de ajuste",
+  "walk_forward": [
+    {
+      "fin_ajuste": 8000,
+      "config": 41
+    },
+    {
+      "fin_ajuste": 12000,
+      "config": 40
+    },
+    {
+      "fin_ajuste": 16000,
+      "config": 40
+    }
+  ],
+  "walk_seleccion": "Prefijos historicos reejecutados sin ventanas de prueba"
+}
