@@ -5,7 +5,7 @@
 \usepackage{lmodern,amsmath,graphicx,booktabs,longtable,array,xcolor,geometry,fancyhdr,listings,hyperref}
 \geometry{margin=2.2cm,headheight=15pt}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!55!black,
- pdftitle={Proyecto 4: Pochoco Trader},pdfauthor={Proyecto 4 - Arquitectura de Computadores}}
+ pdftitle={Proyecto 4: Pochoco Trader},pdfauthor={Cristian Acevedo; Guillermo Arriaza; Eduardo Ponce}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 \setlength{\emergencystretch}{3em}
@@ -16,7 +16,7 @@
 \hypersetup{pageanchor=false}
 \begin{titlepage}
 \centering
-\vspace*{2cm}
+\vspace*{1cm}
 {\Large Arquitectura de Computadores\par}
 \vspace{1cm}
 {\Huge\bfseries Proyecto 4\par}
@@ -26,12 +26,17 @@
 {\Large Estrategia causal, firmware RV32E y validación FPGA\par}
 \vspace{0.8cm}
 {\large Informe técnico de la versión integrada\par}
-\vspace{1.2cm}
+\vspace{0.6cm}
+{\large\textbf{Integrantes}\par}
+{\large Cristian Acevedo\par}
+{\large Guillermo Arriaza\par}
+{\large Eduardo Ponce\par}
+\vspace{0.8cm}
 \begin{minipage}{0.88\linewidth}
 \textbf{Estado de la entrega.} La imagen activa cuenta con verificación digital de
-firmware, SPI, cartera y síntesis para Lattice iCE40 HX1K/VQ100. La programación y
-la prueba física con la FPGA maestra requieren registro independiente; no se
-declaran aprobadas en este informe.
+firmware, SPI, cartera y síntesis para Lattice iCE40 HX1K/VQ100. El grupo aportó
+dos verificaciones de flash correctas y confirmó compras y ventas en la placa.
+La evaluación financiera de las tres rondas requiere sus registros propios.
 
 \textbf{Resultado financiero.} La política supera a comprar y mantener en seis de
 ocho series conocidas. No se demuestra superioridad consistente en series
@@ -86,6 +91,25 @@ La caja se conserva en x15, el inventario en x5 y el byte pendiente en x4.
 Las cantidades y los fills se resuelven mediante un procedimiento binario acotado
 por 63, sin multiplicador ni divisor. Las magnitudes observadas en las series
 quedan dentro de los rangos de la aritmética de 32 bits.
+
+Los precios, cantidades y montos se representan como enteros sin parte
+fraccionaria (Q0); no se emplea punto flotante. Se forman los múltiplos de precio
+2, 4, 8, 16 y 32 mediante sumas; la cotización prueba esas cantidades en orden
+descendente y resta el costo aceptado. El índice en bytes se obtiene duplicando
+dos veces el índice de palabra. Así se evita depender de shifts, MUL o DIV.
+El ciclo principal sondea STATUS, consume PRICE, reconcilia la orden anterior,
+actualiza historial y pico, evalúa el régimen y escribe DECISION.
+
+\begin{center}\small\begin{tabular}{ll}\toprule
+Registros & Función principal \\\midrule
+x0, x1 & Cero y base MMIO SPI \\
+x2, x3 & Estado/presupuesto temporal y precio actual \\
+x4, x5 & Orden pendiente e inventario \\
+x6, x7 & Número de tick y régimen de exposición \\
+x8, x9 & Cantidad resuelta, límite e índice temporal \\
+x10--x14 & Múltiplos de precio, deltas y temporales reutilizados \\
+x15 & Caja de la cartera \\\bottomrule
+\end{tabular}\end{center}
 
 \subsection{MMIO y SPI}
 \begin{center}\begin{tabular}{lll}\toprule
@@ -192,6 +216,9 @@ en cada dirección; los demás son laterales. Esta clasificación retrospectiva
 solo describe datos y no se entrega como información futura al firmware.
 
 \section{Resultados financieros en las ocho series}
+La referencia \emph{no operar} conserva \$10\,000 en cada una de las ocho
+series, con cero órdenes, cero comisiones y drawdown cero. La tabla compara
+la estrategia con la segunda referencia exigida: comprar al inicio y mantener.
 \begin{center}\small\begin{tabular}{lrrrrrr}\toprule
 Serie & Trader & Mantener & Ventaja & Órdenes & Comisión & DD (\%) \\\midrule
 \TablaResultados
@@ -325,8 +352,9 @@ corregido completó 160.000 ticks sin diferencias en precios, decisiones,
 respuestas MISO, cartera ni comisiones; su firma se conserva en
 \texttt{build/trader/equivalencia\_verilator.json}.
 Esta evidencia identifica y corrige un defecto
-reproducible; la causa del incidente concreto y el resultado en la placa
-requieren la prueba física con la maestra.
+reproducible. Después de cargar la imagen corregida, el grupo confirmó que
+aparecen compras y ventas. Esa confirmación funcional no identifica por sí sola
+la causa exclusiva del incidente ni cuantifica el resultado de una ronda.
 
 \section{Latencia y tres rondas}
 El presupuesto descuenta 9,5 microsegundos de SPI por trama. Se mide desde
@@ -336,6 +364,13 @@ commits observados en esa ventana y CPI es ciclos dividido por commits.
 \begin{center}\small\begin{tabular}{lrrrrr}\toprule
 Serie & Ciclos medios & Máximo & IC medio & IC máximo & CPI \\\midrule
 \TablaLatencias
+\bottomrule\end{tabular}\end{center}
+El CPI anterior es global: ciclos totales divididos por instrucciones totales.
+El peor CPI de un tick y los tiempos explícitos de respuesta se obtienen de
+las mismas trazas del RTL activo; excluyen el sondeo posterior a DECISION.
+\begin{center}\small\begin{tabular}{lrrr}\toprule
+Serie & CPI máximo/tick & Tiempo medio ($\mu$s) & Tiempo máximo ($\mu$s) \\\midrule
+\TablaTiempos
 \bottomrule\end{tabular}\end{center}
 El peor caso observado en el conjunto completo es 321 ciclos, equivalentes a
 25,68 microsegundos. Es un máximo medido en esas secuencias, no una prueba
@@ -349,6 +384,8 @@ La última columna reserva además tres ciclos para sincronización. En la ronda
 de 100 microsegundos queda un margen conservador de 64,58 microsegundos.
 Icarus ejercitó también las cadencias reales de 10 ms, 1 ms y 100 microsegundos
 en el escenario determinista de integración.
+
+\input{codisenio_historico.tex}
 
 \section{Síntesis, imagen y conexiones}
 Yosys, nextpnr-ice40 e icepack generan la imagen HX1K/VQ100 solo después de los
@@ -389,8 +426,12 @@ El script siguiente verifica fuentes y hash antes de escribir y comparar la flas
 powershell -NoProfile -ExecutionPolicy Bypass -File .\programar.ps1
 \end{lstlisting}
 Agregar \texttt{-SoloVerificar} comprueba archivos sin acceder a la placa. El
-informe no incluye un registro físico de programación; los comandos se presentan
-para ejecución manual. Antes de cada serie
+informe incorpora la salida de programación aportada por el grupo: ambas
+invocaciones terminaron con \texttt{VERIFY OK} y se informó un archivo de
+32\,220 bytes. El registro y su procedencia están en
+\path{docs/evidencia_fisica/}. Después, el grupo confirmó compras y ventas con
+la maestra; no aportó todavía la traza por tick ni el patrimonio final.
+Antes de cada serie
 se reinicia la Go Board y se espera D1 antes de iniciar la maestra. Los LED
 indican ejecución, recepción, lectura del precio y una decisión no nula; no
 muestran el patrimonio. Este lo calcula la maestra a partir de precios y MISO.
@@ -421,7 +462,7 @@ Se utilizaron Python 3.13.3, Icarus 14 de desarrollo, Verilator 5.020,
 Yosys 0.70+176 y nextpnr 0.11.1-68. Los logs guardan versiones, códigos de salida
 y duración. Verilator se ejecuta mediante Ubuntu WSL con g++ y make.
 
-\section{Matriz de aceptación y trabajo físico pendiente}
+\section{Matriz de aceptación y alcance de la prueba física}
 \begin{longtable}{p{0.31\linewidth}p{0.23\linewidth}p{0.37\linewidth}}
 \toprule Validación & Resultado & Evidencia \\\midrule\endhead
 Datos de práctica & PASS & 8 CSV, 160\,000 observaciones \\
@@ -437,23 +478,44 @@ Tres cadencias & PASS medido & 10 ms, 1 ms y 100 microsegundos \\
 Integración activa y netlist & PASS & 768 + 48 ticks; dos fases de 48 \\
 HX1K y timing & PASS & \Celdas\ LC, \Bram\ BRAM, \Fmax\ MHz \\
 SHA-256 & Verificado & BIN y HEX ligados a fuentes \\
-Programación Go Board & Pendiente de registro & No inferida de simulación \\
-Competencia con maestra & Pendiente & Registrar precios, MISO, órdenes y patrimonio \\
+Programación Go Board & Confirmada por el grupo & Dos \texttt{VERIFY OK} aportados en terminal \\
+Compras y ventas en placa & Confirmadas por el grupo & Reporte posterior a programar el BIN corregido \\
+Tres rondas oficiales & Sin resultados aportados & Faltan serie, período y patrimonio por ronda \\
 \bottomrule\end{longtable}
 Las sesiones históricas de caja \$10\,000 sin órdenes y patrimonio \$5\,329
 corresponden a pruebas distintas. No se demuestra aquí que compartieran una
 causa ni qué imagen estaba programada. Tampoco se hereda una aprobación física
-de una demo a este BIN. La siguiente prueba física debe registrar hash, canal,
-serie, período y bytes de compra/venta antes de declarar funcionamiento real.
+de una demo a este BIN. La confirmación nueva corresponde a la sesión posterior
+a la corrección SPI. Para auditar la rentabilidad y el protocolo por tick aún
+deben registrarse canal, serie, período, precios, MISO y patrimonio. El SHA-256
+se asocia a la imagen local entregada; la salida de iceprog no imprime esa huella.
 
-\section{Conclusiones}
-Se entrega una integración RV32E reproducible, con contabilidad causal y protocolo
-SPI verificados, que cabe en la HX1K y cumple los plazos observados. El stop
-mejora la protección ante el descenso gradual de desarrollo, pero no evita
-saltos bruscos ni asegura capturar recuperaciones. El resultado 6/8 en muestras
-conocidas y la validación interna mixta sustentan una candidata experimental,
-no una promesa de superioridad competitiva. La comprobación física y una serie
-realmente inédita son evidencias pendientes distintas.
+\clearpage\section{Conclusiones}
+El proyecto integra una estrategia causal en Assembly RV32E con recepción SPI,
+estado de cartera y verificación reproducible. La versión final cabe en la
+Go Board: utiliza \Celdas\ de 1280 celdas y \Bram\ de 16 BRAM. A 12,5 MHz,
+el peor tiempo de decisión observado es 25,68 microsegundos, compatible con el
+período más exigente de 100 microsegundos. La equivalencia sobre 160\,000 ticks
+respalda que el modelo, el firmware y el RTL conservan las mismas decisiones
+y reglas de ejecución; este resultado no depende solamente de observar los LED.
+
+La revisión de SPI mostró la importancia de verificar también los márgenes de
+la comunicación: una selección CS cercana al primer SCLK podía impedir la
+recepción completa del precio. La corrección se comprobó en RTL, netlist y
+circuito reconstruido desde el BIN. Posteriormente, el grupo aportó dos
+verificaciones de flash correctas y confirmó compras y ventas en la placa.
+Con ello se dispone de evidencia de funcionamiento, aunque todavía falta una
+traza de la maestra que permita cotejar cada operación y cerrar los resultados
+financieros de las tres rondas oficiales.
+
+En las series conocidas, Momentum32 con stop de 20 puntos supera a mantener
+en seis de ocho casos. La mejora ante la caída gradual de desarrollo convive
+con pérdidas en Netflix y un drawdown máximo de 61,11\%; el stop no elimina
+saltos adversos ni asegura una reentrada oportuna. La solución se sostiene por
+su implementación verificable y por los resultados medidos, sin garantizar
+ventaja en series ocultas. Para completar la evaluación académica se deben
+adjuntar los resultados de competencia y la defensa, y relacionar el perfil
+del kernel final con el estudio de co-diseño histórico incluido en este informe.
 
 \appendix
 \clearpage\section{Reproducción exacta de Momentum32 original}

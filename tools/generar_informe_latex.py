@@ -51,8 +51,10 @@ def main():
     tex+=macro('TablaSinteticos',table([[labels[r['escenario']],n(r['patrimonio']),n(r['mantener_oficial']),n(r['drawdown']),r['comisiones']] for r in read('sinteticos.csv')]))
     tex+=macro('TablaDatos',table([[LABELS[r['serie']],r['inicial'],r['final'],f(r['repetidos_pct']),f(r['volatilidad']),r['cambios_significativos_2']] for r in read('estadisticas_series.csv')]))
     tex+=macro('TablaRondas',table([[r['ronda'],n(r['periodo_us']),n(r['disponibles']),r['consumidos_max'],n(r['margen_ciclos']),f(r['margen_us_con_sync'])] for r in read('timing_rondas.csv')]))
-    full=json.loads((ALT/'resultados/equivalencia_verilator.json').read_text())['series']
+    full=json.loads((ROOT/'build/trader/equivalencia_verilator.json').read_text())['series']
     tex+=macro('TablaLatencias',table([[LABELS[r['serie']],f(r['ciclos_media']),r['ciclos_max'],f(r['ic_media']),r['ic_max'],f(r['cpi'])] for r in full]))
+    times=json.loads((ROOT/'docs/evidencia_informe/metricas_finales.json').read_text())['series']
+    tex+=macro('TablaTiempos',table([[LABELS[r['serie']],f(r['cpi_max']),f(r['tiempo_medio_us']),f(r['tiempo_max_us'])] for r in times]))
     tex+=macro('TablaMomentum',table([[LABELS[r['serie']],r['documentado'],r['reproducido'],r['diferencia']] for r in read('reproduccion_momentum32.csv')]))
     (OUT/'datos_generados.tex').write_text('% Generado automaticamente por tools/generar_informe_latex.py\n'+tex,encoding='utf-8')
     appendix=[]

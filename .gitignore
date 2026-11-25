@@ -13,3 +13,4 @@ build/trader/bin_desempaquetado.*
 build/trader/decodificado.log
 build/diagnostico_sin_ordenes/actual_desempaquetado.*
 build/trader/verilator/*.csv
+docs/referencia/enunciado_proyecto4.txt

@@ -1,0 +1,40 @@
+{
+  "commit": "66eede4c46e211c02dc5ef22de18f86e22e775c5",
+  "archivos": {
+    "comparacion_codisenio.csv": {
+      "commit": "66eede4c46e211c02dc5ef22de18f86e22e775c5",
+      "ruta_original": "proyecto4/resultados/co_disenio/comparacion_codisenio.csv",
+      "sha256": "22d70468cd35780f1d2a7e2df2ff573f4c3e7f5ed5a4102e32312edad1ebab87"
+    },
+    "informe_codisenio.md": {
+      "commit": "66eede4c46e211c02dc5ef22de18f86e22e775c5",
+      "ruta_original": "proyecto4/resultados/co_disenio/informe_codisenio.md",
+      "sha256": "3133a802723f4fde10ae9a5e96e5188d53802a3a21cdc0def8a635b60ed0d0fe"
+    }
+  },
+  "trazas": [
+    {
+      "variante": "Original SW",
+      "ticks": 20000,
+      "ruta_git": "proyecto4/resultados/mediciones_software.csv",
+      "sha256_traza": "57a696005f57c57a2aae7eeb4e277060b71285d8f1fee513ae6c3fc0bcbb4dc2",
+      "medias_y_maximo_coinciden": true
+    },
+    {
+      "variante": "custom-0",
+      "ticks": 20000,
+      "ruta_git": "proyecto4/resultados/co_disenio/custom0_ticks.csv",
+      "sha256_traza": "dbcef468d1a58089b9962fa062db78a2d4b4a44496c6e4e9e4d7688c13f8329f",
+      "medias_y_maximo_coinciden": true
+    },
+    {
+      "variante": "MMIO SMA10",
+      "ticks": 20000,
+      "ruta_git": "proyecto4/resultados/co_disenio/mmio_sma10_ticks.csv",
+      "sha256_traza": "a860aebbc5ef7620094b036b38a1aa86d708e59b46f46bdda4b8db3a67963111",
+      "medias_y_maximo_coinciden": true
+    }
+  ],
+  "nueva_simulacion": false,
+  "alcance": "Estudio SMA10 historico; no es el perfil de Momentum32 final"
+}

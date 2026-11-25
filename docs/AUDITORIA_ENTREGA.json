@@ -1,0 +1,49 @@
+{
+  "fecha": "2026-11-25",
+  "integrantes": [
+    "Cristian Acevedo",
+    "Guillermo Arriaza",
+    "Eduardo Ponce"
+  ],
+  "dictamen": "CUMPLIMIENTO_DOCUMENTAL_AMPLIO_CON_PENDIENTES; ENTREGA_INTEGRAL_NO_ACREDITADA",
+  "enunciado": {
+    "ruta": "docs/referencia/enunciado_proyecto4.pdf",
+    "sha256": "9ad3b386d8766d7fa6ae11ebe9adf050c9a9b8bb63dff4d89d60639bc03fc051",
+    "paginas_rubrica": [
+      3,
+      4,
+      5
+    ]
+  },
+  "informe": {
+    "ruta": "docs/INFORME_FINAL.pdf",
+    "sha256": "279b786643eba7292e1734459f8c843a284563ebf61f2b77e9f9ca64f7787ef0",
+    "paginas": 25
+  },
+  "auditoria": {
+    "ruta": "docs/AUDITORIA_ENTREGA.pdf",
+    "sha256": "cd622a8ee08a9b2d6af5ea2dc5bd3dff9e45284c87f4909cbfc0f8c99fe1c9cf",
+    "paginas": 3
+  },
+  "comprobaciones": {
+    "autores_y_secciones": true,
+    "sin_desbordes": true,
+    "firmas_bin_y_fuentes": true,
+    "ticks_rtl": 160000,
+    "ventajas_conocidas": "6/8",
+    "filas_codisenio_cotejadas": 60000,
+    "metricas_finales_resumidas": 160000
+  },
+  "prueba_fisica": {
+    "estado": "CONFIRMADA_POR_EL_GRUPO",
+    "alcance": "dos VERIFY OK y compras/ventas reportadas",
+    "evidencia": "docs/evidencia_fisica/registro_20261125.md",
+    "sha256": "2a74afa8eb49f15dde718381737152b94a2fbd224404a43b5b8f2713bab9d081",
+    "resultados_tres_rondas": "NO_APORTADOS"
+  },
+  "pendientes": [
+    "Patrimonio/referencia/posicion de las tres rondas oficiales",
+    "Acreditacion de defensa y entrega original dentro del plazo",
+    "Perfil regional y comparacion de hardware bajo la politica final"
+  ]
+}

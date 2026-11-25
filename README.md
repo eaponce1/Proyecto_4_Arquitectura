@@ -73,7 +73,7 @@ Cada ejecución guarda PNG/SVG, CSV de ticks, operaciones y resumen con hashes. 
 | HX1K/VQ100 | 1.260/1.280 Logic Cells, 9/16 BRAM |
 | Relojes | Entrada 25 MHz; Espino 12,5 MHz; timing de enrutado 50,19 MHz |
 | Plazo más rápido | Peor caso observado de 25,68 µs; margen conservador 64,58 µs |
-| Go Board y maestra reales | **Pendientes de prueba y registro físico** |
+| Go Board y maestra reales | Dos `VERIFY OK` y compras/ventas confirmados por el grupo; faltan resultados por ronda |
 
 La política es Momentum32 con trailing stop de 20 puntos, revisión cada ocho ticks, salida con delta <= -16 y reentrada con delta >= +6. Supera a mantener en **6/8 muestras conocidas**; las dos de Netflix pierden frente al benchmark. Peor patrimonio: **$8.615**; máximo drawdown porcentual: **61,11%**. La validación por empresa obtiene ventaja en 5/8 y walk-forward en 14/24 ventanas. **No se demuestra superioridad consistente en series secretas.**
 
@@ -88,6 +88,19 @@ make
 ```
 
 `make` ensambla, simula, sintetiza y publica `competition.bin` solo tras pasar las comprobaciones. `make prog` programa manualmente y compara la flash. Los logs y las firmas quedan en `build/trader/`.
+
+Para ensamblar explícitamente: `python -B sw/assembler.py sw/trade.s -o sw/trade.hex`.
+La referencia Python es `proyecto4/alternativas/competitiva_definitiva/estrategia.py`;
+`python -B proyecto4/alternativas/competitiva_definitiva/validar_equivalencia.py`
+la compara con RV32E. La configuración congelada está en `resultados/seleccion.json`
+dentro de esa alternativa. Herramientas usadas: Python 3.13.3, Icarus 14 de desarrollo,
+Verilator 5.020, Yosys 0.70+176 y nextpnr 0.11.1-68; el PDF se compila con
+pdfLaTeX de TeX Live 2023.
+
+La [auditoría de entrega](docs/AUDITORIA_ENTREGA.pdf) revisa el PDF contra el
+enunciado oficial. El [registro físico](docs/evidencia_fisica/registro_20261125.md)
+conserva lo aportado por el grupo. El estudio histórico de hardware está incorporado
+en el informe, con procedencia en `docs/evidencia_codisenio/`.
 
 Para repetir la equivalencia completa y las tres cadencias, consultar `proyecto4/alternativas/competitiva_definitiva/ejecutar_pruebas.ps1`. Verilator utiliza Ubuntu WSL, Python, g++ y make. La auditoría de artefactos históricos requiere el historial Git completo o el respaldo local original.
 

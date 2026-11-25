@@ -1,0 +1,86 @@
+{
+  "reloj_MHz": 12.5,
+  "ventana": "byte_done hasta DECISION; excluye sondeo posterior",
+  "series": [
+    {
+      "serie": "practica_amd_2022_ene",
+      "ticks": 20000,
+      "cpi_global": 2.2470468123457574,
+      "cpi_max": 2.303030303030303,
+      "tiempo_medio_us": 12.765428,
+      "tiempo_max_us": 24.96,
+      "sha256_traza": "7c8fd5bbdf5f4b7fbc875dddfc856ecf0b98618cb895a9e76f678f887cda457e",
+      "ruta_traza": "build/trader/verilator/practica_amd_2022_ene.csv"
+    },
+    {
+      "serie": "practica_amd_2022_may",
+      "ticks": 20000,
+      "cpi_global": 2.2468140334888167,
+      "cpi_max": 2.3076923076923075,
+      "tiempo_medio_us": 12.859020000000001,
+      "tiempo_max_us": 24.32,
+      "sha256_traza": "cba9f2183ad9dc9b6648e0533dc72b2eba89ce1eb711ccd901b8e144199fdf5c",
+      "ruta_traza": "build/trader/verilator/practica_amd_2022_may.csv"
+    },
+    {
+      "serie": "practica_apple_2022",
+      "ticks": 20000,
+      "cpi_global": 2.247317652480635,
+      "cpi_max": 2.3076923076923075,
+      "tiempo_medio_us": 12.678692000000002,
+      "tiempo_max_us": 24.96,
+      "sha256_traza": "21bf77c6372737da2136dc0c71d63b37de55e5cff5213175fe91733dbba29a21",
+      "ruta_traza": "build/trader/verilator/practica_apple_2022.csv"
+    },
+    {
+      "serie": "practica_apple_2023",
+      "ticks": 20000,
+      "cpi_global": 2.24564727284715,
+      "cpi_max": 2.303030303030303,
+      "tiempo_medio_us": 13.351424,
+      "tiempo_max_us": 25.68,
+      "sha256_traza": "127b598ce740ad16a62bc889954a1603995d724b650f5776a295f1b66912f44a",
+      "ruta_traza": "build/trader/verilator/practica_apple_2023.csv"
+    },
+    {
+      "serie": "practica_meta_2022",
+      "ticks": 20000,
+      "cpi_global": 2.2462195241412712,
+      "cpi_max": 2.3529411764705883,
+      "tiempo_medio_us": 13.116152,
+      "tiempo_max_us": 24.88,
+      "sha256_traza": "3657e46f6cf6fcb15b42b6c621b607870fbbe349e134180b53ce25474416f814",
+      "ruta_traza": "build/trader/verilator/practica_meta_2022.csv"
+    },
+    {
+      "serie": "practica_netflix_2022",
+      "ticks": 20000,
+      "cpi_global": 2.246842183336692,
+      "cpi_max": 2.3,
+      "tiempo_medio_us": 12.844316,
+      "tiempo_max_us": 24.48,
+      "sha256_traza": "ab8b6f499a03e10dbfb771fa973601e333fc0e368810900c62cb2b990cd2d0b8",
+      "ruta_traza": "build/trader/verilator/practica_netflix_2022.csv"
+    },
+    {
+      "serie": "practica_netflix_2023",
+      "ticks": 20000,
+      "cpi_global": 2.247456453702283,
+      "cpi_max": 2.303030303030303,
+      "tiempo_medio_us": 12.5956,
+      "tiempo_max_us": 22.64,
+      "sha256_traza": "9a40e3197d2ad0629855344a1dd7cad437898f5503144dbb1682139ed03dd30f",
+      "ruta_traza": "build/trader/verilator/practica_netflix_2023.csv"
+    },
+    {
+      "serie": "practica_tesla_2022",
+      "ticks": 20000,
+      "cpi_global": 2.2458381915744363,
+      "cpi_max": 2.3,
+      "tiempo_medio_us": 13.244148000000001,
+      "tiempo_max_us": 24.240000000000002,
+      "sha256_traza": "a367ee3e0f3be1c0528ebd5acc250273fbfed849ee7d9b60c93e3711702d1360",
+      "ruta_traza": "build/trader/verilator/practica_tesla_2022.csv"
+    }
+  ]
+}

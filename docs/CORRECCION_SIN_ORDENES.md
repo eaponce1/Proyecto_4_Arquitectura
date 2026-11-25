@@ -64,7 +64,8 @@ D3 precio leído y D4 decisión distinta de cero. Pueden quedar todos encendidos
 no indican compras o ventas individuales. El resultado financiero debe obtenerse
 del registro de precios y MISO de la maestra.
 
-Esta corrección tiene evidencia digital reproducible. El incidente concreto
-todavía requiere comprobar la programación, el cableado y los bytes de la
-maestra: no se declara aprobada una prueba física sin ese registro. No se ejecutó
-`iceprog` automáticamente durante la corrección.
+Esta corrección tiene evidencia digital reproducible. Posteriormente, el grupo
+aportó dos `VERIFY OK` y confirmó compras y ventas en la placa; el registro está
+en `evidencia_fisica/registro_20261125.md`. Falta la traza de la maestra y el
+patrimonio por ronda para una auditoría financiera. No se ejecutó `iceprog`
+automáticamente durante la corrección.
