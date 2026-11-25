@@ -1,8 +1,0 @@
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:21191: error: 'io_13_6_1' has already been declared in this scope.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:3:      : It was declared here as a net.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:22956: error: 'io_13_7_1' has already been declared in this scope.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:3:      : It was declared here as a net.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:24356: error: 'io_13_7_0' has already been declared in this scope.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:3:      : It was declared here as a net.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:24740: error: 'io_13_8_0' has already been declared in this scope.
-C:\Users\EDUPON~1\AppData\Local\Temp\p4-bit-diag-62tk8r33\reconstruido.v:3:      : It was declared here as a net.

@@ -1,5 +1,0 @@
-PASS mmio_sma10_base ronda 1: 20000 filas iguales a R3/Python; 864 filas directas iguales; 20000 respuestas; 4/4; tiempo simulado exacto 200000004000 ns
-PASS mmio_sma10_base ronda 2: 20000 filas iguales a R3/Python; 8551 filas directas iguales; 20000 respuestas; 4/4; tiempo simulado exacto 20000004000 ns
-PASS software_original ronda 1: 20000 filas iguales a R3/Python; 864 filas directas iguales; 20000 respuestas; 4/4; tiempo simulado exacto 200000004000 ns
-PASS software_original ronda 2: 20000 filas iguales a R3/Python; 8718 filas directas iguales; 20000 respuestas; 4/4; tiempo simulado exacto 20000004000 ns
-PASS comparacion completa 6/6 con equivalencia exacta

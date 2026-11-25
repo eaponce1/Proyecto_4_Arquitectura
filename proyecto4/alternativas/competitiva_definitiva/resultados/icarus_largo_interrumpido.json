@@ -1,0 +1,10 @@
+{
+  "estado": "INTERRUMPIDO_NO_PASS",
+  "motivo": "Se usa Verilator para las 8 series completas; Icarus para bancos oficiales y casos adversos/cadencias.",
+  "procesos_propios_detenidos": [
+    18708,
+    7896,
+    19832
+  ],
+  "trazas_parciales": "build/rtl/practica_amd_2022_*_20000_100000_0.csv"
+}

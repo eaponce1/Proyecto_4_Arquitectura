@@ -1,3 +1,0 @@
-PASS 2000 PRICE, SUM10, READY y DECISION; peor caso 50/1131 ciclos
-PASS 2000 MISO frente a Python, fase 0 ns, LED=0111
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\pruebas_fisicas\spi_externo_robusto\tb_trade_spi_externo.sv:86: $finish called at 200120113000 (1ps)

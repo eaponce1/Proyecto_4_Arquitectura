@@ -1,0 +1,19 @@
+{
+  "nombre": "caida_gradual",
+  "ticks": 2048,
+  "periodo_ns": 100000,
+  "fase_ns": 27,
+  "puertas": false,
+  "discrepancias": 0,
+  "log": "build\\rtl\\caida_gradual_2048_100000_27.log",
+  "csv": "build\\rtl\\caida_gradual_2048_100000_27.csv",
+  "ciclos_max": 258,
+  "ciclos_media": 106.1572265625,
+  "ic_max": 115,
+  "ic_media": 46.85400390625,
+  "cpi": 2.2657023458424086,
+  "presupuesto": 1131,
+  "us_max": 20.64,
+  "margen_ciclos": 873,
+  "margen_us": 69.86
+}

@@ -1,0 +1,18 @@
+Validación,Resultado,Evidencia
+Datos de práctica,PASS,estadisticas_series.csv: 8*20000
+Ocho backtests,PASS,comparacion_final.csv y trazas
+Buy & Hold,6/8 ventajas,"mediana +24,90%; peor -6,14%"
+Robustez fuera de muestra,NO DEMOSTRADA independientemente,LOCO 5/8; LOSO 6/8; WF 14/24; datos conocidos
+Control de inventario,PASS,invariantes.log; equivalencia_rv32e.json
+Compras y ventas digitales,PASS,integracion_compra_venta.json; RTL y netlist
+Python vs RV32E,PASS,160000 ticks + sintéticos
+RV32E vs RTL,PASS,"equivalencia_verilator.json, 160000 ticks"
+SPI y MISO,PASS,Icarus cuatro estados y Verilator
+Testbench oficial,PASS adaptado,"2 bancos 4/4, 2000 ticks; diffs explícitos"
+Timing ronda 1,PASS,timing_rondas.csv + pruebas a cadencia real
+Timing ronda 2,PASS,timing_rondas.csv + pruebas a cadencia real
+Timing ronda 3,PASS,timing_rondas.csv + pruebas a cadencia real
+Síntesis HX1K,PASS,build/resultados.json y logs
+SHA-256 final,Verificado,SHA256_entrega.txt
+Prueba física Go Board,PENDIENTE,no se programó la placa
+Prueba FPGA maestra,PENDIENTE,requiere conexión y sesión física

@@ -1,0 +1,9 @@
+{
+  "estado": "PASS",
+  "prueba_fisica": "PENDIENTE",
+  "sha256_bin": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "imagen_raiz_verificada": true,
+  "make_all": "PASS",
+  "programar_solo_verificar": "PASS",
+  "respaldos_verificados": true
+}

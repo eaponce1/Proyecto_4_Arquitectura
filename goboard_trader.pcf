@@ -1,0 +1,10 @@
+# Subconjunto de goboard.pcf para SPI y diagnóstico.
+set_io i_Clk 15
+set_io i_SPI_CS_n 65
+set_io i_SPI_MOSI 64
+set_io o_SPI_MISO 63
+set_io i_SPI_SCLK 62
+set_io o_LED[0] 56
+set_io o_LED[1] 57
+set_io o_LED[2] 59
+set_io o_LED[3] 60

@@ -1,2 +1,0 @@
-PASS 194 ticks, STATUS=194 PRICE=194 SUM10=194 READY=194 DECISION=194; peor=251 ciclos
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\resultados\mision_final_diagnostico\tb_diagnostico.sv:99: $finish called at 7880113000 (1ps)

@@ -1,6 +1,0 @@
-Comando: C:\Tools\oss-cad-suite\bin\vvp.EXE C:\Users\EDUPON~1\AppData\Local\Temp\pochoco-regresion-udspvoux\spi_tb.vvp
-Directorio: C:\Users\EDUPON~1\AppData\Local\Temp\pochoco-regresion-udspvoux
-PASS SPI: consecutive bytes, MISO, read clear, inactive CS
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\spi_tb.v:31: $finish called at 7480000 (1ps)
-
-C?digo de salida: 0

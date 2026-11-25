@@ -1,3 +1,0 @@
-variant,ticks,IC_avg,IC_median,IC_p95,IC_worst,cycles_avg,cycles_median,cycles_p95,cycles_worst,speedup_vs_original,LUT4,LC,BRAM,Fmax_MHz,route_status
-MMIO base,20000,26.84755,23.0,25,108,60.63980,52.0,58,255,3.605940,1055,1279,13,40.50,PASS @25MHz
-MMIO optimizada,20000,26.84755,23.0,25,108,60.63980,52.0,58,255,3.605940,1051,1274,13,42.33,PASS @25MHz

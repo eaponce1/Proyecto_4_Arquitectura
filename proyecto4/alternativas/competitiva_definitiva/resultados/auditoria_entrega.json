@@ -1,0 +1,17 @@
+{
+  "estado": "PASS_DIGITAL",
+  "bin_sha256": "44e48b3701159a79148990e6610254d573985049dd4a0c4a0ab690461c838366",
+  "hex_sha256": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "bin_bytes": 32220,
+  "series_completas": 8,
+  "ticks_rv32e": 160000,
+  "ticks_rtl_verilator": 160000,
+  "ticks_icarus_estres": 6368,
+  "ticks_icarus_bancos": 4000,
+  "ticks_netlist": 96,
+  "artefactos_historicos_preservados": 244,
+  "historicos_en_zip": 226,
+  "historicos_en_git": 0,
+  "prueba_fisica": "PENDIENTE",
+  "superioridad_financiera_independiente": "NO_DEMOSTRADA"
+}

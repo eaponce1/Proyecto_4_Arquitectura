@@ -1,0 +1,42 @@
+{
+  "serie": "Tesla 2022",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "family": "trailing",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 20,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "csv_sha256": "a48617cc5a91023f16731d24f86814204bdad9d48367d7559c0c6fac6bfd7db6",
+  "hex_sha256": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "bin_disponible_sha256": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 13671,
+    "caja": 103,
+    "acciones": 64,
+    "ordenes": 43,
+    "comisiones": 215,
+    "drawdown": 4469,
+    "drawdown_pct": 37.19207723035952,
+    "mantener_oficial": 9995,
+    "ventaja": 3676,
+    "ventaja_pct": 36.7783891945973,
+    "ticks_caja": 3117,
+    "ticks_exposicion_alta": 16879
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "a367ee3e0f3be1c0528ebd5acc250273fbfed849ee7d9b60c93e3711702d1360",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

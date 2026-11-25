@@ -1,3 +1,5 @@
+> **Referencia de investigacion y validacion.** La imagen activa para programar se encuentra en la raiz del repositorio: [guia actual](../../../README.md). Este directorio conserva fuentes que necesitan los comparadores y bancos; sus builds y documentos completos anteriores estan en el [historial previo](https://github.com/eaponce1/Proyecto_4_Arquitectura/tree/66eede4c46e211c02dc5ef22de18f86e22e775c5/proyecto4/alternativas/agresiva). Los comandos y resultados historicos de abajo no identifican el BIN vigente.
+
 # Experimento agresivo de Pochoco Trader
 
 Se evaluaron momentum, breakout, tendencia con trailing stop e híbrida, con exposiciones objetivo de 25 %, 50 %, 75 % y 100 %. Cada familia se probó con entrada directa y compras progresivas. La grilla tiene 384 configuraciones. Con los parámetros congelados se evaluaron 32 finalistas en los últimos 4.000 ticks.

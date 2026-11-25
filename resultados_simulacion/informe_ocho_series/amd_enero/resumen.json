@@ -1,0 +1,42 @@
+{
+  "serie": "AMD enero 2022",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "family": "trailing",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 20,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "csv_sha256": "0c1c5e791578a59ec0f077d263f6103a4d1fde8e0f8ffbe1e775c05f442a0bc7",
+  "hex_sha256": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "bin_disponible_sha256": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 19312,
+    "caja": 109,
+    "acciones": 111,
+    "ordenes": 63,
+    "comisiones": 315,
+    "drawdown": 5341,
+    "drawdown_pct": 43.596441106848424,
+    "mantener_oficial": 8315,
+    "ventaja": 10997,
+    "ventaja_pct": 132.2549609140108,
+    "ticks_caja": 4598,
+    "ticks_exposicion_alta": 15385
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "7c8fd5bbdf5f4b7fbc875dddfc856ecf0b98618cb895a9e76f678f887cda457e",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

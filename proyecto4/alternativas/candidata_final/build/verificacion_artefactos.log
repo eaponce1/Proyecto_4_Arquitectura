@@ -1,6 +1,0 @@
-PASS 2.000 ticks Windows, CSV id?ntico a la repetici?n aprobada, VVP y Python salida 0.
-SHA-256 CSV Windows: 0958C8F03CA72E77C215166B4FA6392A58E0C4CDDF8C18C15844B8B45A9C73DC
-PASS 20.000 filas en RTL iguales a la referencia Python en DECISION, MISO, precios, caja, inventario, patrimonio y comisiones.
-PASS BIN de 32.220 bytes id?ntico tras desempaquetar y empaquetar de nuevo.
-PASS datos oficiales, fuentes e im?genes de referencia iguales a la auditor?a inicial.
-PASS backtest congelado: CSV y siete gr?ficos reproducidos byte por byte.

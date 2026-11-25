@@ -1,0 +1,19 @@
+{
+  "nombre": "limites_inventario",
+  "ticks": 448,
+  "periodo_ns": 100000,
+  "fase_ns": 27,
+  "puertas": false,
+  "discrepancias": 0,
+  "log": "build\\rtl\\limites_inventario_448_100000_27.log",
+  "csv": "build\\rtl\\limites_inventario_448_100000_27.csv",
+  "ciclos_max": 280,
+  "ciclos_media": 151.33705357142858,
+  "ic_max": 126,
+  "ic_media": 67.08482142857143,
+  "cpi": 2.2559060358022225,
+  "presupuesto": 1131,
+  "us_max": 22.400000000000002,
+  "margen_ciclos": 851,
+  "margen_us": 68.1
+}

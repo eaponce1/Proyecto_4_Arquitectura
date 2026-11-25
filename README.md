@@ -1,95 +1,114 @@
-﻿# Proyecto 4 — Pochoco Trader
+# Proyecto 4 — Pochoco Trader
 
-Agente RV32E para Go Board. Espino ejecuta trade.hex y escribe DECISION. El periférico MMIO SMA10 acelera la suma móvil. La versión de competencia recibe precios por SPI externo.
+[![Pruebas Proyecto 4](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml)
+[![Informe LaTeX](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml)
 
-- [Guía de compilación, conexiones y pruebas](proyecto4/README.md)
-- [Informe final PDF](proyecto4/entrega_final/informe_final_proyecto4.pdf)
-- [Matriz de requisitos y evidencia](proyecto4/documentacion/matriz_cierre_pochoco.md)
-- [Guía de defensa](proyecto4/documentacion/guia_defensa.md)
-- [Auditoría final y comandos reproducibles en Windows](proyecto4/documentacion/auditoria_final_cierre.md)
+Agente de negociación para **Go Board Lattice iCE40 HX1K/VQ100**, con decisiones calculadas por **Espino RV32E**. Recibe precios por SPI y responde con compras, ventas o mantener.
 
-Las tres rondas de práctica pasaron 4/4 criterios en Icarus, con 20.000 ticks por ronda y arquitectura y cero diferencias frente a Python. La demo autónoma de 16 ticks obtuvo PASS físico. También se registró una práctica con la FPGA maestra en Fila 2, con cotejo por tick y verificación del BIN pendientes. [Registro de la práctica física](proyecto4/pruebas_fisicas/spi_externo_robusto/README.md#práctica-física-en-fila-2)
+**[Informe final PDF](docs/INFORME_FINAL.pdf)** · **[Fuente LaTeX](docs/informe/informe_final.tex)** · **[Ocho gráficos y resultados](resultados_simulacion/informe_ocho_series/INFORME_COMPARATIVO.md)** · **[Guía de simulación](COMO_SIMULAR.md)**
 
-## Referencia del Proyecto 2
-> **Revision del juego:** instrucciones actuales, mapa MMIO y pruebas en [REVISION.md](REVISION.md).
+## Programar la FPGA
 
-# Pochoco SoC & Espino Core
+El archivo vigente es **[`competition.bin`](competition.bin)**, en la raíz de este repositorio. No necesitas volver a compilar para programarlo. Desde esta carpeta, con la Go Board conectada por USB y OSS CAD Suite disponible:
 
-> Meet Pochoco SoC and Espino Core. Inspired by the native flora of the Pochoco trails, it is an entry-level, highly efficient architecture designed to flourish in resource-constrained environments.
-
-![Pochoco SoC Architecture](pochoco_soc.svg)
-
-Welcome to the repository! This project contains the RTL for a custom 32-bit processor and its surrounding System-on-Chip (SoC) designed for FPGA deployment. The design is kept straightforward to help explore and understand computer architecture fundamentals.
-
-This is meant to be forked, not just cloned. You'll be poking around the RTL, so make it your own, we won't judge (we might even be a little proud).
-
-## Repository Structure
-
-The hardware is written in Verilog and divided into these main categories:
-
-* **The Espino Core**: The central processing unit. It includes all standard pipeline stages like instruction fetch, instruction decode, an ALU for execution, a register file, a load/store unit for memory operations, and a pipeline controller. It implements [RV32E](https://docs.riscv.org/reference/isa/v20260120/unpriv/rv32.html) with a catch you might want to check out the code for.
-* **The Pochoco SoC**: The top-level system wrapper. It connects the CPU core to a unified instruction/data RAM, physical board peripherals (like LEDs, switches, and displays), and an external SPI slave interface.
-* **Build Files**: Constraints to map the design to the physical FPGA pins, and automation scripts for synthesis, routing, and flashing using an open-source toolchain.
-
-## Memory Map
-
-The SoC routes memory and data requests using a hardcoded address decoding scheme based on the highest bits of the 32-bit address.
-
-* **`0x0000_0000` - Unified RAM**: The shared memory space for both instructions and data.
-* **`0x8000_0000` - Board Peripherals**: Memory-mapped I/O for the physical board.
-  * `Offset 0x00`: 7-Segment Displays
-  * `Offset 0x04`: LEDs
-  * `Offset 0x08`: Button Inputs
-* **`0x8001_0000` - SPI Slave**: Custom SPI interface routing.
-  * `Offset 0x00`: SPI Status (Chip Select state, New Data flag)
-  * `Offset 0x04`: Received "Price" byte (from external master)
-  * `Offset 0x08`: "Decision" byte (written by CPU to transmit)
-
-Dive into the source code to see exactly how these components and connections are built under the hood!
-
-## How to Build
-
-To synthesize and build the project, you will need the open-source FPGA toolchain.
-
-1. Install the tools by following the instructions at the [oss-cad-suite-build repository](https://github.com/yosyshq/oss-cad-suite-build).
-2. Once installed, ~~blindly copy-paste~~ (we strongly encourage reading the Makefile first to make sure we aren't deleting your home directory) the following command in the project root to generate and program the final bitstream:
-
-```bash
-make all   # build only; use make prog to flash
+```powershell
+iceprog competition.bin
+iceprog -c competition.bin
 ```
 
-## Software
+También puedes ejecutar el script que verifica fuentes y hashes antes de escribir y comparar la flash:
 
-The `sw/` folder contains the game and RV32E examples. Use the project assembler:
-
-```sh
-python sw/assembler.py sw/game.s -o sw/game.hex
-python -B tests/run_tests.py
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\programar.ps1
 ```
 
-From `sw/`, `make` builds all examples using the same Python assembler. The top-level
-build regenerates the game image automatically. No external RISC-V assembler is needed.
+Agrega `-SoloVerificar` para comprobar los archivos sin acceder a la placa.
 
-Shifts are intentionally absent from the ALU to save LUTs. The assembler rejects
-them and the hardware decoder suppresses their side effects. See [REVISION.md](REVISION.md)
-for the supported subset, game timing, updated MMIO registers and verification limits.
+BIN SHA-256:
 
-## Proyecto 4 — Pochoco Trader
+```text
+1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc
+```
 
-**Inicio rápido y estado real:** [proyecto4/INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
+El top activo es `rtl/trade_spi_externo.v`, el firmware está en `sw/trade.s` / `sw/trade.hex` y las restricciones están en `goboard_trader.pcf`. El Makefile compila Trader. No ejecuta el juego de versiones anteriores.
 
-[![Project 4 regression](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml) [![PDF render](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml)
+## Simular y observar
 
-La última regresión automatizada aprobó 36 pruebas de Proyecto 4, 11 de Proyecto 2, cuatro bancos RTL y el ensamblado del firmware final.
+Instala la dependencia gráfica una vez (Tkinter viene con el instalador habitual de Python para Windows):
 
-La variante de referencia para la competencia es **MMIO SMA10 base**, implementada en `proyecto4/alternativas/mmio_sma10/`. La guía explica cómo ensamblar `trade.s`, ejecutar las pruebas Python y las tres rondas, sintetizar el bitstream y conectar SPI.
+```powershell
+python -m pip install -r requirements.txt
+```
 
-> Importante: el `Makefile` de la raíz y `make all` construyen el top heredado `game_top` del Proyecto 2. No generan el bitstream del Pochoco Trader. Para Proyecto 4, sigue los comandos de [INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
+```powershell
+python simular_competencia.py
+```
 
-- [Informe final PDF](proyecto4/entrega_final/informe_final_proyecto4.pdf)
-- [Matriz de requisitos y evidencia](proyecto4/documentacion/matriz_cierre_pochoco.md)
-- [Auditoría final](proyecto4/documentacion/auditoria_final_cierre.md)
-- [Guía de defensa](proyecto4/documentacion/guia_defensa.md)
-- [Guion de presentación](proyecto4/documentacion/guion_presentacion.md)
+El visor permite elegir AMD, Apple, Meta, Netflix o Tesla, pausar, avanzar un tick y exportar informes. Para generar las ocho series sin ventana:
 
-La validación de práctica en Icarus cubre las tres rondas y la demo autónoma de 16 ticks obtuvo PASS físico. La integración completa con la FPGA maestra, el cotejo MISO/BIN de la práctica y la defensa presencial siguen pendientes según la auditoría.
+```powershell
+python simular_competencia.py --todas --sin-ventana
+```
+
+Cada ejecución guarda PNG/SVG, CSV de ticks, operaciones y resumen con hashes. La animación reproduce una traza precalculada del modelo; **no es telemetría de la placa**. Las trazas RTL anteriores, cuando están disponibles, se cotejan con el modelo antes de exportar.
+
+## Validación y límites
+
+| Validación | Evidencia |
+|---|---|
+| Ocho series conocidas | 160.000 ticks Python/RV32E/RTL, sin diferencias |
+| SPI y contabilidad | Escenarios Icarus, límites de inventario y comisiones |
+| Bancos oficiales | Dos bancos adaptados al top final, 4/4 y 2.000 ticks cada uno; diffs conservados |
+| Integración activa | Recuperación de 768 ticks, compra/venta de 48 y netlist en dos fases |
+| HX1K/VQ100 | 1.268/1.280 Logic Cells, 9/16 BRAM |
+| Relojes | Entrada 25 MHz; Espino 12,5 MHz; timing de enrutado 52,51 MHz |
+| Plazo más rápido | Peor caso observado de 25,68 µs; margen conservador 64,58 µs |
+| Go Board y maestra reales | **Pendientes de prueba y registro físico** |
+
+La política es Momentum32 con trailing stop de 20 puntos, revisión cada ocho ticks, salida con delta <= -16 y reentrada con delta >= +6. Supera a mantener en **6/8 muestras conocidas**; las dos de Netflix pierden frente al benchmark. Peor patrimonio: **$8.615**; máximo drawdown porcentual: **61,11%**. La validación por empresa obtiene ventaja en 5/8 y walk-forward en 14/24 ventanas. **No se demuestra superioridad consistente en series secretas.**
+
+## Compilar y comprobar
+
+Con Python 3, Icarus/VVP y OSS CAD Suite en PATH:
+
+```powershell
+python -B tools/trader.py verify
+make test
+make
+```
+
+`make` ensambla, simula, sintetiza y publica `competition.bin` solo tras pasar las comprobaciones. `make prog` programa manualmente y compara la flash. Los logs y las firmas quedan en `build/trader/`.
+
+Para repetir la equivalencia completa y las tres cadencias, consultar `proyecto4/alternativas/competitiva_definitiva/ejecutar_pruebas.ps1`. Verilator utiliza Ubuntu WSL, Python, g++ y make. La auditoría de artefactos históricos requiere el historial Git completo o el respaldo local original.
+
+## Conectar la maestra
+
+| Señal | PMOD según documentación del proyecto | Pin FPGA |
+|---|---|---:|
+| CS_n | PS1 | 65 |
+| MOSI desde maestra | PS2 | 64 |
+| MISO hacia maestra | PS3 | 63 |
+| SCLK | PS4 | 62 |
+
+Confirmar físicamente el conector con el PCF. SPI modo 0, ocho bits MSB primero, hasta 1 MHz, señales de 3,3 V y GND común. La Go Board se alimenta por USB y el VCC del PMOD queda libre. Reiniciar antes de cada serie y esperar D1 antes de iniciar la maestra. Los LED indican actividad; el patrimonio lo calcula la maestra a partir de precios y MISO.
+
+## Organización
+
+| Ruta | Contenido |
+|---|---|
+| `competition.bin`, `competition.sha256` | Imagen activa y hash |
+| `rtl/`, `sw/` | Hardware y firmware activos |
+| `tools/`, `Makefile`, `programar.ps1` | Compilación y programación |
+| `tb/`, `tests/` | Banco oficial y modelo auxiliar de RAM |
+| `build/trader/` | Evidencia de la integración activa |
+| `docs/INFORME_FINAL.pdf` | Informe principal, compilado desde LaTeX |
+| `docs/informe/` | Fuentes, tablas y figuras del informe |
+| `resultados_simulacion/informe_ocho_series/` | Gráficos, CSV e informes por serie |
+| `proyecto4/alternativas/competitiva_definitiva/` | Modelo congelado, datos y validación completa |
+| `proyecto4/` | Dependencias de investigación y estrategias de referencia |
+
+Los builds y documentos anteriores se conservan en el **historial Git**; el árbol principal muestra la versión ordenada. Los logs históricos conservan sus rutas originales como evidencia. Los archivos temporales, ejecutables de simulación y auxiliares LaTeX no se publican.
+
+Los workflows de Actions comprueban la imagen actual y recompilan el informe desde LaTeX. Guardan los logs y el PDF generado como artefactos; no programan hardware ni escriben automáticamente en `main`.
+
+El [informe de desarrollo anterior](docs/INFORME_DESARROLLO.md) conserva los recursos de su build de 1.257 LC; para la versión actual usar el PDF principal y `build/trader/validacion.json`.

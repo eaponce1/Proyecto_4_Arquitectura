@@ -1,4 +1,5 @@
 # Preserve hashes of official inputs and checked-in firmware on each OS.
+* -text
 proyecto4/resultados/validacion_oficial/tb_proyecto_4_profesor.sv -text
 proyecto4/resultados/validacion_oficial/practica_meta.csv -text
 *.hex -text

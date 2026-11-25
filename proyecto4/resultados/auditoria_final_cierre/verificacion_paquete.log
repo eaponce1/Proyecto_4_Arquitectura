@@ -1,7 +1,0 @@
-PASS ZIP: 341 entradas, 24 actualizadas o nuevas. Las 34 entradas de simulacion coinciden con la corrida aislada.
-PASS integridad de los artefactos canonicos del paquete anterior.
-C:\Python313\python.exe salida=0
-PASS CSV: 20000 precios consecutivos de 100 a 255; se simularan los primeros 2000
-iverilog salida=0
-SHA-256 ZIP 459DEF07E46028CCF1441C191BCFCEA7D20357D2B3CE7660C07F57BEF61B3A78
-Tamanio 3117292 bytes

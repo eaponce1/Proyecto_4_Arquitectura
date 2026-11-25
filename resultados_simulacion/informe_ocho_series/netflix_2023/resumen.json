@@ -1,0 +1,42 @@
+{
+  "serie": "Netflix 2023",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "family": "trailing",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 20,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "csv_sha256": "30b59beaa67efe60949fa00f020a3f38981fa72aa4d2ccb1a7230a03de214bcd",
+  "hex_sha256": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "bin_disponible_sha256": "1d7f1b2d951b086e535e7f7fc77fe6525df9b30e403263770358db15bcb031bc",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 8929,
+    "caja": 19,
+    "acciones": 54,
+    "ordenes": 41,
+    "comisiones": 205,
+    "drawdown": 7691,
+    "drawdown_pct": 61.10757985062768,
+    "mantener_oficial": 9170,
+    "ventaja": -241,
+    "ventaja_pct": -2.6281352235550726,
+    "ticks_caja": 5089,
+    "ticks_exposicion_alta": 14911
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "9a40e3197d2ad0629855344a1dd7cad437898f5503144dbb1682139ed03dd30f",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

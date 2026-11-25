@@ -1,5 +1,0 @@
-METRICAS ticks=386 periodo_ns=30000 ciclos_total=12494 ic_total=5076 peor_caso=160 presupuesto=256 peor_ic=73 status_y_byte_done=129 cargas_mantenidas=1673 ciclos_promedio=32.367876 ic_promedio=13.150259 cpi_global=2.461387
-PASS 386 STATUS, PRICE, SUM10, READY y DECISION; peor caso 160/256 ciclos
-CARTERA patrimonio=7770 caja=7770 acciones=0 compras=1 ventas=1 comisiones=10 drawdown=2230
-PASS 386 MISO frente a Python, fase 0 ns, LED=1111
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 11700113000 (1ps)

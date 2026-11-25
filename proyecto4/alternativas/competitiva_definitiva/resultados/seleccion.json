@@ -1,0 +1,19 @@
+{
+  "config": {
+    "family": "trailing",
+    "fast": 32,
+    "slow": 128,
+    "exit": 16,
+    "entry": 6,
+    "gradual": 12,
+    "stop": 20,
+    "exposure": 100,
+    "neutral": 0,
+    "review": 8
+  },
+  "indice": 40,
+  "criterio": "rank: fraccion ventajas, mediana+0.25media+0.5peor-0.05DD, minimo patrimonio, comisiones",
+  "revision": "V2: filtro DD<=3025 en caida gradual sintetica; V1 descartada. Umbral de desarrollo, no evaluacion independiente.",
+  "origen": "primeros 12000 ticks de ocho series conocidas; validacion interna, no OOS independiente",
+  "grilla_sha256": "201eed81875f87392223b6262015fb1ef2867e1429b73f359cd569369e7c05d6"
+}

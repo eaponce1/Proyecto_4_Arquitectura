@@ -1,0 +1,18 @@
+{
+  "proyecto4\\alternativas\\competitiva_definitiva\\rtl\\trade_spi_externo.v": "12caca64f201f5ce82b2389a7d2c734566b76862d59ed2ac6309a95ce42dee08",
+  "proyecto4\\alternativas\\competitiva_definitiva\\rtl\\pochoco_soc_cpu_trace.v": "d2f8ce256f16a7d0a9c801016613d2b5d96d386d4c9fcf6226a61995cbdead3e",
+  "proyecto4\\pruebas_fisicas\\demo_autonoma_bus_detail\\rtl\\espino_core_cpu_trace.v": "38742b5e8b96eaf8c6b5e23745b0abb5a9d788544d4cc3c991c98ee193583578",
+  "proyecto4\\alternativas\\mmio_sma10\\rtl\\pochoco_ram.v": "0eda65a86c53f468ec10342706a9be87c3cfdf1b64f4b7c6ec64c57db0ba1fd8",
+  "proyecto4\\alternativas\\mmio_sma10\\rtl\\pochoco_spi_slave.v": "223f3ad6664efdf0f9f1aa3eb5484a07408a8e5eda029b82d013f553886f2ae1",
+  "proyecto4\\alternativas\\mmio_sma10\\rtl\\pochoco_sma10.v": "e1a1878e14a6c1e5b17d1ad97fb0703714f1e58bad84badf21a641ba9a44a7a8",
+  "rtl\\espino_core\\espino_alu.v": "eaa8b0c5d36b298e5c29b7691cf6941c99c7952b7dbcf08f6e62bf1af4a472d7",
+  "rtl\\espino_core\\espino_controller.v": "bd82d8404d8f09de2a6968da87e6a7e9c750af9138a4b74c43b3ec89a742c215",
+  "rtl\\espino_core\\espino_core.v": "9e3e3cae616a4ff057ddcb01728bf8f912eab721d26e3a5fe68daf1c68e9905c",
+  "rtl\\espino_core\\espino_decoder.v": "8fc8cb18ec63d149e9610942851542d0b2601395b47519716f597283c6dcbcbb",
+  "rtl\\espino_core\\espino_id_stage.v": "740698037d1e4372e3e26c3a828143debb71b62992d7a69e21ed3b6fc128c704",
+  "rtl\\espino_core\\espino_if_stage.v": "4734ae2fb9cd60c8f5019be50303504e50e6d25bc09d09a3f06d396d1c5902f4",
+  "rtl\\espino_core\\espino_load_store_unit.v": "76051d9aba219452dc4e80fd47f306d024c40aea47050dd59fc3c821ea7f5954",
+  "rtl\\espino_core\\espino_register_file.v": "a19d94587e54d05373a257c95e515979d2f7910328ec8920f649d280bc07b212",
+  "proyecto4\\alternativas\\competitiva_definitiva\\trade.hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
+  "proyecto4\\pruebas_fisicas\\spi_externo_robusto\\goboard_spi_externo.pcf": "13c80dcf14120b1bbb4c0fda01aa4b3892b474bb4240c26c653e8f220b6d6656"
+}

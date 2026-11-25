@@ -1,3 +1,5 @@
+> **Referencia de investigacion y validacion.** La imagen activa para programar se encuentra en la raiz del repositorio: [guia actual](../../../README.md). Este directorio conserva fuentes que necesitan los comparadores y bancos; sus builds y documentos completos anteriores estan en el [historial previo](https://github.com/eaponce1/Proyecto_4_Arquitectura/tree/66eede4c46e211c02dc5ef22de18f86e22e775c5/proyecto4/pruebas_fisicas/demo_autonoma_bus_detail). Los comandos y resultados historicos de abajo no identifican el BIN vigente.
+
 ﻿# Demostración integral SPI del Pochoco SoC
 
 La captura física previa 0101 queda preservada en pc_probe_aprobado.zip, que contiene sus fuentes, scripts, vectores, PCF y BIN. SHA-256 del BIN aprobado: CF9C849A1D7FAFD710D66B021CC5C9053A7CB7B9806D86BA69061D46201AF25C. SHA-256 del ZIP: 082922E4F5F8E98794CCE35E0344EA8C099AF07DAD1FDE67946C64E6CC9722E2.

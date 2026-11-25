@@ -1,0 +1,19 @@
+{
+  "nombre": "alternancia",
+  "ticks": 512,
+  "periodo_ns": 100000,
+  "fase_ns": 27,
+  "puertas": false,
+  "discrepancias": 0,
+  "log": "build\\rtl\\alternancia_512_100000_27.log",
+  "csv": "build\\rtl\\alternancia_512_100000_27.csv",
+  "ciclos_max": 263,
+  "ciclos_media": 97.962890625,
+  "ic_max": 118,
+  "ic_media": 43.041015625,
+  "cpi": 2.2760357580432906,
+  "presupuesto": 1131,
+  "us_max": 21.04,
+  "margen_ciclos": 868,
+  "margen_us": 69.46000000000001
+}

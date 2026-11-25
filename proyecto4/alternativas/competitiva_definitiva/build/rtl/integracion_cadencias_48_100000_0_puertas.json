@@ -1,0 +1,10 @@
+{
+  "nombre": "integracion_cadencias",
+  "ticks": 48,
+  "periodo_ns": 100000,
+  "fase_ns": 0,
+  "puertas": true,
+  "discrepancias": 0,
+  "log": "build\\rtl\\integracion_cadencias_48_100000_0_puertas.log",
+  "csv": "build\\rtl\\integracion_cadencias_48_100000_0_puertas.csv"
+}

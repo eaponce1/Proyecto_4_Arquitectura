@@ -1,3 +1,0 @@
-variante,ronda,ticks,patrimonio_final,caja_final,acciones_finales,rentabilidad_pct,ordenes,compras,ventas,comisiones,drawdown_maximo,ciclos_promedio_tb_truncado,ciclos_peor_caso,criterios_aprobados,criterios_totales,diferencias_decision_vs_otra,CSV_decisiones
-mmio_sma10_base,ronda_3,20000,4577,2017,16,-54.23,931,466,465,4655,5476,60,255,4,4,0,corridas/mmio_sma10_base/ronda_3/decisiones.csv
-software_original,ronda_3,20000,4577,2017,16,-54.23,931,466,465,4655,5476,218,413,4,4,0,corridas/software_original/ronda_3/decisiones.csv
