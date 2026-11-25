@@ -21,7 +21,8 @@ initial begin
  repeat(10) @(negedge clk);
  btn=0; repeat(10) @(negedge clk);
  if(dut.btn_q !== 0) $fatal(1,"bounce accepted");
- btn=3; repeat(250010) @(negedge clk);
+ btn=4'b1100; // Entradas físicas activas en bajo: ~4'b1100 = botones lógicos 0011.
+ repeat(250010) @(negedge clk);
  req=1; addr=8;
  @(negedge clk);
  if(rd !== 3) $fatal(1,"debounced buttons");
