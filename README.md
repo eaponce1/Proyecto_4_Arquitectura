@@ -78,6 +78,10 @@ for the supported subset, game timing, updated MMIO registers and verification l
 
 **Inicio rápido y estado real:** [proyecto4/INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
 
+[![Project 4 regression](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/test-project4.yml) [![PDF render](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml/badge.svg)](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/workflows/render-project4-report.yml)
+
+La última regresión automatizada aprobó 36 pruebas de Proyecto 4, 11 de Proyecto 2, cuatro bancos RTL y el ensamblado del firmware final.
+
 La variante de referencia para la competencia es **MMIO SMA10 base**, implementada en `proyecto4/alternativas/mmio_sma10/`. La guía explica cómo ensamblar `trade.s`, ejecutar las pruebas Python y las tres rondas, sintetizar el bitstream y conectar SPI.
 
 > Importante: el `Makefile` de la raíz y `make all` construyen el top heredado `game_top` del Proyecto 2. No generan el bitstream del Pochoco Trader. Para Proyecto 4, sigue los comandos de [INICIO_RAPIDO.md](proyecto4/INICIO_RAPIDO.md).
