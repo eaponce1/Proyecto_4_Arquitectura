@@ -215,3 +215,9 @@ El registro publicado para Tesla enero de 2022, Fila 2, indica un patrimonio de 
 ### Separación respecto de la entrega original
 
 La primera publicación del PDF y del manifiesto figura el 23 de noviembre de 2026 a las 09:21, hora de Chile, antes del plazo del 24 de noviembre a las 10:00. La actualización de este informe incorpora experimentos del 25 de noviembre y no debe confundirse con el artefacto disponible antes del cierre. El documento reúne exclusivamente el desarrollo técnico y la evidencia de validación del proyecto.
+
+## 12. Regresión automatizada posterior al plazo (25 de noviembre de 2026)
+
+Se agregó el workflow `Project 4 regression` y se ejecutó sobre el commit `51f5030`. La ejecución terminó correctamente: 36/36 pruebas Python del Proyecto 4, 11/11 pruebas Python del Proyecto 2, los cuatro testbenches RTL heredados (`core_tb`, `periph_tb`, `spi_tb` y `decoder_tb`) y el ensamblado del firmware MMIO SMA10 final con 71 instrucciones de 32 bits. Esta ejecución confirma también la corrección del estímulo activo-bajo en `tests/periph_tb.v`. [Registro de GitHub Actions](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/runs/45665702222).
+
+El workflow `Render Project 4 technical report` completó correctamente la generación del PDF desde este Markdown. [Registro de render](https://github.com/eaponce1/Proyecto_4_Arquitectura/actions/runs/45665702176). Estos resultados son verificaciones de software reproducibles posteriores al plazo; no sustituyen la prueba física del bitstream de competencia con la FPGA maestra.
