@@ -1,0 +1,3 @@
+CARTERA patrimonio=9798 caja=9798 acciones=0 compras=1 ventas=1 comisiones=10 drawdown=293
+PASS 64 MISO frente a Python, fase 41 ns, LED=1111
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 2040154000 (1ps)

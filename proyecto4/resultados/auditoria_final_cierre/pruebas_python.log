@@ -1,0 +1,39 @@
+test_comision_solo_se_cobra_por_orden_ejecutada (test_contabilidad.AuditoriaContableTests.test_comision_solo_se_cobra_por_orden_ejecutada) ... ok
+test_comisiones_ordenes_y_fills_coinciden (test_contabilidad.AuditoriaContableTests.test_comisiones_ordenes_y_fills_coinciden) ... ok
+test_decision_calculada_en_tick_previo_se_ejecuta_al_precio_actual (test_contabilidad.AuditoriaContableTests.test_decision_calculada_en_tick_previo_se_ejecuta_al_precio_actual) ... ok
+test_drawdown_absoluto_puede_superar_capital_inicial (test_contabilidad.AuditoriaContableTests.test_drawdown_absoluto_puede_superar_capital_inicial) ... ok
+test_drawdown_reportado_se_reproduce_sobre_la_serie_y_no_hay_saldo_negativo (test_contabilidad.AuditoriaContableTests.test_drawdown_reportado_se_reproduce_sobre_la_serie_y_no_hay_saldo_negativo) ... ok
+test_fees_de_compra_y_venta_incluidos_en_pnl_fifo (test_contabilidad.AuditoriaContableTests.test_fees_de_compra_y_venta_incluidos_en_pnl_fifo) ... ok
+test_patrimonio_es_caja_mas_acciones_por_precio_en_cada_tick (test_contabilidad.AuditoriaContableTests.test_patrimonio_es_caja_mas_acciones_por_precio_en_cada_tick) ... ok
+test_desfase_spi_ejecuta_al_tick_siguiente (test_estrategia.CausalidadTests.test_desfase_spi_ejecuta_al_tick_siguiente) ... ok
+test_lectura_de_serie_completa (test_estrategia.CausalidadTests.test_lectura_de_serie_completa) ... ok
+test_no_consulta_informacion_futura (test_estrategia.CausalidadTests.test_no_consulta_informacion_futura) ... ok
+test_senal_compra_y_venta_de_sma_momentum (test_estrategia.CausalidadTests.test_senal_compra_y_venta_de_sma_momentum) ... ok
+test_variante_a_exige_umbral_de_momentum (test_estrategia.CausalidadTests.test_variante_a_exige_umbral_de_momentum) ... ok
+test_variante_b_confirma_dos_tendencias_y_evitar_reentrar (test_estrategia.CausalidadTests.test_variante_b_confirma_dos_tendencias_y_evitar_reentrar) ... ok
+test_variante_c_cooldown_se_cuenta_desde_fill (test_estrategia.CausalidadTests.test_variante_c_cooldown_se_cuenta_desde_fill) ... ok
+test_caja_insuficiente_no_genera_deuda (test_estrategia.ReglasDeEjecucionTests.test_caja_insuficiente_no_genera_deuda) ... ok
+test_cantidad_maxima_63 (test_estrategia.ReglasDeEjecucionTests.test_cantidad_maxima_63) ... ok
+test_comision_fija_por_orden_ejecutada (test_estrategia.ReglasDeEjecucionTests.test_comision_fija_por_orden_ejecutada) ... ok
+test_compra (test_estrategia.ReglasDeEjecucionTests.test_compra) ... ok
+test_compra_se_reduce_a_maximo_asequible (test_estrategia.ReglasDeEjecucionTests.test_compra_se_reduce_a_maximo_asequible) ... ok
+test_mantener (test_estrategia.ReglasDeEjecucionTests.test_mantener) ... ok
+test_venta (test_estrategia.ReglasDeEjecucionTests.test_venta) ... ok
+test_venta_se_limita_a_acciones_disponibles (test_estrategia.ReglasDeEjecucionTests.test_venta_se_limita_a_acciones_disponibles) ... ok
+test_venta_sin_acciones_no_se_ejecuta (test_estrategia.ReglasDeEjecucionTests.test_venta_sin_acciones_no_se_ejecuta) ... ok
+test_cantidad_por_orden_no_supera_63 (test_investigacion_final.EnfoquesFinalesTests.test_cantidad_por_orden_no_supera_63) ... ok
+test_desfase_y_limites_contables (test_investigacion_final.EnfoquesFinalesTests.test_desfase_y_limites_contables) ... ok
+test_momentum_umbral_y_estado_plano_largo (test_investigacion_final.EnfoquesFinalesTests.test_momentum_umbral_y_estado_plano_largo) ... ok
+test_no_consulta_precios_futuros (test_investigacion_final.EnfoquesFinalesTests.test_no_consulta_precios_futuros) ... ok
+test_reversion_sma10_entra_bajo_y_sale_sobre (test_investigacion_final.EnfoquesFinalesTests.test_reversion_sma10_entra_bajo_y_sale_sobre) ... ok
+test_tendencia_requiere_dos_cierres_y_mantiene_hasta_reversion (test_investigacion_final.EnfoquesFinalesTests.test_tendencia_requiere_dos_cierres_y_mantiene_hasta_reversion) ... ok
+test_hex_igual_a_python_tick_a_tick_en_los_20000_precios (test_trade_equivalencia.TradeEquivalenciaTests.test_hex_igual_a_python_tick_a_tick_en_los_20000_precios) ... ok
+test_hex_iguala_fills_parciales_en_caja_insuficiente (test_trade_equivalencia.TradeEquivalenciaTests.test_hex_iguala_fills_parciales_en_caja_insuficiente) ... ok
+test_integracion_rtl_spi_con_decisiones_python (test_trade_equivalencia.TradeEquivalenciaTests.test_integracion_rtl_spi_con_decisiones_python) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 7.136s
+
+OK
+
+unittest: salida=0

@@ -1,0 +1,27 @@
+{
+  "modo": "conservar",
+  "palabras_firmware": 9,
+  "lc": 749,
+  "lut4": 632,
+  "bram": 7,
+  "relojes": {
+    "clk_soc": {
+      "achieved": 52.42463684082031,
+      "constraint": 25
+    },
+    "i_Clk$SB_IO_IN_$glb_clk": {
+      "achieved": 683.5269775390625,
+      "constraint": 25
+    }
+  },
+  "peor_caso_ciclos": 24,
+  "ticks_rtl": 2000,
+  "ticks_rtl_reserva": 0,
+  "ticks_por_fase_netlist": 16,
+  "fases_netlist_ns": [
+    0,
+    41
+  ],
+  "periodo_netlist_ns": 100000,
+  "sha256": "5F3C32E0AC266614B4B8FE825672255D7D29BF924CE51D3BB3E249516E052FC1"
+}

@@ -1,0 +1,50 @@
+{
+  "custom0_assembler": {
+    "prueba": "Suite assembler custom-0",
+    "salida": 0,
+    "log": "custom0_assembler.log",
+    "pruebas_unittest": 3
+  },
+  "decoder_tb_compilar": {
+    "prueba": "Compilaci?n banco decodificador",
+    "salida": 0,
+    "log": "decoder_tb_compilar.log",
+    "pruebas_unittest": null
+  },
+  "decoder_tb_vvp": {
+    "prueba": "Simulaci?n banco decodificador",
+    "salida": 0,
+    "log": "decoder_tb_vvp.log",
+    "pruebas_unittest": null
+  },
+  "game_top_compilar": {
+    "prueba": "Compilaci?n top de juego",
+    "salida": 0,
+    "log": "game_top_compilar.log",
+    "pruebas_unittest": null
+  },
+  "python_proyecto4": {
+    "prueba": "Suite Python Proyecto 4",
+    "salida": 0,
+    "log": "python_proyecto4.log",
+    "pruebas_unittest": 36
+  },
+  "regresion_heredada": {
+    "prueba": "Regresi?n heredada completa",
+    "salida": 1,
+    "log": "regresion_heredada.log",
+    "pruebas_unittest": 11
+  },
+  "spi_tb_compilar": {
+    "prueba": "Compilaci?n banco SPI",
+    "salida": 0,
+    "log": "spi_tb_compilar.log",
+    "pruebas_unittest": null
+  },
+  "spi_tb_vvp": {
+    "prueba": "Simulaci?n banco SPI",
+    "salida": 0,
+    "log": "spi_tb_vvp.log",
+    "pruebas_unittest": null
+  }
+}

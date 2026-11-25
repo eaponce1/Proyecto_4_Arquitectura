@@ -1,0 +1,1310 @@
+{
+  "config": {
+    "familia": "momentum",
+    "exposicion": 100,
+    "progresiva": false,
+    "periodo": 16,
+    "umbral": 8
+  },
+  "entrenamiento": {
+    "patrimonio": 15965,
+    "neto_vs_mantener_oficial": 2910,
+    "drawdown": 1459,
+    "compras": 2,
+    "ventas": 2,
+    "ordenes": 4,
+    "comisiones": 20,
+    "caja": 15965,
+    "acciones": 0,
+    "max_fill": 63,
+    "acciones_compradas": 126,
+    "exposicion_max_bps": 9287
+  },
+  "validacion": {
+    "patrimonio": 10000,
+    "neto_vs_mantener_oficial": 3823,
+    "drawdown": 0,
+    "compras": 0,
+    "ventas": 0,
+    "ordenes": 0,
+    "comisiones": 0,
+    "caja": 10000,
+    "acciones": 0,
+    "max_fill": 0,
+    "acciones_compradas": 0,
+    "exposicion_max_bps": 0
+  },
+  "admisible_entrenamiento": true,
+  "admisible_validacion": true,
+  "finalistas": [
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 25,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11595,
+        "neto_vs_mantener_oficial": -1460,
+        "drawdown": 401,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11595,
+        "acciones": 0,
+        "max_fill": 17,
+        "acciones_compradas": 34,
+        "exposicion_max_bps": 3620
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 25,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11500,
+        "neto_vs_mantener_oficial": -1555,
+        "drawdown": 378,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11500,
+        "acciones": 0,
+        "max_fill": 16,
+        "acciones_compradas": 32,
+        "exposicion_max_bps": 3441
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 50,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13210,
+        "neto_vs_mantener_oficial": 155,
+        "drawdown": 792,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 13210,
+        "acciones": 0,
+        "max_fill": 34,
+        "acciones_compradas": 68,
+        "exposicion_max_bps": 6209
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 50,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 12706,
+        "neto_vs_mantener_oficial": -349,
+        "drawdown": 709,
+        "compras": 4,
+        "ventas": 2,
+        "ordenes": 6,
+        "comisiones": 30,
+        "caja": 12706,
+        "acciones": 0,
+        "max_fill": 32,
+        "acciones_compradas": 64,
+        "exposicion_max_bps": 6082
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 75,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 14911,
+        "neto_vs_mantener_oficial": 1856,
+        "drawdown": 1196,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 14911,
+        "acciones": 0,
+        "max_fill": 52,
+        "acciones_compradas": 103,
+        "exposicion_max_bps": 8256
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 75,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13661,
+        "neto_vs_mantener_oficial": 606,
+        "drawdown": 1039,
+        "compras": 5,
+        "ventas": 2,
+        "ordenes": 7,
+        "comisiones": 35,
+        "caja": 13661,
+        "acciones": 0,
+        "max_fill": 47,
+        "acciones_compradas": 79,
+        "exposicion_max_bps": 8153
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 100,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 15965,
+        "neto_vs_mantener_oficial": 2910,
+        "drawdown": 1459,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 15965,
+        "acciones": 0,
+        "max_fill": 63,
+        "acciones_compradas": 126,
+        "exposicion_max_bps": 9287
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "momentum",
+        "exposicion": 100,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13808,
+        "neto_vs_mantener_oficial": 753,
+        "drawdown": 1303,
+        "compras": 6,
+        "ventas": 2,
+        "ordenes": 8,
+        "comisiones": 40,
+        "caja": 13808,
+        "acciones": 0,
+        "max_fill": 59,
+        "acciones_compradas": 91,
+        "exposicion_max_bps": 9956
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 25,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11145,
+        "neto_vs_mantener_oficial": -1910,
+        "drawdown": 335,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 11145,
+        "acciones": 0,
+        "max_fill": 15,
+        "acciones_compradas": 15,
+        "exposicion_max_bps": 3331
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 25,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11145,
+        "neto_vs_mantener_oficial": -1910,
+        "drawdown": 335,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 11145,
+        "acciones": 0,
+        "max_fill": 15,
+        "acciones_compradas": 15,
+        "exposicion_max_bps": 3331
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 50,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 12377,
+        "neto_vs_mantener_oficial": -678,
+        "drawdown": 687,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 12377,
+        "acciones": 0,
+        "max_fill": 31,
+        "acciones_compradas": 31,
+        "exposicion_max_bps": 6050
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 50,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 4
+      },
+      "entrenamiento": {
+        "patrimonio": 11748,
+        "neto_vs_mantener_oficial": -1307,
+        "drawdown": 1322,
+        "compras": 16,
+        "ventas": 8,
+        "ordenes": 24,
+        "comisiones": 120,
+        "caja": 11748,
+        "acciones": 0,
+        "max_fill": 32,
+        "acciones_compradas": 219,
+        "exposicion_max_bps": 5714
+      },
+      "validacion": {
+        "patrimonio": 9447,
+        "neto_vs_mantener_oficial": 3270,
+        "drawdown": 591,
+        "compras": 3,
+        "ventas": 2,
+        "ordenes": 5,
+        "comisiones": 25,
+        "caja": 9447,
+        "acciones": 0,
+        "max_fill": 24,
+        "acciones_compradas": 40,
+        "exposicion_max_bps": 5077
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 75,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13609,
+        "neto_vs_mantener_oficial": 554,
+        "drawdown": 1039,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 13609,
+        "acciones": 0,
+        "max_fill": 47,
+        "acciones_compradas": 47,
+        "exposicion_max_bps": 8182
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 75,
+        "progresiva": true,
+        "periodo": 128,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 12272,
+        "neto_vs_mantener_oficial": -783,
+        "drawdown": 1452,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 12272,
+        "acciones": 0,
+        "max_fill": 44,
+        "acciones_compradas": 60,
+        "exposicion_max_bps": 8198
+      },
+      "validacion": {
+        "patrimonio": 9606,
+        "neto_vs_mantener_oficial": 3429,
+        "drawdown": 528,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 9606,
+        "acciones": 0,
+        "max_fill": 16,
+        "acciones_compradas": 16,
+        "exposicion_max_bps": 3340
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 100,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 14841,
+        "neto_vs_mantener_oficial": 1786,
+        "drawdown": 1391,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 14841,
+        "acciones": 0,
+        "max_fill": 63,
+        "acciones_compradas": 63,
+        "exposicion_max_bps": 9897
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "breakout",
+        "exposicion": 100,
+        "progresiva": true,
+        "periodo": 128,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13277,
+        "neto_vs_mantener_oficial": 222,
+        "drawdown": 1947,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 13277,
+        "acciones": 0,
+        "max_fill": 59,
+        "acciones_compradas": 75,
+        "exposicion_max_bps": 9917
+      },
+      "validacion": {
+        "patrimonio": 9606,
+        "neto_vs_mantener_oficial": 3429,
+        "drawdown": 528,
+        "compras": 1,
+        "ventas": 1,
+        "ordenes": 2,
+        "comisiones": 10,
+        "caja": 9606,
+        "acciones": 0,
+        "max_fill": 16,
+        "acciones_compradas": 16,
+        "exposicion_max_bps": 3340
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 25,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11595,
+        "neto_vs_mantener_oficial": -1460,
+        "drawdown": 401,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11595,
+        "acciones": 0,
+        "max_fill": 17,
+        "acciones_compradas": 34,
+        "exposicion_max_bps": 3620
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 25,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11500,
+        "neto_vs_mantener_oficial": -1555,
+        "drawdown": 378,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11500,
+        "acciones": 0,
+        "max_fill": 16,
+        "acciones_compradas": 32,
+        "exposicion_max_bps": 3441
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 50,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13210,
+        "neto_vs_mantener_oficial": 155,
+        "drawdown": 792,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 13210,
+        "acciones": 0,
+        "max_fill": 34,
+        "acciones_compradas": 68,
+        "exposicion_max_bps": 6209
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 50,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 12706,
+        "neto_vs_mantener_oficial": -349,
+        "drawdown": 709,
+        "compras": 4,
+        "ventas": 2,
+        "ordenes": 6,
+        "comisiones": 30,
+        "caja": 12706,
+        "acciones": 0,
+        "max_fill": 32,
+        "acciones_compradas": 64,
+        "exposicion_max_bps": 6082
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 75,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 14911,
+        "neto_vs_mantener_oficial": 1856,
+        "drawdown": 1196,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 14911,
+        "acciones": 0,
+        "max_fill": 52,
+        "acciones_compradas": 103,
+        "exposicion_max_bps": 8256
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 75,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13661,
+        "neto_vs_mantener_oficial": 606,
+        "drawdown": 1039,
+        "compras": 5,
+        "ventas": 2,
+        "ordenes": 7,
+        "comisiones": 35,
+        "caja": 13661,
+        "acciones": 0,
+        "max_fill": 47,
+        "acciones_compradas": 79,
+        "exposicion_max_bps": 8153
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 100,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 15965,
+        "neto_vs_mantener_oficial": 2910,
+        "drawdown": 1459,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 15965,
+        "acciones": 0,
+        "max_fill": 63,
+        "acciones_compradas": 126,
+        "exposicion_max_bps": 9287
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "trailing",
+        "exposicion": 100,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13808,
+        "neto_vs_mantener_oficial": 753,
+        "drawdown": 1303,
+        "compras": 6,
+        "ventas": 2,
+        "ordenes": 8,
+        "comisiones": 40,
+        "caja": 13808,
+        "acciones": 0,
+        "max_fill": 59,
+        "acciones_compradas": 91,
+        "exposicion_max_bps": 9956
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 25,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11595,
+        "neto_vs_mantener_oficial": -1460,
+        "drawdown": 401,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11595,
+        "acciones": 0,
+        "max_fill": 17,
+        "acciones_compradas": 34,
+        "exposicion_max_bps": 3620
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 25,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 11500,
+        "neto_vs_mantener_oficial": -1555,
+        "drawdown": 378,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 11500,
+        "acciones": 0,
+        "max_fill": 16,
+        "acciones_compradas": 32,
+        "exposicion_max_bps": 3441
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 50,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13210,
+        "neto_vs_mantener_oficial": 155,
+        "drawdown": 792,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 13210,
+        "acciones": 0,
+        "max_fill": 34,
+        "acciones_compradas": 68,
+        "exposicion_max_bps": 6209
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 50,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 12706,
+        "neto_vs_mantener_oficial": -349,
+        "drawdown": 709,
+        "compras": 4,
+        "ventas": 2,
+        "ordenes": 6,
+        "comisiones": 30,
+        "caja": 12706,
+        "acciones": 0,
+        "max_fill": 32,
+        "acciones_compradas": 64,
+        "exposicion_max_bps": 6082
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 75,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 14911,
+        "neto_vs_mantener_oficial": 1856,
+        "drawdown": 1196,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 14911,
+        "acciones": 0,
+        "max_fill": 52,
+        "acciones_compradas": 103,
+        "exposicion_max_bps": 8256
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 75,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13661,
+        "neto_vs_mantener_oficial": 606,
+        "drawdown": 1039,
+        "compras": 5,
+        "ventas": 2,
+        "ordenes": 7,
+        "comisiones": 35,
+        "caja": 13661,
+        "acciones": 0,
+        "max_fill": 47,
+        "acciones_compradas": 79,
+        "exposicion_max_bps": 8153
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 100,
+        "progresiva": false,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 15965,
+        "neto_vs_mantener_oficial": 2910,
+        "drawdown": 1459,
+        "compras": 2,
+        "ventas": 2,
+        "ordenes": 4,
+        "comisiones": 20,
+        "caja": 15965,
+        "acciones": 0,
+        "max_fill": 63,
+        "acciones_compradas": 126,
+        "exposicion_max_bps": 9287
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    },
+    {
+      "config": {
+        "familia": "hibrida",
+        "exposicion": 100,
+        "progresiva": true,
+        "periodo": 16,
+        "umbral": 8
+      },
+      "entrenamiento": {
+        "patrimonio": 13808,
+        "neto_vs_mantener_oficial": 753,
+        "drawdown": 1303,
+        "compras": 6,
+        "ventas": 2,
+        "ordenes": 8,
+        "comisiones": 40,
+        "caja": 13808,
+        "acciones": 0,
+        "max_fill": 59,
+        "acciones_compradas": 91,
+        "exposicion_max_bps": 9956
+      },
+      "validacion": {
+        "patrimonio": 10000,
+        "neto_vs_mantener_oficial": 3823,
+        "drawdown": 0,
+        "compras": 0,
+        "ventas": 0,
+        "ordenes": 0,
+        "comisiones": 0,
+        "caja": 10000,
+        "acciones": 0,
+        "max_fill": 0,
+        "acciones_compradas": 0,
+        "exposicion_max_bps": 0
+      },
+      "admisible_entrenamiento": true,
+      "admisible_validacion": true
+    }
+  ],
+  "metodo": "Elegir por patrimonio neto el mejor admisible de cada familia/exposición/escalonado en entrenamiento y seleccionar por diferencia neta en validación. Si una celda carece de admisibles, su mejor resultado se conserva solo en la comparación.",
+  "sha256_ajuste_y_validacion": "DF762766199D7961654E5145B1D05A7F352E4193DDF84904F4E6AE7CAC549963",
+  "tramos": {
+    "entrenamiento": [
+      0,
+      12000
+    ],
+    "validacion": [
+      12000,
+      16000
+    ],
+    "prueba": [
+      16000,
+      20000
+    ]
+  },
+  "riesgo": {
+    "max_drawdown_absoluto": 5000,
+    "max_comisiones_entrenamiento": 1000,
+    "max_comisiones_validacion": 400
+  }
+}

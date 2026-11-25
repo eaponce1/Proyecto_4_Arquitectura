@@ -1,0 +1,6 @@
+WARNING: proyecto4\pruebas_fisicas\spi_externo_robusto\tb_trade_spi_externo.sv:47: $readmemh(proyecto4/pruebas_fisicas/spi_externo_robusto/build/precios.hex): Too many words in the file for the requested range [0:15].
+WARNING: proyecto4\pruebas_fisicas\spi_externo_robusto\tb_trade_spi_externo.sv:48: $readmemh(proyecto4/pruebas_fisicas/spi_externo_robusto/build/miso.hex): Too many words in the file for the requested range [0:15].
+WARNING: proyecto4\pruebas_fisicas\spi_externo_robusto\tb_trade_spi_externo.sv:49: $readmemh(proyecto4/pruebas_fisicas/spi_externo_robusto/build/escrituras.hex): Too many words in the file for the requested range [0:15].
+PASS 16 PRICE, SUM10, READY y DECISION; peor caso 54/1131 ciclos
+PASS 16 MISO frente a Python, fase 27 ns, LED=0111
+proyecto4\pruebas_fisicas\spi_externo_robusto\tb_trade_spi_externo.sv:78: $finish called at 1720140000 (1ps)

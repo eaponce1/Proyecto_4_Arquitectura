@@ -1,0 +1,25 @@
+{
+  "lc": 1062,
+  "lut4": 949,
+  "bram": 7,
+  "relojes": {
+    "clk_soc": {
+      "achieved": 54.29766082763672,
+      "constraint": 25
+    },
+    "i_Clk$SB_IO_IN_$glb_clk": {
+      "achieved": 683.5269775390625,
+      "constraint": 25
+    }
+  },
+  "peor_caso_ciclos": 254,
+  "ticks_rtl": 2000,
+  "ticks_por_fase_netlist": 64,
+  "fases_netlist_ns": [
+    0,
+    19,
+    41,
+    63
+  ],
+  "sha256": "745D4437FA71A3CF0D3933E17F2670EC97F7134D7629C78570469CE15DBD9200"
+}

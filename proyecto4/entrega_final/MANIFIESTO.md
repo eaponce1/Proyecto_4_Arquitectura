@@ -23,6 +23,8 @@ Esta carpeta contiene el PDF solicitado y evita duplicar fuentes que ya viven en
 
 ## Paquete reproducible y evidencia vigente
 
+El paquete local `Pochoco_Trader_cierre_auditado.zip` añade al ZIP publicado el ejecutor Windows de 2.000 ticks, su comparador, el informe de auditoría y los registros de la repetición. Para correr el banco desde el paquete extraído, consulta la [guía de Windows](../README.md#repetir-la-validación-de-2000-ticks-en-windows).
+
 Ejecuta python -B proyecto4/entrega_final/preparar_entrega.py desde la raíz para construir el ZIP de entrega. El ZIP incluye las seis corridas completas, el informe PDF, la versión de competencia, las alternativas y sus bancos. El paquete excluye corridas parciales y ejecutables de simulación.
 
 La imagen de competencia mantiene SPI externo y utiliza el firmware y SoC MMIO base. El autotest de 16 ticks aporta evidencia RTL, de implementación y de ejecución física con maestro interno. La [matriz de cierre](../documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito.

@@ -1,0 +1,37 @@
+segmento,estrategia,ticks,patrimonio,caja,acciones,retorno_pct,drawdown,ordenes,compras,ventas,comisiones
+completa,No operar,20000,10000,10000,0,0.0,0,0,0,0,0
+completa,Comprar y mantener,20000,9695,95,60,-3.05,9300,1,1,0,5
+completa,SMA10 base,20000,4577,2017,16,-54.23,5476,931,466,465,4655
+completa,SMA10 umbral 4,20000,9843,7283,16,-1.57,1832,41,21,20,205
+completa,SMA10 cada 64,20000,9960,9960,0,-0.4,1356,40,20,20,200
+completa,Tendencia 256 cada 64,20000,8454,8454,0,-15.46,1936,50,25,25,250
+primeros_2000,No operar,2000,10000,10000,0,0.0,0,0,0,0,0
+primeros_2000,Comprar y mantener,2000,11375,95,60,13.75,1560,1,1,0,5
+primeros_2000,SMA10 base,2000,9839,6831,16,-1.61,396,109,55,54,545
+primeros_2000,SMA10 umbral 4,2000,10571,7563,16,5.71,416,1,1,0,5
+primeros_2000,SMA10 cada 64,2000,10150,10150,0,1.5,224,2,1,1,10
+primeros_2000,Tendencia 256 cada 64,2000,9949,6941,16,-0.51,494,7,4,3,35
+segmento_1,No operar,5000,10000,10000,0,0.0,0,0,0,0,0
+segmento_1,Comprar y mantener,5000,8495,95,60,-15.05,3900,1,1,0,5
+segmento_1,SMA10 base,5000,8828,8828,0,-11.72,1268,244,122,122,1220
+segmento_1,SMA10 umbral 4,5000,10098,10098,0,0.98,788,6,3,3,30
+segmento_1,SMA10 cada 64,5000,10322,10322,0,3.22,368,6,3,3,30
+segmento_1,Tendencia 256 cada 64,5000,9402,9402,0,-5.98,977,14,7,7,70
+segmento_2,No operar,5000,10000,10000,0,0.0,0,0,0,0,0
+segmento_2,Comprar y mantener,5000,15287,1112,63,52.87,1260,1,1,0,5
+segmento_2,SMA10 base,5000,9519,5919,16,-4.81,618,205,103,102,1025
+segmento_2,SMA10 umbral 4,5000,10151,6551,16,1.51,272,5,3,2,25
+segmento_2,SMA10 cada 64,5000,10788,10788,0,7.88,320,12,6,6,60
+segmento_2,Tendencia 256 cada 64,5000,10638,10638,0,6.38,526,10,5,5,50
+segmento_3,No operar,5000,10000,10000,0,0.0,0,0,0,0,0
+segmento_3,Comprar y mantener,5000,7575,51,44,-24.25,3740,1,1,0,5
+segmento_3,SMA10 base,5000,8726,8726,0,-12.74,1436,210,105,105,1050
+segmento_3,SMA10 umbral 4,5000,9111,6375,16,-8.89,1012,5,3,2,25
+segmento_3,SMA10 cada 64,5000,9716,9716,0,-2.84,628,12,6,6,60
+segmento_3,Tendencia 256 cada 64,5000,8890,8890,0,-11.1,1271,14,7,7,70
+segmento_4,No operar,5000,10000,10000,0,0.0,0,0,0,0,0
+segmento_4,Comprar y mantener,5000,9299,19,58,-7.01,4408,1,1,0,5
+segmento_4,SMA10 base,5000,7471,4911,16,-25.29,2530,269,135,134,1345
+segmento_4,SMA10 umbral 4,5000,10333,7773,16,3.33,724,23,12,11,115
+segmento_4,SMA10 cada 64,5000,9963,7403,16,-0.37,464,17,9,8,85
+segmento_4,Tendencia 256 cada 64,5000,9146,9146,0,-8.54,940,14,7,7,70

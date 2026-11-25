@@ -1,0 +1,6 @@
+
+compilacion=0
+PASS decoder: reserved registers/opcodes have no side effects
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\decoder_tb.v:21: $finish called at 7000 (1ps)
+
+simulacion=0

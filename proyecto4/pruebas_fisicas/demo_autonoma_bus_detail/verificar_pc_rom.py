@@ -1,4 +1,5 @@
 """Check that trade.hex fits the autonomous demo's word-addressed fetch."""
+import argparse
 from pathlib import Path
 
 
@@ -7,11 +8,16 @@ def signed(value: int, width: int) -> int:
 
 
 def main() -> None:
-    firmware = (Path(__file__).resolve().parents[2] /
-                "alternativas/mmio_sma10/sw/trade.hex")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--firmware", type=Path)
+    args = parser.parse_args()
+    firmware = args.firmware or (Path(__file__).resolve().parents[2] /
+                                 "alternativas/mmio_sma10/sw/trade.hex")
     words = [int(token, 16) for token in firmware.read_text(encoding="ascii").split()]
-    if len(words) != 71 or words[-1] & 0x7F != 0x6F:
-        raise SystemExit("Expected the 71-word trade firmware ending in JAL")
+    if not 2 <= len(words) <= 512 or words[-1] & 0x7F != 0x6F:
+        raise SystemExit("Expected a 2–512 word firmware ending in JAL")
+    if args.firmware is None and len(words) != 71:
+        raise SystemExit("Expected the original 71-word trade firmware")
 
     transfers = 0
     for index, insn in enumerate(words):
@@ -33,7 +39,7 @@ def main() -> None:
             raise SystemExit(f"Invalid control target at 0x{index * 4:X}: {target}")
         transfers += 1
 
-    print(f"PASS ROM fetch range: {transfers} aligned transfers inside 0x000–0x118")
+    print(f"PASS ROM fetch range: {transfers} aligned transfers inside 0x000..0x{4*(len(words)-1):03X}")
 
 
 if __name__ == "__main__":

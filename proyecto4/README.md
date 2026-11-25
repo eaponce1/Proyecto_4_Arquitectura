@@ -206,7 +206,25 @@ La imagen base está en `programacion_fisica/trade_mmio_base.bin`; `python proye
 
 Con el testbench publicado y 20.000 ticks, MMIO SMA10 base y software original aprobaron **4/4 criterios**. Las 20.000 decisiones coinciden exactamente entre ambas arquitecturas. Ambas terminaron con patrimonio de **$4.577**, 931 órdenes (466 compras y 465 ventas), $4.655 en comisiones y drawdown de $5.476. Los promedios enteros truncados que imprimió el testbench fueron 60 ciclos para MMIO y 218 para software; los peores casos fueron 255 y 413 ciclos, respectivamente. MMIO reduce el costo computacional sin cambiar la estrategia ni el resultado financiero.
 
-Las rondas 1 y 2 también completaron 20.000 ticks y 4/4 criterios por arquitectura con Icarus y espera verificada. Todas las decisiones coincidieron. La integración física con la FPGA maestra sigue pendiente. [Comparación de las tres rondas](resultados/validacion_oficial/comparacion_tres_rondas.csv)
+Las rondas 1 y 2 también completaron 20.000 ticks y 4/4 criterios por arquitectura con Icarus y espera verificada. Todas las decisiones coincidieron. [Comparación de las tres rondas](resultados/validacion_oficial/comparacion_tres_rondas.csv)
+
+### Repetir la validación de 2.000 ticks en Windows
+
+Extrae `Pochoco_Trader_cierre_auditado.zip` en un directorio vacío o usa el árbol local auditado. La raíz es el directorio que contiene `goboard.pcf` y `tb/ejecutar_tb_proyecto4.ps1`. El ZIP de la publicación anterior carece del ejecutor nuevo.
+
+Se usó Windows PowerShell 5.1, Python 3.13.3 e Icarus Verilog 14.0 de desarrollo. Agrega al `PATH` Python y el directorio `bin` de OSS CAD Suite que contiene `iverilog.exe` y `vvp.exe`. El modelo de RAM para simular está en `tests/ram_model.v`.
+
+```powershell
+Get-Command python, iverilog, vvp
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tb\ejecutar_tb_proyecto4.ps1
+if ($LASTEXITCODE -ne 0) { throw 'Fallo la validacion del banco' }
+python -B -m unittest discover -s proyecto4/python -v
+if ($LASTEXITCODE -ne 0) { throw 'Fallo la suite Python' }
+```
+
+El ejecutor compila el SoC de `proyecto4/alternativas/mmio_sma10/rtl/` y carga `proyecto4/alternativas/mmio_sma10/sw/trade.hex`. Valida las 20.000 filas de `proyecto4/resultados/validacion_oficial/practica_meta.csv` y simula sus primeras 2.000 a 100.000 ns por tick. Guarda `tb/build/icarus.log`, `tb/build/decisiones.csv` y el ejecutable `.vvp`. El CSV registra MISO, DECISION, ciclos y contabilidad por tick. Espera `PASS integral`, patrimonio 9.839, 109 órdenes, drawdown 396 y un máximo de 253 ciclos.
+
+El aviso de `$readmemh` indica que el HEX ocupa 71 de las 512 palabras de RAM. La corrida completa y el cotejo con Python constan en la [auditoría final](documentacion/auditoria_final_cierre.md).
 
 ### Comprobaciones al cierre
 
@@ -244,7 +262,7 @@ Versiones observadas al preparar y validar este árbol en Windows (no representa
 | Assembler RV32E del repositorio | No tiene release independiente | `sw/assembler.py`; SHA-256: `1541359E87F59FEEDCE169EC58573EFA063316A7121A9EE27C37AEED8795184D`. |
 | Verilator | 5.053 devel `v5.052-507-g01770671e` | Evaluado para traducir RTL; no sustituye el check MISO de cuatro estados. |
 
-Los hashes fijan los ejecutables/fuentes usados cuando la herramienta no publica un número de versión utilizable. El árbol recibido no contiene metadata Git, por lo que no se informa un commit de origen.
+Los hashes fijan los ejecutables cuando la herramienta carece de una versión utilizable. El árbol descargado carece de metadata Git. La auditoría lo comparó con el checkout publicado en `5229fdbd3d9d674fc9fec207d3e68f4370294017`.
 
 ## Carpeta compacta de entrega
 
@@ -254,4 +272,8 @@ Los hashes fijan los ejecutables/fuentes usados cuando la herramienta no publica
 
 La imagen elegida para el curso es `programacion_fisica/trade_mmio_base.bin`, con MMIO SMA10 base y SPI externo. Las tres rondas de práctica completaron 20.000 ticks y 4/4 criterios para ambas arquitecturas, con equivalencia exacta de decisiones.
 
-La demo autónoma verificó físicamente los 16 precios, decisiones y MISO con la imagen `selftest_fetch_rom_lento.bin` a 12,5 MHz. La flash dio `VERIFY OK`, los LEDs mostraron `1010` y COM10 registró `0xAA` en tres arranques. La prueba con la FPGA maestra sigue pendiente. La [matriz de cierre](documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito y el [manifiesto](entrega_final/MANIFIESTO.md) describe el ZIP.
+La demo autónoma verificó físicamente los 16 precios, decisiones y MISO con la imagen `selftest_fetch_rom_lento.bin` a 12,5 MHz. La flash dio `VERIFY OK`, los LEDs mostraron `1010` y COM10 registró `0xAA` en tres arranques.
+
+En la práctica con la FPGA maestra **Tesla ene 2022**, el grupo fue **Fila 2** y terminó con **$5.329**. La maestra reflejó operaciones en esa fila. Quedan pendientes el cotejo de MISO tick a tick y la verificación del BIN de esa sesión. [Registro de la práctica física](pruebas_fisicas/spi_externo_robusto/README.md#práctica-física-en-fila-2)
+
+La [matriz de cierre](documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito y el [manifiesto](entrega_final/MANIFIESTO.md) describe el ZIP.

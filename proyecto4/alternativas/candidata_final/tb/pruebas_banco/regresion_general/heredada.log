@@ -1,0 +1,36 @@
+PASS core: dependencies, x0, RAM, branches, JAL/JALR
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\core_tb.v:15: $finish called at 525000 (1ps)
+FATAL: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\periph_tb.v:27: debounced buttons
+       Time: 2500370000  Scope: periph_tb
+test_all_programs (test_assembler.AssemblerTests.test_all_programs) ... ok
+test_branch_bounds (test_assembler.AssemblerTests.test_branch_bounds) ... ok
+test_capacity (test_assembler.AssemblerTests.test_capacity) ... ok
+test_invalid_input (test_assembler.AssemblerTests.test_invalid_input) ... ok
+test_known_encodings (test_assembler.AssemblerTests.test_known_encodings) ... ok
+test_labels_and_branches (test_assembler.AssemblerTests.test_labels_and_branches) ... ok
+test_counter_wrap (test_game.GameTests.test_counter_wrap) ... ok
+test_human_timing_changes_sequence (test_game.GameTests.test_human_timing_changes_sequence) ... ok
+test_saturation_does_not_bias_average (test_game.GameTests.test_saturation_does_not_bias_average) ... ok
+test_ten_rounds_error_and_held_buttons (test_game.GameTests.test_ten_rounds_error_and_held_buttons) ... ok
+test_timeout_retries_without_scoring (test_game.GameTests.test_timeout_retries_without_scoring) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.711s
+
+OK
+Traceback (most recent call last):
+  File "C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\run_tests.py", line 36, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\run_tests.py", line 32, in main
+    run([vp,output],cwd=work)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\tests\run_tests.py", line 13, in run
+    subprocess.run([str(x) for x in command], check=True, **kwargs)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Tools\\oss-cad-suite\\bin\\vvp.EXE', 'C:\\Users\\EDUPON~1\\AppData\\Local\\Temp\\pochoco-tests-jtkq5eyr\\periph.vvp']' returned non-zero exit status 1.
+
+salida=1

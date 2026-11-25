@@ -1,0 +1,5 @@
+PASS fase evaluar reproduce los tres CSV y conserva el JSON congelado byte por byte
+PASS prefijos 12.000 y 16.000 decisiones iguales a la ejecuci?n completa
+PASS compra de 63 al tick siguiente se recorta a 39 y la liquidaci?n posterior deja caja 84
+PASS escalonamiento: m?ximo 111 acciones y liquidaci?n [(145, 63), (146, 48)] sin deuda ni corto
+Grilla: 384 configuraciones, 378 admisibles en entrenamiento, 32 finalistas elegibles

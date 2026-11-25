@@ -6,8 +6,9 @@ Agente RV32E para Go Board. Espino ejecuta trade.hex y escribe DECISION. El peri
 - [Informe final PDF](proyecto4/entrega_final/informe_final_proyecto4.pdf)
 - [Matriz de requisitos y evidencia](proyecto4/documentacion/matriz_cierre_pochoco.md)
 - [Guía de defensa](proyecto4/documentacion/guia_defensa.md)
+- [Auditoría final y comandos reproducibles en Windows](proyecto4/documentacion/auditoria_final_cierre.md)
 
-La ronda 3 oficial pasó 4/4 criterios en 20.000 ticks para MMIO y software, con cero diferencias frente a Python. Las corridas de las rondas 1 y 2 y la competencia con FPGA maestra siguen pendientes. El autotest interno y la imagen SPI externa tienen usos distintos. Consulta el estado físico de ambos en la guía.
+Las tres rondas de práctica pasaron 4/4 criterios en Icarus, con 20.000 ticks por ronda y arquitectura y cero diferencias frente a Python. La demo autónoma de 16 ticks obtuvo PASS físico. También se registró una práctica con la FPGA maestra en Fila 2, con cotejo por tick y verificación del BIN pendientes. [Registro de la práctica física](proyecto4/pruebas_fisicas/spi_externo_robusto/README.md#práctica-física-en-fila-2)
 
 ## Referencia del Proyecto 2
 > **Revision del juego:** instrucciones actuales, mapa MMIO y pruebas en [REVISION.md](REVISION.md).
@@ -77,5 +78,5 @@ for the supported subset, game timing, updated MMIO registers and verification l
 
 El desarrollo de Proyecto 4, construido sobre este Espino, está en [`proyecto4/`](proyecto4/README.md). Ese README contiene las instrucciones de ensamblado, simulación, síntesis/programación, versiones detectadas y estado de validación. La variante de hardware elegida es MMIO SMA10 base.
 
-La ronda oficial 3 aprobó 4/4 criterios para MMIO y software, en 20.000 ticks, con decisiones idénticas. Las rondas 1 y 2 siguen pendientes y la integración física con la FPGA maestra no se ha completado. El PDF y el manifiesto de entrega están en `proyecto4/entrega_final/`; el código y la evidencia permanecen en sus rutas canónicas.
+La [guía de Windows](proyecto4/README.md#repetir-la-validación-de-2000-ticks-en-windows) indica cómo ejecutar el banco de 2.000 ticks. El PDF y el manifiesto de entrega están en `proyecto4/entrega_final/`.
 

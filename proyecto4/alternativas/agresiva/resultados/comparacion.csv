@@ -1,0 +1,13 @@
+segmento,inicio,fin,ticks,mantener_oficial,cantidad_mantener_oficial,nombre,patrimonio,rentabilidad_pct,vs_mantener_oficial,vs_mantener_ejecutable,caja,acciones,compras,ventas,ordenes,comisiones,drawdown
+entrenamiento,0,12000,12000,13055,60,No operar,10000,0.0,-3055,-3055,10000,0,0,0,0,0,0
+entrenamiento,0,12000,12000,13055,60,Comprar y mantener (máximo 63),13055,30.55,0,0,95,60,1,0,1,5,3900
+entrenamiento,0,12000,12000,13055,60,Agresiva congelada,15965,59.65,2910,2910,15965,0,2,2,4,20,1459
+validacion,12000,16000,4000,6177,46,No operar,10000,0.0,3823,3823,10000,0,0,0,0,0,0
+validacion,12000,16000,4000,6177,46,Comprar y mantener (máximo 63),6177,-38.23,0,0,13,46,1,0,1,5,4600
+validacion,12000,16000,4000,6177,46,Agresiva congelada,10000,0.0,3823,3823,10000,0,0,0,0,0,0
+prueba,16000,20000,4000,11919,74,No operar,10000,0.0,-1919,-1633,10000,0,0,0,0,0,0
+prueba,16000,20000,4000,11919,74,Comprar y mantener (máximo 63),11633,16.33,-286,0,1553,63,1,0,1,5,4095
+prueba,16000,20000,4000,11919,74,Agresiva congelada,9265,-7.35,-2654,-2368,9265,0,4,4,8,40,1865
+completa,0,20000,20000,9695,60,No operar,10000,0.0,305,305,10000,0,0,0,0,0,0
+completa,0,20000,20000,9695,60,Comprar y mantener (máximo 63),9695,-3.05,0,0,95,60,1,0,1,5,9300
+completa,0,20000,20000,9695,60,Agresiva congelada,15232,52.32,5537,5537,15232,0,6,6,12,60,3558

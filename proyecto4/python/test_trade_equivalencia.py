@@ -139,9 +139,10 @@ class TradeMachine:
             taken = (
                 (funct3 == 0 and a == b)
                 or (funct3 == 1 and a != b)
+                or (funct3 == 4 and s32(a) < s32(b))
                 or (funct3 == 5 and s32(a) >= s32(b))
             )
-            if funct3 not in (0, 1, 5):
+            if funct3 not in (0, 1, 4, 5):
                 raise AssertionError(f"Branch no soportado funct3={funct3}")
             if taken:
                 next_pc = u32(old_pc + offset)

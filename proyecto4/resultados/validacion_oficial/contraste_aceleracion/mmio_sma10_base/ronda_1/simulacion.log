@@ -1,0 +1,17 @@
+WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\alternativas\mmio_sma10\rtl\pochoco_ram.v:36: $readmemh(proyecto4/alternativas/mmio_sma10/sw/trade.hex): Not enough words in the file for the requested range [0:511].
+Patrimonio final:          9947
+Ordenes ejecutadas:        1
+Perdida maxima:            53
+No operar:                 10000
+Comprar y mantener:        9875
+Peor caso precio->decision: 246 ciclos (disponibles: 249762)
+Ciclos promedio precio->decision: 54.72 (32 respuestas)
+Suma de ciclos de respuesta: 1751
+Detalle por tick en decisiones.csv
+PASS MISO sin valores X
+PASS el programa escribe DECISION
+PASS el programa lee todos los precios
+PASS la decision llega antes del siguiente tick
+Espera verificada: 32 intervalos, 7990520 ciclos omitidos, time_ns=320004000
+Testbenchs aprobados: 4/4
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto-2_Juego-en-Assembly-main\pochoco_soc-main\proyecto4\resultados\validacion_oficial\contraste_aceleracion\mmio_sma10_base\ronda_1\tb_proyecto_4_configurado.sv:258: $finish called at 320004000000 (1ps)
