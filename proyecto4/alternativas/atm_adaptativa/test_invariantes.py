@@ -41,4 +41,12 @@ class Invariants(unittest.TestCase):
         p=[100]*80+[220]*80+[100]*80
         self.assertEqual(run(p,Policy(Config()),True),run(p,Policy(Config()),True))
 
+    def test_exhausted_portfolio_is_recorded_without_division_by_zero(self):
+        class Churn:
+            def decide(self,p,cash,shares):return 129 if shares else 65 if cash>=10 else 0
+        m,rows=run([5]*2001,Churn(),True)
+        self.assertEqual((m['patrimonio'],m['caja'],m['acciones']),(0,0,0))
+        self.assertEqual(m['comisiones'],10000)
+        self.assertEqual(rows[-1]['exposicion_pct'],0)
+
 if __name__=='__main__':unittest.main(verbosity=2)

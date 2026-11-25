@@ -1,11 +1,12 @@
 test_causal_price_and_partial_fill (__main__.Invariants.test_causal_price_and_partial_fill) ... ok
+test_exhausted_portfolio_is_recorded_without_division_by_zero (__main__.Invariants.test_exhausted_portfolio_is_recorded_without_division_by_zero) ... ok
 test_future_cannot_change_prefix (__main__.Invariants.test_future_cannot_change_prefix) ... ok
 test_independent_accounting_against_active_reference (__main__.Invariants.test_independent_accounting_against_active_reference) ... ok
 test_reset_starts_fresh (__main__.Invariants.test_reset_starts_fresh) ... ok
 test_up_down_and_sideways (__main__.Invariants.test_up_down_and_sideways) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.744s
+Ran 6 tests in 0.808s
 
 OK
 

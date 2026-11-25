@@ -1,5 +1,37 @@
 PROTOCOLO CONGELADO 436ab1458a045a2d31052f980e2f007086a76c7c1ff88bfb2b6eb064e3aa604f 191 configuraciones
 PASS referencias 8 series, LOCO 5/8, LOSO 6/8, WF 14/24
+MEDIDO practica_amd_2022_may 8000
+MEDIDO practica_apple_2022 8000
+MEDIDO practica_amd_2022_ene 8000
+MEDIDO practica_apple_2023 8000
+MEDIDO practica_netflix_2022 8000
+MEDIDO practica_meta_2022 8000
+MEDIDO practica_netflix_2023 8000
+MEDIDO practica_tesla_2022 8000
+MEDIDO practica_amd_2022_ene 12000
+MEDIDO practica_apple_2022 12000
+MEDIDO practica_amd_2022_may 12000
+MEDIDO practica_apple_2023 12000
+MEDIDO practica_meta_2022 12000
+MEDIDO practica_netflix_2022 12000
+MEDIDO practica_netflix_2023 12000
+MEDIDO practica_tesla_2022 12000
+MEDIDO practica_amd_2022_ene 16000
+MEDIDO practica_amd_2022_may 16000
+MEDIDO practica_apple_2022 16000
+MEDIDO practica_apple_2023 16000
+MEDIDO practica_meta_2022 16000
+MEDIDO practica_netflix_2022 16000
+MEDIDO practica_netflix_2023 16000
+MEDIDO practica_tesla_2022 16000
+MEDIDO practica_amd_2022_ene 20000
+MEDIDO practica_amd_2022_may 20000
+MEDIDO practica_apple_2022 20000
+MEDIDO practica_apple_2023 20000
+MEDIDO practica_meta_2022 20000
+MEDIDO practica_netflix_2022 20000
+MEDIDO practica_netflix_2023 20000
+MEDIDO practica_tesla_2022 20000
 {
   "estado": "NO-GO",
   "seleccion": 4,
@@ -62,7 +94,7 @@ PASS referencias 8 series, LOCO 5/8, LOSO 6/8, WF 14/24
   "loco": 6,
   "loso": 5,
   "walk": 14,
-  "segundos": 10.849496299983002,
+  "segundos": 159.84018360002665,
   "protocolo_sha256": "436ab1458a045a2d31052f980e2f007086a76c7c1ff88bfb2b6eb064e3aa604f",
   "siguientes_fases": "No aprobadas; solo se habilitan con GO cuantitativo"
 }

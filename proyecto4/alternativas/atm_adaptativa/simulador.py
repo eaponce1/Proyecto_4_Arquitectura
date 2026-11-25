@@ -29,7 +29,7 @@ def run(prices,policy,trace=False):
         if trace:rows.append(dict(tick=tick,precio=p,miso=received,decision=pending,caja=cash,
             acciones=shares,patrimonio=wealth,fill=n,comision=fee,comisiones_acum=fees,
             drawdown=peak-wealth,drawdown_pct=100*(peak-wealth)/peak,
-            exposicion_pct=100*shares*p/wealth,regimen=getattr(policy,'regime_name','BASELINE')))
+            exposicion_pct=100*shares*p/wealth if wealth else 0,regimen=getattr(policy,'regime_name','BASELINE')))
     bh=benchmark(prices)
     return dict(patrimonio=wealth,caja=cash,acciones=shares,ordenes=orders,compras=buys,ventas=sells,
         comisiones=fees,drawdown=dd,drawdown_pct=ddpct,mantener_oficial=bh,ventaja=wealth-bh,
