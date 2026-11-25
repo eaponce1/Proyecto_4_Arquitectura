@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "proyecto4" / "documentacion" / "informe_final_proyecto4.md"
 OUTPUT_DIR = ROOT / "proyecto4" / "entrega_final"
 OUTPUT = OUTPUT_DIR / "informe_final_proyecto4.pdf"
+CODE_FONT = "Courier"
 
 
 def register_fonts() -> None:
@@ -57,7 +58,7 @@ def inline_markup(text: str) -> str:
 
     text = re.sub(
         r"`([^`]+)`",
-        lambda m: protect(f'<font name="Code" size="7.2">{html.escape(m.group(1), quote=False)}</font>'),
+        lambda m: protect(f'<font name="{CODE_FONT}" size="7.2">{html.escape(m.group(1), quote=False)}</font>'),
         text,
     )
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: protect(f"{html.escape(m.group(1))} ({html.escape(m.group(2))})"), text)
@@ -93,7 +94,9 @@ def footer(canvas, doc) -> None:
 
 
 def build() -> None:
+    global CODE_FONT
     register_fonts()
+    CODE_FONT = "Code" if "Code" in pdfmetrics.getRegisteredFontNames() else "Courier"
     family = "Body" if "Body" in pdfmetrics.getRegisteredFontNames() else "Helvetica"
     code = "Code" if "Code" in pdfmetrics.getRegisteredFontNames() else "Courier"
     width, height = landscape(A4)
