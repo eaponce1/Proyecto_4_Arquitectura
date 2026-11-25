@@ -4,7 +4,7 @@ Fuente: Proyecto_4_arq.pdf, cinco páginas, secciones 2 a 6. La entrega es el 24
 
 | Requisito | Estado y evidencia | Pendiente o riesgo |
 |---|---|---|
-| Algoritmo entero, causal y dos referencias (§3.1) | Python, 32 pruebas aprobadas. comparacion_final.csv: no operar $10.000, 0 órdenes, $0 comisiones y $0 drawdown. Comprar y mantener $9.695, 1 orden, $5 y $9.300. SMA10 $4.577, 931 órdenes, $4.655 y $5.476. | SMA10 rinde menos que las dos referencias en la práctica. |
+| Algoritmo entero, causal y dos referencias (§3.1) | Python: 32 pruebas al cierre original; 36/36 en CI posterior (25/11). comparacion_final.csv: no operar $10.000, 0 órdenes, $0 comisiones y $0 drawdown. Comprar y mantener $9.695, 1 orden, $5 y $9.300. SMA10 $4.577, 931 órdenes, $4.655 y $5.476. | SMA10 rinde menos que las dos referencias en la práctica. |
 | Assembly RV32E y equivalencia (§3.2) | trade.s y trade.hex conservados. comparar_python.py coteja 20.000 respuestas oficiales contra Python en cada arquitectura, con cero diferencias. test_trade_equivalencia.py prueba el HEX original y compara un caso corto en RTL. | Las series ocultas siguen sin medirse. |
 | Métricas IC, CPI, ciclos y tiempo (§3.2) | CSV por tick de la instrumentación de rendimiento y comparacion_codisenio.csv. En ronda 3 oficial, promedio truncado y máximo de MMIO 60/255 ciclos, software 218/413. | El promedio entero oficial difiere del promedio decimal de la prueba de perfil. |
 | Dos alternativas, Amdahl y roofline (§3.3) | comparacion_codisenio.csv e informe final. Custom-0 y MMIO base se comparan contra software. MMIO elegido por ciclos y porque enruta. | Custom-0 requiere 1.350 LC y carece de Fmax post-route. |
