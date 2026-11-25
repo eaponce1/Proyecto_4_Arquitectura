@@ -1,30 +1,27 @@
 # Manifiesto de entrega — Proyecto 4
 
-Esta carpeta contiene el PDF solicitado y evita duplicar fuentes que ya viven en sus rutas canónicas dentro del repositorio. La rama de entrega es `main` de `eaponce1/Proyecto_4_Arquitectura`.
+## Informe técnico vigente
 
-## Artefactos en esta carpeta
+`informe_final_proyecto4.pdf` se genera desde `../documentacion/informe_final_proyecto4.md` mediante `../documentacion/generar_pdf.py`. El informe contiene el desarrollo técnico, la evidencia de validación y un anexo separado con investigación publicada el 25 de noviembre, después del plazo original.
 
-- `informe_final_proyecto4.pdf`: render de `../documentacion/informe_final_proyecto4.md`, generado con `python -B proyecto4/documentacion/generar_pdf.py`.
+El PDF incluye únicamente el informe técnico. La guía de defensa y el guion de presentación se mantienen como documentos independientes y no se incorporan al PDF.
 
-## Fuentes y evidencia canónica que forman parte de la entrega
+## Variante final de la entrega original
 
-- Código/firmware elegido: `proyecto4/alternativas/mmio_sma10/` (RTL MMIO SMA10 base, wrapper, `sw/trade.s`, `sw/trade.hex` y testbenches); `proyecto4/python/`; `sw/assembler.py`.
-- Infraestructura y protocolo: `rtl/`, `tests/`, `goboard.pcf`, `proyecto4/tb/`, `proyecto4/data/practica_meta.csv` y el testbench oficial conservado en `proyecto4/resultados/validacion_oficial/tb_proyecto_4_profesor.sv`.
-- Build físico reproducible: `proyecto4/programacion_fisica/generar_bitstream.py`, `informe_programacion_fisica.md`, PCF de la raíz, y `trade_mmio_base.bin` (32.220 bytes). El binario se generó para iCE40 HX1K/VQ100 y no demuestra programación física.
-- Validación oficial de ronda 3 conservada: `proyecto4/resultados/validacion_oficial/informe_validacion_oficial.md`, `comparacion_oficial.csv` y las dos salidas de ronda 3 en `corridas/{software_original,mmio_sma10_base}/ronda_3/decisiones.csv`.
-- Validación de las tres rondas de práctica: `proyecto4/resultados/validacion_oficial/comparacion_tres_rondas.csv`, `informe_comparativo_tres_rondas.md` y las cuatro corridas completas de rondas 1 y 2 en `corridas_aceleradas/`, con decisiones, cuatro criterios y duración de simulación.
-- Documentación adicional: `proyecto4/README.md`, `proyecto4/documentacion/informe_final_proyecto4.md`, `guia_defensa.md`, `guion_presentacion.md` y `checklist_entrega.md`.
+La arquitectura seleccionada para la entrega del 24 de noviembre es **MMIO SMA10 base**, ubicada en `../alternativas/mmio_sma10/`, con su propio `sw/trade.s` y `sw/trade.hex`.
 
-## Estado declarado en la fecha de cierre documental
+La evidencia publicada incluye seis corridas de práctica de 20.000 ticks, con tres rondas para software original y MMIO SMA10 base, 4/4 criterios por corrida y decisiones idénticas a Python. El co-diseño compara software original, custom-0 y MMIO SMA10 base. MMIO base completa P&R para iCE40 HX1K/VQ100 con 1.055 LUT4, 1.279/1.280 Logic Cells, 13/16 BRAM y Fmax de 40,50 MHz. Custom-0 excede el área disponible.
 
-- Tres rondas de práctica: 20.000 ticks y 4/4 criterios por ronda y arquitectura. Las seis secuencias de decisiones coinciden con Python.
-- Integración física con FPGA maestra/competencia: pendiente.
-- Demo autónoma de 16 ticks aprobada físicamente en Go Board a 12,5 MHz. Se verificó la flash, se observó 1010 y COM10 devolvió 0xAA en tres arranques. El ZIP incluye `selftest_fetch_rom_lento.bin`, los registros de simulación y timing y ambos logs físicos.
+La demo autónoma de 16 ticks obtuvo PASS físico en la Go Board con maestro SPI interno, verificación de flash, LEDs `1010` y respuesta UART `0xAA` en tres arranques. Esta prueba no acredita la integración física del bitstream de competencia con la FPGA maestra.
 
-## Paquete reproducible y evidencia vigente
+## Investigación posterior al plazo
 
-El paquete local `Pochoco_Trader_cierre_auditado.zip` añade al ZIP publicado el ejecutor Windows de 2.000 ticks, su comparador, el informe de auditoría y los registros de la repetición. Para correr el banco desde el paquete extraído, consulta la [guía de Windows](../README.md#repetir-la-validación-de-2000-ticks-en-windows).
+`../alternativas/candidata_final/` y `../alternativas/agresiva/` contienen variantes experimentales publicadas el 25 de noviembre. Se documentan en un anexo separado del PDF; ninguna reemplaza la arquitectura MMIO SMA10 base ni cuenta con validación física con la FPGA maestra.
 
-Ejecuta python -B proyecto4/entrega_final/preparar_entrega.py desde la raíz para construir el ZIP de entrega. El ZIP incluye las seis corridas completas, el informe PDF, la versión de competencia, las alternativas y sus bancos. El paquete excluye corridas parciales y ejecutables de simulación.
+## Paquetes publicados
 
-La imagen de competencia mantiene SPI externo y utiliza el firmware y SoC MMIO base. El autotest de 16 ticks aporta evidencia RTL, de implementación y de ejecución física con maestro interno. La [matriz de cierre](../documentacion/matriz_cierre_pochoco.md) registra el alcance por requisito.
+`Pochoco_Trader_entrega.zip` y `Pochoco_Trader_cierre_auditado.zip` se conservan como paquetes históricos. La actualización del PDF y de su fuente no reconstruye ni modifica esos ZIP.
+
+## Historial de publicación
+
+El PDF y el manifiesto originales aparecen publicados el 23 de noviembre de 2026 a las 09:21, hora de Chile, antes del plazo del 24 de noviembre a las 10:00. Esta revisión se realiza el 25 de noviembre y no debe confundirse con el artefacto publicado antes del plazo.
