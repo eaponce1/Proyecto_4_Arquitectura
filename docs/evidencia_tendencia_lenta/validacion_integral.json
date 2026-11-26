@@ -1,0 +1,362 @@
+{
+  "politica": "tendencia_lenta_128_5pct",
+  "sha256_bin": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "sha256_hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO",
+  "fuentes": {
+    "rtl/trade_spi_externo.v": "c54d60bf45e7a581e26ab0076dfddf2b112f81c883d438cee19924b1924a84a0",
+    "rtl/trader/espino_core_cpu_trace.v": "38742b5e8b96eaf8c6b5e23745b0abb5a9d788544d4cc3c991c98ee193583578",
+    "rtl/trader/pochoco_ram.v": "0eda65a86c53f468ec10342706a9be87c3cfdf1b64f4b7c6ec64c57db0ba1fd8",
+    "rtl/trader/pochoco_sma10.v": "e1a1878e14a6c1e5b17d1ad97fb0703714f1e58bad84badf21a641ba9a44a7a8",
+    "rtl/trader/pochoco_soc_cpu_trace.v": "d2f8ce256f16a7d0a9c801016613d2b5d96d386d4c9fcf6226a61995cbdead3e",
+    "rtl/trader/pochoco_spi_slave.v": "4703193b253b3f25b405bfca788c7cc1ad3b43a93182d47eafaf499dd3662553",
+    "rtl/espino_core/espino_alu.v": "eaa8b0c5d36b298e5c29b7691cf6941c99c7952b7dbcf08f6e62bf1af4a472d7",
+    "rtl/espino_core/espino_controller.v": "bd82d8404d8f09de2a6968da87e6a7e9c750af9138a4b74c43b3ec89a742c215",
+    "rtl/espino_core/espino_core.v": "9e3e3cae616a4ff057ddcb01728bf8f912eab721d26e3a5fe68daf1c68e9905c",
+    "rtl/espino_core/espino_decoder.v": "8fc8cb18ec63d149e9610942851542d0b2601395b47519716f597283c6dcbcbb",
+    "rtl/espino_core/espino_id_stage.v": "740698037d1e4372e3e26c3a828143debb71b62992d7a69e21ed3b6fc128c704",
+    "rtl/espino_core/espino_if_stage.v": "4734ae2fb9cd60c8f5019be50303504e50e6d25bc09d09a3f06d396d1c5902f4",
+    "rtl/espino_core/espino_load_store_unit.v": "76051d9aba219452dc4e80fd47f306d024c40aea47050dd59fc3c821ea7f5954",
+    "rtl/espino_core/espino_register_file.v": "a19d94587e54d05373a257c95e515979d2f7910328ec8920f649d280bc07b212",
+    "sw/trade.s": "d3efe8f45984f80251fa79d6248b68d507eae890fca3a4a176a479da05188012",
+    "sw/trade.hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+    "tb/tb_spi_margen.sv": "fbc67f6a32bf34d2daefea076f633a9abcce84f214ddf0350a85a3140fa36c14",
+    "proyecto4/alternativas/candidata_final/tb/tb_candidata.sv": "12b93b7037cfc7b95032dcfb1b9588754f726c6eb01896e64fdb9cbaba8c306c",
+    "tools/validar_puertas.py": "b0f6c04402198bd5e1697cdbf520aadab86ad96e0a2e56aa99b051fb6cb4f5c6",
+    "tools/validar_activo_verilator.py": "d27685eec71fb33ed17aae8714b1c53d7993642cdc2394e29950cad0a0e4b322",
+    "tools/validar_oficial.py": "a7fe499b349a5f2e86d77f1a85a773ccfd8fc6b45f37bb7c86cfede841ce5208"
+  },
+  "rtl": [
+    {
+      "serie": "practica_amd_2022_ene",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_amd_2022_ene.csv.gz",
+      "sha256_gz": "95752abd7a1fa107b3f71649c44e8795cd78b3300d469c32c8ea28abcffa0321",
+      "sha256_csv": "6952650ca82b409b2109385dbce0e5d0dfd64e18b32cf2e35927b8a67f0b73bf"
+    },
+    {
+      "serie": "practica_amd_2022_may",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_amd_2022_may.csv.gz",
+      "sha256_gz": "1bb0c849448fa80e45d18e49fb1ded04d3a9c632258a8227816c074be457d840",
+      "sha256_csv": "7bc17336964338cb0241def4fc45fa602f85c847436b54a5b0ae6ae1fd7e14c3"
+    },
+    {
+      "serie": "practica_apple_2022",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_apple_2022.csv.gz",
+      "sha256_gz": "26aae58bbfc55cc4ed62db2a742eec0883043eba769ffa7a54685dfad42a4d94",
+      "sha256_csv": "1c60dbfc3e18feeabaaf4b90b9daeae4aad1e9e37d293be29429e7c8efe454cb"
+    },
+    {
+      "serie": "practica_apple_2023",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_apple_2023.csv.gz",
+      "sha256_gz": "9e047f20ab181a6810d63543e4241b5dbff23a0156ecf1f91c0894249c37c117",
+      "sha256_csv": "f0cb921a036d039fd7f403a9dee187f203ea3fd7e2da98856f1c0cd9cf5c0bf7"
+    },
+    {
+      "serie": "practica_meta_2022",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_meta_2022.csv.gz",
+      "sha256_gz": "e1d6dc669edae1eeae27e9baca1c14a690d3e5cf7d94fbb2a9bae00ca4a8928b",
+      "sha256_csv": "9c96fb791b6c095a97082f75f53b139239105cbcb96a75a73d2b2af8b208dfa7"
+    },
+    {
+      "serie": "practica_netflix_2022",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_netflix_2022.csv.gz",
+      "sha256_gz": "98f04bd79eb480140ac0febcd419465cc6ecacfa1e86a0909722de5b712c0ed5",
+      "sha256_csv": "91b9bdbe70e8d0645fb641a87bf209aa5624ad6792f42c18a12c95d819d1168b"
+    },
+    {
+      "serie": "practica_netflix_2023",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_netflix_2023.csv.gz",
+      "sha256_gz": "a30fd958087fa61e6e5166ff60a12c6090fac69dae31260ded1b7f9a188cee73",
+      "sha256_csv": "1b4fbcd638260f2ade39c678fa8b147111ff7b0bf0570ca10b2d9754f444aeb0"
+    },
+    {
+      "serie": "practica_tesla_2022",
+      "ticks": 20000,
+      "ruta": "docs/evidencia_tendencia_lenta/trazas_rtl/practica_tesla_2022.csv.gz",
+      "sha256_gz": "829456a80bc7e9252010c2ea3e6a9ed1c9c24163f3834af472520868e2b82a8b",
+      "sha256_csv": "8d3a6b9de8a9ba2239c2edce12b8c9a026ad5e5c61a902365cc5552d72995d23"
+    }
+  ],
+  "rtl_integracion": [
+    {
+      "nombre": "rtl_recuperacion",
+      "ticks": 768,
+      "discrepancias": 0,
+      "ciclos_max": 250,
+      "netlist": false,
+      "periodo_ns": 100000
+    },
+    {
+      "nombre": "rtl_compra_venta",
+      "ticks": 396,
+      "discrepancias": 0,
+      "ciclos_max": 242,
+      "netlist": false,
+      "periodo_ns": 100000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase0",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 0,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase19",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 19,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase20",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 20,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase39",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 39,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase40",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 40,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase59",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 59,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase60",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 60,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs20_fase79",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 20,
+      "fase_ns": 79,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs40_fase0",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 40,
+      "fase_ns": 0,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_rtl_cs1000_fase0",
+      "ticks": 396,
+      "discrepancias": 0,
+      "setup_ns": 1000,
+      "fase_ns": 0,
+      "periodo_ns": 40000
+    },
+    {
+      "nombre": "spi_netlist_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs20.log"
+    },
+    {
+      "nombre": "spi_netlist_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs40.log"
+    },
+    {
+      "nombre": "spi_netlist_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs1000.log"
+    },
+    {
+      "nombre": "netlist_contabilidad",
+      "ticks": 396,
+      "periodo_ns": 40000,
+      "discrepancias": 0
+    },
+    {
+      "nombre": "spi_bin_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs20.log"
+    },
+    {
+      "nombre": "spi_bin_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs40.log"
+    },
+    {
+      "nombre": "spi_bin_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs1000.log"
+    },
+    {
+      "nombre": "rtl_estres",
+      "ticks": 936,
+      "discrepancias": 0,
+      "netlist": false,
+      "periodo_ns": 100000,
+      "ciclos_max": 263
+    }
+  ],
+  "integracion_cadencias_largas": [
+    {
+      "serie": "integracion_cadencias",
+      "ticks": 396,
+      "discrepancias": 0,
+      "periodo_ns": 1000000,
+      "ciclos_max": 248,
+      "ciclos_media": 66.33838383838383,
+      "ic_max": 113,
+      "ic_media": 27.755050505050505,
+      "cpi": 2.3901373851332908,
+      "us_max": 19.84,
+      "log": "build/trader/verilator_396_1000000/integracion_cadencias.log",
+      "dos_estados": true
+    },
+    {
+      "serie": "integracion_cadencias",
+      "ticks": 396,
+      "discrepancias": 0,
+      "periodo_ns": 10000000,
+      "ciclos_max": 244,
+      "ciclos_media": 66.96464646464646,
+      "ic_max": 111,
+      "ic_media": 28.07070707070707,
+      "cpi": 2.3855703490464197,
+      "us_max": 19.52,
+      "log": "build/trader/verilator_396_10000000/integracion_cadencias.log",
+      "dos_estados": true
+    }
+  ],
+  "puertas": [
+    {
+      "nombre": "spi_netlist_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs20.log"
+    },
+    {
+      "nombre": "spi_netlist_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs40.log"
+    },
+    {
+      "nombre": "spi_netlist_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs1000.log"
+    },
+    {
+      "nombre": "netlist_contabilidad",
+      "ticks": 396,
+      "periodo_ns": 40000,
+      "discrepancias": 0
+    },
+    {
+      "nombre": "spi_bin_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs20.log"
+    },
+    {
+      "nombre": "spi_bin_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs40.log"
+    },
+    {
+      "nombre": "spi_bin_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs1000.log"
+    }
+  ],
+  "area": {
+    "lc": 1219,
+    "bram": 9
+  },
+  "limites": [
+    "Cadencias largas: integracion de 396 ticks por periodo, no ocho series completas",
+    "BIN reconstruido: retardo funcional uniforme de 1 ns; no simulacion de timing fisico",
+    "La prueba fisica anterior corresponde solo al respaldo Momentum32 5e1579ca",
+    "Rentabilidad secreta y resultados oficiales no demostrados"
+  ],
+  "registro_reprogramacion": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json"
+}

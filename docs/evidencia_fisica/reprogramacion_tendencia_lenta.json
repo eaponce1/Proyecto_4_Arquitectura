@@ -1,0 +1,13 @@
+{
+  "fecha_registro": "2026-11-26",
+  "estado": "REPROGRAMACION_REPORTADA_POR_USUARIO",
+  "declaracion": "YA LA REPORGRAME",
+  "fuente": "Mensaje del usuario en esta conversacion, anterior a la campana de 78 escenarios",
+  "imagen_local_asociada": "competition.bin",
+  "sha256_bin_local": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "alcance": "El usuario confirma la reprogramacion. Los 78 escenarios ejecutan el RTL y el HEX asociados a esta imagen local.",
+  "lectura_independiente_flash": false,
+  "traza_nueva_maestra_adjunta": false,
+  "resultados_oficiales_tres_rondas_adjuntos": false,
+  "nota": "Los dos VERIFY OK anteriores y compras/ventas previas corresponden a Momentum32 5e1579ca. No se reutilizan como medicion de esta sesion."
+}

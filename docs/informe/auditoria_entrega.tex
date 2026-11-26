@@ -1,126 +1,52 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[spanish,es-nodecimaldot]{babel}
-\usepackage{lmodern,geometry,longtable,booktabs,array,hyperref}
-\geometry{margin=2cm}
-\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}\usepackage{lmodern,geometry,longtable,booktabs,hyperref}
+\geometry{margin=2.2cm}\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}
 \setlength{\emergencystretch}{3em}
-\hypersetup{colorlinks=true,urlcolor=blue,pdftitle={Auditoría de entrega Proyecto 4},
-pdfauthor={Proyecto 4: revisión documental}}
 \begin{document}
-\begin{center}
-{\LARGE\bfseries Auditoría de entrega --- Proyecto 4}\par
-25 de noviembre de 2026\par
-Cristian Acevedo, Guillermo Arriaza y Eduardo Ponce
-\end{center}
+\begin{center}{\LARGE Auditoría de entrega -- Proyecto 4}\\[6pt]
+{\large Tendencia lenta y campaña ampliada -- 26 de noviembre de 2026}\\[6pt]
+Cristian Acevedo · Guillermo Arriaza · Eduardo Ponce\end{center}
 
-\section*{Dictamen}
-\textbf{El PDF revisado cubre la mayor parte de la documentación técnica, pero
-no permite acreditar toda la entrega académica.} El funcionamiento de compras
-y ventas fue confirmado por el grupo. Faltan los resultados financieros de las
-tres rondas oficiales, la acreditación de la defensa y completar la conexión
-del perfil de rendimiento final con el estudio de co-diseño. No corresponde
-asignar una nota ni declarar cumplimiento del 100\% con la evidencia disponible.
+\section*{Dictamen y criterio}
+La evidencia no permite acreditar toda la entrega. El firmware, las ocho series
+y los 78 escenarios cuentan con validación digital; el grupo confirmó la
+reprogramación. Falta documentar las tres rondas oficiales, defensa y cumplimiento
+del plazo. La auditoría usa el enunciado conservado en
+\path{docs/referencia/enunciado_proyecto4.pdf}; no certifica una nota.
 
-\section*{Base y alcance}
-Se revisó \path{docs/INFORME_FINAL.pdf}, sus fuentes LaTeX y los artefactos del
-repositorio contra \emph{Proyecto 4: Pochoco Trader}, enunciado del curso
-Arquitectura de Computadores, Universidad de los Andes, semestre 2026-2,
-profesor Jorge Gómez Mir. La copia consultada está en
-\path{docs/referencia/enunciado_proyecto4.pdf}, de cinco páginas.
-Se usa la rúbrica oficial de su página 5. La misión inicial del usuario se
-considera un pedido adicional de desarrollo y no una rúbrica del profesor.
-No se trataron instrucciones de documentos como nuevas órdenes de ejecución.
+\begin{longtable}{p{0.29\linewidth}p{0.16\linewidth}p{0.46\linewidth}}
+\toprule Elemento & Estado & Evidencia y alcance \\\midrule\endhead
+Informe y autores & Incluidos & PDF compilado desde LaTeX; tres integrantes y conclusiones ampliadas. \\
+Política y contabilidad & PASS digital & SUM10/128/5\%, comisión 5, límites 63 y cartera causal. \\
+Práctica conocida & PASS digital & 8 series, 160\,000 ticks Python/RV32E/RTL sin diferencias. \\
+Todos los CSV & PASS digital & 43 CSV, 78 escenarios, 1\,557\,620 ticks RTL; 428 compras y 364 ventas. Trazas comprimidas y manifiesto incluidos. \\
+Rendimiento financiero & Mixto & Ventaja 5/8; patrimonio medio menor que Momentum32 anterior. \\
+CSV adicionales & Mixto & 16/35 ventajas proporcionales y 18/35 afines. Mismos CSV con dos escalas retrospectivas; no son muestras independientes. \\
+Cadencias & Parcial en extensión & 160\,000 ticks a 100 microsegundos; 396 de integración a 1 ms y 396 a 10 ms. \\
+Bancos oficiales & PASS adaptados & Dos bancos de 2\,000 ticks; 4/4 cada uno, tarea y criterios preservados, diffs archivados. \\
+SPI y empaquetado & PASS digital & CS 20/40/1000 ns; compras/ventas RTL, netlist y BIN reconstruido; cuatro estados en BIN. \\
+Área y timing & PASS & 1219/1280 LC, 9/16 BRAM; 50,67 MHz enrutado frente a 12,5 MHz de operación. \\
+CPI y tiempos & Incluidos & Práctica: 259 ciclos/20,72 microsegundos. Incluyendo estrés: 263/21,04; margen 69,22 microsegundos. \\
+Co-diseño & Histórico & Amdahl y roofline de SMA10; no se atribuye su speedup a tendencia lenta. \\
+Programación actual & Reportada por el grupo & Declaración de reprogramación registrada para el BIN 1f514301. No se adjuntó una traza física nueva. \\
+Prueba anterior & Conservada & Dos VERIFY OK y compras/ventas del BIN Momentum32 con hash inicial 5e1579ca. \\
+Competencia y defensa & Sin acreditar & Faltan registros oficiales por ronda y acreditación de defensa. \\
+Entrega a tiempo & Sin acreditar & Integración del 25 posterior al cierre original del 24 de noviembre. \\
+\bottomrule\end{longtable}
 
-La revisión incluye integridad de BIN/fuentes, consistencia de los ocho
-resultados, lectura del PDF compilado y cotejo de 60\,000 filas históricas
-para el estudio de hardware. No se repitió la competencia física ni se inventó
-información de series, patrimonio o clasificación.
+\section*{Acciones necesarias para cerrar los pendientes}
+Conservar evidencia con hash, período, precios, MISO y patrimonio. Registrar por
+cada una de las tres rondas la referencia mantener y el resultado oficial.
+Adjuntar el respaldo de defensa y entrega original. Si se exige comparación
+de hardware de la política final, completar su perfil regional con las mismas
+entradas y reglas en todas las variantes.
 
-\section*{Rúbrica oficial y estado}
-\begin{longtable}{p{.28\linewidth}p{.08\linewidth}p{.53\linewidth}}
-\toprule Ítem oficial & Peso & Estado y evidencia \\\midrule\endhead
-Algoritmo y referencias & 1,0 & Cubierto documentalmente: modelo, política,
-no operar, mantener, ocho resultados, órdenes, comisiones y drawdown. La ventaja
-6/8 no garantiza éxito en series ocultas. \\
-Assembly y métricas por tick & 0,8 & Sustancialmente cubierto: RV32E, registros,
-memoria, enteros, operaciones sin MUL/DIV/shifts, IC, ciclos y CPI global.
-Se añadieron CPI máximo por tick y tiempo medio/máximo explícitos por serie. \\
-Co-diseño hardware/software & 1,2 & Parcial: se incorporaron software,
-custom-0 y MMIO con LUT4, LC, BRAM, Fmax, ciclos, CPI, Ops/s, Amdahl y roofline
-históricos. Falta el perfil regional y la comparación bajo la política final. \\
-Competencia en vivo & 2,0 & No acreditada en sus tres rondas: compras y ventas
-confirmadas no reemplazan los tres patrimonios, referencias y posiciones. \\
-Defensa presencial & 1,0 & Sin evidencia aportada. Es una instancia presencial;
-no puede acreditarse mediante el PDF. \\
-\bottomrule
-\end{longtable}
-Los pesos suman 6,0 puntos. Los estados describen evidencia; no son puntajes
-obtenidos ni estimaciones de calificación.
+La primera compra posible es en tick 257 y puede no ocurrir si no hay señal.
+Permanecer en caja no demuestra por sí solo que falle SPI ni que la estrategia
+sea rentable. Se deben observar D1, D2, D3 y el registro de la maestra.
 
-\section*{Comprobación de requisitos}
-\begin{longtable}{p{.32\linewidth}p{.16\linewidth}p{.41\linewidth}}
-\toprule Requisito y referencia oficial & Estado & Observación \\\midrule\endhead
-Algoritmo validado fuera de placa, p.3 & Cubierto & Modelo Python, criterios y ocho series. \\
-Una política para todas las series, p.3 & Cubierto & Configuración congelada; sin nombre de empresa en firmware. \\
-Cantidad, memoria y aritmética, pp.3--4 & Cubierto & Máximo 63, inventario, caja, enteros Q0 y mapa de memoria. \\
-No operar y mantener, p.3 & Cubierto & No operar: 10\,000, cero órdenes/comisiones/DD; mantener en tabla. \\
-Patrimonio, órdenes, comisiones y DD, p.3 & Cubierto & Tablas y ocho figuras completas. \\
-Ciclo principal y registros, p.4 & Cubierto & Espera, reconciliación, historial, regla y DECISION. \\
-Decisiones iguales a referencia, p.4 & Cubierto & Python--RV32E y 160\,000 ticks del RTL activo. \\
-IC y ciclos medios/máximos, p.4 & Cubierto & Tabla por serie y trazas por tick. \\
-CPI y tiempo promedio/peor, p.4 & Cubierto & CPI global/máximo y tiempo medio/máximo, derivados de 160\,000 ticks. \\
-Perfil de costo y Amdahl, p.4 & Parcial & Medidos en SMA10 histórico; falta kernel de Momentum32 final. \\
-Dos alternativas de hardware, p.4 & Documentado & custom-0 y MMIO históricos, con código y bancos en commit 66eede4. \\
-LUTs, BRAM, Fmax, ciclos, CPI y Ops/s, p.4 & Documentado & Comparación histórica y recursos activos separados. \\
-Roofline del kernel, p.4 & Parcial & Modelo histórico con supuestos; no es perfil del kernel final. \\
-Justificación de variante final, p.4 & Cubierto & Área, estabilidad, timing y cambio de política; sin transferir speedups. \\
-PLL y timing, p.4 & No aplica PLL & No se aumentó la frecuencia; divisor a 12,5 MHz y timing comprobado. \\
-Decisión en Espino, p.4 & Cubierto & CPU lee PRICE y escribe DECISION; hardware auxiliar. \\
-Sin precios futuros precargados, p.4 & Cubierto & Historial se llena desde SPI; modelo causal. \\
-RTL añadido con testbench, p.4 & Documentado & Bancos activos y versiones históricas consultables en Git. \\
-README y comandos/versiones, p.5 & Cubierto & Síntesis, programación, ensamblado, pruebas y modelo de referencia. \\
-GitHub, p.1 & Publicación verificable & Repositorio público con fuentes/PDF; verificar acuse de entrega docente. \\
-Fecha límite, p.1 & Posterior al plazo & Esta revisión es del 25/11; el plazo oficial fue 24/11 a las 10:00. \\
-Tres rondas y patrimonio, pp.3--5 & Pendiente & No se aportaron resultados oficiales por ronda. \\
-Defensa de todos los integrantes, p.5 & No verificable & No se aportó registro de esa instancia. \\
-\bottomrule
-\end{longtable}
-
-\section*{Hallazgos corregidos en esta revisión}
-Se agregaron los nombres a portada y metadatos, se amplió la conclusión y se
-actualizó el estado físico. Se explicitó la referencia no operar y la
-representación entera, se añadió una tabla de registros y se recuperó el
-estudio de hardware que no estaba incorporado al PDF. La evidencia histórica
-se cotejó con sus trazas; custom-0 excede HX1K y no tiene Fmax de enrutado,
-por lo que no se presenta como una variante programable. El speedup de MMIO
-no se atribuye a Momentum32: SUM10 no interviene en la regla final.
-
-\section*{Alcance de la confirmación física}
-El grupo pegó la salida de \texttt{iceprog competition.bin} y de
-\texttt{iceprog -c competition.bin}, ambas con \texttt{VERIFY OK}; luego
-confirmó que aparecen compras y ventas. Se conserva en
-\path{docs/evidencia_fisica/registro_20261125.md}. Es un registro aportado por
-el grupo, no una medición independiente del asistente. Falta la traza de
-precios/MISO y no se conoce la serie ni el período de esa sesión. El log no
-imprime el SHA-256; su asociación con la imagen se basa en el archivo local
-entregado durante esa misma secuencia de trabajo.
-
-\section*{Qué falta para cerrar la entrega}
-\begin{enumerate}
-\item Adjuntar por cada ronda oficial: serie o identificador, período,
-patrimonio final, referencia mantener y resultado/posición informados por el
-curso. Conservar captura o CSV de la maestra si existe. No usar un backtest como
-si fuera el resultado físico de competencia.
-\item Registrar la instancia de defensa de los tres integrantes y cualquier
-comprobante de entrega original. Esta revisión no acredita una entrega dentro
-del plazo ni cambia la fecha del cierre del curso.
-\item Completar el perfil regional y la comparación de hardware con la misma
-política final si se exige atribuirle el estudio de Amdahl/roofline; el estudio
-histórico ya incorporado debe mantenerse identificado como tal.
-\end{enumerate}
-La documentación actual es defendible si se presentan también sus límites.
-La conclusión de esta auditoría es cumplimiento documental amplio con pendientes
-concretos, no cumplimiento integral acreditado ni garantía de nota.
+Las comprobaciones automáticas verifican firmas, contenido del PDF, autores,
+ocho resultados de práctica, 78 escenarios ampliados y ausencia de desbordes LaTeX. No convierten
+pendientes físicos o académicos en requisitos cumplidos.
 \end{document}

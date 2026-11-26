@@ -1,6 +1,6 @@
 {
   "fuentes": {
-    "rtl/trade_spi_externo.v": "d3beff9213ac7b3684a3be89fa0a2661da4a42fcc3a7a2d88cdc9748946d8ee9",
+    "rtl/trade_spi_externo.v": "c54d60bf45e7a581e26ab0076dfddf2b112f81c883d438cee19924b1924a84a0",
     "rtl/trader/espino_core_cpu_trace.v": "38742b5e8b96eaf8c6b5e23745b0abb5a9d788544d4cc3c991c98ee193583578",
     "rtl/trader/pochoco_ram.v": "0eda65a86c53f468ec10342706a9be87c3cfdf1b64f4b7c6ec64c57db0ba1fd8",
     "rtl/trader/pochoco_sma10.v": "e1a1878e14a6c1e5b17d1ad97fb0703714f1e58bad84badf21a641ba9a44a7a8",
@@ -14,17 +14,18 @@
     "rtl/espino_core/espino_if_stage.v": "4734ae2fb9cd60c8f5019be50303504e50e6d25bc09d09a3f06d396d1c5902f4",
     "rtl/espino_core/espino_load_store_unit.v": "76051d9aba219452dc4e80fd47f306d024c40aea47050dd59fc3c821ea7f5954",
     "rtl/espino_core/espino_register_file.v": "a19d94587e54d05373a257c95e515979d2f7910328ec8920f649d280bc07b212",
-    "sw/trade.s": "d8971266f7708cf4a7127ef171585f4bc648d372b6263d509083652cdabe37bb",
-    "sw/trade.hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
-    "goboard_trader.pcf": "13c80dcf14120b1bbb4c0fda01aa4b3892b474bb4240c26c653e8f220b6d6656"
+    "sw/trade.s": "d3efe8f45984f80251fa79d6248b68d507eae890fca3a4a176a479da05188012",
+    "sw/trade.hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+    "goboard_trader.pcf": "13c80dcf14120b1bbb4c0fda01aa4b3892b474bb4240c26c653e8f220b6d6656",
+    "proyecto4/alternativas/tendencia_lenta/modelo_lento.py": "f5748640c86034d461173d8658297192a2b8a445206fb6ca932c1266429b6305"
   },
-  "sha256_bin": "5e1579caef1f8de2813b6cf50bb17c505e77b3a534787447d27660eaad63a606",
-  "sha256_hex": "27d895e1747120d5c4d1b3cc17a91e82ed87d772aeebae4fc5bdcda7d9e04058",
-  "lc": 1260,
+  "sha256_bin": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "sha256_hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+  "lc": 1219,
   "bram": 9,
   "clocks": {
     "clk_soc": {
-      "achieved": 50.18568420410156,
+      "achieved": 50.666263580322266,
       "constraint": 25
     },
     "i_Clk$SB_IO_IN_$glb_clk": {
@@ -37,140 +38,171 @@
       "nombre": "rtl_recuperacion",
       "ticks": 768,
       "discrepancias": 0,
+      "ciclos_max": 250,
       "netlist": false,
-      "ciclos_max": 273
+      "periodo_ns": 100000
     },
     {
       "nombre": "rtl_compra_venta",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
+      "ciclos_max": 242,
       "netlist": false,
-      "ciclos_max": 280
-    },
-    {
-      "nombre": "netlist_fase_0",
-      "ticks": 48,
-      "discrepancias": 0,
-      "netlist": true
-    },
-    {
-      "nombre": "netlist_fase_41",
-      "ticks": 48,
-      "discrepancias": 0,
-      "netlist": true
+      "periodo_ns": 100000
     },
     {
       "nombre": "spi_rtl_cs20_fase0",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 0
+      "fase_ns": 0,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase19",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 19
+      "fase_ns": 19,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase20",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 20
+      "fase_ns": 20,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase39",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 39
+      "fase_ns": 39,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase40",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 40
+      "fase_ns": 40,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase59",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 59
+      "fase_ns": 59,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase60",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 60
+      "fase_ns": 60,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs20_fase79",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 20,
-      "fase_ns": 79
+      "fase_ns": 79,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs40_fase0",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 40,
-      "fase_ns": 0
+      "fase_ns": 0,
+      "periodo_ns": 40000
     },
     {
       "nombre": "spi_rtl_cs1000_fase0",
-      "ticks": 48,
+      "ticks": 396,
       "discrepancias": 0,
       "setup_ns": 1000,
-      "fase_ns": 0
+      "fase_ns": 0,
+      "periodo_ns": 40000
     },
     {
-      "nombre": "spi_netlist_cs20_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "spi_netlist_cs20",
+      "ticks": 396,
       "setup_ns": 20,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs20.log"
     },
     {
-      "nombre": "spi_netlist_cs40_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "spi_netlist_cs40",
+      "ticks": 396,
       "setup_ns": 40,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs40.log"
     },
     {
-      "nombre": "spi_netlist_cs1000_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "spi_netlist_cs1000",
+      "ticks": 396,
       "setup_ns": 1000,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs1000.log"
     },
     {
-      "nombre": "spi_bin_cs20_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "netlist_contabilidad",
+      "ticks": 396,
+      "periodo_ns": 40000,
+      "discrepancias": 0
+    },
+    {
+      "nombre": "spi_bin_cs20",
+      "ticks": 396,
       "setup_ns": 20,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs20.log"
     },
     {
-      "nombre": "spi_bin_cs40_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "spi_bin_cs40",
+      "ticks": 396,
       "setup_ns": 40,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs40.log"
     },
     {
-      "nombre": "spi_bin_cs1000_fase0",
-      "ticks": 48,
-      "discrepancias": 0,
+      "nombre": "spi_bin_cs1000",
+      "ticks": 396,
       "setup_ns": 1000,
-      "fase_ns": 0
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs1000.log"
+    },
+    {
+      "nombre": "rtl_estres",
+      "ticks": 936,
+      "discrepancias": 0,
+      "netlist": false,
+      "periodo_ns": 100000,
+      "ciclos_max": 263
     }
   ],
-  "prueba_fisica": "PENDIENTE"
+  "politica": "tendencia_lenta_128_5pct",
+  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO",
+  "registro_reprogramacion": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json"
 }

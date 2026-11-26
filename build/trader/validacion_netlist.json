@@ -1,0 +1,38 @@
+{
+  "sha256_netlist": "c44125a2bdbc6c26d11cc9172c3d462441250fde1dccca2e37a4be3cb764bf3a",
+  "tests": [
+    {
+      "nombre": "spi_netlist_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs20.log"
+    },
+    {
+      "nombre": "spi_netlist_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs40.log"
+    },
+    {
+      "nombre": "spi_netlist_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Verilator dos estados",
+      "log": "build/trader/puertas_netlist/spi_netlist_cs1000.log"
+    },
+    {
+      "nombre": "netlist_contabilidad",
+      "ticks": 396,
+      "periodo_ns": 40000,
+      "discrepancias": 0
+    }
+  ]
+}

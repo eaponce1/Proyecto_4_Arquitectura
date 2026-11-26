@@ -78,3 +78,51 @@ La animacion no sustituye ese registro ni demuestra como termino una ronda real.
 En el informe identificar por separado simulacion Python, RTL y medicion fisica.
 Incluir ganancias y perdidas: las dos muestras de Netflix pierden frente a mantener.
 Las ocho series ya son conocidas y no constituyen una prueba independiente de series secretas.
+
+## Comportamiento de la tendencia lenta activa
+
+### Testbench de todos los archivos de acciones
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_todas_acciones.ps1
+```
+
+Ejecuta el RTL activo con las ocho series conocidas y los 35 CSV adicionales de
+`Downloads/proyecto4.zip`. Cada adicional se prueba en escala proporcional y afín:
+78 escenarios. Usa hasta 20.000 ticks por archivo; los dos CSV más cortos se
+prueban con su longitud real, sin repetir datos. La cadencia predeterminada es
+100 µs, la más exigente. Cada escenario reinicia CPU y cartera.
+
+El script busca el ZIP en Downloads, en la raíz del repositorio y en su carpeta
+superior. Puedes indicar otra ruta: `.\probar_todas_acciones.ps1 -Zip 'C:\ruta\proyecto4.zip'`.
+Para repetir sin el ZIP, usa las trazas publicadas:
+`wsl -d Ubuntu -- bash tools/repetir_acciones_archivadas_wsl.sh`.
+
+El banco envía precios por SPI y comprueba MISO, DECISION, registros de caja e
+inventario, SUM10, una decisión por precio, contabilidad y plazo de respuesta.
+No programa ni lee la placa real; Verilator simula el circuito en dos estados.
+
+Abre `resultados_simulacion/testbench_todas_acciones/ABRIR_RESULTADOS.html` para
+filtrar por acción. `resumen.csv`, `resumen.json` e `INFORME.md` conservan resultados
+y alcance. Las trazas por tick, operaciones, vectores y logs están en
+`build/testbench_todas_acciones/`. Los CSV externos no se descargan ni se validan
+contra una fuente de mercado; sus dos escalas comparten los mismos datos y usan
+normalización retrospectiva. No constituyen 70 muestras independientes.
+
+El anexo `INFORME_TESTBENCH.pdf` se genera desde `informe_testbench.tex` y muestra
+el resumen y los resultados de cada escenario. Para regenerar su gráfico y fuente,
+una vez terminados todos los casos: `python tools/generar_informe_testbench.py`.
+Luego compila el PDF con `wsl -d Ubuntu -- bash tools/compilar_informe_testbench.sh`.
+
+El visor y el BIN usan SUM10, revisión cada 128 ticks y umbral del 5%. Se empieza en caja. Primera señal posible en tick 256 y ejecución en 257 (índice inicial cero). La ausencia inicial de compras es esperada. El ancla se renueva en cada revisión: una subida acumulada lenta puede no activar entrada.
+
+Para repetir los dos bancos oficiales adaptados: `python -B tools/validar_oficial.py`. Para Python frente al HEX real: `python -B proyecto4/alternativas/tendencia_lenta/validar_equivalencia.py`.
+
+Integración de compra y venta a las cadencias largas, desde esta carpeta:
+
+```powershell
+wsl.exe -d Ubuntu -- bash tools/validar_activo_wsl.sh --integracion --periodo-ns 1000000
+wsl.exe -d Ubuntu -- bash tools/validar_activo_wsl.sh --integracion --periodo-ns 10000000
+```
+
+Sin `--integracion`, el parámetro `--periodo-ns` permite repetir las ocho series completas a otra cadencia. La entrega actual incluye 160.000 ticks a 100 µs y 396 ticks de integración por cada cadencia larga. Los gráficos vigentes están en `resultados_simulacion/informe_tendencia_lenta/`; `informe_ocho_series/` corresponde a Momentum32 histórico.

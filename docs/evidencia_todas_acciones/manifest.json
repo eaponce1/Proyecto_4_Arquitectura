@@ -1,0 +1,557 @@
+{
+  "sha256_bin": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "sha256_hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+  "sha256_resumen": "4806a22251af549bb9a70dbb8bf237484623bf032e49f0a22d0409d84184d69c",
+  "ticks": 1557620,
+  "ordenes": 792,
+  "procedencia": "CSV generados por el testbench RTL; entradas de los 43 CSV documentados en resumen.json",
+  "limites": "Simulacion a 100 us. Dos escalas retrospectivas de los mismos 35 CSV adicionales; no son muestras independientes.",
+  "trazas": [
+    {
+      "serie": "practica_amd_2022_ene",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_amd_2022_ene.csv.gz",
+      "sha256_gz": "95752abd7a1fa107b3f71649c44e8795cd78b3300d469c32c8ea28abcffa0321",
+      "sha256_csv": "6952650ca82b409b2109385dbce0e5d0dfd64e18b32cf2e35927b8a67f0b73bf",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_amd_2022_may",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_amd_2022_may.csv.gz",
+      "sha256_gz": "1bb0c849448fa80e45d18e49fb1ded04d3a9c632258a8227816c074be457d840",
+      "sha256_csv": "7bc17336964338cb0241def4fc45fa602f85c847436b54a5b0ae6ae1fd7e14c3",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_apple_2022",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_apple_2022.csv.gz",
+      "sha256_gz": "26aae58bbfc55cc4ed62db2a742eec0883043eba769ffa7a54685dfad42a4d94",
+      "sha256_csv": "1c60dbfc3e18feeabaaf4b90b9daeae4aad1e9e37d293be29429e7c8efe454cb",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_apple_2023",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_apple_2023.csv.gz",
+      "sha256_gz": "9e047f20ab181a6810d63543e4241b5dbff23a0156ecf1f91c0894249c37c117",
+      "sha256_csv": "f0cb921a036d039fd7f403a9dee187f203ea3fd7e2da98856f1c0cd9cf5c0bf7",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_meta_2022",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_meta_2022.csv.gz",
+      "sha256_gz": "e1d6dc669edae1eeae27e9baca1c14a690d3e5cf7d94fbb2a9bae00ca4a8928b",
+      "sha256_csv": "9c96fb791b6c095a97082f75f53b139239105cbcb96a75a73d2b2af8b208dfa7",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_netflix_2022",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_netflix_2022.csv.gz",
+      "sha256_gz": "98f04bd79eb480140ac0febcd419465cc6ecacfa1e86a0909722de5b712c0ed5",
+      "sha256_csv": "91b9bdbe70e8d0645fb641a87bf209aa5624ad6792f42c18a12c95d819d1168b",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_netflix_2023",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_netflix_2023.csv.gz",
+      "sha256_gz": "a30fd958087fa61e6e5166ff60a12c6090fac69dae31260ded1b7f9a188cee73",
+      "sha256_csv": "1b4fbcd638260f2ade39c678fa8b147111ff7b0bf0570ca10b2d9754f444aeb0",
+      "ticks": 20000
+    },
+    {
+      "serie": "practica_tesla_2022",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/practica_tesla_2022.csv.gz",
+      "sha256_gz": "829456a80bc7e9252010c2ea3e6a9ed1c9c24163f3834af472520868e2b82a8b",
+      "sha256_csv": "8d3a6b9de8a9ba2239c2edce12b8c9a026ad5e5c61a902365cc5552d72995d23",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2019-01-02_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2019-01-02_afin.csv.gz",
+      "sha256_gz": "7ad22e3b87f3df07297537bd680132f4bd359a71156c6a299aa94c9c8b997164",
+      "sha256_csv": "0f598ed38dd23f4908b078afd8ea3207bc44b0c56666d975a4532cb255929c70",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2020-03-23_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2020-03-23_afin.csv.gz",
+      "sha256_gz": "8824dd0a2e6b069f0b1e6207923c43cdb0ee0d48041478b1d733d46a03f47de6",
+      "sha256_csv": "7410977bae92907c59c3319685a7ada5384e0613c973769ced0a77e4039b0358",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2021-01-04_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2021-01-04_afin.csv.gz",
+      "sha256_gz": "dfcf9792ff313f0a9a3e3a86fc6c62a1c7295723cc1f0f5b4ca1a01618d1f648",
+      "sha256_csv": "7f9160b58550d7baabd0f3f7702de7299a8ed87272f0dc26e8a3afd86dc25028",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2022-01-03_afin.csv.gz",
+      "sha256_gz": "0b29180a33c316985a8e33d9d9b92cf07aa847c50a0c99ce947dda60649e84f7",
+      "sha256_csv": "23edc5a57179be7b5fda1277c5fb390bec425476d8dda961015d5f25b831eff6",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2023-08-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2023-08-01_afin.csv.gz",
+      "sha256_gz": "284528a3fc9183ff112491b89a0b90cd434985a5b1e8b45200455d8e25cea418",
+      "sha256_csv": "5088a4fe3c60e1960307394950ac6a9f85b3e85324b8c9b4dd15253ea5172541",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMD_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMD_2022-01-03_afin.csv.gz",
+      "sha256_gz": "5eede0cbe13d4cf5fbc2f47725f2b9528d73ba318e290d16791f7a993a923b38",
+      "sha256_csv": "2f5cb714052ac9c46c6fbaf2b584d90ef3d32603a907570d00465196790cfda7",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMD_2023-05-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMD_2023-05-01_afin.csv.gz",
+      "sha256_gz": "4aad705922c6d3e90426420766bcc8fcde517c8eb01fe99fa84b6875f17f2656",
+      "sha256_csv": "866adf87dade44540000982d38df8e55300594fe7747086823069d3ca117509f",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMZN_2020-03-02_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMZN_2020-03-02_afin.csv.gz",
+      "sha256_gz": "d99efeb9c28117fc6897b824747877cf12b570f935414f9e4bf7a9246a45047c",
+      "sha256_csv": "018a9c8979a065c2a0d203d298618bda80e3f23a3237a12ea7e8f0009ddf776e",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMZN_2023-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMZN_2023-01-03_afin.csv.gz",
+      "sha256_gz": "f9cbecd935cb3f71ac94ff014464a090e6265d4b6eacc24f176e35e96a07938d",
+      "sha256_csv": "59908f4695e43f46f4877fc68fc77bf66e6eeeb5fd36c3f3d76c6e2fe771c539",
+      "ticks": 20000
+    },
+    {
+      "serie": "BA_2020-02-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/BA_2020-02-03_afin.csv.gz",
+      "sha256_gz": "bd146dd053d2b4e3d0809febdc99f7ac0bc8f1603ce3389d7b62372db44e2827",
+      "sha256_csv": "0aee15765dfa934c969f5e6a7663f52fe7684c0f309eb708536bbe18c4ac7f6c",
+      "ticks": 20000
+    },
+    {
+      "serie": "DIS_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/DIS_2022-01-03_afin.csv.gz",
+      "sha256_gz": "4e85e0392f4c5f54f7065a64eec3c49a2f9a23ddb083baf282f54bbfc5590fca",
+      "sha256_csv": "3badd7d737f9a84ae021755b89aee2e2e764b720f13cc2b43678e0e39450240e",
+      "ticks": 19966
+    },
+    {
+      "serie": "GOOGL_2021-06-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/GOOGL_2021-06-01_afin.csv.gz",
+      "sha256_gz": "36d12f6b43db2e918ce61198e33cf27404b436314dcbe3669210c910440a73da",
+      "sha256_csv": "a4e398c3c2f1f4440c883c06b3e31589e4531e8ad226da50f2edf7c390044e3a",
+      "ticks": 18844
+    },
+    {
+      "serie": "GOOGL_2023-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/GOOGL_2023-01-03_afin.csv.gz",
+      "sha256_gz": "d86f22bc5d881ea4a1e1cb7d283993398be35b160250f7ddca5e58631d9e2751",
+      "sha256_csv": "66dc916633eb26036c075480fd180302cc270f8a0fd31c99bacea12e212c512e",
+      "ticks": 20000
+    },
+    {
+      "serie": "INTC_2022-06-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/INTC_2022-06-01_afin.csv.gz",
+      "sha256_gz": "b8c01b9b4881a1061a6d9d6a7425322dbe4dbaabdd9db16404b3abd1cc880b6a",
+      "sha256_csv": "2c76d2e5c2f9403fd706a122bee467129e9826beb111aa7dfcdb21d117108d65",
+      "ticks": 20000
+    },
+    {
+      "serie": "JPM_2021-01-04_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/JPM_2021-01-04_afin.csv.gz",
+      "sha256_gz": "d1d7cbeb16e97d70bddd9dc1289706fc301769fe13cb1d6a84ed6618298cd342",
+      "sha256_csv": "eb44ade2e2e3bca095b40f32b23c31a3b60a5669a28e512dabf3eb9e747e434f",
+      "ticks": 20000
+    },
+    {
+      "serie": "JPM_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/JPM_2022-01-03_afin.csv.gz",
+      "sha256_gz": "2e98c3a9574123390ac40d4fef1208756e6a1eb929936850dec6f6c1ede26c17",
+      "sha256_csv": "260194fe103ca3c391d8fbd5efaa62c59bacac71cad7ff74da8880484581b443",
+      "ticks": 20000
+    },
+    {
+      "serie": "KO_2019-01-02_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/KO_2019-01-02_afin.csv.gz",
+      "sha256_gz": "f577de42ebfbcf6c9725ada08823f6d942580210ef14e5eb55bb5a5c2a731fb8",
+      "sha256_csv": "92d9814629a2fc701e7290ba1d8e2c10c4275937adfb10453299c5d30e6c34cf",
+      "ticks": 20000
+    },
+    {
+      "serie": "KO_2022-06-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/KO_2022-06-01_afin.csv.gz",
+      "sha256_gz": "ef23ae8691641fdcf9aced92c07f1d7bf34270d1517030bb228d4b2b11eec636",
+      "sha256_csv": "7cdcfbdaef1fd5c4d2b37ea155e78cbbb724d0537d7cd4dfb2e9dec8bff5f54c",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2021-03-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2021-03-01_afin.csv.gz",
+      "sha256_gz": "020e5efc22d439bf383f6ea0d26c66c8188ed20e530ccd2c86ca6d08fb6f23c3",
+      "sha256_csv": "f8ea807726abe3ddbc09c61b179206fdfef52503b578075d74f0a9d22f312fbb",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2022-01-03_afin.csv.gz",
+      "sha256_gz": "00439322e5fabdb5425644c063266a27ceeb51f3df67b9ba207d04eda687c4bc",
+      "sha256_csv": "25b5d48e57212a164ad4a714ac945812fbdb627cddfed5ca021b836fcaf1302d",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2022-11-28_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2022-11-28_afin.csv.gz",
+      "sha256_gz": "1578572f99d5dae2785b6e8f1cbe693ebeb534d5b790d879f8f07cc211300478",
+      "sha256_csv": "d8f6ef50609293aa01e841e6cdc635949889cdb24cf7a82641c01467a5f8008c",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2023-06-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2023-06-01_afin.csv.gz",
+      "sha256_gz": "c02afe732598bbb0064f5afb7287257fa32b4995ce5753d77489e5d5065c5ff4",
+      "sha256_csv": "0c551b87240b2f43d3d24d205a4da6b7bef2176e1fe5247c32d21db0ddede1a3",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2020-02-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2020-02-03_afin.csv.gz",
+      "sha256_gz": "47a86b7dcb1832a978709b160c216ce054396e2511593a47777b79c4dcbde370",
+      "sha256_csv": "430f189353c7cb3cea0a17d2468ca4dd2f125fe6b523c1d97e766e05fa425b10",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2022-01-03_afin.csv.gz",
+      "sha256_gz": "a1d9639fd86ca433ace646eb2b1a2b11752f73b1ddd0be42c203e3c0f706dd1d",
+      "sha256_csv": "a5748783b24be2ed31c4304ed7f7e66774299ec726e7f4855c915efa61c8879e",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2023-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2023-01-03_afin.csv.gz",
+      "sha256_gz": "6437757c689b8376f5f43fd73f133eefdd399d00dda1e68fdaa1a544003494ae",
+      "sha256_csv": "99c93dcb1636757290d9de2bb068c55a85ad8438fd93874ee9648b039aba7d24",
+      "ticks": 20000
+    },
+    {
+      "serie": "NFLX_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NFLX_2022-01-03_afin.csv.gz",
+      "sha256_gz": "975dd071be82023d409a2697764834409262f20c343cc883dfbfb499f0298697",
+      "sha256_csv": "3a1436117ab29ca01b7a8f2979b339d2d8a0eac6af5ca1900035684c2dd07acc",
+      "ticks": 20000
+    },
+    {
+      "serie": "NFLX_2022-04-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NFLX_2022-04-01_afin.csv.gz",
+      "sha256_gz": "5ea8001fbb655ac24ba58bd122cae683acf20762a2a8644fac6c79c39dfbcedd",
+      "sha256_csv": "a74ae105a3deaeddec10e01d55b0e91c0246ae7ecbbe1c110ee50c4545313b8a",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2022-01-03_afin.csv.gz",
+      "sha256_gz": "c25c63020bc81b813eabb5d79db828e5e948d089eb954e28d33fa3d8cedd76b3",
+      "sha256_csv": "ad2868e1f49c3ccc7da933950109819c9fd88f6b7efed2cd7d0b0fdea45f00ef",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2022-09-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2022-09-01_afin.csv.gz",
+      "sha256_gz": "799bb1a360369adde45a5d0407ea2b2daa2ae20500477302affafcd76f44a4f0",
+      "sha256_csv": "c93977b23fd18c2f5bf56f6471c27fec185f604675b8042e2bedde0d95d82d82",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2023-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2023-01-03_afin.csv.gz",
+      "sha256_gz": "d451b4a8d296da1f890d2b457f9be25326e9ad813d6d565d6ecaddbe492b81b8",
+      "sha256_csv": "6527e3ce5534d06102e0a4532150fbc2de723bcc3ad703cd1427bfa4f8385747",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2024-01-02_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2024-01-02_afin.csv.gz",
+      "sha256_gz": "c10e7abb4e026f836b42b5e33da172d7e5581a78b76770cb9cd3ff86ee9e4b8f",
+      "sha256_csv": "b4b2b6abab9e59610274091a0001528e1957ba287e9de5b1dc3c72777f94100c",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2020-06-01_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2020-06-01_afin.csv.gz",
+      "sha256_gz": "7a35ede51b58ff2466c2c49cda0257995f85f498c43270203d2734869c9a9ef6",
+      "sha256_csv": "fc001956a876e0b4b51e78d1553b64889704dd84b0def96ba4952a3f2c1a2d10",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2021-01-04_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2021-01-04_afin.csv.gz",
+      "sha256_gz": "635486f95652b0c242b0a2af9b73326d6abcfce3e826c1f98ffd29d81502d975",
+      "sha256_csv": "de8ec04959d6f3ec7d1f3b296ae4c8e97bcfc1f6b7b1ad0d35817a1346f8c341",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2022-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2022-01-03_afin.csv.gz",
+      "sha256_gz": "ed76f1edd6bdb7ab176aa9eef363d7fa1efaca219842631abcd53ef30b79cd86",
+      "sha256_csv": "984c95a32f509c20d552d80bfd196de1ef230ad33378a92251bb2cf97cd2f660",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2023-01-03_afin",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2023-01-03_afin.csv.gz",
+      "sha256_gz": "3e1dbb4f1e9eca95cc4403efc381a9d7c813014d176fe83c5c0c99bff95a5ac3",
+      "sha256_csv": "20c5e6aaa5e6ed2a0dceed1942cc13bf350bc6c73cb199f3dde8e36c3570d541",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2019-01-02_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2019-01-02_prop.csv.gz",
+      "sha256_gz": "e9b862d1ff015007b32208e8f2b1f1c91f04055f27c37e593b7c9628ca3c5994",
+      "sha256_csv": "a49c656162918ac94b822314e620b2d0cf28a67298e1a801628b02a302ec2418",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2020-03-23_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2020-03-23_prop.csv.gz",
+      "sha256_gz": "93201711d9845b3a2795022d196db7ac8512e4ae1aa88d20ea44987b3a3a769c",
+      "sha256_csv": "f174a779f62a6c296bf70406b0852970decf0fc1b6638fac4ceac1060c35cdc2",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2021-01-04_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2021-01-04_prop.csv.gz",
+      "sha256_gz": "ed134f8487ce3c12c4631496938e4108781b9369ca249f72e1f501ff60197324",
+      "sha256_csv": "70597918ba29276185443d34f29fb8053928262f858cc4e9b05b63f68a5ed676",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2022-01-03_prop.csv.gz",
+      "sha256_gz": "d909bf6ee5f12d9ad363f9e4750143799b572a3c916b6da198eb0926fe5bc908",
+      "sha256_csv": "d0ba7dcb0d75f33a422a5826c95a6f50ac8f971b76d23fb517a0257d702efe1a",
+      "ticks": 20000
+    },
+    {
+      "serie": "AAPL_2023-08-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AAPL_2023-08-01_prop.csv.gz",
+      "sha256_gz": "8ffc3e2310e5b47f149d818951fb7996ee21a3968c6ef60194894e93e961dd84",
+      "sha256_csv": "26bc00ea632ab7988e77aa319e2568afc34877c49a0cca88b624c6e3bf713814",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMD_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMD_2022-01-03_prop.csv.gz",
+      "sha256_gz": "100d8186e4db54bcf60371f40ebd3d59c6efe335d62d760ca5a17123df1014eb",
+      "sha256_csv": "fab1eeadff9fa14cf9bd6192b46f3b057088ad1507aef9ea6cdbefa37b020920",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMD_2023-05-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMD_2023-05-01_prop.csv.gz",
+      "sha256_gz": "f45dfca8042210648fe6c74930996aee0d65f98c5f5acfba43739cb8acd09fd7",
+      "sha256_csv": "09a1d8bacfee584d15fc0a49e1aab05a69ba614d2b18e28e94a5206d774792c6",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMZN_2020-03-02_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMZN_2020-03-02_prop.csv.gz",
+      "sha256_gz": "36bd5207b239c79530363c0d6cd68ff942afbaa19a78715ecd27b20edbf5f72d",
+      "sha256_csv": "ef6c28f35886e7cd15549779ca182a08ffc3b96b0bc27d29bdbf67f49caccfff",
+      "ticks": 20000
+    },
+    {
+      "serie": "AMZN_2023-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/AMZN_2023-01-03_prop.csv.gz",
+      "sha256_gz": "d010922325d1fe1a4eb63a4f2cb3220917301aab8b1278d8267737c548cb440c",
+      "sha256_csv": "5ed5faff772211fcbbee4226e0530c5d4c8e9767227c58d643e047f1126398b2",
+      "ticks": 20000
+    },
+    {
+      "serie": "BA_2020-02-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/BA_2020-02-03_prop.csv.gz",
+      "sha256_gz": "21bfb1264d69435b2bcab7ae4e300376917b93e7924da22a78b6bd498fbad360",
+      "sha256_csv": "5d597cc2912cf7bdafcbee972d5fb71dfafed5c614cad05ac234d88559f96926",
+      "ticks": 20000
+    },
+    {
+      "serie": "DIS_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/DIS_2022-01-03_prop.csv.gz",
+      "sha256_gz": "ae87c24351599cff2c2ba5d36c34de17c0e085795594440f13c119ed97eca45c",
+      "sha256_csv": "fbe9a82398236a53f22db00a29c52f6b952c0728abeea7e2cd2f1390d986a66b",
+      "ticks": 19966
+    },
+    {
+      "serie": "GOOGL_2021-06-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/GOOGL_2021-06-01_prop.csv.gz",
+      "sha256_gz": "8201a54aa4757fdde308a38d2449a308cfe5c6eaf6e43747b70d069b54666bd1",
+      "sha256_csv": "c2c3fcdcd5e47e51667b0782a188ba629e731325b32cd96daf35a0dcc012ce41",
+      "ticks": 18844
+    },
+    {
+      "serie": "GOOGL_2023-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/GOOGL_2023-01-03_prop.csv.gz",
+      "sha256_gz": "33156decbf1eb5afe34c342b9e3c86e379393a4ab0f6b04628fa9efb8a6c01f9",
+      "sha256_csv": "4b6a54e8a4d3e580e150e9f3ecee825134f521056a91dca31c34e860f986c0e1",
+      "ticks": 20000
+    },
+    {
+      "serie": "INTC_2022-06-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/INTC_2022-06-01_prop.csv.gz",
+      "sha256_gz": "476fc6a5cb91fae7b1c9bbcaf1d9deda05dfd59347f25054690daf877d404efb",
+      "sha256_csv": "96b12c04f586d323125df53f294aa4c05fe443c8af555f15229ed34f82466254",
+      "ticks": 20000
+    },
+    {
+      "serie": "JPM_2021-01-04_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/JPM_2021-01-04_prop.csv.gz",
+      "sha256_gz": "7131375d6568d6d22f3870ca59ae66a137360a83bff124d06b5764d87f90ddf5",
+      "sha256_csv": "0ecf5327c054bea7702ca1cf9f2c3c3701a76dbbde3399a9c5efcbd2120c90cf",
+      "ticks": 20000
+    },
+    {
+      "serie": "JPM_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/JPM_2022-01-03_prop.csv.gz",
+      "sha256_gz": "bd1da723ba9859daacf18f2b0720175ae9eba68b575527c8866cd277d832ad82",
+      "sha256_csv": "4331ca8c7c143f142673606e1b9b87ce58db76106aa77a8cafad1c93527754d2",
+      "ticks": 20000
+    },
+    {
+      "serie": "KO_2019-01-02_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/KO_2019-01-02_prop.csv.gz",
+      "sha256_gz": "c011ccd193d28545c652707926067388e57100cce8008aac032041b333c46d97",
+      "sha256_csv": "559eb763dba10b7362c253656f96e1a2f0c106c60f2dc090e0d13f31859d0943",
+      "ticks": 20000
+    },
+    {
+      "serie": "KO_2022-06-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/KO_2022-06-01_prop.csv.gz",
+      "sha256_gz": "9bccc8c31ee0a098ff1b5282e223c8a5338d5b3445dd286885ef1db02dbb8e01",
+      "sha256_csv": "f747599e7ffded4fb18c306a6476bbbc331cc7e466b30f673d480b2938fd47d0",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2021-03-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2021-03-01_prop.csv.gz",
+      "sha256_gz": "ce990f705ce5ad6f331a1e1adbdcd9fe0395f9177f4d2c1310dd91239d6ac005",
+      "sha256_csv": "edc9f599df2fa2f2b3e2edf54de352dad3dbfd2d409612a5204df8df19753e7a",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2022-01-03_prop.csv.gz",
+      "sha256_gz": "fbf4e10028524cb9adb739600c379408b03d5a5c2bbb351e8a323a58f74594bb",
+      "sha256_csv": "ef430e05df7a1c204fd41519d893c8829af1fa360487b716f94c6f48950d1e91",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2022-11-28_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2022-11-28_prop.csv.gz",
+      "sha256_gz": "26afd66ea3837a16ebf65404862dfc9ef4abf042e49d74039c48ee8415699e48",
+      "sha256_csv": "c7ccb02582de623715c673f2bb74fac7972f6d273892ff3e881910d586fbe39b",
+      "ticks": 20000
+    },
+    {
+      "serie": "META_2023-06-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/META_2023-06-01_prop.csv.gz",
+      "sha256_gz": "82ee39f0dfcec8fce999b8214e641de74231e2a70a50efa0397119ab135b7be4",
+      "sha256_csv": "330e60e8758c3ee856625c02768e4e9ad12b9302f48d1f0d8f3743fff895e9b0",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2020-02-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2020-02-03_prop.csv.gz",
+      "sha256_gz": "1ff2500a4b557bf6bb15debf3e24a1e19e7f62a53735e2e74682827e9f284155",
+      "sha256_csv": "e842fbbe412185bf7c1d222bd90fe0eedbfd2b29ea294e6ca8c3d92c01ee16f6",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2022-01-03_prop.csv.gz",
+      "sha256_gz": "05d8e565f8c832165ef8e35488aa1c110223f89073e73cc042fe6b5e46a824f4",
+      "sha256_csv": "87edfd97ebe4fa95857d60b0947f14c20af7f2ba0575e1954ccdc552da3ae457",
+      "ticks": 20000
+    },
+    {
+      "serie": "MSFT_2023-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/MSFT_2023-01-03_prop.csv.gz",
+      "sha256_gz": "5129823a6c271c595a834e3de9323fab5b566128db1672d20ee4bac0778a98c9",
+      "sha256_csv": "7c0e86e9814e0848b62017db647ba411d88f45c8027bdd562a5f0e9695e6846a",
+      "ticks": 20000
+    },
+    {
+      "serie": "NFLX_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NFLX_2022-01-03_prop.csv.gz",
+      "sha256_gz": "dfaf5d1d1363f01b000532780637fff727d7f4cc8f060d143e10bb8ac5479de7",
+      "sha256_csv": "2c53a4de6d7b78841ed3afc16645c44d92664e60033385eb908def77c30c8231",
+      "ticks": 20000
+    },
+    {
+      "serie": "NFLX_2022-04-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NFLX_2022-04-01_prop.csv.gz",
+      "sha256_gz": "848adb1c8602c505e83d662748cc34d9b6a17aa600cd6c08d1b76996dbf1d2e2",
+      "sha256_csv": "35b2b2541b7d08b70941336afd28f50912fc4821ee0a96b27ae3cf332f28e8ae",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2022-01-03_prop.csv.gz",
+      "sha256_gz": "d2f760edf5117e03403d7470f2e1a8f0d6fb5a2f52874bb8fd5c67d3a659dc95",
+      "sha256_csv": "007ad2cf3c2b7ae9ece5231c550b08178898cbd64110b6c76d7d7e4737c5ba35",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2022-09-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2022-09-01_prop.csv.gz",
+      "sha256_gz": "f574cb3cdf2ab92ad07b4e5418b991da8937bd8a1657838cbc4bbf430a0d0987",
+      "sha256_csv": "98c3e36b24ad66b0c6c0d6b03fb2f5bd8985df3f8eb5bba18aa5f5c69d64fb9b",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2023-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2023-01-03_prop.csv.gz",
+      "sha256_gz": "22083a5f97c43b2cd68531d18f676f793ed23165a71c7fbec8b8e97959f6713a",
+      "sha256_csv": "17ed7eabcc0f5c57aa30ec721c8db2853db1bd650c0873088f2468feab12d0d1",
+      "ticks": 20000
+    },
+    {
+      "serie": "NVDA_2024-01-02_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/NVDA_2024-01-02_prop.csv.gz",
+      "sha256_gz": "ab7759d20d48be54fa8fe03c708fe068917fd0b7dfe6a4bd0b083812dc1b8dde",
+      "sha256_csv": "998318374b1dbdd9f05144ab0ef9a823248de5d4060391acd7e509ee82adb240",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2020-06-01_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2020-06-01_prop.csv.gz",
+      "sha256_gz": "99c99b7365246f9d038884216628f95b3f04d697b3be0174e3f1b86c1821de9b",
+      "sha256_csv": "25558808e05e1685ab67815a913ba0a6f8be808aecab0f2a49b599b93d8c6ed2",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2021-01-04_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2021-01-04_prop.csv.gz",
+      "sha256_gz": "494cdf5e1a317718137e05f72ffb76fb61aea6fe5eb9530b56634f4c4c9aef2f",
+      "sha256_csv": "fb69c93b97ebfcce8db77a5442a261dbea3205374302af0ff7766ce57b15ea9d",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2022-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2022-01-03_prop.csv.gz",
+      "sha256_gz": "760b7520efc7f50425b615332719994b37ae6091f63468ea6e4976633613a982",
+      "sha256_csv": "53a78ffa1cc33178f73a336d814f5f5c3dc85038f1387b0c38dc3cbab60eb624",
+      "ticks": 20000
+    },
+    {
+      "serie": "TSLA_2023-01-03_prop",
+      "ruta": "docs/evidencia_todas_acciones/trazas_rtl/TSLA_2023-01-03_prop.csv.gz",
+      "sha256_gz": "1a25b54c9824eba1639f608a020e8ecd4e5d86638393e820b3cf78a9eb4e7e1f",
+      "sha256_csv": "5275855cfa56121858683488697f8e863e6613c72ac03f6136e6e0fba1a98047",
+      "ticks": 20000
+    }
+  ]
+}

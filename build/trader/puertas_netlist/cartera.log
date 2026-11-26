@@ -1,0 +1,5 @@
+CARTERA patrimonio=9980 caja=9980 acciones=0 compras=2 ventas=2 comisiones=20 drawdown=20
+PASS 396 MISO frente a Python, fase 0 ns, LED=1111
+- /mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/proyecto4/alternativas/candidata_final/tb/tb_candidata.sv:302: Verilog $finish
+
+Salida=0; segundos=0.516

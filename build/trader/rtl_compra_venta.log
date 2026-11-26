@@ -1,8 +1,8 @@
 WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\rtl\trader\pochoco_ram.v:36: $readmemh(sw/trade.hex): Not enough words in the file for the requested range [0:511].
-METRICAS ticks=48 periodo_ns=100000 ciclos_total=6695 ic_total=2940 peor_caso=280 presupuesto=1131 peor_ic=126 status_y_byte_done=3 cargas_mantenidas=245 ciclos_promedio=139.479167 ic_promedio=61.250000 cpi_global=2.277211
-PASS 48 STATUS, PRICE, SUM10, READY y DECISION; peor caso 280/1131 ciclos
-CARTERA patrimonio=9980 caja=9980 acciones=0 compras=2 ventas=2 comisiones=20 drawdown=11890
-PASS 48 MISO frente a Python, fase 41 ns, LED=1111
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 4920154000 (1ps)
+METRICAS ticks=396 periodo_ns=100000 ciclos_total=26138 ic_total=10958 peor_caso=242 presupuesto=1131 peor_ic=110 status_y_byte_done=34 cargas_mantenidas=1618 ciclos_promedio=66.005051 ic_promedio=27.671717 cpi_global=2.385289
+PASS 396 STATUS, PRICE, SUM10, READY y DECISION; peor caso 242/1131 ciclos
+CARTERA patrimonio=9980 caja=9980 acciones=0 compras=2 ventas=2 comisiones=20 drawdown=20
+PASS 396 MISO frente a Python, fase 41 ns, LED=1111
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 39720154000 (1ps)
 
-Salida=0; segundos=5.177
+Salida=0; segundos=16.076

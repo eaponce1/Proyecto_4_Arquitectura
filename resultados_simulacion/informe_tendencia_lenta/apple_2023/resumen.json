@@ -1,0 +1,40 @@
+{
+  "serie": "Apple 2023",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "periodo": 128,
+    "umbral_pct": 5,
+    "lote_max": 63,
+    "min_adicional": 8,
+    "senal": "SUM10"
+  },
+  "csv_sha256": "6a28f5a36754f82cf17187100a5d1e55554ebc17b6c40528167e8525d16fa675",
+  "hex_sha256": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+  "bin_disponible_sha256": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 9272,
+    "caja": 32,
+    "acciones": 84,
+    "ordenes": 26,
+    "compras": 14,
+    "ventas": 12,
+    "comisiones": 130,
+    "drawdown": 6004,
+    "drawdown_pct": 40.41464728056004,
+    "mantener_oficial": 10371,
+    "ventaja": -1099,
+    "ventaja_pct": -10.596856619419535,
+    "ticks_caja": 7422,
+    "ticks_exposicion_alta": "",
+    "ticks_invertido": 12578
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "f0cb921a036d039fd7f403a9dee187f203ea3fd7e2da98856f1c0cd9cf5c0bf7",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

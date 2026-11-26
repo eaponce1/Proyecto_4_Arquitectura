@@ -1,10 +1,10 @@
 WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\rtl\trader\pochoco_ram.v:36: $readmemh(sw/trade.hex): Not enough words in the file for the requested range [0:511].
-ORDEN tick=1 MISO=7f tipo=1 cantidad=63
-ORDEN tick=2 MISO=64 tipo=1 cantidad=36
-ORDEN tick=33 MISO=bf tipo=2 cantidad=63
-ORDEN tick=34 MISO=a4 tipo=2 cantidad=36
-RESUMEN setup_ns=40 fase_ns=0 precios=48 escrituras=48 diferencias=0 LED=1111
-PASS SPI CS corto 48 ticks; compra y venta MISO exactas
-C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\tb\tb_spi_margen.sv:67: $finish called at 4920113000 (1ps)
+ORDEN tick=257 MISO=7f tipo=1 cantidad=63
+ORDEN tick=258 MISO=64 tipo=1 cantidad=36
+ORDEN tick=385 MISO=bf tipo=2 cantidad=63
+ORDEN tick=386 MISO=a4 tipo=2 cantidad=36
+RESUMEN setup_ns=40 fase_ns=0 precios=396 escrituras=396 diferencias=0 LED=1111
+PASS SPI CS corto 396 ticks; compra y venta MISO exactas
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\tb\tb_spi_margen.sv:71: $finish called at 15960113000 (1ps)
 
-Salida=0; segundos=4.579
+Salida=0; segundos=7.433

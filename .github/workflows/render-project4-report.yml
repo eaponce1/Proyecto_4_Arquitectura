@@ -6,7 +6,8 @@ on:
     paths:
       - 'docs/informe/**'
       - 'tools/generar_informe_latex.py'
-      - 'proyecto4/alternativas/competitiva_definitiva/resultados/**'
+      - 'proyecto4/alternativas/tendencia_lenta/resultados/**'
+      - 'resultados_simulacion/testbench_todas_acciones/**'
       - '.github/workflows/render-project4-report.yml'
   pull_request:
   workflow_dispatch:

@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-25",
+  "fecha": "2026-11-26",
   "integrantes": [
     "Cristian Acevedo",
     "Guillermo Arriaza",
@@ -17,31 +17,38 @@
   },
   "informe": {
     "ruta": "docs/INFORME_FINAL.pdf",
-    "sha256": "279b786643eba7292e1734459f8c843a284563ebf61f2b77e9f9ca64f7787ef0",
-    "paginas": 25
+    "sha256": "974503653f2860e1d5feb6256c3a6f6afca1f7a256b6aeb308f3a6bc8363dc7f",
+    "paginas": 22
   },
   "auditoria": {
     "ruta": "docs/AUDITORIA_ENTREGA.pdf",
-    "sha256": "cd622a8ee08a9b2d6af5ea2dc5bd3dff9e45284c87f4909cbfc0f8c99fe1c9cf",
-    "paginas": 3
+    "sha256": "3acea69b985608f06c6f5c1abadbce51777305dfa090ca06679f806028087200",
+    "paginas": 2
   },
   "comprobaciones": {
     "autores_y_secciones": true,
     "sin_desbordes": true,
     "firmas_bin_y_fuentes": true,
-    "ticks_rtl": 160000,
-    "ventajas_conocidas": "6/8",
+    "ticks_rtl": 1557620,
+    "escenarios": 78,
+    "ventajas_conocidas": "5/8",
+    "ventajas_adicionales": [
+      "16/35 proporcional",
+      "18/35 afin"
+    ],
     "filas_codisenio_cotejadas": 60000,
     "metricas_finales_resumidas": 160000
   },
   "prueba_fisica": {
-    "estado": "CONFIRMADA_POR_EL_GRUPO",
-    "alcance": "dos VERIFY OK y compras/ventas reportadas",
-    "evidencia": "docs/evidencia_fisica/registro_20261125.md",
-    "sha256": "2a74afa8eb49f15dde718381737152b94a2fbd224404a43b5b8f2713bab9d081",
+    "estado": "REPROGRAMACION_REPORTADA_POR_USUARIO",
+    "alcance": "El usuario confirma la reprogramacion. Los 78 escenarios ejecutan el RTL y el HEX asociados a esta imagen local.",
+    "evidencia": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json",
+    "sha256": "38473d89329e98155e41703879eff943fdbd7321c89389e8efe26a41e250f467",
     "resultados_tres_rondas": "NO_APORTADOS"
   },
   "pendientes": [
+    "Traza fisica de la maestra asociada a la reprogramacion reportada",
+    "Ocho series completas a 1 ms y 10 ms si se exige esa extension; actualmente integracion de 396 ticks por cadencia larga",
     "Patrimonio/referencia/posicion de las tres rondas oficiales",
     "Acreditacion de defensa y entrega original dentro del plazo",
     "Perfil regional y comparacion de hardware bajo la politica final"

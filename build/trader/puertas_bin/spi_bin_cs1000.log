@@ -1,0 +1,9 @@
+ORDEN tick=257 MISO=7f tipo=1 cantidad=63
+ORDEN tick=258 MISO=64 tipo=1 cantidad=36
+ORDEN tick=385 MISO=bf tipo=2 cantidad=63
+ORDEN tick=386 MISO=a4 tipo=2 cantidad=36
+RESUMEN setup_ns=1000 fase_ns=0 transferencias=396 diferencias=0 LED=1111 (verificacion externa)
+PASS SPI CS corto 396 ticks; compra y venta MISO exactas
+/mnt/c/Users/Edu Ponce/Downloads/Proyecto-2_Juego-en-Assembly-main (1)/Proyecto_4_Arquitectura-main/tb/tb_spi_margen.sv:73: $finish called at 15960113000 (1ps)
+
+Salida=0; segundos=31.368

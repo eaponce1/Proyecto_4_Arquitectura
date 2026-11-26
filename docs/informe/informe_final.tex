@@ -4,550 +4,323 @@
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage{lmodern,amsmath,graphicx,booktabs,longtable,array,xcolor,geometry,fancyhdr,listings,hyperref}
 \geometry{margin=2.2cm,headheight=15pt}
-\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!55!black,
- pdftitle={Proyecto 4: Pochoco Trader},pdfauthor={Cristian Acevedo; Guillermo Arriaza; Eduardo Ponce}}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
-\setlength{\emergencystretch}{3em}
-\pagestyle{fancy}\fancyhf{}\lhead{Proyecto 4 -- Pochoco Trader}\rhead{Versión integrada}\cfoot{\thepage}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!55!black,pdftitle={Proyecto 4: Pochoco Trader -- Tendencia lenta},pdfauthor={Cristian Acevedo; Guillermo Arriaza; Eduardo Ponce}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}\setlength{\emergencystretch}{3em}
+\pagestyle{fancy}\fancyhf{}\lhead{Proyecto 4 -- Pochoco Trader}\rhead{Tendencia lenta}\cfoot{\thepage}
 \lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible,keepspaces=true}
 \input{datos_generados.tex}
 \begin{document}
 \hypersetup{pageanchor=false}
-\begin{titlepage}
-\centering
-\vspace*{1cm}
-{\Large Arquitectura de Computadores\par}
-\vspace{1cm}
-{\Huge\bfseries Proyecto 4\par}
-\vspace{0.4cm}
-{\LARGE Pochoco Trader\par}
-\vspace{1cm}
-{\Large Estrategia causal, firmware RV32E y validación FPGA\par}
-\vspace{0.8cm}
-{\large Informe técnico de la versión integrada\par}
-\vspace{0.6cm}
-{\large\textbf{Integrantes}\par}
-{\large Cristian Acevedo\par}
-{\large Guillermo Arriaza\par}
-{\large Eduardo Ponce\par}
-\vspace{0.8cm}
-\begin{minipage}{0.88\linewidth}
-\textbf{Estado de la entrega.} La imagen activa cuenta con verificación digital de
-firmware, SPI, cartera y síntesis para Lattice iCE40 HX1K/VQ100. El grupo aportó
-dos verificaciones de flash correctas y confirmó compras y ventas en la placa.
-La evaluación financiera de las tres rondas requiere sus registros propios.
+\begin{titlepage}\centering
+\vspace*{1cm}{\Large Arquitectura de Computadores\par}
+\vspace{1cm}{\Huge\bfseries Proyecto 4\par}
+\vspace{0.4cm}{\LARGE Pochoco Trader\par}
+\vspace{1cm}{\Large Tendencia lenta: SUM10 / 128 ticks / 5\%\par}
+\vspace{0.8cm}{\large Firmware RV32E, SPI y validación para FPGA\par}
+\vspace{0.8cm}{\large\textbf{Integrantes}\par}
+{\large Cristian Acevedo\par}{\large Guillermo Arriaza\par}{\large Eduardo Ponce\par}
+\vspace{1cm}\begin{minipage}{0.88\linewidth}
+\textbf{Estado.} Imagen sintetizada y validada digitalmente para Go Board
+iCE40 HX1K/VQ100. El grupo confirmó la reprogramación de la imagen actual.
+La campaña RTL verificó 78 escenarios y 1\,557\,620 ticks sin discrepancias.
 
-\textbf{Resultado financiero.} La política supera a comprar y mantener en seis de
-ocho series conocidas. No se demuestra superioridad consistente en series
-ocultas. Se incluyen pérdidas, drawdowns y límites de la validación.
-\end{minipage}
-\vfill
+\textbf{Resultados.} Ventaja sobre mantener en 5/8 series conocidas. La media
+del patrimonio es menor que con la política anterior; no se demuestra superioridad
+universal ni rentabilidad garantizada en las rondas secretas. En los 35 CSV
+adicionales obtiene 16/35 ventajas en escala proporcional y 18/35 en afín.
+\end{minipage}\vfill
 \url{https://github.com/eaponce1/Proyecto_4_Arquitectura}\par
-\vspace{0.5cm}
-25 de noviembre de 2026
+26 de noviembre de 2026
 \end{titlepage}
-\pagenumbering{arabic}\hypersetup{pageanchor=true}
-\tableofcontents\clearpage
+\pagenumbering{arabic}\hypersetup{pageanchor=true}\tableofcontents\clearpage
 
-\section{Objetivo y alcance de la evidencia}
-El proyecto implementa un agente de negociación en una Go Board. La maestra
-transmite un precio normalizado por tick y recibe un byte con una orden de compra,
-venta o mantener. La decisión final la calcula Espino mediante Assembly RV32E;
-el hardware proporciona la recepción SPI, los registros MMIO y señales auxiliares.
+\section{Objetivo y alcance}
+La FPGA recibe un precio por SPI y devuelve una orden de compra, venta o mantener.
+Espino RV32E calcula la decisión mediante Assembly; el periférico SUM10 actualiza
+la suma de los últimos diez precios. La política no conoce la empresa ni contiene
+las series de práctica. Cada ronda comienza con caja de \$10\,000, inventario cero
+y comisión de \$5 por orden efectivamente ejecutada.
 
-La competencia busca aumentar el patrimonio frente a comprar al inicio y mantener.
-La solución se evalúa sobre ocho series de práctica de 20\,000 ticks: 160\,000
-observaciones. La serie secreta no es conocida y no se precarga en el firmware.
-El nombre de la empresa solo selecciona el CSV del simulador, nunca una regla de
-la estrategia.
+La integración activa importa sin cambiar sus instrucciones la variante
+\path{alternativas/momentum_lento} del ZIP aportado. Se conserva como
+\path{proyecto4/alternativas/tendencia_lenta/}; el manifiesto \path{origen.json}
+identifica el ZIP y los hashes originales. Se eligió por indicación del grupo,
+sin retocar parámetros para mejorar retrospectivamente las ocho series.
 
-Se distinguen cinco resultados: corrección del programa, simulación del RTL,
-implementación física mediante síntesis y enrutado, programación de la flash y
-funcionamiento frente a la maestra real. Aprobar los primeros tres no demuestra
-los últimos dos ni garantiza rentabilidad.
+El informe incorpora la integración del 25 y la campaña ampliada del 26 de noviembre de 2026,
+posterior al cierre original del 24 de noviembre. No acredita entrega dentro
+del plazo. Las versiones anteriores permanecen en Git y en el respaldo local.
 
-\textbf{Fecha del corte.} Este informe integra el trabajo del 25 de noviembre
-de 2026 y es posterior al cierre original del 24 de noviembre. No representa
-el artefacto que estaba disponible antes de ese plazo. La entrega anterior y
-sus verificaciones permanecen identificadas por sus commits en el historial.
+\section{Arquitectura activa y comunicación}
+El reloj de entrada es de 25 MHz. El divisor y SB\_GB entregan 12,5 MHz a Espino:
+80 ns por ciclo. El top es \path{rtl/trade_spi_externo.v}; el firmware activo,
+\path{sw/trade.s} y \path{sw/trade.hex}, tiene 130 palabras. Utiliza x0--x15,
+aritmética entera, sumas y restas para resolver cantidades de hasta 63; no requiere
+MUL ni DIV. La caja está en x15 y el inventario en x5.
 
-\section{Arquitectura e integración activa}
-\subsection{Componentes y memoria}
-La entrada de reloj es de 25 MHz. Un divisor por dos y un buffer global SB\_GB
-entregan 12,5 MHz a Espino: cada ciclo del SoC dura 80 ns. El top activo es
-\path{rtl/trade_spi_externo.v}; el soporte está en \path{rtl/trader/} y
-\path{rtl/espino_core/}. El firmware activo se encuentra en
-\path{sw/trade.s} y \path{sw/trade.hex}.
-
-El programa tiene 150 instrucciones. Usa x0--x15 y las operaciones LUI, ADDI,
-ANDI, ADD, SUB, LW, SW, BEQ, BNE, BLT, BGE y JAL. No requiere MUL, DIV ni shifts.
-La RAM tiene 512 palabras de 32 bits. El código ocupa las palabras 0--149; el
-pico de la posición está en la palabra 250 y el historial circular de 256 precios
-en las palabras 256--511. El historial no se lee antes de recibir las observaciones
-que representa. La ROM de instrucciones tiene un camino de fetch separado.
-
-La caja se conserva en x15, el inventario en x5 y el byte pendiente en x4.
-Las cantidades y los fills se resuelven mediante un procedimiento binario acotado
-por 63, sin multiplicador ni divisor. Las magnitudes observadas en las series
-quedan dentro de los rangos de la aritmética de 32 bits.
-
-Los precios, cantidades y montos se representan como enteros sin parte
-fraccionaria (Q0); no se emplea punto flotante. Se forman los múltiplos de precio
-2, 4, 8, 16 y 32 mediante sumas; la cotización prueba esas cantidades en orden
-descendente y resta el costo aceptado. El índice en bytes se obtiene duplicando
-dos veces el índice de palabra. Así se evita depender de shifts, MUL o DIV.
-El ciclo principal sondea STATUS, consume PRICE, reconcilia la orden anterior,
-actualiza historial y pico, evalúa el régimen y escribe DECISION.
-
-\begin{center}\small\begin{tabular}{ll}\toprule
-Registros & Función principal \\\midrule
-x0, x1 & Cero y base MMIO SPI \\
-x2, x3 & Estado/presupuesto temporal y precio actual \\
-x4, x5 & Orden pendiente e inventario \\
-x6, x7 & Número de tick y régimen de exposición \\
-x8, x9 & Cantidad resuelta, límite e índice temporal \\
-x10--x14 & Múltiplos de precio, deltas y temporales reutilizados \\
-x15 & Caja de la cartera \\\bottomrule
-\end{tabular}\end{center}
-
-\subsection{MMIO y SPI}
 \begin{center}\begin{tabular}{lll}\toprule
-Dirección & Registro & Uso \\\midrule
-\texttt{0x80010000} & STATUS & Bit de precio nuevo y estado de CS \\
-\texttt{0x80010004} & PRICE & Lee el precio y consume el aviso \\
-\texttt{0x80010008} & DECISION & Byte pendiente para la próxima trama \\
-\texttt{0x8001000C} & SUM10 & Suma móvil auxiliar \\
-\texttt{0x80010010} & READY & Disponibilidad de SUM10 \\\bottomrule
+Dirección & Registro & Función \\\midrule
+\texttt{0x80010000} & STATUS & Precio nuevo y estado SPI \\
+\texttt{0x80010004} & PRICE & Lee precio y consume aviso \\
+\texttt{0x80010008} & DECISION & Próximo byte de respuesta \\
+\texttt{0x8001000C} & SUM10 & Suma móvil de diez precios \\
+\texttt{0x80010010} & READY & Historial SUM10 disponible \\\bottomrule
 \end{tabular}\end{center}
-El SPI usa modo 0, ocho bits, MSB primero y 1 MHz en las pruebas. El periférico
-sincroniza las entradas y carga su registro de transmisión al activar CS. La
-decisión calculada después de recibir el precio $p_n$ aparece en MISO durante la
-trama siguiente; se ejecuta a $p_{n+1}$. La trama inicial normalmente devuelve cero.
+SPI usa modo 0, MSB primero, ocho bits y hasta 1 MHz en las pruebas. Los bits
+7:6 de MISO codifican 01 compra, 10 venta y 00/11 mantener; los bits 5:0,
+la cantidad. \texttt{0x7F} compra 63; \texttt{0xBF} vende 63.
+Una señal calculada con $p_n$ aparece en la trama siguiente y se ejecuta con
+$p_{n+1}$. La primera respuesta es cero. No se concede al agente una ejecución
+al mismo precio que originó la señal.
 
-Los bits 7:6 codifican la acción: 01 compra, 10 venta, 00 y 11 mantienen; los seis
-bits inferiores codifican la cantidad. Ejemplos: \texttt{0x7F} solicita comprar 63 y
-\texttt{0xBF} vender 63. El parámetro EnableSpi del antiguo top del juego no
-participa en esta imagen: el top de Trader conecta SPI de manera explícita.
+Se conserva la corrección de SPI que evita perder el primer bit con CS cercano
+al primer flanco de SCLK. D1 registra CPU iniciada; D2, precio recibido; D3,
+precio leído; D4, orden no nula. Son indicadores persistentes y no parpadean
+por cada operación. D4 apagado puede ser correcto mientras no haya señal.
 
-\section{Contabilidad causal y control de inventario}
-Se parte con caja de \$10\,000 e inventario cero. Cada orden que efectivamente
-ejecuta una cantidad positiva paga \$5. No se permite deuda ni venta en corto.
-Si $C$ es caja, $A$ inventario, $p$ precio y $q$ cantidad solicitada, una compra
-ejecuta
+\section{Contabilidad y política de tendencia lenta}
+Una compra ejecuta $q_e=\min(q,\max(0,\lfloor(C-5)/p\rfloor))$.
+Si $q_e>0$, $C'=C-q_ep-5$ y $A'=A+q_e$. Una venta se limita a las
+acciones disponibles y a cubrir su comisión: $C'=C+q_ep-5$, $A'=A-q_e$.
+Las órdenes rechazadas no pagan comisión. El patrimonio es $W=C+Ap$.
+La orden del último precio queda pendiente si no hay otra trama.
+
+Se comienza en caja. Sea $S_n=\sum_{i=0}^{9}p_{n-i}$. Cada 128 ticks,
+una vez disponible SUM10, se compara $S_n$ con el ancla $B$ guardada en la
+revisión anterior. La regla entera evita divisiones:
 \[
-q_e=\min\left(q,\max\left(0,\left\lfloor\frac{C-5}{p}\right\rfloor\right)\right).
+\begin{array}{ll}
+20(S_n-B)\ge B &: \text{régimen alcista},\\
+20(B-S_n)\ge B &: \text{régimen de salida}.
+\end{array}
 \]
-Si $q_e>0$, se actualiza $C'=C-q_ep-5$ y $A'=A+q_e$.
-La venta se recorta a $q_e=\min(q,A)$ y solo se ejecuta si sus ingresos y la caja
-cubren la comisión: $C'=C+q_ep-5$, $A'=A-q_e$.
-El patrimonio a cada tick es $W=C+Ap$.
+Si no se alcanza ninguno, se conserva el régimen. \textbf{El ancla se actualiza
+en cada revisión, aunque no cambie el régimen}. No es una comparación con el
+precio de compra ni un umbral acumulado desde el inicio. Variaciones pequeñas
+sucesivas pueden no activar una compra, incluso si el movimiento total es grande.
 
-Al recibir un precio, el firmware reconstruye primero la ejecución del byte
-pendiente con ese precio; después actualiza su historial y calcula la próxima
-orden. Una orden rechazada o sin cantidad ejecutada no paga comisión. Las compras
-parciales y liquidaciones mayores a 63 continúan mediante varios ticks. La orden
-calculada después del último precio queda pendiente; no se contabiliza como si
-hubiera llegado otra trama.
+En alcista se compra lo que permita la caja, con límite 63. La primera entrada
+admite una acción; si ya hay posición, una compra adicional debe tener al menos
+ocho para evitar comisiones por lotes muy pequeños. En salida se liquida hasta
+63 por tick. El régimen permanece activo entre revisiones. No hay stop de
+20 puntos ni revisión cada ocho ticks en esta versión.
 
-El benchmark oficial compra idealmente en tick 0 con una sola comisión y sin
-límite de 63. Esa referencia tiene una ventaja de ejecución respecto de un agente
-SPI real. Por ello también se conserva una referencia ejecutable por SPI en los
-CSV de comparación.
+Con índice inicial cero, el tick 128 guarda el primer ancla y el tick 256 puede
+generar la primera señal. Su ejecución más temprana es el tick 257. Hay que
+reiniciar la placa antes de cada serie y esperar D1 antes de iniciar la maestra.
+No se deben forzar compras para hacer encender D4: cambiaría la política evaluada.
 
-\section{Política seleccionada}
-\subsection{Momentum32 con trailing stop}
-La exposición inicial es alcista: se busca invertir la caja disponible. Cada ocho
-ticks se revisa el cambio causal $d_{32}=p_n-p_{n-32}$. Con al menos 32 observaciones
-previas, se cambia al régimen de salida si $d_{32}\leq -16$ o si el precio está
-20 puntos o más bajo el pico observado durante la posición. Si no hay salida y
-$d_{32}\geq 6$, se reentra. Entre esos umbrales se conserva el régimen.
-
-En régimen alcista se completan las compras posibles, hasta 63 por orden. En
-régimen de salida se liquida el inventario, también hasta 63 por orden. El pico
-se reinicia al quedar plano. El stop se revisa cada ocho ticks y no evita una
-pérdida ya causada por un salto adverso recibido. Tampoco asegura reentrar antes
-de una recuperación.
-
-La configuración común de investigación incluye horizonte lento 128 y umbral
-gradual 12; esos dos campos \textbf{no intervienen en la decisión trailing elegida}.
-El delta lento se conserva como telemetría. No se atribuye al algoritmo final una
-mejora por un filtro lento que no utiliza. SUM10 y READY siguen disponibles, pero
-el periférico no sustituye la decisión del procesador.
-
-\subsection{Comparación de alternativas y revisiones}
-Se reprodujeron Conservar, SMA10, candidata\_final, agresiva, Momentum32 y mantener
-ejecutable con la misma contabilidad. La grilla de desarrollo también evaluó
-doble horizonte, breakout, trailing fijo y adaptativo, filtros de promedio,
-máximos decrecientes, persistencia negativa y exposiciones 0/25/50/75/100\%.
-
-\begin{center}\small\begin{tabular}{lrrrr}\toprule
-Política & Patrimonio medio & Mínimo & Ventajas & Comisión media \\\midrule
-\TablaFamilias
-\bottomrule\end{tabular}\end{center}
-La primera selección, breakout, falló ante una caída gradual: terminó en
-\$3\,950. Esa observación se trató como información de desarrollo y motivó una
-segunda revisión, con un filtro de admisibilidad de drawdown no mayor a
-\$3\,025 en el descenso sintético. La revisión descartada se conserva como
-evidencia. El filtro es una decisión de desarrollo, no una prueba independiente.
-
-El ranking prioriza fracción de ventajas; luego combina mediana, media, peor
-ventaja y drawdown, y desempata por patrimonio mínimo y comisiones. La política
-final se congeló usando los primeros 12\,000 ticks de cada serie. La selección
-favorece protección ante la caída gradual, a costa de otros resultados; no es una
-demostración de optimalidad universal.
-
-\section{Datos y caracterización estadística}
-Cada CSV contiene 20\,000 índices consecutivos y precios entre 100 y 255.
-Se comprobaron las ocho series, sus hashes y la igualdad del CSV Meta adjunto
-con los precios de Meta del conjunto. Las variaciones se calculan a partir de
-precios normalizados; no son el retorno anual de las acciones originales.
-
-\begin{center}\small\begin{tabular}{lrrrrr}\toprule
-Serie & Inicial & Final & Repetidos (\%) & Volatilidad & Cambios $\geq2$ \\\midrule
-\TablaDatos
-\bottomrule\end{tabular}\end{center}
-La volatilidad de esta tabla es la desviación poblacional de las diferencias de
-precio de un tick. Los archivos \path{estadisticas_series.csv} y
-\path{estadisticas_horizontes.csv} incluyen extremos, drawdowns del activo,
-duraciones y horizontes 4, 8, 16, 32, 64, 128 y 256. Para describir regímenes,
-los bloques no solapados se clasifican por desplazamiento de al menos dos puntos
-en cada dirección; los demás son laterales. Esta clasificación retrospectiva
-solo describe datos y no se entrega como información futura al firmware.
-
-\section{Resultados financieros en las ocho series}
-La referencia \emph{no operar} conserva \$10\,000 en cada una de las ocho
-series, con cero órdenes, cero comisiones y drawdown cero. La tabla compara
-la estrategia con la segunda referencia exigida: comprar al inicio y mantener.
+\section{Resultados y comparación con la imagen anterior}
+Se usan ocho series conocidas de 20\,000 ticks. Comprar y mantener es el benchmark
+oficial ideal: compra inicial con una comisión y sin límite de 63. No operar
+conserva \$10\,000 con cero comisiones y drawdown cero.
 \begin{center}\small\begin{tabular}{lrrrrrr}\toprule
 Serie & Trader & Mantener & Ventaja & Órdenes & Comisión & DD (\%) \\\midrule
-\TablaResultados
-\bottomrule\end{tabular}\end{center}
-Se obtiene ventaja en 6/8 series conocidas y se termina sobre el capital inicial
-en 6/8. La mediana de ventaja relativa es 24,90\% y la media, 33,08\%. El peor
-patrimonio es \$8\,615, en Netflix 2022. La peor ventaja relativa frente a mantener
-es $-6,14\%$. El mayor drawdown porcentual es 61,11\%, en Netflix 2023, y el mayor
-drawdown absoluto es \$15\,881, en Apple 2023. Son medidas distintas: el drawdown
-absoluto se toma desde el máximo histórico, que puede superar el capital inicial.
+\TablaResultados\bottomrule\end{tabular}\end{center}
+La tendencia lenta supera a mantener en cinco de ocho series y conserva patrimonio
+superior al inicial en cinco. Su peor resultado es \$8\,540 y su drawdown porcentual
+máximo, 50,55\%. Mejora los dos casos Netflix frente a Momentum32 con stop, pero
+empeora otros casos. No existe un piso de capital garantizado.
+
+\begin{center}\begin{tabular}{lrrr}\toprule
+Serie & Momentum32 + stop & Tendencia lenta & Diferencia \\\midrule
+\TablaComparacion\bottomrule\end{tabular}\end{center}
+La media pasa de \$\MediaAnterior\ a \$\MediaLenta; las ventajas frente a mantener
+pasan de 6/8 a 5/8. La reducción del drawdown máximo observado no compensa
+automáticamente esa pérdida de patrimonio: son criterios diferentes.
+Las ocho muestras ya eran conocidas; ninguna de estas cifras es prueba
+independiente de superioridad en las rondas secretas. Los estudios históricos
+de selección, folds y walk-forward de Momentum32 no se transfieren a esta política.
 
 \begin{center}\small\begin{tabular}{lrrrrr}\toprule
-Serie & Caja final & Acciones & Ticks en caja & Ticks exp. alta & DD absoluto \\\midrule
-\TablaInventario
-\bottomrule\end{tabular}\end{center}
-La exposición alta significa al menos 75\% del patrimonio invertido. Los conteos
-se dividen por 20\,000 para obtener proporciones. La comisión consignada es el
-débito efectivamente contabilizado; quitarla en una corrida distinta puede
-alterar cantidades futuras, por lo que no se interpreta como un experimento
-contrafactual de comisión cero.
+Serie & Caja & Acciones & Ticks en caja & Invertido & DD absoluto \\\midrule
+\TablaInventario\bottomrule\end{tabular}\end{center}
+Invertido cuenta ticks con al menos una acción. Drawdown absoluto y porcentual
+se calculan desde el máximo de patrimonio alcanzado; no equivalen a la pérdida
+contra el capital inicial. La comisión indica el débito efectivamente ejecutado.
 
-Las dos muestras de Netflix pierden frente a mantener. Las salidas y reentradas
-pueden perder recuperaciones y generar comisiones. La estrategia conserva
-riesgos elevados incluso cuando mejora el patrimonio final de una muestra.
-
-\section{Validación interna y riesgo de sobreajuste}
+\section{Escenarios adversos y equivalencia}
 \begin{center}\small\begin{tabular}{lrrrr}\toprule
-Procedimiento & Ventajas & Mediana (\%) & Media (\%) & Peor (\%) \\\midrule
-\TablaValidacion
-\bottomrule\end{tabular}\end{center}
-En cada fold se seleccionaron parámetros usando exclusivamente las empresas,
-series o prefijos de entrenamiento. La empresa o serie excluida no interviene
-en esa selección. El filtro sintético se aplica de la misma forma a todos los
-folds y pertenece al desarrollo común.
+Escenario & Trader & Mantener & Órdenes & DD (\%) \\\midrule
+\TablaSinteticos\bottomrule\end{tabular}\end{center}
+Los sintéticos incluyen caída gradual, salto adverso, recuperación, lateralidad,
+alternancia y precios extremos. Son casos de desarrollo, no nuevas series
+independientes. Un descenso puede conservar la caja porque no hubo entrada;
+eso no demuestra capacidad para vender oportunamente una posición ya abierta.
+En el estrés extremo de saltos y precios de 1 a 200, el patrimonio final es
+\$69 y el drawdown llega a 99,31\%. Es una pérdida financiera severa aunque la
+equivalencia técnica sea correcta. El máximo de 50,55\% citado antes se refiere
+exclusivamente a las ocho series conocidas, no a todos los sintéticos.
 
-Walk-forward ajusta en los primeros 8\,000, 12\,000 y 16\,000 ticks de cada serie
-y evalúa sus siguientes 4\,000 ticks: 24 ventanas. Cada prueba de ventana
-reinicia cartera e indicadores. La cronología es por serie, no una alineación
-de fechas entre empresas. Los resultados excluidos evalúan el procedimiento de
-selección, no ocho pruebas independientes de una sola configuración final.
+El modelo se cotejó con un intérprete que ejecuta las instrucciones HEX reales:
+160\,000 ticks de práctica y los sintéticos, verificando MISO, DECISION, caja,
+inventario y régimen. El reensamblado debe coincidir palabra por palabra con el
+HEX original. Se preservan sus bytes y su hash pese a diferencias LF/CRLF.
 
-Todas las series de práctica ya eran conocidas y el espacio de familias se
-desarrolló con esa información. Por tanto, estos resultados son validación
-interna: \textbf{no hay una evaluación verdaderamente inédita y no se demuestra
-superioridad consistente fuera de muestra}.
+Verilator completó las ocho series activas a 100 microsegundos: 160\,000 ticks
+sin discrepancias. Se compara cada fill, comisión, patrimonio, MISO, DECISION
+y estado de cartera. Es un simulador de dos estados; Icarus complementa
+comprobaciones de cuatro estados. Los invariantes cubren umbrales exactos,
+comisiones, lotes, causalidad y reinicio entre rondas.
+
+Los dos bancos oficiales adaptados completaron 2\,000 ticks y 4/4 cada uno.
+Se ajustaron instancia, rutas, jerarquía y reloj al top activo. La tarea
+financiera y los cuatro criterios permanecen literales; los originales no se
+modifican y se guardan los diffs. No son ejecuciones literales del banco original.
+
+\subsection{Integración y reconstrucción del BIN}
+El escenario de 396 ticks es $[100]^{128}+[110]^{128}+[100]^{140}$.
+Produce MISO \texttt{0x7F} en tick 257, \texttt{0x64} en 258,
+\texttt{0xBF} en 385 y \texttt{0xA4} en 386. Termina con \$9\,980 y \$20
+de comisiones. Se valida a 100 microsegundos, 1 ms y 10 ms. Las cadencias
+largas tienen cobertura de integración de 396 ticks cada una; no se presentan
+como ocho series completas a cada cadencia.
+
+SPI se prueba con CS de 20, 40 y 1000 ns y ocho fases de sincronización para
+20 ns. La netlist y el circuito reconstruido del BIN verifican las cuatro
+órdenes y los 396 MISO, en las tres separaciones de CS, a 40 microsegundos.
+El modelo reconstruido usa Icarus y retardos funcionales uniformes de 1 ns
+para resolver las redes; no representa los retardos físicos de la placa.
+El timing se acredita con nextpnr. Estas pruebas no sustituyen la maestra real.
+
+\section{Campaña ampliada con todos los archivos de acciones}
+Se ensayaron 43 CSV: ocho series de práctica y 35 archivos adicionales del ZIP
+aportado. Cada adicional se transformó a las dos escalas usadas en el proyecto,
+proporcional y afín. El total es 78 escenarios, no 78 muestras independientes.
+El banco \path{tb/tb_todas_acciones.sv} instancia el banco estricto existente y
+carga \path{sw/trade.hex}; simula el procesador y el SPI del RTL asociado al BIN
+actual. La cartera y el procesador se reinician antes de cada escenario.
+
+La campaña completó 1\,557\,620 ticks a 100 microsegundos, con 78/78 PASS,
+428 compras y 364 ventas. Se cotejaron MISO, DECISION, caja, inventario,
+fills, comisiones y patrimonio por tick. El banco también verifica registros
+internos, SUM10, una recepción y decisión por precio y el plazo de respuesta.
+El máximo observado en esta campaña fue 259 ciclos, 20,72 microsegundos;
+el margen conservador es 69,54 microsegundos. La prueba no modifica el BIN.
+
+\begin{center}\scriptsize\begin{tabular}{lrrrrrr}\toprule
+Grupo & PASS & Ventajas & Sin órdenes & Media & Peor & DD máx. (\%) \\\midrule
+\TablaCampania\bottomrule\end{tabular}\end{center}
+Media y peor son patrimonios finales; ventaja significa superar al benchmark
+mantener. Un patrimonio menor a \$10\,000 pierde capital aunque supere a mantener.
+En los adicionales hay 14/35 resultados sobre el capital inicial en proporcional
+y 21/35 en afín. Quince proporcionales no ejecutan órdenes y conservan caja;
+no se interpretan como fallos de recepción. En las ocho conocidas todos operan.
+
+La escala proporcional es $\max(1,\operatorname{round}(255p/p_{\max}))$ y la afín
+es $\operatorname{round}(100+155(p-p_{\min})/(p_{\max}-p_{\min}))$.
+Se utilizan hasta 20\,000 datos de cada archivo. GOOGL 2021 contiene 18\,844 y
+Disney 2022 contiene 19\,966: se prueban sin rellenar precios y no se presentan
+como rondas completas. Los extremos se calculan sobre la muestra utilizada;
+es un preprocesamiento retrospectivo, no una normalización causal en vivo.
+La procedencia de los CSV adicionales no se verificó contra una fuente externa.
+
+\begin{center}\includegraphics[width=\linewidth]{figuras/todas_acciones_resumen.png}\end{center}
+Las dos escalas comparten datos y pueden alterar señales y cantidades.
+Sus resultados no deben sumarse como evidencia independiente ni interpretarse
+como probabilidad de ganar una ronda secreta. En Netflix 2023 de práctica,
+la primera compra se ejecuta en tick 2\,177: a 10 ms implica unos 21,77 segundos
+de espera. D4 puede permanecer apagado durante ese intervalo por diseño.
+
+Los 78 CSV RTL se conservan comprimidos en
+\path{docs/evidencia_todas_acciones/trazas_rtl/}, con hashes y manifiesto.
+\path{tools/auditar_campania_acciones.py} coteja las trazas archivadas con el
+modelo sin necesitar el ZIP externo; \path{tools/probar_todas_acciones.py}
+repite el ensayo desde los CSV originales. El anexo
+\path{resultados_simulacion/testbench_todas_acciones/INFORME_TESTBENCH.pdf}
+incluye el detalle y el visor HTML permite filtrar por acción.
+
+\section{Área, timing y rendimiento}
+La implementación ocupa \Celdas/1280 LC y \Bram/16 BRAM: quedan 61 LC.
+nextpnr informa \Fmax\ MHz en el dominio del SoC. Ese resultado no cambia
+su frecuencia configurada de 12,5 MHz. El peor caso observado en las ocho series
+es de 259 ciclos, equivalente a 20,72 microsegundos; no es una cota formal
+para todas las entradas posibles.
 
 \begin{center}\small\begin{tabular}{lrrrr}\toprule
-Parámetro & Cambio & Ventajas & Mediana (\%) & Peor (\%) \\\midrule
-\TablaSensibilidad
-\bottomrule\end{tabular}\end{center}
-Cambios de dos puntos en los umbrales alteran las ventajas y sus peores casos.
-Se conserva esa fragilidad, sin ajustar sobre los resultados excluidos para
-presentar una conclusión optimista.
-
-\section{Escenarios adversos}
-\begin{center}\small\begin{tabular}{lrrrr}\toprule
-Escenario & Trader & Mantener & DD absoluto & Comisión \\\midrule
-\TablaSinteticos
-\bottomrule\end{tabular}\end{center}
-En la caída gradual, el stop permite terminar en \$9\,210 frente a \$3\,950 de
-mantener; la pérdida máxima del agente es \$790. En la caída brusca se conserva
-una pérdida importante, porque la orden llega después del cambio. La subida
-sostenida mantiene exposición y paga una comisión adicional por el límite de
-63 acciones. La alternancia extrema 100/255 expone el costo económico del
-desfase SPI. No existe un piso de capital garantizado.
-
-\section{Verificación de firmware, RTL y protocolo}
-\subsection{Equivalencia y cobertura}
-La ejecución Python se comparó con un intérprete que ejecuta las palabras HEX
-ensambladas, no una reescritura de las reglas. Se comprobaron las ocho series
-completas, MISO, DECISION, caja, inventario y régimen. Las trazas RTL cotejan
-además fills, comisiones acumuladas y patrimonio en cada tick.
-
-Verilator completó 160\,000 ticks RTL a 100 microsegundos, con aserciones de
-instrucciones, secuencia MMIO, una escritura por precio, cartera y byte MISO.
-Al ser un simulador de dos estados, no sustituye los chequeos de X de Icarus.
-Icarus completó 6\,368 ticks de escenarios/cadencias y 4\,000 ticks de los dos
-bancos oficiales. Las dos corridas largas iniciales interrumpidas de Icarus no
-se cuentan como PASS.
-
-La integración activa reutiliza la política y HEX comprobados y coteja las
-firmas de sus fuentes. Al moverlos a las rutas activas se repitieron recuperación
-de 768 ticks y compra/venta de 48 ticks, seguidas de 48 ticks de netlist en dos
-fases. Estas pruebas de integración no se presentan como una nueva repetición
-de las ocho series completas después de cada reorganización de carpetas.
-
-Las pruebas de invariantes cubren caja e inventario no negativos, cantidades
-cero, acción reservada, límites de comisión, conservación de patrimonio por
-fill, reinicio y causalidad frente a futuros diferentes con prefijo idéntico.
-
-\subsection{Bancos del profesor y adaptaciones explícitas}
-El banco adjunto y el conservado como \path{tb_proyecto_4_profesor.sv} son
-idénticos. La versión de \path{tb/tb_proyecto_4.sv} añade habilitación de SPI,
-rutas y chequeos de carga. Para conectar el top final se usaron copias con
-adaptaciones de tipos compatibles con Icarus, rutas, cableado y jerarquía de
-observación, espera de reset y período del reloj real.
-
-Las tareas financieras y sus constantes se preservaron literalmente; no se
-deshabilitaron los cuatro chequeos. Ambos bancos adaptados completaron 2\,000
-ticks y aprobaron 4/4, con CSV cotejado contra Python. Los diffs se conservan
-en la evidencia. No se denomina a esto una ejecución literal sin cambios del
-banco original.
-
-\subsection{Cadena de integración compra--venta}
-La secuencia de 48 ticks es $[100]^8+[220]^{24}+[100]^{16}$, donde el exponente
-indica repeticiones. En tick 0 se calcula \texttt{0x7F}; MISO lo devuelve en
-tick 1 y compra 63. En tick 2 se recibe \texttt{0x64} y compra 36. La venta
-\texttt{0xBF} se calcula en tick 32, aparece en tick 33 y vende 63; en tick 34,
-\texttt{0xA4} vende las 36 restantes. Se termina con caja \$9\,980, inventario
-cero, cuatro órdenes y \$20 en comisiones. Si MISO fuera siempre cero, el banco
-fallaría por diferencia con los vectores esperados.
-
-\subsection{Corrección de recepción con CS corto}
-Ante el reporte de ausencia de compras y ventas se reprodujo un defecto del
-receptor SPI. Cuando CS precedía al primer SCLK por 20 o 40 ns, ambos eventos
-podían aparecer juntos tras la sincronización. La rama de selección descartaba
-el primer bit: no se completaba el precio y la CPU seguía esperando. La imagen
-anterior, reconstruida desde su BIN, devolvió cero en las 48 transferencias;
-con CS anticipado 1 us sí completó la prueba. Los bancos anteriores esperaban
-1 us y no cubrían esta condición.
-
-La revisión conserva ese primer bit y presenta el MSB de la respuesta antes del
-primer flanco físico. La regresión añade diez combinaciones de espera y fase,
-con precios y decisiones completos y compras y ventas exactas. También verifica
-CS de 20 ns, 40 ns y 1 us en la netlist y en el circuito reconstruido desde el
-BIN nuevo. La reconstrucción usa retardos funcionales uniformes de 1 ps para
-resolver las redes de puertas; no representa retardos físicos. El cierre de
-timing corresponde por separado al enrutador. El firmware y la política
-financiera se mantienen. La repetición de las ocho series contra el RTL activo
-corregido completó 160.000 ticks sin diferencias en precios, decisiones,
-respuestas MISO, cartera ni comisiones; su firma se conserva en
-\texttt{build/trader/equivalencia\_verilator.json}.
-Esta evidencia identifica y corrige un defecto
-reproducible. Después de cargar la imagen corregida, el grupo confirmó que
-aparecen compras y ventas. Esa confirmación funcional no identifica por sí sola
-la causa exclusiva del incidente ni cuantifica el resultado de una ronda.
-
-\section{Latencia y tres rondas}
-El presupuesto descuenta 9,5 microsegundos de SPI por trama. Se mide desde
-\texttt{byte\_done} hasta la escritura efectiva de DECISION. IC es el número de
-commits observados en esa ventana y CPI es ciclos dividido por commits.
-
-\begin{center}\small\begin{tabular}{lrrrrr}\toprule
-Serie & Ciclos medios & Máximo & IC medio & IC máximo & CPI \\\midrule
-\TablaLatencias
-\bottomrule\end{tabular}\end{center}
-El CPI anterior es global: ciclos totales divididos por instrucciones totales.
-El peor CPI de un tick y los tiempos explícitos de respuesta se obtienen de
-las mismas trazas del RTL activo; excluyen el sondeo posterior a DECISION.
+Serie & Ciclos medios & Ciclos máx. & IC máx. & CPI global \\\midrule
+\TablaLatencias\bottomrule\end{tabular}\end{center}
 \begin{center}\small\begin{tabular}{lrrr}\toprule
-Serie & CPI máximo/tick & Tiempo medio ($\mu$s) & Tiempo máximo ($\mu$s) \\\midrule
-\TablaTiempos
-\bottomrule\end{tabular}\end{center}
-El peor caso observado en el conjunto completo es 321 ciclos, equivalentes a
-25,68 microsegundos. Es un máximo medido en esas secuencias, no una prueba
-formal sobre toda entrada posible.
-
-\begin{center}\small\begin{tabular}{rrrrrr}\toprule
-Ronda & Período ($\mu$s) & Ciclos disp. & Consumidos & Margen ciclos & Margen ($\mu$s) \\\midrule
-\TablaRondas
-\bottomrule\end{tabular}\end{center}
-La última columna reserva además tres ciclos para sincronización. En la ronda
-de 100 microsegundos queda un margen conservador de 64,58 microsegundos.
-Icarus ejercitó también las cadencias reales de 10 ms, 1 ms y 100 microsegundos
-en el escenario determinista de integración.
+Serie & CPI máximo & Tiempo medio ($\mu$s) & Tiempo máximo ($\mu$s) \\\midrule
+\TablaTiempos\bottomrule\end{tabular}\end{center}
+Las ventanas miden desde recepción completa del byte hasta DECISION y excluyen
+el sondeo posterior. CPI global es ciclos totales divididos por instrucciones
+totales; CPI máximo corresponde a un tick individual. Para el período de
+100 microsegundos se reservan 9,5 microsegundos de trama y 0,24 de sincronización:
+el margen conservador de las series conocidas es $100-9,5-0,24-20,72=69,54$
+microsegundos. El estrés RTL de 936 ticks llega a 263 ciclos (21,04 microsegundos):
+al incluirlo, el margen conservador observado es 69,22 microsegundos.
 
 \input{codisenio_historico.tex}
 
-\section{Síntesis, imagen y conexiones}
-Yosys, nextpnr-ice40 e icepack generan la imagen HX1K/VQ100 solo después de los
-chequeos digitales. La integración activa utiliza \Celdas/1280 Logic Cells y
-\Bram/16 BRAM. El enrutado alcanza \Fmax\ MHz para el reloj del SoC bajo una
-restricción de 25 MHz; físicamente se usa a 12,5 MHz. El reporte final y las
-firmas se conservan en \path{build/trader/validacion.json}.
-
-\textbf{SHA-256 del BIN activo:}\par{\small\ttfamily\BinSHA}\par
-\textbf{SHA-256 del HEX:}\par{\small\ttfamily\HexSHA}\par
-La imagen \path{competition.bin} tiene 32\,220 bytes. La ruta activa y el hash
-identifican la imagen; no debe elegirse un BIN histórico solo por su nombre.
-El build de desarrollo anterior tuvo 1\,257 LC y otro hash de bitstream. Este
-informe usa los recursos y el BIN de la \emph{integración activa}, aunque el HEX
-de la política es el mismo.
-
-\begin{center}\begin{tabular}{llr}\toprule
-Señal & PMOD según documentación del proyecto & Pin FPGA \\\midrule
-CS\_n & PS1 & 65 \\
-MOSI desde la maestra & PS2 & 64 \\
-MISO hacia la maestra & PS3 & 63 \\
-SCLK & PS4 & 62 \\
-Reloj 25 MHz & Entrada de reloj & 15 \\\bottomrule
-\end{tabular}\end{center}
-El PCF se conserva y compara con las asignaciones de referencia. La comprobación
-física del conector sigue siendo necesaria. Las señales son de 3,3 V, con tierra
-común; la placa se alimenta por USB y no se conecta el VCC del PMOD entre placas.
-
-\section{Reproducción y uso}
-\subsection{Programación manual}
-Desde la raíz del repositorio, con la Go Board conectada por USB:
-\begin{lstlisting}
-iceprog competition.bin
-iceprog -c competition.bin
-\end{lstlisting}
-El script siguiente verifica fuentes y hash antes de escribir y comparar la flash:
-\begin{lstlisting}
-powershell -NoProfile -ExecutionPolicy Bypass -File .\programar.ps1
-\end{lstlisting}
-Agregar \texttt{-SoloVerificar} comprueba archivos sin acceder a la placa. El
-informe incorpora la salida de programación aportada por el grupo: ambas
-invocaciones terminaron con \texttt{VERIFY OK} y se informó un archivo de
-32\,220 bytes. El registro y su procedencia están en
-\path{docs/evidencia_fisica/}. Después, el grupo confirmó compras y ventas con
-la maestra; no aportó todavía la traza por tick ni el patrimonio final.
-Antes de cada serie
-se reinicia la Go Board y se espera D1 antes de iniciar la maestra. Los LED
-indican ejecución, recepción, lectura del precio y una decisión no nula; no
-muestran el patrimonio. Este lo calcula la maestra a partir de precios y MISO.
-
-\subsection{Simulador visual e informes}
-\begin{lstlisting}
-python simular_competencia.py
-python simular_competencia.py --todas --sin-ventana
-\end{lstlisting}
-El visor permite seleccionar cualquiera de las ocho series y avanzar, pausar o
-reiniciar. Exporta PNG/SVG, CSV tick a tick, operaciones y resumen de procedencia.
-Reproduce una traza precalculada a velocidad humana; no recibe telemetría de la
-Go Board ni mide su reloj. Antes de exportar coteja el modelo con la entrega
-congelada y, si existe, con la traza RTL previa. La evidencia lista para el
-informe está en \path{resultados_simulacion/informe_ocho_series/}.
-
-\subsection{Pruebas y compilación}
+\section{Programación, reproducción y auditoría}
+La imagen activa tiene las siguientes firmas:
+\begin{flushleft}\small BIN: \texttt{\BinSHA}\\
+HEX: \texttt{\HexSHA}\end{flushleft}
+Desde la raíz del proyecto se verifica y programa manualmente:
 \begin{lstlisting}
 python -B tools/trader.py verify
-python -B tools/trader.py test
-make
+iceprog competition.bin
+iceprog -c competition.bin
+python simular_competencia.py
 \end{lstlisting}
-El Makefile activo ensambla, simula, sintetiza y valida Trader. No compila el
-juego anterior. Para la equivalencia completa y los escenarios se conservan
-\path{validar_equivalencia.py}, \path{validar_rtl.py} y
-\path{validar_verilator.py} dentro de la alternativa congelada.
-Se utilizaron Python 3.13.3, Icarus 14 de desarrollo, Verilator 5.020,
-Yosys 0.70+176 y nextpnr 0.11.1-68. Los logs guardan versiones, códigos de salida
-y duración. Verilator se ejecuta mediante Ubuntu WSL con g++ y make.
+\texttt{programar.ps1 -SoloVerificar} comprueba archivos sin escribir la placa.
+El build no ejecuta iceprog. El visor reproduce el modelo precalculado, cotejado
+con trazas RTL cuando están disponibles; no recibe telemetría de la Go Board.
+\path{COMO_SIMULAR.md} incluye los comandos de testbench y exportación.
 
-\section{Matriz de aceptación y alcance de la prueba física}
-\begin{longtable}{p{0.31\linewidth}p{0.23\linewidth}p{0.37\linewidth}}
-\toprule Validación & Resultado & Evidencia \\\midrule\endhead
-Datos de práctica & PASS & 8 CSV, 160\,000 observaciones \\
-Ocho backtests & PASS & Comparaciones y trazas completas \\
-Ventaja frente a mantener & 6/8 conocidas & Se incluyen ambos fallos de Netflix \\
-Robustez independiente & No demostrada & Empresa 5/8; serie 6/8; WF 14/24 \\
-Inventario y comisiones & PASS & Invariantes y estados por tick \\
-Python--RV32E & PASS & 160\,000 ticks y sintéticos \\
-RTL completo & PASS & Verilator, 160\,000 ticks \\
-SPI y ausencia de X & PASS en casos Icarus & Escenarios y bancos completos declarados \\
-Bancos oficiales & PASS adaptados & Dos bancos, 4/4 y 2\,000 ticks cada uno \\
-Tres cadencias & PASS medido & 10 ms, 1 ms y 100 microsegundos \\
-Integración activa y netlist & PASS & 768 + 48 ticks; dos fases de 48 \\
-HX1K y timing & PASS & \Celdas\ LC, \Bram\ BRAM, \Fmax\ MHz \\
-SHA-256 & Verificado & BIN y HEX ligados a fuentes \\
-Programación Go Board & Confirmada por el grupo & Dos \texttt{VERIFY OK} aportados en terminal \\
-Compras y ventas en placa & Confirmadas por el grupo & Reporte posterior a programar el BIN corregido \\
-Tres rondas oficiales & Sin resultados aportados & Faltan serie, período y patrimonio por ronda \\
-\bottomrule\end{longtable}
-Las sesiones históricas de caja \$10\,000 sin órdenes y patrimonio \$5\,329
-corresponden a pruebas distintas. No se demuestra aquí que compartieran una
-causa ni qué imagen estaba programada. Tampoco se hereda una aprobación física
-de una demo a este BIN. La confirmación nueva corresponde a la sesión posterior
-a la corrección SPI. Para auditar la rentabilidad y el protocolo por tick aún
-deben registrarse canal, serie, período, precios, MISO y patrimonio. El SHA-256
-se asocia a la imagen local entregada; la salida de iceprog no imprime esa huella.
+La imagen anterior con hash iniciado en \texttt{5e1579ca} está respaldada en
+\path{respaldos/momentum32_fisico_5e1579ca/}; su registro de dos
+\texttt{VERIFY OK} y compras/ventas corresponde a aquella sesión.
+El grupo confirmó posteriormente la reprogramación de la imagen lenta.
+La declaración y su asociación con el BIN local se registran en
+\path{docs/evidencia_fisica/reprogramacion_tendencia_lenta.json}.
+La campaña ampliada utiliza su mismo firmware y RTL; sus cifras son resultados
+de simulación y no una lectura de la flash ni una traza física de la maestra.
+Quedan por documentar los resultados oficiales de las tres rondas, la
+acreditación de defensa y el perfil regional del kernel de la política lenta.
+La auditoría separada conserva estos pendientes; no asigna una nota.
 
-\clearpage\section{Conclusiones}
-El proyecto integra una estrategia causal en Assembly RV32E con recepción SPI,
-estado de cartera y verificación reproducible. La versión final cabe en la
-Go Board: utiliza \Celdas\ de 1280 celdas y \Bram\ de 16 BRAM. A 12,5 MHz,
-el peor tiempo de decisión observado es 25,68 microsegundos, compatible con el
-período más exigente de 100 microsegundos. La equivalencia sobre 160\,000 ticks
-respalda que el modelo, el firmware y el RTL conservan las mismas decisiones
-y reglas de ejecución; este resultado no depende solamente de observar los LED.
+\section{Conclusiones}
+Se integró la tendencia lenta original en Espino RV32E conservando la corrección
+de recepción SPI y la contabilidad causal de la competencia. La igualdad de
+160\,000 ticks entre modelo, intérprete de instrucciones y RTL respalda que el comportamiento
+implementado coincide con la política descrita. La campaña ampliada verifica
+además 1\,557\,620 ticks del RTL activo en 78 escenarios sin discrepancias,
+incluyendo 428 compras y 364 ventas. La síntesis cabe en HX1K y el
+peor tiempo observado de 21,04 microsegundos deja margen para la ronda de 100 microsegundos. La
+reconstrucción del BIN verifica que también la imagen empaquetada responde con
+compras y ventas en el escenario de integración.
 
-La revisión de SPI mostró la importancia de verificar también los márgenes de
-la comunicación: una selección CS cercana al primer SCLK podía impedir la
-recepción completa del precio. La corrección se comprobó en RTL, netlist y
-circuito reconstruido desde el BIN. Posteriormente, el grupo aportó dos
-verificaciones de flash correctas y confirmó compras y ventas en la placa.
-Con ello se dispone de evidencia de funcionamiento, aunque todavía falta una
-traza de la maestra que permita cotejar cada operación y cerrar los resultados
-financieros de las tres rondas oficiales.
+Esta integración cambia de forma importante lo que se observará: la placa
+comienza en caja y puede esperar cientos de ticks o permanecer sin operar si
+las revisiones no superan el 5\%. Una subida lenta acumulada no garantiza entrada,
+pues el ancla se renueva cada 128 ticks. Esta propiedad explica parte de la
+protección y también las oportunidades perdidas. No conviene diagnosticar una
+falla únicamente por ausencia de D4; deben revisarse recepción, lectura y serie.
 
-En las series conocidas, Momentum32 con stop de 20 puntos supera a mantener
-en seis de ocho casos. La mejora ante la caída gradual de desarrollo convive
-con pérdidas en Netflix y un drawdown máximo de 61,11\%; el stop no elimina
-saltos adversos ni asegura una reentrada oportuna. La solución se sostiene por
-su implementación verificable y por los resultados medidos, sin garantizar
-ventaja en series ocultas. Para completar la evaluación académica se deben
-adjuntar los resultados de competencia y la defensa, y relacionar el perfil
-del kernel final con el estudio de co-diseño histórico incluido en este informe.
+Financieramente, la nueva versión mejora algunos casos y reduce el máximo
+drawdown observado, pero pierde patrimonio medio frente a Momentum32 con stop.
+El resultado 5/8 frente a mantener y las pérdidas de AMD mayo, Apple 2023 y
+Tesla impiden sostener que siempre es mejor. Su elección es una decisión del
+grupo con un compromiso entre respuesta, exposición y riesgo, no una garantía
+de ganar las tres rondas. Los adicionales refuerzan esa cautela: 16/35 ventajas
+en proporcional y 18/35 en afín, con pérdidas y períodos sin operar. La mejora
+de algunos casos convive con oportunidades perdidas y depende de la escala.
+Se conserva la versión anterior como referencia reproducible.
 
-\appendix
-\clearpage\section{Reproducción exacta de Momentum32 original}
-Antes de seleccionar la revisión se reprodujeron los ocho patrimonios
-documentados de Momentum32, con revisión cada ocho ticks, salida $-16$ y
-reentrada $+6$, sin el stop elegido después.
-\begin{center}\begin{tabular}{lrrr}\toprule
-Serie & Documentado & Reproducido & Diferencia \\\midrule
-\TablaMomentum
-\bottomrule\end{tabular}\end{center}
-Los ocho resultados coinciden. Esa política supera las ocho series completas
-conocidas, pero su selección usó esos mismos datos y no evita la caída gradual
-sintética. No se utiliza ese 8/8 como validación independiente.
+El grupo reportó la reprogramación de la placa y la validación digital está
+completa para los escenarios declarados. Para cerrar la entrega deben adjuntarse
+los registros de competencia y defensa. El estudio histórico de Amdahl y roofline
+aporta contexto de co-diseño, pero no reemplaza una comparación de alternativas
+con la política lenta. Mantener separados esos alcances hace que el informe
+sea reproducible y que sus conclusiones respondan a lo realmente comprobado.
 
-\section{Gráficos de las ocho series conocidas}
-Se muestran los resultados completos con la misma política y contabilidad.
-El benchmark es la referencia oficial ideal y los marcadores son ejecuciones.
+\appendix\clearpage\section{Gráficos de las ocho series}
+Misma política y contabilidad en todos los casos. Los marcadores son ejecuciones.
 \input{graficos_series.tex}
-
-\clearpage\section{Trazabilidad de archivos}
-\begin{itemize}\raggedright
-\item \path{competition.bin}, \path{competition.sha256}: imagen activa y huella.
-\item \path{sw/trade.s}, \path{sw/trade.hex}: programa ensamblado.
-\item \path{build/trader/validacion.json}: firmas y resultados de integración.
-\item \path{build/trader/yosys.log}, \path{build/trader/nextpnr.log}: implementación.
-\item \path{proyecto4/alternativas/competitiva_definitiva/resultados/}: investigación,
-folds, sensibilidad, pruebas adversas y equivalencia.
-\item \path{resultados_simulacion/informe_ocho_series/}: figuras y CSV exportados.
-\item \path{docs/informe/informe_final.tex}: fuente de este informe.
-\end{itemize}
-La publicación ordena el árbol activo; las versiones anteriores se conservan en
-el historial de Git. Los logs pueden contener rutas locales antiguas como parte
-de su procedencia; no son rutas que deba reproducir el usuario para usar los
-comandos actuales.
+\clearpage\section{Resultados de los 78 escenarios}
+C/V indica compras y ventas ejecutadas. Cada escenario empieza con \$10\,000.
+Los grupos y escalas comparten muestras según lo descrito en la campaña ampliada.
+\input{resultados_todas_acciones.tex}
 \end{document}
