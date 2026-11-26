@@ -93,6 +93,11 @@ Ejecuta el RTL activo con las ocho series conocidas y los 35 CSV adicionales de
 prueban con su longitud real, sin repetir datos. La cadencia predeterminada es
 100 µs, la más exigente. Cada escenario reinicia CPU y cartera.
 
+El script busca el ZIP en Downloads, en la raíz del repositorio y en su carpeta
+superior. Puedes indicar otra ruta: `.\probar_todas_acciones.ps1 -Zip 'C:\ruta\proyecto4.zip'`.
+Para repetir sin el ZIP, usa las trazas publicadas:
+`wsl -d Ubuntu -- bash tools/repetir_acciones_archivadas_wsl.sh`.
+
 El banco envía precios por SPI y comprueba MISO, DECISION, registros de caja e
 inventario, SUM10, una decisión por precio, contabilidad y plazo de respuesta.
 No programa ni lee la placa real; Verilator simula el circuito en dos estados.
