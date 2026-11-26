@@ -8,6 +8,7 @@ on:
       - 'tools/generar_informe_latex.py'
       - 'proyecto4/alternativas/tendencia_lenta/resultados/**'
       - 'resultados_simulacion/testbench_todas_acciones/**'
+      - 'resultados_simulacion/testbench_zip_practica/**'
       - '.github/workflows/render-project4-report.yml'
   pull_request:
   workflow_dispatch:

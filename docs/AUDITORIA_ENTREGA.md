@@ -16,6 +16,13 @@ el estudio histórico de software/custom-0/MMIO, con Amdahl y roofline, cotejado
 60.000 filas originales. Esas cifras no se presentan como aceleraciones de la
 política lenta final.
 
+Se documenta además la nueva ejecución directa de
+`Proyecto_4_Series_Practica_export.zip`: 8/8 PASS, 160.000 ticks, 98 compras y
+92 ventas, sin discrepancias. El ZIP publicado y las trazas están ligados por
+SHA-256 a las fuentes y al BIN actuales. Los CSV son idénticos al corpus y no
+se contabilizan como nuevas muestras. Los gráficos del apéndice principal se
+generan desde estas nuevas trazas RTL.
+
 La programación y las compras/ventas anteriores corresponden a Momentum32
 `5e1579ca...`; el [registro aportado](evidencia_fisica/registro_20261125.md)
 no se reutiliza para la imagen lenta nueva `1f514301...`. El grupo confirmó posteriormente su reprogramación; la declaración está en [el registro actual](evidencia_fisica/reprogramacion_tendencia_lenta.json).

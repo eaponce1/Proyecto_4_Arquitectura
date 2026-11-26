@@ -26,3 +26,9 @@ resultados_simulacion/testbench_todas_acciones/*.toc
 resultados_simulacion/testbench_todas_acciones/pdfinfo.txt
 resultados_simulacion/testbench_todas_acciones/informe_extraido.txt
 build/repeticion_acciones_archivadas/
+build/testbench_zip_practica/
+resultados_simulacion/testbench_zip_practica/*.aux
+resultados_simulacion/testbench_zip_practica/*.log
+resultados_simulacion/testbench_zip_practica/*.out
+resultados_simulacion/testbench_zip_practica/pdfinfo.txt
+resultados_simulacion/testbench_zip_practica/informe_extraido.txt

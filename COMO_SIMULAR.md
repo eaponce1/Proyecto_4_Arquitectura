@@ -1,5 +1,31 @@
 # Ver Pochoco Trader en el computador
 
+## Probar directamente el ZIP de práctica
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_series_practica.ps1
+```
+
+Lee `Downloads/Proyecto_4_Series_Practica_export.zip` y ejecuta sus CSV exactos
+contra el RTL y firmware actuales, sin normalizar precios. Para otra ruta usa
+`-Zip 'C:\ruta\archivo.zip'`. Cada serie reinicia CPU y cartera.
+
+La ejecución guarda sus propios CSV, trazas, operaciones y logs en
+`build/testbench_zip_practica/`, y el resumen con ocho trazas comprimidas en
+`resultados_simulacion/testbench_zip_practica/`. Esta repetición corresponde a
+las mismas ocho series conocidas, verificadas byte por byte contra el corpus.
+No se contabiliza como nuevos datos ni reemplaza una captura física de la maestra.
+
+Para generar los gráficos desde esas trazas RTL y su PDF LaTeX:
+
+```powershell
+python -B tools/graficar_zip_practica.py
+wsl -d Ubuntu -- bash tools/compilar_zip_practica.sh
+```
+
+Abre `resultados_simulacion/testbench_zip_practica/ABRIR_RESULTADOS.html`
+o `INFORME_ZIP_PRACTICA.pdf` para ver precio, compras/ventas, patrimonio y drawdown.
+
 Desde esta carpeta (`Proyecto_4_Arquitectura-main`) abre PowerShell y ejecuta:
 
 ```powershell

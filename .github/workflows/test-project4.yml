@@ -39,6 +39,8 @@ jobs:
         run: python -B tools/auditar_lenta.py
       - name: Audit all 78 archived scenarios
         run: python -B tools/auditar_campania_acciones.py
+      - name: Audit the direct practice ZIP replay
+        run: python -B tools/auditar_zip_practica.py
       - name: Accounting and causality invariants
         run: python -B proyecto4/alternativas/tendencia_lenta/test_invariantes.py
       - name: Reassemble and compare Python with RV32E on 160000 ticks
