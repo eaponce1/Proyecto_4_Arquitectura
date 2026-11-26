@@ -5,13 +5,13 @@
 \setlength{\emergencystretch}{3em}
 \begin{document}
 \begin{center}{\LARGE Auditoría de entrega -- Proyecto 4}\\[6pt]
-{\large Tendencia lenta integrada -- 25 de noviembre de 2026}\\[6pt]
+{\large Tendencia lenta y campaña ampliada -- 26 de noviembre de 2026}\\[6pt]
 Cristian Acevedo · Guillermo Arriaza · Eduardo Ponce\end{center}
 
 \section*{Dictamen y criterio}
 La evidencia no permite acreditar toda la entrega. El firmware, las ocho series
-y la imagen FPGA cuentan con validación digital, pero falta confirmar físicamente
-esta imagen nueva y documentar las tres rondas oficiales, defensa y cumplimiento
+y los 78 escenarios cuentan con validación digital; el grupo confirmó la
+reprogramación. Falta documentar las tres rondas oficiales, defensa y cumplimiento
 del plazo. La auditoría usa el enunciado conservado en
 \path{docs/referencia/enunciado_proyecto4.pdf}; no certifica una nota.
 
@@ -20,22 +20,23 @@ del plazo. La auditoría usa el enunciado conservado en
 Informe y autores & Incluidos & PDF compilado desde LaTeX; tres integrantes y conclusiones ampliadas. \\
 Política y contabilidad & PASS digital & SUM10/128/5\%, comisión 5, límites 63 y cartera causal. \\
 Práctica conocida & PASS digital & 8 series, 160\,000 ticks Python/RV32E/RTL sin diferencias. \\
+Todos los CSV & PASS digital & 43 CSV, 78 escenarios, 1\,557\,620 ticks RTL; 428 compras y 364 ventas. Trazas comprimidas y manifiesto incluidos. \\
 Rendimiento financiero & Mixto & Ventaja 5/8; patrimonio medio menor que Momentum32 anterior. \\
+CSV adicionales & Mixto & 16/35 ventajas proporcionales y 18/35 afines. Mismos CSV con dos escalas retrospectivas; no son muestras independientes. \\
 Cadencias & Parcial en extensión & 160\,000 ticks a 100 microsegundos; 396 de integración a 1 ms y 396 a 10 ms. \\
 Bancos oficiales & PASS adaptados & Dos bancos de 2\,000 ticks; 4/4 cada uno, tarea y criterios preservados, diffs archivados. \\
 SPI y empaquetado & PASS digital & CS 20/40/1000 ns; compras/ventas RTL, netlist y BIN reconstruido; cuatro estados en BIN. \\
 Área y timing & PASS & 1219/1280 LC, 9/16 BRAM; 50,67 MHz enrutado frente a 12,5 MHz de operación. \\
 CPI y tiempos & Incluidos & Práctica: 259 ciclos/20,72 microsegundos. Incluyendo estrés: 263/21,04; margen 69,22 microsegundos. \\
 Co-diseño & Histórico & Amdahl y roofline de SMA10; no se atribuye su speedup a tendencia lenta. \\
-Programación actual & Pendiente & No se ejecutó iceprog para la nueva imagen en esta revisión. \\
+Programación actual & Reportada por el grupo & Declaración de reprogramación registrada para el BIN 1f514301. No se adjuntó una traza física nueva. \\
 Prueba anterior & Conservada & Dos VERIFY OK y compras/ventas del BIN Momentum32 con hash inicial 5e1579ca. \\
 Competencia y defensa & Sin acreditar & Faltan registros oficiales por ronda y acreditación de defensa. \\
 Entrega a tiempo & Sin acreditar & Integración del 25 posterior al cierre original del 24 de noviembre. \\
 \bottomrule\end{longtable}
 
 \section*{Acciones necesarias para cerrar los pendientes}
-Programar la imagen nueva, comparar la flash, reiniciar antes de cada serie y
-guardar evidencia con hash, período, precios, MISO y patrimonio. Registrar por
+Conservar evidencia con hash, período, precios, MISO y patrimonio. Registrar por
 cada una de las tres rondas la referencia mantener y el resultado oficial.
 Adjuntar el respaldo de defensa y entrega original. Si se exige comparación
 de hardware de la política final, completar su perfil regional con las mismas
@@ -46,6 +47,6 @@ Permanecer en caja no demuestra por sí solo que falle SPI ni que la estrategia
 sea rentable. Se deben observar D1, D2, D3 y el registro de la maestra.
 
 Las comprobaciones automáticas verifican firmas, contenido del PDF, autores,
-ocho resultados, 160\,000 ticks y ausencia de desbordes LaTeX. No convierten
+ocho resultados de práctica, 78 escenarios ampliados y ausencia de desbordes LaTeX. No convierten
 pendientes físicos o académicos en requisitos cumplidos.
 \end{document}

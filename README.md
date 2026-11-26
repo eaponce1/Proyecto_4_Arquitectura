@@ -5,7 +5,7 @@
 
 Agente de negociación para **Go Board Lattice iCE40 HX1K/VQ100**, con decisiones calculadas por **Espino RV32E**. Recibe precios por SPI y responde con compras, ventas o mantener.
 
-**[Informe final PDF](docs/INFORME_FINAL.pdf)** · **[Fuente LaTeX](docs/informe/informe_final.tex)** · **[Ocho gráficos y resultados](resultados_simulacion/informe_tendencia_lenta/INFORME_COMPARATIVO.md)** · **[Guía de simulación](COMO_SIMULAR.md)**
+**[Informe final PDF](docs/INFORME_FINAL.pdf)** · **[78 escenarios: PDF](resultados_simulacion/testbench_todas_acciones/INFORME_TESTBENCH.pdf)** · **[Resultados completos](resultados_simulacion/testbench_todas_acciones/ABRIR_RESULTADOS.html)** · **[Fuente LaTeX](docs/informe/informe_final.tex)** · **[Ocho gráficos y resultados](resultados_simulacion/informe_tendencia_lenta/INFORME_COMPARATIVO.md)** · **[Guía de simulación](COMO_SIMULAR.md)**
 
 ## Programar la FPGA
 
@@ -66,6 +66,7 @@ Cada ejecución guarda PNG/SVG, CSV de ticks, operaciones y resumen con hashes. 
 | Validación | Evidencia |
 |---|---|
 | Ocho series conocidas | 160.000 ticks Python/RV32E/RTL, sin diferencias |
+| Todos los CSV de acciones | 43 CSV, 78 escenarios, 1.557.620 ticks RTL a 100 µs; 428 compras y 364 ventas; 0 discrepancias |
 | SPI y contabilidad | Escenarios Icarus, límites de inventario y comisiones |
 | Bancos oficiales | Dos bancos adaptados al top final, 4/4 y 2.000 ticks cada uno; diffs conservados |
 | Integración activa | Recuperación de 768 ticks; compra/venta de 396; netlist y BIN en tres separaciones de CS |
@@ -73,13 +74,31 @@ Cada ejecución guarda PNG/SVG, CSV de ticks, operaciones y resumen con hashes. 
 | HX1K/VQ100 | 1.219/1.280 Logic Cells, 9/16 BRAM |
 | Relojes | Entrada 25 MHz; Espino 12,5 MHz; timing de enrutado 50,67 MHz |
 | Plazo más rápido | Peor caso observado de 21,04 µs incluyendo estrés; margen conservador 69,22 µs |
-| Go Board y maestra reales | Pendiente para esta imagen. Los dos `VERIFY OK` y compras/ventas previos corresponden al respaldo Momentum32 |
+| Go Board | Reprogramación actual confirmada por el grupo; registro en `docs/evidencia_fisica/reprogramacion_tendencia_lenta.json` |
 
 La política activa es **tendencia lenta: SUM10, revisión cada 128 ticks y umbral de ±5%**. Empieza en caja; actualiza el ancla en cada revisión. Compra hasta 63 acciones; las compras adicionales requieren al menos ocho. Vende en régimen bajista. La primera compra posible se ejecuta en el **tick 257**, contando desde cero. Puede permanecer sin operar si no hay señal; D1/D2/D3 encendidos y D4 apagado puede ser correcto.
 
 Supera a mantener en **5/8 series conocidas**, con patrimonio medio **$10.971,13**, peor resultado **$8.540** y drawdown máximo **50,55%**. Momentum32 anterior obtenía 6/8 y media $12.725. Mejora Netflix y empeora otros casos: **no se demuestra superioridad general ni se garantiza ganar la competencia**. [Comparación y reglas](proyecto4/alternativas/tendencia_lenta/README.md).
 
-Las ocho series RTL completas se probaron a 100 µs; a 1 ms y 10 ms se probó integración de 396 ticks por cadencia. La evidencia física anterior no se atribuye a este BIN nuevo.
+Las ocho series RTL completas se probaron a 100 µs; a 1 ms y 10 ms se probó integración de 396 ticks por cadencia. La reprogramación de la imagen actual fue reportada por el grupo; los registros físicos anteriores permanecen identificados por su versión.
+
+## Testbench con todos los archivos de acciones
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_todas_acciones.ps1
+```
+
+Prueba las ocho series de práctica y los 35 CSV adicionales de `Downloads/proyecto4.zip`, cada adicional en dos escalas. Los 78 escenarios pasan sin diferencias entre firmware/RTL y modelo. El peor tiempo de respuesta en esta campaña es 20,72 µs y el margen conservador es 69,54 µs. Los dos CSV cortos se prueban sin rellenar datos: GOOGL 2021, 18.844 ticks; Disney 2022, 19.966.
+
+| Grupo | Supera mantener | Patrimonio medio | Peor | Sin órdenes |
+|---|---:|---:|---:|---:|
+| Ocho conocidas | 5/8 | $10.971,125 | $8.540 | 0 |
+| 35 adicionales, proporcional | 16/35 | $10.784 | $5.863 | 15 |
+| 35 adicionales, afín | 18/35 | $12.150,57 | $5.518 | 0 |
+
+Las dos escalas usan los mismos CSV y normalización retrospectiva con extremos de la muestra: no son 70 muestras independientes ni una predicción de las rondas secretas. PASS verifica la implementación, no rentabilidad. Los resultados financieros de la tabla provienen del testbench; la reprogramación fue reportada por el grupo.
+
+Las 78 trazas completas comprimidas están en `docs/evidencia_todas_acciones/trazas_rtl/`. `python -B tools/auditar_campania_acciones.py` comprueba firmas y todos sus ticks sin necesitar el ZIP externo. Para repetir la simulación desde las entradas archivadas: `python -B tools/repetir_acciones_archivadas.py` en Linux/WSL con Verilator. El CSV de resultados está en `resultados_simulacion/testbench_todas_acciones/resumen.csv`; el PDF principal integra también los 78 escenarios.
 
 ## Compilar y comprobar
 
@@ -128,6 +147,8 @@ Confirmar físicamente el conector con el PCF. SPI modo 0, ocho bits MSB primero
 | `tools/`, `Makefile`, `programar.ps1` | Compilación y programación |
 | `tb/`, `tests/` | Banco oficial y modelo auxiliar de RAM |
 | `build/trader/` | Evidencia de la integración activa |
+| `docs/evidencia_todas_acciones/` | 78 trazas RTL completas comprimidas y manifiesto |
+| `resultados_simulacion/testbench_todas_acciones/` | Campaña completa: PDF, LaTeX, gráfico, HTML, CSV y JSON |
 | `docs/INFORME_FINAL.pdf` | Informe principal, compilado desde LaTeX |
 | `docs/informe/` | Fuentes, tablas y figuras del informe |
 | `resultados_simulacion/informe_tendencia_lenta/` | Ocho gráficos e informes de la política activa |

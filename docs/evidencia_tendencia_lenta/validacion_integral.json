@@ -2,7 +2,7 @@
   "politica": "tendencia_lenta_128_5pct",
   "sha256_bin": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
   "sha256_hex": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
-  "prueba_fisica": "PENDIENTE_NUEVA_IMAGEN",
+  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO",
   "fuentes": {
     "rtl/trade_spi_externo.v": "c54d60bf45e7a581e26ab0076dfddf2b112f81c883d438cee19924b1924a84a0",
     "rtl/trader/espino_core_cpu_trace.v": "38742b5e8b96eaf8c6b5e23745b0abb5a9d788544d4cc3c991c98ee193583578",
@@ -357,5 +357,6 @@
     "BIN reconstruido: retardo funcional uniforme de 1 ns; no simulacion de timing fisico",
     "La prueba fisica anterior corresponde solo al respaldo Momentum32 5e1579ca",
     "Rentabilidad secreta y resultados oficiales no demostrados"
-  ]
+  ],
+  "registro_reprogramacion": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json"
 }

@@ -203,5 +203,6 @@
     }
   ],
   "politica": "tendencia_lenta_128_5pct",
-  "prueba_fisica": "PENDIENTE_NUEVA_IMAGEN"
+  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO",
+  "registro_reprogramacion": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json"
 }

@@ -72,4 +72,4 @@ automáticamente durante la corrección.
 
 ## Integración posterior de tendencia lenta
 
-La imagen `1f514301...` conserva la corrección SPI descrita y cambia el firmware a SUM10/128/5%. La primera ejecución posible es en tick 257; D4 puede permanecer apagado mientras no haya señal. Esta imagen pasó RTL, netlist y reconstrucción del BIN con compra y venta de 396 ticks. La confirmación física previa aplica exclusivamente a Momentum32 `5e1579ca...`; falta probar la nueva en placa.
+La imagen `1f514301...` conserva la corrección SPI descrita y cambia el firmware a SUM10/128/5%. La primera ejecución posible es en tick 257; D4 puede permanecer apagado mientras no haya señal. Esta imagen pasó RTL, netlist y reconstrucción del BIN con compra y venta de 396 ticks. La confirmación física previa aplica exclusivamente a Momentum32 `5e1579ca...`. El grupo reportó después la reprogramación de tendencia lenta, registrada en `evidencia_fisica/reprogramacion_tendencia_lenta.json`. La campaña ampliada verifica 78 escenarios y 1.557.620 ticks RTL con 428 compras y 364 ventas, sin discrepancias; esas cifras proceden del testbench.

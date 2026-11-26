@@ -51,6 +51,6 @@ iceprog competition.bin
 iceprog -c competition.bin
 ```
 
-La programación y prueba física de **esta imagen** están pendientes. La sesión anterior con dos `VERIFY OK` aplica a Momentum32. El respaldo local está en `respaldos/momentum32_fisico_5e1579ca/`; en Git corresponde al commit `07d0dd95d491f7b7f08a6f1b813d998e53a8c123`.
+El grupo confirmó la reprogramación de **esta imagen**; el registro está en `docs/evidencia_fisica/reprogramacion_tendencia_lenta.json`. La campaña ampliada verifica 78 escenarios y 1.557.620 ticks en RTL, con 428 compras y 364 ventas. Sus cifras financieras provienen de simulación. La sesión anterior con dos `VERIFY OK` aplica a Momentum32. El respaldo local está en `respaldos/momentum32_fisico_5e1579ca/`; en Git corresponde al commit `07d0dd95d491f7b7f08a6f1b813d998e53a8c123`.
 
 `python simular_competencia.py` abre el visor del modelo activo. `resultados_simulacion/informe_tendencia_lenta/` contiene los ocho gráficos e informes; el PDF principal está en `docs/INFORME_FINAL.pdf`. No son telemetría de la placa.

@@ -21,15 +21,16 @@
 {\large Cristian Acevedo\par}{\large Guillermo Arriaza\par}{\large Eduardo Ponce\par}
 \vspace{1cm}\begin{minipage}{0.88\linewidth}
 \textbf{Estado.} Imagen sintetizada y validada digitalmente para Go Board
-iCE40 HX1K/VQ100. La nueva imagen todavía requiere programación y prueba en la
-placa. La confirmación física anterior corresponde a Momentum32.
+iCE40 HX1K/VQ100. El grupo confirmó la reprogramación de la imagen actual.
+La campaña RTL verificó 78 escenarios y 1\,557\,620 ticks sin discrepancias.
 
 \textbf{Resultados.} Ventaja sobre mantener en 5/8 series conocidas. La media
 del patrimonio es menor que con la política anterior; no se demuestra superioridad
-universal ni rentabilidad garantizada en las rondas secretas.
+universal ni rentabilidad garantizada en las rondas secretas. En los 35 CSV
+adicionales obtiene 16/35 ventajas en escala proporcional y 18/35 en afín.
 \end{minipage}\vfill
 \url{https://github.com/eaponce1/Proyecto_4_Arquitectura}\par
-25 de noviembre de 2026
+26 de noviembre de 2026
 \end{titlepage}
 \pagenumbering{arabic}\hypersetup{pageanchor=true}\tableofcontents\clearpage
 
@@ -46,7 +47,7 @@ La integración activa importa sin cambiar sus instrucciones la variante
 identifica el ZIP y los hashes originales. Se eligió por indicación del grupo,
 sin retocar parámetros para mejorar retrospectivamente las ocho series.
 
-El informe corresponde al trabajo integrado el 25 de noviembre de 2026,
+El informe incorpora la integración del 25 y la campaña ampliada del 26 de noviembre de 2026,
 posterior al cierre original del 24 de noviembre. No acredita entrega dentro
 del plazo. Las versiones anteriores permanecen en Git y en el respaldo local.
 
@@ -182,6 +183,53 @@ El modelo reconstruido usa Icarus y retardos funcionales uniformes de 1 ns
 para resolver las redes; no representa los retardos físicos de la placa.
 El timing se acredita con nextpnr. Estas pruebas no sustituyen la maestra real.
 
+\section{Campaña ampliada con todos los archivos de acciones}
+Se ensayaron 43 CSV: ocho series de práctica y 35 archivos adicionales del ZIP
+aportado. Cada adicional se transformó a las dos escalas usadas en el proyecto,
+proporcional y afín. El total es 78 escenarios, no 78 muestras independientes.
+El banco \path{tb/tb_todas_acciones.sv} instancia el banco estricto existente y
+carga \path{sw/trade.hex}; simula el procesador y el SPI del RTL asociado al BIN
+actual. La cartera y el procesador se reinician antes de cada escenario.
+
+La campaña completó 1\,557\,620 ticks a 100 microsegundos, con 78/78 PASS,
+428 compras y 364 ventas. Se cotejaron MISO, DECISION, caja, inventario,
+fills, comisiones y patrimonio por tick. El banco también verifica registros
+internos, SUM10, una recepción y decisión por precio y el plazo de respuesta.
+El máximo observado en esta campaña fue 259 ciclos, 20,72 microsegundos;
+el margen conservador es 69,54 microsegundos. La prueba no modifica el BIN.
+
+\begin{center}\scriptsize\begin{tabular}{lrrrrrr}\toprule
+Grupo & PASS & Ventajas & Sin órdenes & Media & Peor & DD máx. (\%) \\\midrule
+\TablaCampania\bottomrule\end{tabular}\end{center}
+Media y peor son patrimonios finales; ventaja significa superar al benchmark
+mantener. Un patrimonio menor a \$10\,000 pierde capital aunque supere a mantener.
+En los adicionales hay 14/35 resultados sobre el capital inicial en proporcional
+y 21/35 en afín. Quince proporcionales no ejecutan órdenes y conservan caja;
+no se interpretan como fallos de recepción. En las ocho conocidas todos operan.
+
+La escala proporcional es $\max(1,\operatorname{round}(255p/p_{\max}))$ y la afín
+es $\operatorname{round}(100+155(p-p_{\min})/(p_{\max}-p_{\min}))$.
+Se utilizan hasta 20\,000 datos de cada archivo. GOOGL 2021 contiene 18\,844 y
+Disney 2022 contiene 19\,966: se prueban sin rellenar precios y no se presentan
+como rondas completas. Los extremos se calculan sobre la muestra utilizada;
+es un preprocesamiento retrospectivo, no una normalización causal en vivo.
+La procedencia de los CSV adicionales no se verificó contra una fuente externa.
+
+\begin{center}\includegraphics[width=\linewidth]{figuras/todas_acciones_resumen.png}\end{center}
+Las dos escalas comparten datos y pueden alterar señales y cantidades.
+Sus resultados no deben sumarse como evidencia independiente ni interpretarse
+como probabilidad de ganar una ronda secreta. En Netflix 2023 de práctica,
+la primera compra se ejecuta en tick 2\,177: a 10 ms implica unos 21,77 segundos
+de espera. D4 puede permanecer apagado durante ese intervalo por diseño.
+
+Los 78 CSV RTL se conservan comprimidos en
+\path{docs/evidencia_todas_acciones/trazas_rtl/}, con hashes y manifiesto.
+\path{tools/auditar_campania_acciones.py} coteja las trazas archivadas con el
+modelo sin necesitar el ZIP externo; \path{tools/probar_todas_acciones.py}
+repite el ensayo desde los CSV originales. El anexo
+\path{resultados_simulacion/testbench_todas_acciones/INFORME_TESTBENCH.pdf}
+incluye el detalle y el visor HTML permite filtrar por acción.
+
 \section{Área, timing y rendimiento}
 La implementación ocupa \Celdas/1280 LC y \Bram/16 BRAM: quedan 61 LC.
 nextpnr informa \Fmax\ MHz en el dominio del SoC. Ese resultado no cambia
@@ -224,17 +272,22 @@ con trazas RTL cuando están disponibles; no recibe telemetría de la Go Board.
 La imagen anterior con hash iniciado en \texttt{5e1579ca} está respaldada en
 \path{respaldos/momentum32_fisico_5e1579ca/}; su registro de dos
 \texttt{VERIFY OK} y compras/ventas corresponde a aquella sesión.
-\textbf{La nueva imagen lenta no hereda esa confirmación física}. Falta programarla,
-reiniciar e iniciar una serie nueva, guardando hash, período, precios, MISO y
-patrimonio. También faltan los resultados oficiales de las tres rondas, la
+El grupo confirmó posteriormente la reprogramación de la imagen lenta.
+La declaración y su asociación con el BIN local se registran en
+\path{docs/evidencia_fisica/reprogramacion_tendencia_lenta.json}.
+La campaña ampliada utiliza su mismo firmware y RTL; sus cifras son resultados
+de simulación y no una lectura de la flash ni una traza física de la maestra.
+Quedan por documentar los resultados oficiales de las tres rondas, la
 acreditación de defensa y el perfil regional del kernel de la política lenta.
 La auditoría separada conserva estos pendientes; no asigna una nota.
 
 \section{Conclusiones}
 Se integró la tendencia lenta original en Espino RV32E conservando la corrección
 de recepción SPI y la contabilidad causal de la competencia. La igualdad de
-160\,000 ticks entre modelo, instrucciones y RTL respalda que el comportamiento
-implementado coincide con la política descrita. La síntesis cabe en HX1K y el
+160\,000 ticks entre modelo, intérprete de instrucciones y RTL respalda que el comportamiento
+implementado coincide con la política descrita. La campaña ampliada verifica
+además 1\,557\,620 ticks del RTL activo en 78 escenarios sin discrepancias,
+incluyendo 428 compras y 364 ventas. La síntesis cabe en HX1K y el
 peor tiempo observado de 21,04 microsegundos deja margen para la ronda de 100 microsegundos. La
 reconstrucción del BIN verifica que también la imagen empaquetada responde con
 compras y ventas en el escenario de integración.
@@ -251,10 +304,13 @@ drawdown observado, pero pierde patrimonio medio frente a Momentum32 con stop.
 El resultado 5/8 frente a mantener y las pérdidas de AMD mayo, Apple 2023 y
 Tesla impiden sostener que siempre es mejor. Su elección es una decisión del
 grupo con un compromiso entre respuesta, exposición y riesgo, no una garantía
-de ganar las tres rondas. Se conserva la versión anterior para revertir con
-evidencia si la prueba real recomienda hacerlo.
+de ganar las tres rondas. Los adicionales refuerzan esa cautela: 16/35 ventajas
+en proporcional y 18/35 en afín, con pérdidas y períodos sin operar. La mejora
+de algunos casos convive con oportunidades perdidas y depende de la escala.
+Se conserva la versión anterior como referencia reproducible.
 
-Para cerrar la entrega hay que validar físicamente esta nueva imagen y adjuntar
+El grupo reportó la reprogramación de la placa y la validación digital está
+completa para los escenarios declarados. Para cerrar la entrega deben adjuntarse
 los registros de competencia y defensa. El estudio histórico de Amdahl y roofline
 aporta contexto de co-diseño, pero no reemplaza una comparación de alternativas
 con la política lenta. Mantener separados esos alcances hace que el informe
@@ -263,4 +319,8 @@ sea reproducible y que sus conclusiones respondan a lo realmente comprobado.
 \appendix\clearpage\section{Gráficos de las ocho series}
 Misma política y contabilidad en todos los casos. Los marcadores son ejecuciones.
 \input{graficos_series.tex}
+\clearpage\section{Resultados de los 78 escenarios}
+C/V indica compras y ventas ejecutadas. Cada escenario empieza con \$10\,000.
+Los grupos y escalas comparten muestras según lo descrito en la campaña ampliada.
+\input{resultados_todas_acciones.tex}
 \end{document}

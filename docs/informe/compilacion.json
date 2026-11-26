@@ -1,17 +1,17 @@
 {
-  "pdf_sha256": "8da59dfbfe493a481d16b90b117189b4b6a6765e546585f6cc05a45926abfa0c",
-  "paginas": 18,
-  "auditoria_pdf_sha256": "08d13e1dee34a90a09b6ec26f5fac4fc78c2f016709d43171e6308608808b6ea",
+  "pdf_sha256": "974503653f2860e1d5feb6256c3a6f6afca1f7a256b6aeb308f3a6bc8363dc7f",
+  "paginas": 22,
+  "auditoria_pdf_sha256": "3acea69b985608f06c6f5c1abadbce51777305dfa090ca06679f806028087200",
   "paginas_auditoria": 2,
   "compilador": "pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023",
   "pasadas": 3,
   "pasadas_auditoria": 2,
   "revisado": "Autores, conclusiones, metricas, evidencia fisica, roofline y auditoria; sin cajas desbordadas",
   "fuentes": {
-    "docs/informe/auditoria_entrega.tex": "a8b061da57c2ff8678f25a0b09b05fc85a9d7ea5c21494bac04ef1ae1e7ca4f3",
+    "docs/informe/auditoria_entrega.tex": "dc129c5b09945ff84ced78a64c85b6d8a5bb4171ba28ac310794bd0eda7cb13e",
     "docs/informe/codisenio_historico.tex": "4103916f9713c17400e82dcdfe76e49083d3911a799d3a87a84765e8fc3880d6",
     "docs/informe/compilar.sh": "d11baf67f1b07870919b2d01711939d30a74ce3089887ef619d311295de4ec2d",
-    "docs/informe/datos_generados.tex": "cd11bc928692d5bd16e4db949cff1a1e2c8cf4ec4d3a87668ab59024c83c95b6",
+    "docs/informe/datos_generados.tex": "83bbed3347dd24efa48e3a529859767d7f54114b024bd8f2ce7d57f6043a4379",
     "docs/informe/figuras/amd_enero.png": "a67da63373dff41753aff947967436dd1950f698a622ddd59896ba00172b6507",
     "docs/informe/figuras/amd_mayo.png": "54075612d29554c419029b26d2e75ccaa12d3c36bcdd32cb064ce44752cb91b8",
     "docs/informe/figuras/apple_2022.png": "32bf987a6ea5da74b0c408470187d0ee0a5968ce1badd2846e7ad6889add4012",
@@ -21,8 +21,10 @@
     "docs/informe/figuras/netflix_2023.png": "9480bf6a242267f3aea0ad254b79f2bbf93aded83a701129834642586efffb18",
     "docs/informe/figuras/roofline_historico.png": "661acd55325499bc883067876b69ec45cf7ebd77b0b8f1b03b986b5bb5bcb319",
     "docs/informe/figuras/tesla_2022.png": "0397aebff2bdf7f4b310956199a77836b07321820f3cde27a308b98094d04a59",
+    "docs/informe/figuras/todas_acciones_resumen.png": "5ace37f3e8bdb49705a90ff3343812b7222cd65a57c90e155f9d25f18a364c1d",
     "docs/informe/graficos_series.tex": "adad4a55dc6a3484877643bc8302d86d86e9eb0a16187c4ac2d027d080456810",
-    "docs/informe/informe_final.tex": "eb066c2f13389b75f646759f2e362d01648de4f9800adcb16b60a4c67e86d87d"
+    "docs/informe/informe_final.tex": "bf97cec302484d4f275ddfb755d21a4889768b7360e1777f359b43193b20d6c4",
+    "docs/informe/resultados_todas_acciones.tex": "c3121d1e4da29c95469ebd000ae3f8943ecd4d272dc813b4674a2142b18d6a0e"
   },
-  "prueba_fisica": "PENDIENTE_NUEVA_IMAGEN; EVIDENCIA PREVIA SOLO MOMENTUM32"
+  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO; RESULTADOS FINANCIEROS DE CAMPANA RTL"
 }

@@ -33,6 +33,20 @@ def main():
     tex+=macro('TablaSinteticos',table([[r['serie'].replace('_',r'\_'),n(r['patrimonio']),n(r['mantener_oficial']),r['ordenes'],f(r['drawdown_pct'])] for r in synth]))
     tex+=macro('MediaLenta',f(st.mean(int(r['patrimonio']) for r in rows)))
     tex+=macro('MediaAnterior',f(st.mean(int(r['patrimonio']) for r in old)))
+    campaign=json.loads((ROOT/'resultados_simulacion/testbench_todas_acciones/resumen.json').read_text(encoding='utf-8'))
+    assert campaign['sha256_bin']==active['sha256_bin'] and len(campaign['resultados'])==78
+    assert all(r['estado']=='PASS' and r['discrepancias']==0 for r in campaign['resultados'])
+    tex+=macro('TablaCampania',table([[g['grupo'],f"{g['pass_rtl']}/{g['casos']}",f"{g['ventajas']}/{g['casos']}",
+        g['sin_ordenes'],f(g['media']),n(g['peor']),f(g['dd_max'])] for g in campaign['grupos']]))
+    shutil.copy2(ROOT/'resultados_simulacion/testbench_todas_acciones/grafico_resumen.png',fig/'todas_acciones_resumen.png')
+    allrows=table([[r['serie'].replace('_',r'\_'),n(r['ticks']),n(r['patrimonio']),n(r['mantener_oficial']),
+        f"{r['compras']}/{r['ventas']}",f(r['drawdown_pct'])] for r in campaign['resultados']])
+    (OUT/'resultados_todas_acciones.tex').write_text(r'''\small
+\begin{longtable}{lrrrrr}\toprule
+Serie y escala & Ticks & Trader & Mantener & C/V & DD (\%) \\\midrule\endhead
+'''+allrows+r'''
+\bottomrule\end{longtable}\normalsize
+''',encoding='utf-8')
     (OUT/'datos_generados.tex').write_text('% Generado desde evidencia de tendencia lenta\n'+tex,encoding='utf-8')
     appendix=[]
     for key,r in zip(KEYS,rows,strict=True):

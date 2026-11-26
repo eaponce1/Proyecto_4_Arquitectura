@@ -28,7 +28,15 @@ def main():
     assert sha(ROOT/'competition.bin')==validation['sha256_bin']
     assert sha(ROOT/'sw/trade.hex')==validation['sha256_hex']
     assert validation['politica']=='tendencia_lenta_128_5pct'
-    assert validation['prueba_fisica']=='PENDIENTE_NUEVA_IMAGEN'
+    assert validation['prueba_fisica']=='REPROGRAMACION_REPORTADA_POR_USUARIO'
+    physical_path=ROOT/'docs/evidencia_fisica/reprogramacion_tendencia_lenta.json'
+    physical=json.loads(physical_path.read_text(encoding='utf-8'))
+    assert physical['sha256_bin_local']==validation['sha256_bin']
+    campaign=json.loads((ROOT/'resultados_simulacion/testbench_todas_acciones/resumen.json').read_text(encoding='utf-8'))
+    assert len(campaign['resultados'])==78 and sum(r['ticks'] for r in campaign['resultados'])==1557620
+    assert all(r['estado']=='PASS' and r['discrepancias']==0 for r in campaign['resultados'])
+    assert campaign['sha256_bin']==validation['sha256_bin']
+    assert '1 557 620' in normalized or '1557620' in normalized.replace(' ','')
     with (ROOT/'proyecto4/alternativas/tendencia_lenta/resultados/comparacion_final.csv').open(encoding='utf-8',newline='') as f:
         rows=list(csv.DictReader(f))
     assert len(rows)==8 and sum(int(r['ventaja'])>0 for r in rows)==5
@@ -42,18 +50,18 @@ def main():
     times=json.loads((ROOT/'docs/evidencia_informe/metricas_finales.json').read_text())
     assert sum(s['ticks'] for s in times['series'])==160000
     def pages(name):return int(re.search(r'Pages:\s*(\d+)',(build/name).read_text())[1])
-    report=dict(fecha='2026-11-25',integrantes=AUTHORS,
+    report=dict(fecha='2026-11-26',integrantes=AUTHORS,
         dictamen='CUMPLIMIENTO_DOCUMENTAL_AMPLIO_CON_PENDIENTES; ENTREGA_INTEGRAL_NO_ACREDITADA',
         enunciado=dict(ruta='docs/referencia/enunciado_proyecto4.pdf',sha256=sha(ROOT/'docs/referencia/enunciado_proyecto4.pdf'),paginas_rubrica=[3,4,5]),
         informe=dict(ruta='docs/INFORME_FINAL.pdf',sha256=sha(ROOT/'docs/INFORME_FINAL.pdf'),paginas=pages('pdfinfo.txt')),
         auditoria=dict(ruta='docs/AUDITORIA_ENTREGA.pdf',sha256=sha(ROOT/'docs/AUDITORIA_ENTREGA.pdf'),paginas=pages('auditoria_pdfinfo.txt')),
         comprobaciones=dict(autores_y_secciones=True,sin_desbordes=True,firmas_bin_y_fuentes=True,
-            ticks_rtl=160000,ventajas_conocidas='5/8',filas_codisenio_cotejadas=60000,metricas_finales_resumidas=160000),
-        prueba_fisica=dict(estado='PENDIENTE_NUEVA_IMAGEN',alcance='El registro previo corresponde a Momentum32 5e1579ca, no a tendencia lenta',
-            evidencia='docs/evidencia_fisica/registro_20261125.md',sha256=sha(ROOT/'docs/evidencia_fisica/registro_20261125.md'),
+            ticks_rtl=1557620,escenarios=78,ventajas_conocidas='5/8',ventajas_adicionales=['16/35 proporcional','18/35 afin'],filas_codisenio_cotejadas=60000,metricas_finales_resumidas=160000),
+        prueba_fisica=dict(estado=physical['estado'],alcance=physical['alcance'],
+            evidencia=physical_path.relative_to(ROOT).as_posix(),sha256=sha(physical_path),
             resultados_tres_rondas='NO_APORTADOS'),
-        pendientes=['Programacion y prueba fisica del nuevo BIN de tendencia lenta',
-            'Ocho series completas a 1 ms y 10 ms; actualmente integracion de 396 ticks por cadencia larga',
+        pendientes=['Traza fisica de la maestra asociada a la reprogramacion reportada',
+            'Ocho series completas a 1 ms y 10 ms si se exige esa extension; actualmente integracion de 396 ticks por cadencia larga',
             'Patrimonio/referencia/posicion de las tres rondas oficiales',
             'Acreditacion de defensa y entrega original dentro del plazo',
             'Perfil regional y comparacion de hardware bajo la politica final'])
@@ -63,7 +71,8 @@ def main():
         compilador='pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023',pasadas=3,pasadas_auditoria=2,
         revisado='Autores, conclusiones, metricas, evidencia fisica, roofline y auditoria; sin cajas desbordadas',
         fuentes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted([*folder.glob('*.tex'),*folder.glob('figuras/*.png'),folder/'compilar.sh'])},
-        prueba_fisica='PENDIENTE_NUEVA_IMAGEN; EVIDENCIA PREVIA SOLO MOMENTUM32')
+        prueba_fisica='REPROGRAMACION_REPORTADA_POR_USUARIO; RESULTADOS FINANCIEROS DE CAMPANA RTL')
+    (ROOT/'docs/INFORME_FINAL.sha256').write_text(report['informe']['sha256']+'  INFORME_FINAL.pdf\n',encoding='ascii')
     (folder/'compilacion.json').write_text(json.dumps(compilation,indent=2),encoding='utf-8')
     print('PASS integridad y lectura PDF:',report['informe']['paginas'],'paginas; auditoria',report['auditoria']['paginas'],'paginas')
     print('DICTAMEN: faltan resultados oficiales, defensa/plazo y perfil de hardware de la politica final')

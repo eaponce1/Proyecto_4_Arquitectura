@@ -10,7 +10,10 @@ def check_sources(record):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--archivar',action='store_true');args=parser.parse_args()
     active=t.verify();assert active['politica']=='tendencia_lenta_128_5pct'
-    assert active['prueba_fisica']=='PENDIENTE_NUEVA_IMAGEN'
+    assert active['prueba_fisica'] in ('PENDIENTE_NUEVA_IMAGEN','REPROGRAMACION_REPORTADA_POR_USUARIO')
+    if active['prueba_fisica']=='REPROGRAMACION_REPORTADA_POR_USUARIO':
+        physical=json.loads((ROOT/'docs/evidencia_fisica/reprogramacion_tendencia_lenta.json').read_text(encoding='utf-8'))
+        assert physical['estado']==active['prueba_fisica'] and physical['sha256_bin_local']==active['sha256_bin']
     full=json.loads((t.OUT/'equivalencia_verilator.json').read_text());check_sources(full)
     assert sum(r['ticks'] for r in full['series'])==160000 and all(r['discrepancias']==0 for r in full['series'])
     official=json.loads((t.OUT/'bancos_oficiales.json').read_text())
@@ -59,7 +62,7 @@ def main():
             ROOT/'proyecto4/alternativas/candidata_final/tb/tb_candidata.sv',
             ROOT/'tools/validar_puertas.py',ROOT/'tools/validar_activo_verilator.py',ROOT/'tools/validar_oficial.py']
         report=dict(politica=active['politica'],sha256_bin=active['sha256_bin'],sha256_hex=active['sha256_hex'],
-            prueba_fisica='PENDIENTE_NUEVA_IMAGEN',fuentes={p.relative_to(ROOT).as_posix():t.sha(p) for p in docs},
+            prueba_fisica=active['prueba_fisica'],fuentes={p.relative_to(ROOT).as_posix():t.sha(p) for p in docs},
             rtl=traces,rtl_integracion=active['tests'],integracion_cadencias_largas=long,puertas=tests,
             area=dict(lc=active['lc'],bram=active['bram']),
             limites=['Cadencias largas: integracion de 396 ticks por periodo, no ocho series completas',
@@ -70,5 +73,5 @@ def main():
     report=json.loads((DEST/'validacion_integral.json').read_text(encoding='utf-8'));check_sources(report)
     assert report['sha256_bin']==active['sha256_bin'] and report['rtl']==traces
     assert report['rtl_integracion']==active['tests']
-    print('PASS auditoria lenta: 160000 ticks archivados, 4/4 por banco, tres cadencias de integracion y puertas; fisica pendiente')
+    print('PASS auditoria lenta: 160000 ticks archivados, 4/4 por banco, tres cadencias de integracion y puertas;',active['prueba_fisica'])
 if __name__=='__main__':main()

@@ -1,18 +1,21 @@
 Validación,Resultado,Evidencia
-Datos de práctica,PASS,estadisticas_series.csv: 8*20000
-Ocho backtests,PASS,comparacion_final.csv y trazas
-Buy & Hold,6/8 ventajas,"mediana +24,90%; peor -6,14%"
-Robustez fuera de muestra,NO DEMOSTRADA independientemente,LOCO 5/8; LOSO 6/8; WF 14/24; datos conocidos
-Control de inventario,PASS,invariantes.log; equivalencia_rv32e.json
-Compras y ventas digitales,PASS,integracion_compra_venta.json; RTL y netlist
-Python vs RV32E,PASS,160000 ticks + sintéticos
-RV32E vs RTL,PASS,"equivalencia_verilator.json, 160000 ticks"
-SPI y MISO,PASS,Icarus cuatro estados y Verilator
-Testbench oficial,PASS adaptado,"2 bancos 4/4, 2000 ticks; diffs explícitos"
-Timing ronda 1,PASS,timing_rondas.csv + pruebas a cadencia real
-Timing ronda 2,PASS,timing_rondas.csv + pruebas a cadencia real
-Timing ronda 3,PASS,timing_rondas.csv + pruebas a cadencia real
-Síntesis HX1K,PASS,build/resultados.json y logs
-SHA-256 final,Verificado,SHA256_entrega.txt
-Prueba física Go Board,PENDIENTE,no se programó la placa
-Prueba FPGA maestra,PENDIENTE,requiere conexión y sesión física
+Firmware vigente,PASS,"130 palabras; sw/trade.s, sw/trade.hex; build/trader/validacion.json"
+Python vs RV32E,PASS,160000 ticks conocidos y sintéticos; tendencia_lenta/resultados/equivalencia_rv32e.json
+Ocho series RTL,PASS,160000 ticks a 100 us; equivalencia_verilator.json
+Todos los CSV,78/78 PASS,"1557620 ticks, 428 compras y 364 ventas; docs/evidencia_todas_acciones/manifest.json"
+Práctica vs mantener,5/8 ventajas,Media 10971.125; peor 8540; DD máximo 50.55%
+Adicional proporcional vs mantener,16/35 ventajas,Media 10784; peor 5863; 15 sin órdenes
+Adicional afín vs mantener,18/35 ventajas,Media 12150.57; peor 5518; dos escalas comparten datos
+Robustez independiente,NO DEMOSTRADA,Datos ya conocidos; normalización retrospectiva en adicionales
+SPI y contabilidad,PASS,"Secuencia, MMIO y registros por tick; Icarus y Verilator"
+Bancos oficiales,PASS adaptados,"2 bancos, 2000 ticks y 4/4 cada uno; diffs conservados"
+Cadencia 100 us,PASS,"78 escenarios; peor 20.72 us, margen 69.54 us"
+Cadencias 1 y 10 ms,PASS integración,396 ticks por cadencia; no ocho series completas
+Estrés de precios,"PASS técnico, pérdida financiera","936 ticks; patrimonio 69; 263 ciclos, 21.04 us"
+Netlist y BIN reconstruido,PASS digital,"396 ticks, CS 20/40/1000 ns; retardo funcional 1 ns"
+HX1K y timing,PASS,"1219/1280 LC, 9/16 BRAM; 50.67 MHz de enrutado"
+Programación Go Board,REPORTADA POR USUARIO,docs/evidencia_fisica/reprogramacion_tendencia_lenta.json
+Resultados de tres rondas oficiales,NO APORTADOS,Requiere registros oficiales; no se sustituyen por backtests
+Defensa y entrega original,SIN ACREDITAR,"Integración 25 y revisión 26 de noviembre, posteriores al cierre original"
+Amdahl y roofline,HISTÓRICOS,SMA10; no speedups de la política lenta
+Perfil regional de política final,PENDIENTE,Separar mejora de algoritmo y de hardware

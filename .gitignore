@@ -18,3 +18,11 @@ proyecto4/alternativas/tendencia_lenta/build/
 proyecto4/alternativas/atm_adaptativa/
 build/trader/verilator_*/**/*.csv
 build/trader/verilator_*/*.csv
+build/testbench_todas_acciones/
+resultados_simulacion/testbench_todas_acciones/*.aux
+resultados_simulacion/testbench_todas_acciones/*.log
+resultados_simulacion/testbench_todas_acciones/*.out
+resultados_simulacion/testbench_todas_acciones/*.toc
+resultados_simulacion/testbench_todas_acciones/pdfinfo.txt
+resultados_simulacion/testbench_todas_acciones/informe_extraido.txt
+build/repeticion_acciones_archivadas/

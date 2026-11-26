@@ -81,6 +81,34 @@ Las ocho series ya son conocidas y no constituyen una prueba independiente de se
 
 ## Comportamiento de la tendencia lenta activa
 
+### Testbench de todos los archivos de acciones
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_todas_acciones.ps1
+```
+
+Ejecuta el RTL activo con las ocho series conocidas y los 35 CSV adicionales de
+`Downloads/proyecto4.zip`. Cada adicional se prueba en escala proporcional y afín:
+78 escenarios. Usa hasta 20.000 ticks por archivo; los dos CSV más cortos se
+prueban con su longitud real, sin repetir datos. La cadencia predeterminada es
+100 µs, la más exigente. Cada escenario reinicia CPU y cartera.
+
+El banco envía precios por SPI y comprueba MISO, DECISION, registros de caja e
+inventario, SUM10, una decisión por precio, contabilidad y plazo de respuesta.
+No programa ni lee la placa real; Verilator simula el circuito en dos estados.
+
+Abre `resultados_simulacion/testbench_todas_acciones/ABRIR_RESULTADOS.html` para
+filtrar por acción. `resumen.csv`, `resumen.json` e `INFORME.md` conservan resultados
+y alcance. Las trazas por tick, operaciones, vectores y logs están en
+`build/testbench_todas_acciones/`. Los CSV externos no se descargan ni se validan
+contra una fuente de mercado; sus dos escalas comparten los mismos datos y usan
+normalización retrospectiva. No constituyen 70 muestras independientes.
+
+El anexo `INFORME_TESTBENCH.pdf` se genera desde `informe_testbench.tex` y muestra
+el resumen y los resultados de cada escenario. Para regenerar su gráfico y fuente,
+una vez terminados todos los casos: `python tools/generar_informe_testbench.py`.
+Luego compila el PDF con `wsl -d Ubuntu -- bash tools/compilar_informe_testbench.sh`.
+
 El visor y el BIN usan SUM10, revisión cada 128 ticks y umbral del 5%. Se empieza en caja. Primera señal posible en tick 256 y ejecución en 257 (índice inicial cero). La ausencia inicial de compras es esperada. El ancla se renueva en cada revisión: una subida acumulada lenta puede no activar entrada.
 
 Para repetir los dos bancos oficiales adaptados: `python -B tools/validar_oficial.py`. Para Python frente al HEX real: `python -B proyecto4/alternativas/tendencia_lenta/validar_equivalencia.py`.
