@@ -1,0 +1,5 @@
+PASS puertas spi_netlist_cs20
+PASS puertas spi_netlist_cs40
+PASS puertas spi_netlist_cs1000
+
+Salida=0; segundos=29.982

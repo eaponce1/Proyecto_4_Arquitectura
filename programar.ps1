@@ -30,4 +30,6 @@ try {
     Write-Host 'Reinicia la Go Board, espera D1 y luego inicia una serie NUEVA en la maestra.'
     Write-Host 'D1: CPU ejecuto instrucciones; D2: precio recibido; D3: precio leido; D4: orden distinta de cero.'
     Write-Host 'Los LED quedan encendidos como registro de actividad; no parpadean por cada orden.'
+    Write-Host 'Tendencia lenta: SUM10 cada 128 ticks, umbral 5%. Primera compra posible en tick 257 (indice inicial 0).'
+    Write-Host 'Puede permanecer en caja si no aparece senal. Reinicia antes de cada serie/ronda.'
 } finally { Pop-Location }

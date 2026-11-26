@@ -1,0 +1,5 @@
+PASS BIN cuatro estados spi_bin_cs20
+PASS BIN cuatro estados spi_bin_cs40
+PASS BIN cuatro estados spi_bin_cs1000
+
+Salida=0; segundos=93.957

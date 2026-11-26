@@ -14,13 +14,17 @@ El informe incluye autores, conclusión ampliada, no operar y mantener, ocho ser
 assembly, registros/memoria, métricas de 160.000 ticks, recursos y timing. Se agregó
 el estudio histórico de software/custom-0/MMIO, con Amdahl y roofline, cotejado con
 60.000 filas originales. Esas cifras no se presentan como aceleraciones de la
-política Momentum32 final.
+política lenta final.
 
-La programación y las compras/ventas fueron confirmadas por el grupo;
-el [registro aportado](evidencia_fisica/registro_20261125.md) delimita ese alcance.
+La programación y las compras/ventas anteriores corresponden a Momentum32
+`5e1579ca...`; el [registro aportado](evidencia_fisica/registro_20261125.md)
+no confirma la imagen lenta nueva `1f514301...`.
 
 Falta acreditar:
 
+- Programación y prueba física del BIN nuevo de tendencia lenta.
+- Ocho series completas a 1 ms y 10 ms si se exige esa extensión: actualmente
+  se validaron 160.000 ticks a 100 µs y 396 de integración por cadencia larga.
 - Patrimonio, referencia y resultado de cada una de las tres rondas oficiales.
 - Defensa de los integrantes y comprobante de entrega original dentro del plazo.
 - Perfil regional y comparación de hardware con la misma política final, para

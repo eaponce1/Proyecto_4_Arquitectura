@@ -1,0 +1,40 @@
+{
+  "serie": "Meta 2022",
+  "ticks": 20000,
+  "modo": "SIMULACION_PYTHON_REPRODUCCION_VISUAL",
+  "prueba_fisica": "NO_REALIZADA_POR_ESTE_SIMULADOR",
+  "parametros": {
+    "periodo": 128,
+    "umbral_pct": 5,
+    "lote_max": 63,
+    "min_adicional": 8,
+    "senal": "SUM10"
+  },
+  "csv_sha256": "fed122e0a9861276d76b1396b264fd34077c280c80fe6b356b6971d55242da3f",
+  "hex_sha256": "830177bca9726621dc583195cbe0e4740c7993a3db59698c081d95bfa2552d2a",
+  "bin_disponible_sha256": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "bin_nota": "Hash del archivo local; no es una lectura de la flash.",
+  "metricas": {
+    "patrimonio": 12836,
+    "caja": 12836,
+    "acciones": 0,
+    "ordenes": 10,
+    "compras": 5,
+    "ventas": 5,
+    "comisiones": 50,
+    "drawdown": 4139,
+    "drawdown_pct": 28.133496465470365,
+    "mantener_oficial": 9695,
+    "ventaja": 3141,
+    "ventaja_pct": 32.39814337287262,
+    "ticks_caja": 10144,
+    "ticks_exposicion_alta": "",
+    "ticks_invertido": 9856
+  },
+  "rtl_archivada_cotejada": {
+    "ticks": 20000,
+    "discrepancias": 0,
+    "sha256": "9c96fb791b6c095a97082f75f53b139239105cbcb96a75a73d2b2af8b208dfa7",
+    "nota": "Traza RTL de la validacion anterior; este comando NO ejecuta un testbench nuevo."
+  }
+}

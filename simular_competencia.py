@@ -10,9 +10,10 @@ import sys
 from datetime import datetime
 
 ROOT=Path(__file__).resolve().parent
-ALT=ROOT/'proyecto4/alternativas/competitiva_definitiva'
+ALT=ROOT/'proyecto4/alternativas/tendencia_lenta'
+DATA=ROOT/'proyecto4/alternativas/competitiva_definitiva/datos'
 sys.path.insert(0,str(ALT))
-from estrategia import load, run, frozen, write_csv
+from modelo_lento import load, run, frozen, write_csv
 
 SERIES={
  'amd_enero':('AMD enero 2022','practica_amd_2022_ene.csv'),
@@ -28,7 +29,7 @@ SERIES={
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def simulate(key):
-    label,filename=SERIES[key];path=ALT/'datos'/filename;prices=load(path)
+    label,filename=SERIES[key];path=DATA/filename;prices=load(path)
     metrics,rows=run(prices,frozen(),True)
     q=9995//prices[0];n=buys=sells=0;peak=10000
     for r in rows:
@@ -44,7 +45,7 @@ def simulate(key):
         ref=next(r for r in csv.DictReader(f) if r['serie']==path.stem)
     for field in ('patrimonio','ordenes','comisiones','drawdown'):
         assert metrics[field]==int(ref[field]),f'Diferencia respecto de entrega validada: {key}/{field}'
-    rtl=ALT/'build/verilator'/f'{path.stem}.csv'
+    rtl=ROOT/'build/trader/verilator'/f'{path.stem}.csv'
     if rtl.exists():
         with rtl.open(newline='') as f:actual=list(csv.DictReader(f))
         assert len(actual)==len(rows),'Traza RTL incompleta'
@@ -240,7 +241,7 @@ def main():
     links='\n'.join(f"- [{SERIES[k][0]}: informe y grafico]({k}/INFORME.md)" for k in keys)
     (output/'INFORME_COMPARATIVO.md').write_text('# Resultados de simulacion de Pochoco Trader\n\n'+table+'\n\n'+
         f"Ventaja frente a mantener en {sum(r['ventaja']>0 for r in summaries)}/{len(summaries)} series ejecutadas.\n\n"+
-        'Politica congelada: momentum 32, revision cada 8 ticks, salida -16, reentrada +6 y trailing stop 20. '+
+        'Politica activa: SUM10, revision cada 128 ticks, entrada/salida relativa del 5 %, inicio en caja. '+
         'Capital $10.000, comision $5 por orden ejecutada, maximo 63 acciones por orden, ejecucion al tick siguiente.\n\n'+
         links+'\n\nSon series conocidas de desarrollo. No se afirma superioridad fuera de muestra ni aprobacion fisica. '+
         'Los graficos son exportables a un informe y las trazas RTL previas se cotejan con el modelo cuando estan disponibles.\n',encoding='utf-8')

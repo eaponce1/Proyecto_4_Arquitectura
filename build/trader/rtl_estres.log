@@ -1,0 +1,8 @@
+WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\rtl\trader\pochoco_ram.v:36: $readmemh(sw/trade.hex): Not enough words in the file for the requested range [0:511].
+METRICAS ticks=936 periodo_ns=100000 ciclos_total=68554 ic_total=29043 peor_caso=263 presupuesto=1131 peor_ic=121 status_y_byte_done=136 cargas_mantenidas=3880 ciclos_promedio=73.241453 ic_promedio=31.028846 cpi_global=2.360431
+PASS 936 STATUS, PRICE, SUM10, READY y DECISION; peor caso 263/1131 ciclos
+CARTERA patrimonio=69 caja=69 acciones=0 compras=6 ventas=6 comisiones=60 drawdown=9931
+PASS 936 MISO frente a Python, fase 17 ns, LED=1111
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\candidata_final\tb\tb_candidata.sv:302: $finish called at 93720130000 (1ps)
+
+Salida=0; segundos=43.486

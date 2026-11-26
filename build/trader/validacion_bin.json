@@ -1,0 +1,35 @@
+{
+  "sha256_netlist": "32af49df7bab1f26f657eed70327b27c89eca4f564e7665f3817eba000e7e397",
+  "tests": [
+    {
+      "nombre": "spi_bin_cs20",
+      "ticks": 396,
+      "setup_ns": 20,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs20.log"
+    },
+    {
+      "nombre": "spi_bin_cs40",
+      "ticks": 396,
+      "setup_ns": 40,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs40.log"
+    },
+    {
+      "nombre": "spi_bin_cs1000",
+      "ticks": 396,
+      "setup_ns": 1000,
+      "periodo_ns": 40000,
+      "discrepancias": 0,
+      "simulador": "Icarus cuatro estados",
+      "retardo_funcional_uniforme_ns": 1,
+      "log": "build/trader/puertas_bin/spi_bin_cs1000.log"
+    }
+  ]
+}

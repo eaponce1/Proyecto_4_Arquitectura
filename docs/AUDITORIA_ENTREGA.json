@@ -17,31 +17,33 @@
   },
   "informe": {
     "ruta": "docs/INFORME_FINAL.pdf",
-    "sha256": "279b786643eba7292e1734459f8c843a284563ebf61f2b77e9f9ca64f7787ef0",
-    "paginas": 25
+    "sha256": "8da59dfbfe493a481d16b90b117189b4b6a6765e546585f6cc05a45926abfa0c",
+    "paginas": 18
   },
   "auditoria": {
     "ruta": "docs/AUDITORIA_ENTREGA.pdf",
-    "sha256": "cd622a8ee08a9b2d6af5ea2dc5bd3dff9e45284c87f4909cbfc0f8c99fe1c9cf",
-    "paginas": 3
+    "sha256": "08d13e1dee34a90a09b6ec26f5fac4fc78c2f016709d43171e6308608808b6ea",
+    "paginas": 2
   },
   "comprobaciones": {
     "autores_y_secciones": true,
     "sin_desbordes": true,
     "firmas_bin_y_fuentes": true,
     "ticks_rtl": 160000,
-    "ventajas_conocidas": "6/8",
+    "ventajas_conocidas": "5/8",
     "filas_codisenio_cotejadas": 60000,
     "metricas_finales_resumidas": 160000
   },
   "prueba_fisica": {
-    "estado": "CONFIRMADA_POR_EL_GRUPO",
-    "alcance": "dos VERIFY OK y compras/ventas reportadas",
+    "estado": "PENDIENTE_NUEVA_IMAGEN",
+    "alcance": "El registro previo corresponde a Momentum32 5e1579ca, no a tendencia lenta",
     "evidencia": "docs/evidencia_fisica/registro_20261125.md",
     "sha256": "2a74afa8eb49f15dde718381737152b94a2fbd224404a43b5b8f2713bab9d081",
     "resultados_tres_rondas": "NO_APORTADOS"
   },
   "pendientes": [
+    "Programacion y prueba fisica del nuevo BIN de tendencia lenta",
+    "Ocho series completas a 1 ms y 10 ms; actualmente integracion de 396 ticks por cadencia larga",
     "Patrimonio/referencia/posicion de las tres rondas oficiales",
     "Acreditacion de defensa y entrega original dentro del plazo",
     "Perfil regional y comparacion de hardware bajo la politica final"

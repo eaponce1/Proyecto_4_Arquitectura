@@ -4,7 +4,7 @@ La auditoría recuperó del commit \texttt{66eede4} el estudio comparativo de
 SMA10 anterior a la política final. Se comparan la misma estrategia y la misma
 serie de 20\,000 ticks a 25 MHz: software, instrucción \texttt{custom-0} y
 periférico MMIO. Son mediciones históricas, no nuevas ejecuciones de la versión
-Momentum32. Los CSV resumidos, informe original y manifiesto de procedencia
+tendencia lenta. Los CSV resumidos, informe original y manifiesto de procedencia
 están en \path{docs/evidencia_codisenio/}; los programas, RTL, testbenches y
 trazas completas se conservan en ese commit del repositorio.
 
@@ -69,10 +69,10 @@ final. El kernel software queda bajo el techo de memoria del modelo, mientras
 las dos alternativas se ubican bajo el techo de cómputo.
 
 El estudio justifica descartar custom-0 por área y conservar MMIO como opción
-implementable. La integración final cambia la política a Momentum32 con stop
-y reduce el reloj del SoC a 12,5 MHz para usar el arranque validado. SUM10 sigue
-presente, pero no participa en la regla final: no corresponde atribuirle un
-speedup de 3,606 a Momentum32. Su evaluación propia está en la sección de
+implementable. La integración activa usa tendencia lenta con SUM10 y un reloj
+del SoC de 12,5 MHz. Aunque utiliza ese periférico, no corresponde atribuirle
+el speedup histórico de 3,606: cambiaron la política y el reloj.
+Su evaluación propia está en la sección de
 latencia y ocupa \Celdas\ LC y \Bram\ BRAM. Falta un perfil regional y una
 comparación de variantes bajo la misma política final para cerrar esa extensión
 del estudio sin mezclar mejoras de algoritmo y mejoras de hardware.

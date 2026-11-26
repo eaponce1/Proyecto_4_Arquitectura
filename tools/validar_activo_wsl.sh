@@ -10,4 +10,4 @@ if [ ! -x "$POCH_VERILATOR" ]; then
     dpkg-deb -x verilator_*.deb extracted
     popd >/dev/null
 fi
-python3 -B tools/validar_activo_verilator.py
+python3 -B tools/validar_activo_verilator.py "$@"

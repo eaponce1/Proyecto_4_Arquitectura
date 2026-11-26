@@ -2,7 +2,7 @@
 // Mismo SPI modo 0 a 1 MHz, con CS previo al primer SCLK por pocas decenas de ns.
 // El banco anterior esperaba 1 us y no ejercitaba esta coincidencia de sincronizadores.
 module tb_spi_margen;
-  parameter integer SETUP_NS=20, FASE_NS=0, TICKS=48;
+  parameter integer SETUP_NS=20, FASE_NS=0, TICKS=396, PERIODO_NS=40000;
   parameter ARCHIVO_FIRMWARE="sw/trade.hex";
   reg clk=0,sclk=0,mosi=0,cs_n=1;
   wire miso;
@@ -11,12 +11,13 @@ module tb_spi_margen;
 `ifdef NETLIST
   trade_spi_externo dut(
 `else
-  trade_spi_externo #(.PALABRAS_FIRMWARE(150),.ARCHIVO_FIRMWARE(ARCHIVO_FIRMWARE)) dut(
+  trade_spi_externo #(.PALABRAS_FIRMWARE(130),.ARCHIVO_FIRMWARE(ARCHIVO_FIRMWARE)) dut(
 `endif
     .i_Clk(clk),.i_SPI_SCLK(sclk),.i_SPI_MOSI(mosi),.i_SPI_CS_n(cs_n),.o_SPI_MISO(miso),.o_LED(leds));
   reg [7:0] prices[0:TICKS-1],expected[0:TICKS-1],decisions[0:TICKS-1];
   string vectors;
   integer mismatches=0,writes=0,received=0,tick=0;
+  integer setup_actual=SETUP_NS;
   reg [7:0] value;
 `ifndef NETLIST
   always @(posedge dut.clk_soc) begin
@@ -33,6 +34,7 @@ module tb_spi_margen;
   end
 `endif
   initial begin
+    if($value$plusargs("setup_ns=%d",setup_actual)) begin end
     if(!$value$plusargs("vectores=%s",vectors)) $fatal(1,"Falta +vectores");
     $readmemh({vectors,"/precios.hex"},prices);
     $readmemh({vectors,"/miso.hex"},expected);
@@ -40,7 +42,7 @@ module tb_spi_margen;
     #(120113+FASE_NS);
     for(tick=0;tick<TICKS;tick++) begin
       mosi=prices[tick][7];cs_n=0;
-      #(SETUP_NS);
+      #(setup_actual);
       for(integer b=7;b>=0;b--) begin
         sclk=1;
         value[b]=miso;
@@ -55,12 +57,12 @@ module tb_spi_margen;
         mismatches++;
         if(mismatches<=5)$display("MISO tick=%0d observado=%02h esperado=%02h",tick,value,expected[tick]);
       end
-      #(100000-8500-SETUP_NS);
+      #(PERIODO_NS-8500-setup_actual);
     end
 `ifdef NETLIST
-    $display("RESUMEN setup_ns=%0d fase_ns=%0d transferencias=%0d diferencias=%0d LED=%b (verificacion externa)",SETUP_NS,FASE_NS,TICKS,mismatches,leds);
+    $display("RESUMEN setup_ns=%0d fase_ns=%0d transferencias=%0d diferencias=%0d LED=%b (verificacion externa)",setup_actual,FASE_NS,TICKS,mismatches,leds);
 `else
-    $display("RESUMEN setup_ns=%0d fase_ns=%0d precios=%0d escrituras=%0d diferencias=%0d LED=%b",SETUP_NS,FASE_NS,received,writes,mismatches,leds);
+    $display("RESUMEN setup_ns=%0d fase_ns=%0d precios=%0d escrituras=%0d diferencias=%0d LED=%b",setup_actual,FASE_NS,received,writes,mismatches,leds);
 `endif
 `ifndef NETLIST
     if(received!=TICKS||writes!=TICKS)$fatal(1,"Precios o escrituras ausentes/duplicados");

@@ -69,3 +69,7 @@ aportó dos `VERIFY OK` y confirmó compras y ventas en la placa; el registro es
 en `evidencia_fisica/registro_20261125.md`. Falta la traza de la maestra y el
 patrimonio por ronda para una auditoría financiera. No se ejecutó `iceprog`
 automáticamente durante la corrección.
+
+## Integración posterior de tendencia lenta
+
+La imagen `1f514301...` conserva la corrección SPI descrita y cambia el firmware a SUM10/128/5%. La primera ejecución posible es en tick 257; D4 puede permanecer apagado mientras no haya señal. Esta imagen pasó RTL, netlist y reconstrucción del BIN con compra y venta de 396 ticks. La confirmación física previa aplica exclusivamente a Momentum32 `5e1579ca...`; falta probar la nueva en placa.

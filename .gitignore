@@ -14,3 +14,7 @@ build/trader/decodificado.log
 build/diagnostico_sin_ordenes/actual_desempaquetado.*
 build/trader/verilator/*.csv
 docs/referencia/enunciado_proyecto4.txt
+proyecto4/alternativas/tendencia_lenta/build/
+proyecto4/alternativas/atm_adaptativa/
+build/trader/verilator_*/**/*.csv
+build/trader/verilator_*/*.csv

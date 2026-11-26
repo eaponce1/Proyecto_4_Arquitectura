@@ -78,3 +78,18 @@ La animacion no sustituye ese registro ni demuestra como termino una ronda real.
 En el informe identificar por separado simulacion Python, RTL y medicion fisica.
 Incluir ganancias y perdidas: las dos muestras de Netflix pierden frente a mantener.
 Las ocho series ya son conocidas y no constituyen una prueba independiente de series secretas.
+
+## Comportamiento de la tendencia lenta activa
+
+El visor y el BIN usan SUM10, revisión cada 128 ticks y umbral del 5%. Se empieza en caja. Primera señal posible en tick 256 y ejecución en 257 (índice inicial cero). La ausencia inicial de compras es esperada. El ancla se renueva en cada revisión: una subida acumulada lenta puede no activar entrada.
+
+Para repetir los dos bancos oficiales adaptados: `python -B tools/validar_oficial.py`. Para Python frente al HEX real: `python -B proyecto4/alternativas/tendencia_lenta/validar_equivalencia.py`.
+
+Integración de compra y venta a las cadencias largas, desde esta carpeta:
+
+```powershell
+wsl.exe -d Ubuntu -- bash tools/validar_activo_wsl.sh --integracion --periodo-ns 1000000
+wsl.exe -d Ubuntu -- bash tools/validar_activo_wsl.sh --integracion --periodo-ns 10000000
+```
+
+Sin `--integracion`, el parámetro `--periodo-ns` permite repetir las ocho series completas a otra cadencia. La entrega actual incluye 160.000 ticks a 100 µs y 396 ticks de integración por cada cadencia larga. Los gráficos vigentes están en `resultados_simulacion/informe_tendencia_lenta/`; `informe_ocho_series/` corresponde a Momentum32 histórico.

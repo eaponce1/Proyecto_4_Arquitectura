@@ -35,16 +35,18 @@ jobs:
           sudo apt-get install -y iverilog yosys verilator g++ make
       - name: Check active image and source hashes
         run: python -B tools/trader.py verify
+      - name: Audit stored current evidence
+        run: python -B tools/auditar_lenta.py
       - name: Accounting and causality invariants
-        run: python -B proyecto4/alternativas/competitiva_definitiva/test_invariantes.py
+        run: python -B proyecto4/alternativas/tendencia_lenta/test_invariantes.py
       - name: Reassemble and compare Python with RV32E on 160000 ticks
-        run: python -B proyecto4/alternativas/competitiva_definitiva/validar_equivalencia.py
-      - name: Audit complete stored RTL evidence and Git history
-        run: python -B proyecto4/alternativas/competitiva_definitiva/auditar_entrega.py
+        run: python -B proyecto4/alternativas/tendencia_lenta/validar_equivalencia.py
       - name: Simulate active RTL over SPI
         run: python -B tools/trader.py test
       - name: Compare active RTL on all eight series
         run: python -B tools/validar_activo_verilator.py
+      - name: Run adapted official benches
+        run: python -B tools/validar_oficial.py
       - name: Upload current test logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -55,5 +57,5 @@ jobs:
             build/trader/verilator/*.log
             build/trader/equivalencia_verilator.json
             build/trader/rtl_*/decisiones.csv
-            proyecto4/alternativas/competitiva_definitiva/resultados/equivalencia_rv32e.json
-            proyecto4/alternativas/competitiva_definitiva/resultados/auditoria_entrega.json
+            proyecto4/alternativas/tendencia_lenta/resultados/equivalencia_rv32e.json
+            build/trader/bancos_oficiales.json

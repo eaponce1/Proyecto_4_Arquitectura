@@ -1,0 +1,25 @@
+WARNING: C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\rtl\trader\pochoco_ram.v:36: $readmemh(sw/trade.hex): Not enough words in the file for the requested range [0:511].
+Patrimonio final:          10155
+Ordenes ejecutadas:        2
+Perdida maxima:            935
+No operar:                 10000
+Comprar y mantener:        11375
+Peor caso precio->decision: 223 ciclos (disponibles: 1131)
+Detalle por tick en build/trader/oficial/repositorio_decisiones.csv
+Ticks procesados: 2000
+Bytes SPI recibidos: 2000
+Lecturas PRICE: 2000
+Escrituras DECISION: 2000
+Respuestas precio->decision: 2000
+Bits MISO desconocidos: 0
+Precios perdidos: 0
+PASS MISO sin valores X
+PASS el programa escribe DECISION
+PASS el programa lee todos los precios
+PASS la decision llega antes del siguiente tick
+Testbenchs aprobados: 4/4
+PASS una lectura PRICE y una escritura DECISION por tick
+PASS 2000 bytes MISO coinciden con DECISION del tick anterior
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\build\trader\oficial\repositorio_adaptado.sv:207: $finish called at 200120113000 (1ps)
+
+Salida=0; segundos=123.412

@@ -1,6 +1,6 @@
 // SPI externo con el mismo fetch ROM y arranque que la demo fisica aprobada.
 module trade_spi_externo #(
-  parameter integer PALABRAS_FIRMWARE = 150,
+  parameter integer PALABRAS_FIRMWARE = 130,
   parameter ARCHIVO_FIRMWARE = "sw/trade.hex"
 ) (
   input wire i_Clk, i_SPI_SCLK, i_SPI_MOSI, i_SPI_CS_n,
