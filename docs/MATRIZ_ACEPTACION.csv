@@ -1,4 +1,5 @@
 Validación,Resultado,Evidencia
+Repetición ZIP práctica,8/8 PASS,"160000 ticks, 98 compras, 92 ventas; ZIP y trazas publicados, mismos datos conocidos"
 Firmware vigente,PASS,"130 palabras; sw/trade.s, sw/trade.hex; build/trader/validacion.json"
 Python vs RV32E,PASS,160000 ticks conocidos y sintéticos; tendencia_lenta/resultados/equivalencia_rv32e.json
 Ocho series RTL,PASS,160000 ticks a 100 us; equivalencia_verilator.json

@@ -15,7 +15,7 @@ def main():
     audit=(build/'auditoria_extraida.txt').read_text(encoding='utf-8')
     normalized=norm(text)
     for name in AUTHORS:assert norm(name) in normalized,name
-    for term in ['Conclusiones','Amdahl','roofline','CPI máximo','Tiempo medio','VERIFY OK']:
+    for term in ['Conclusiones','Amdahl','roofline','CPI máximo','Tiempo medio','VERIFY OK','Repetición directa del ZIP de práctica']:
         assert norm(term) in normalized,term
     assert 'no permite acreditar toda la entrega' in norm(audit)
     assert 'tres rondas' in norm(audit) and 'defensa' in norm(audit)
@@ -36,6 +36,9 @@ def main():
     assert len(campaign['resultados'])==78 and sum(r['ticks'] for r in campaign['resultados'])==1557620
     assert all(r['estado']=='PASS' and r['discrepancias']==0 for r in campaign['resultados'])
     assert campaign['sha256_bin']==validation['sha256_bin']
+    direct=json.loads((ROOT/'resultados_simulacion/testbench_zip_practica/resumen.json').read_text(encoding='utf-8'))
+    assert direct['sha256_bin']==validation['sha256_bin'] and direct['ticks']==160000 and len(direct['resultados'])==8
+    assert all(r['estado']=='PASS' for r in direct['resultados']) and direct['zip_sha256'] in normalized.replace(' ','')
     assert '1 557 620' in normalized or '1557620' in normalized.replace(' ','')
     with (ROOT/'proyecto4/alternativas/tendencia_lenta/resultados/comparacion_final.csv').open(encoding='utf-8',newline='') as f:
         rows=list(csv.DictReader(f))
@@ -56,7 +59,7 @@ def main():
         informe=dict(ruta='docs/INFORME_FINAL.pdf',sha256=sha(ROOT/'docs/INFORME_FINAL.pdf'),paginas=pages('pdfinfo.txt')),
         auditoria=dict(ruta='docs/AUDITORIA_ENTREGA.pdf',sha256=sha(ROOT/'docs/AUDITORIA_ENTREGA.pdf'),paginas=pages('auditoria_pdfinfo.txt')),
         comprobaciones=dict(autores_y_secciones=True,sin_desbordes=True,firmas_bin_y_fuentes=True,
-            ticks_rtl=1557620,escenarios=78,ventajas_conocidas='5/8',ventajas_adicionales=['16/35 proporcional','18/35 afin'],filas_codisenio_cotejadas=60000,metricas_finales_resumidas=160000),
+            ticks_rtl=1557620,escenarios=78,repeticion_zip=dict(ticks=160000,series=8,compras=98,ventas=92,zip_sha256=direct['zip_sha256'],datos_nuevos=False),ventajas_conocidas='5/8',ventajas_adicionales=['16/35 proporcional','18/35 afin'],filas_codisenio_cotejadas=60000,metricas_finales_resumidas=160000),
         prueba_fisica=dict(estado=physical['estado'],alcance=physical['alcance'],
             evidencia=physical_path.relative_to(ROOT).as_posix(),sha256=sha(physical_path),
             resultados_tres_rondas='NO_APORTADOS'),

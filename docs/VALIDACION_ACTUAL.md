@@ -7,6 +7,7 @@
 - Área: 1219/1280 LC, 9/16 BRAM. Espino opera a 12,5 MHz; entrada 25 MHz.
 - Timing enrutado: 50,67 MHz en el dominio del SoC.
 - Ocho series Python/RV32E/RTL: 160.000 ticks sin diferencias.
+- Repetición directa del ZIP de práctica publicado: 8/8 PASS, otros 160.000 ticks, 98 compras y 92 ventas; mismos CSV y resultados conocidos. Fuente y archivo: `resultados_simulacion/testbench_zip_practica/` y `docs/referencia/Proyecto_4_Series_Practica_export.zip`.
 - Campaña completa: 43 CSV, 78 escenarios, 1.557.620 ticks a 100 µs, 428 compras y 364 ventas; cero discrepancias.
 - Máximo de la campaña: 259 ciclos/20,72 µs; incluyendo el estrés sintético previo: 263 ciclos/21,04 µs.
 - Bancos oficiales adaptados: dos, 2.000 ticks cada uno y 4/4 preservando tarea financiera y criterios.

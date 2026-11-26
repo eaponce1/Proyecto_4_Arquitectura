@@ -84,6 +84,19 @@ Las ocho series RTL completas se probaron a 100 µs; a 1 ms y 10 ms se probó in
 
 ## Testbench con todos los archivos de acciones
 
+La [prueba directa del ZIP de práctica](resultados_simulacion/testbench_zip_practica/INFORME_ZIP_PRACTICA.pdf)
+también está documentada en el PDF principal: nueva ejecución de ocho series,
+160.000 ticks, 98 compras y 92 ventas, sin discrepancias. Sus CSV son idénticos
+al corpus conocido y reproducen la ventaja 5/8 frente a mantener. Los ocho
+gráficos de esa ejecución están en el apéndice del informe principal y en el
+[visor local](resultados_simulacion/testbench_zip_practica/ABRIR_RESULTADOS.html).
+
+El ZIP exacto se publica en `docs/referencia/Proyecto_4_Series_Practica_export.zip`.
+Para repetirlo: `powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_series_practica.ps1`.
+Para verificar las fuentes, el ZIP y todos los ticks archivados sin simular:
+`python -B tools/auditar_zip_practica.py`. El script de PowerShell busca la entrada
+en Downloads y, si no existe, usa el ZIP incluido en el repositorio.
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\probar_todas_acciones.ps1
 ```

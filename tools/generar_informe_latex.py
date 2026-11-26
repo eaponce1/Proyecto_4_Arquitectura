@@ -38,6 +38,12 @@ def main():
     assert all(r['estado']=='PASS' and r['discrepancias']==0 for r in campaign['resultados'])
     tex+=macro('TablaCampania',table([[g['grupo'],f"{g['pass_rtl']}/{g['casos']}",f"{g['ventajas']}/{g['casos']}",
         g['sin_ordenes'],f(g['media']),n(g['peor']),f(g['dd_max'])] for g in campaign['grupos']]))
+    direct=json.loads((ROOT/'resultados_simulacion/testbench_zip_practica/resumen.json').read_text(encoding='utf-8'))
+    assert direct['sha256_bin']==active['sha256_bin'] and direct['ticks']==160000
+    assert len(direct['resultados'])==8 and all(r['estado']=='PASS' for r in direct['resultados'])
+    tex+=macro('ZipPracticaSHA',direct['zip_sha256'])
+    tex+=macro('TablaZipPractica',table([[LABELS[r['serie']],n(r['patrimonio']),n(r['mantener_oficial']),
+        r['compras'],r['ventas'],r['comisiones'],n(r['primer_compra'])] for r in direct['resultados']]))
     shutil.copy2(ROOT/'resultados_simulacion/testbench_todas_acciones/grafico_resumen.png',fig/'todas_acciones_resumen.png')
     allrows=table([[r['serie'].replace('_',r'\_'),n(r['ticks']),n(r['patrimonio']),n(r['mantener_oficial']),
         f"{r['compras']}/{r['ventas']}",f(r['drawdown_pct'])] for r in campaign['resultados']])
@@ -50,12 +56,14 @@ Serie y escala & Ticks & Trader & Mantener & C/V & DD (\%) \\\midrule\endhead
     (OUT/'datos_generados.tex').write_text('% Generado desde evidencia de tendencia lenta\n'+tex,encoding='utf-8')
     appendix=[]
     for key,r in zip(KEYS,rows,strict=True):
-        shutil.copy2(ROOT/'resultados_simulacion/informe_tendencia_lenta'/key/'grafico.png',fig/f'{key}.png')
+        shutil.copy2(ROOT/'resultados_simulacion/testbench_zip_practica/graficos'/(r['serie']+'.png'),fig/f'{key}.png')
         appendix.append(r'\clearpage\subsection{'+LABELS[r['serie']]+'}\n'+
             r'\begin{center}\includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{figuras/'+key+'.png}'+r'\end{center}'+'\n'+
             f"Trader: \\${n(r['patrimonio'])}; mantener: \\${n(r['mantener_oficial'])}; ventaja: \\${n(r['ventaja'])}. "
             f"Órdenes: {r['ordenes']}; comisiones: \\${n(r['comisiones'])}; drawdown máximo: {f(r['drawdown_pct'])}\\%.\n\n"+
-            'Los marcadores representan ejecuciones al precio siguiente al que generó la señal. Es simulación sobre datos conocidos; no es telemetría de la placa.\n')
+            'Gráfico de la nueva traza RTL ejecutada directamente desde el ZIP de práctica. '
+            'Los marcadores representan ejecuciones al precio siguiente al que generó la señal. '
+            'Estos datos son idénticos al corpus conocido; la repetición no constituye una nueva muestra.\n')
     (OUT/'graficos_series.tex').write_text('\n'.join(appendix),encoding='utf-8')
     print('PASS tablas y ocho figuras de tendencia lenta generadas')
 if __name__=='__main__':main()
