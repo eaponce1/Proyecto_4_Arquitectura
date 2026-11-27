@@ -115,6 +115,33 @@ Las 78 trazas completas comprimidas están en `docs/evidencia_todas_acciones/tra
 
 ## Compilar y comprobar
 
+La comparación de co-diseño de la política final está cerrada en
+[evidencia y comandos](docs/evidencia_codisenio_final/README.md): cuatro variantes,
+32 ejecuciones y 640.000 ticks sin diferencias. MMIO incremental reduce de 127,07
+a 83,98 ciclos medios (1,513×) frente a software; el kernel pasa de 49,10 a 6.
+El informe incluye perfil regional, Amdahl y roofline. Barrido también cabe;
+Custom-0 funciona en simulación pero excede la HX1K. Se conserva el BIN actual.
+
+Para comprobar las trazas publicadas sin FPGA ni WSL:
+
+```powershell
+python -B tools/auditar_codisenio_final.py
+```
+
+Herramientas usadas para esta medición: OSS CAD Suite **20261020**;
+Python Windows **3.13.3**; Yosys **0.70+176**, commit `365bb887b`;
+nextpnr-ice40 **0.11.1-68-g1daf1f5c**;
+Icarus **14.0 devel**, `s20260301-626-g7e3d0c6bd-dirty`;
+Ubuntu WSL Python **3.12.3** y G++ **13.3.0**.
+Verilator **5.020**, revisión Debian `5.020-1` (2024-01-01).
+El PDF se compiló con pdfTeX **1.40.25**, TeX Live **2023**.
+El ensamblador es el script versionado `sw/assembler.py` (Python, sin paquete externo).
+Para ensamblar manualmente en un archivo temporal:
+
+```powershell
+python -B sw/assembler.py sw/trade.s -o build/trader/reensamblado_manual.hex
+```
+
 Con Python 3, Icarus/VVP y OSS CAD Suite en PATH:
 
 ```powershell
@@ -141,6 +168,14 @@ El HEX se compara por palabras tras reensamblar en un archivo temporal; se conse
 La [auditoría de entrega](docs/AUDITORIA_ENTREGA.pdf) distingue comprobaciones digitales y pendientes reales. El [registro físico anterior](docs/evidencia_fisica/registro_20261125.md) solo aplica a Momentum32. El respaldo local completo está en `respaldos/momentum32_fisico_5e1579ca/`; puede recuperarse la versión publicada anterior desde el commit `07d0dd95d491f7b7f08a6f1b813d998e53a8c123`.
 
 ## Conectar la maestra
+
+La flash actual se comparó con `iceprog -c competition.bin`: **VERIFY OK**,
+[registro](docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json).
+La conexión posterior con la maestra dejó solo D1, según el usuario:
+[incidente abierto](docs/evidencia_fisica/incidente_maestra_solo_d1.json).
+Solo D1 confirma CPU iniciada; falta recepción completa en D2. Este caso no se
+explica por esperar la primera compra. La validación digital y la comparación
+de flash no acreditan recepción desde la maestra real.
 
 | Señal | PMOD según documentación del proyecto | Pin FPGA |
 |---|---|---:|

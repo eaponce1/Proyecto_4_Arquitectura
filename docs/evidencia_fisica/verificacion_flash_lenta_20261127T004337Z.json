@@ -1,0 +1,20 @@
+{
+  "registro_utc": "2026-11-27T00:43:37.928256+00:00",
+  "tipo": "COMPARACION_DIRECTA_FLASH_CON_IMAGEN_LOCAL",
+  "comando": "iceprog -c competition.bin",
+  "salida_proceso": 0,
+  "resultado": "VERIFY OK",
+  "sha256_bin_referencia": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45",
+  "bytes_bin_referencia": 32220,
+  "politica": "tendencia_lenta_SUM10_128_ticks_5pct",
+  "flash_id_observado": [
+    "0x20",
+    "0x20",
+    "0x11",
+    "0x00"
+  ],
+  "cdone_final": "high",
+  "escritura_flash_realizada": false,
+  "reinicio_fpga_realizado": true,
+  "alcance": "La flash compara correctamente con el BIN vigente de tendencia lenta. No mide rentabilidad ni reemplaza una traza de la maestra."
+}

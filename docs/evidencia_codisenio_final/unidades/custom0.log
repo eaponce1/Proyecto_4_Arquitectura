@@ -1,0 +1,4 @@
+PASS custom0 1024 vectores modulo32 y cinco codificaciones invalidas
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\codisenio_lento\tb_custom0_unit.sv:27: $finish called at 1030000 (1ps)
+
+Salida=0; segundos=0.094

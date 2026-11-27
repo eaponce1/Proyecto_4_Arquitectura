@@ -1,0 +1,51 @@
+Info: constrained 'i_Clk' to bel 'X0/Y8/io1'
+Info: constrained 'i_SPI_CS_n' to bel 'X13/Y11/io1'
+Info: constrained 'i_SPI_MOSI' to bel 'X13/Y11/io0'
+Info: constrained 'o_SPI_MISO' to bel 'X13/Y9/io0'
+Info: constrained 'i_SPI_SCLK' to bel 'X13/Y8/io1'
+Info: constrained 'o_LED[0]' to bel 'X13/Y6/io1'
+Info: constrained 'o_LED[1]' to bel 'X13/Y7/io0'
+Info: constrained 'o_LED[2]' to bel 'X13/Y7/io1'
+Info: constrained 'o_LED[3]' to bel 'X13/Y8/io0'
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:     1158 LCs used as LUT4 only
+Info:      100 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:       99 LCs used as DFF only
+Info: Packing carries..
+Info:        3 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:        1 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting rst_ni_SB_LUT4_I3_O [reset] (fanout 76)
+Info: promoting u_soc.u_core.u_ctrl.lsu_busy_i_SB_LUT4_I3_O [cen] (fanout 47)
+Info: promoting i_Clk$SB_IO_IN (fanout 1)
+Info: Constraining chains...
+Info:        7 LCs used to legalise carry chains.
+Info: Checksum: 0xaa966825
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:    1368/   1280   106%
+Info: 	        ICESTORM_RAM:      10/     16    62%
+Info: 	               SB_IO:       9/     72    12%
+Info: 	               SB_GB:       4/      8    50%
+Info: 	         SB_WARMBOOT:       0/      1     0%
+
+Info: Placed 9 cells based on constraints.
+Info: Creating initial analytic placement for 1283 cells, random placement wirelen = 18902.
+Info:     at initial placer iter 0, wirelen = 814
+Info:     at initial placer iter 1, wirelen = 826
+Info:     at initial placer iter 2, wirelen = 776
+Info:     at initial placer iter 3, wirelen = 754
+Info: Running main analytical placer, max placement attempts per cell = 241860.
+ERROR: Failed to expand region (0, 0) |_> (13, 17) of 1368 ICESTORM_LCs
+0 warnings, 1 error
+
+Salida=125; segundos=0.758

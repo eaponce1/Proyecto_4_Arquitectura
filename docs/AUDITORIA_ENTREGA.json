@@ -1,11 +1,11 @@
 {
-  "fecha": "2026-11-26",
+  "fecha": "2026-11-27",
   "integrantes": [
     "Cristian Acevedo",
     "Guillermo Arriaza",
     "Eduardo Ponce"
   ],
-  "dictamen": "CUMPLIMIENTO_DOCUMENTAL_AMPLIO_CON_PENDIENTES; ENTREGA_INTEGRAL_NO_ACREDITADA",
+  "dictamen": "TRES_APARTADOS_TECNICOS_DOCUMENTADOS_Y_VERIFICADOS; ENTREGA_INTEGRAL_NO_ACREDITADA",
   "enunciado": {
     "ruta": "docs/referencia/enunciado_proyecto4.pdf",
     "sha256": "9ad3b386d8766d7fa6ae11ebe9adf050c9a9b8bb63dff4d89d60639bc03fc051",
@@ -17,12 +17,12 @@
   },
   "informe": {
     "ruta": "docs/INFORME_FINAL.pdf",
-    "sha256": "1c45e6bd307f969fd9703eb3fe20d544c043d50f04de23c15a682a8795dba41e",
-    "paginas": 22
+    "sha256": "4921fe97e89a6c041acbc5cb9f088cb40e703be8738ef65a2db6b275880a0f24",
+    "paginas": 27
   },
   "auditoria": {
     "ruta": "docs/AUDITORIA_ENTREGA.pdf",
-    "sha256": "63235d663c8ae32564ac8a3e062eb6af1ee936eeddd9ab5a2601d77fae1b66e9",
+    "sha256": "7b881203eb4a02b6837db649090bbba7df92d3baa547411fcf1d3046b7d01518",
     "paginas": 2
   },
   "comprobaciones": {
@@ -44,12 +44,16 @@
       "16/35 proporcional",
       "18/35 afin"
     ],
-    "filas_codisenio_cotejadas": 60000,
+    "filas_codisenio_final": 640000,
+    "variantes_finales": 4,
+    "filas_codisenio_historico": 60000,
     "metricas_finales_resumidas": 160000
   },
   "prueba_fisica": {
-    "estado": "REPROGRAMACION_REPORTADA_POR_USUARIO",
-    "alcance": "El usuario confirma la reprogramacion. Los 78 escenarios ejecutan el RTL y el HEX asociados a esta imagen local.",
+    "estado": "FLASH_VERIFY_OK; SPI_MAESTRA_PENDIENTE_SOLO_D1",
+    "alcance": "La flash compara correctamente con el BIN vigente de tendencia lenta. No mide rentabilidad ni reemplaza una traza de la maestra.",
+    "comparacion_flash": "docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json",
+    "incidente": "docs/evidencia_fisica/incidente_maestra_solo_d1.json",
     "evidencia": "docs/evidencia_fisica/reprogramacion_tendencia_lenta.json",
     "sha256": "38473d89329e98155e41703879eff943fdbd7321c89389e8efe26a41e250f467",
     "resultados_tres_rondas": "NO_APORTADOS"
@@ -59,6 +63,6 @@
     "Ocho series completas a 1 ms y 10 ms si se exige esa extension; actualmente integracion de 396 ticks por cadencia larga",
     "Patrimonio/referencia/posicion de las tres rondas oficiales",
     "Acreditacion de defensa y entrega original dentro del plazo",
-    "Perfil regional y comparacion de hardware bajo la politica final"
+    "Recepcion SPI fisica de la maestra: usuario reporto solo D1"
   ]
 }

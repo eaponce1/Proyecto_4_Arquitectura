@@ -21,7 +21,7 @@
 {\large Cristian Acevedo\par}{\large Guillermo Arriaza\par}{\large Eduardo Ponce\par}
 \vspace{1cm}\begin{minipage}{0.88\linewidth}
 \textbf{Estado.} Imagen sintetizada y validada digitalmente para Go Board
-iCE40 HX1K/VQ100. El grupo confirmó la reprogramación de la imagen actual.
+iCE40 HX1K/VQ100. La flash se cotejó con la imagen actual mediante VERIFY OK. La conexión con la maestra sigue pendiente: el grupo observó solo D1.
 La campaña RTL verificó 78 escenarios y 1\,557\,620 ticks sin discrepancias.
 
 \textbf{Resultados.} Ventaja sobre mantener en 5/8 series conocidas. La media
@@ -30,7 +30,7 @@ universal ni rentabilidad garantizada en las rondas secretas. En los 35 CSV
 adicionales obtiene 16/35 ventajas en escala proporcional y 18/35 en afín.
 \end{minipage}\vfill
 \url{https://github.com/eaponce1/Proyecto_4_Arquitectura}\par
-26 de noviembre de 2026
+27 de noviembre de 2026
 \end{titlepage}
 \pagenumbering{arabic}\hypersetup{pageanchor=true}\tableofcontents\clearpage
 
@@ -47,7 +47,7 @@ La integración activa importa sin cambiar sus instrucciones la variante
 identifica el ZIP y los hashes originales. Se eligió por indicación del grupo,
 sin retocar parámetros para mejorar retrospectivamente las ocho series.
 
-El informe incorpora la integración del 25 y la campaña ampliada del 26 de noviembre de 2026,
+El informe incorpora la integración del 25 y la campaña ampliada del 27 de noviembre de 2026,
 posterior al cierre original del 24 de noviembre. No acredita entrega dentro
 del plazo. Las versiones anteriores permanecen en Git y en el respaldo local.
 
@@ -291,7 +291,7 @@ el margen conservador de las series conocidas es $100-9,5-0,24-20,72=69,54$
 microsegundos. El estrés RTL de 936 ticks llega a 263 ciclos (21,04 microsegundos):
 al incluirlo, el margen conservador observado es 69,22 microsegundos.
 
-\input{codisenio_historico.tex}
+\input{codisenio_final.tex}
 
 \section{Programación, reproducción y auditoría}
 La imagen activa tiene las siguientes firmas:
@@ -317,8 +317,14 @@ La declaración y su asociación con el BIN local se registran en
 \path{docs/evidencia_fisica/reprogramacion_tendencia_lenta.json}.
 La campaña ampliada utiliza su mismo firmware y RTL; sus cifras son resultados
 de simulación y no una lectura de la flash ni una traza física de la maestra.
-Quedan por documentar los resultados oficiales de las tres rondas, la
-acreditación de defensa y el perfil regional del kernel de la política lenta.
+La comparación directa de flash mediante \texttt{iceprog -c competition.bin}
+terminó con \texttt{VERIFY OK}, sin escribir memoria; el registro está en
+\path{docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json}.
+En la conexión posterior con la maestra el grupo reportó solo D1. Esto acredita
+arranque CPU, pero no un byte SPI completo (D2), lectura de precio (D3) ni orden
+(D4). No se conoce la causa sin revisar señales y cableado. No se interpreta
+como la espera inicial normal de la política. Quedan por documentar la recepción
+física, los resultados oficiales de las tres rondas y la acreditación de defensa.
 La auditoría separada conserva estos pendientes; no asigna una nota.
 
 \section{Conclusiones}
@@ -354,14 +360,20 @@ en proporcional y 18/35 en afín, con pérdidas y períodos sin operar. La mejor
 de algunos casos convive con oportunidades perdidas y depende de la escala.
 Se conserva la versión anterior como referencia reproducible.
 
-El grupo reportó la reprogramación de la placa y la validación digital está
-completa para los escenarios declarados. Para cerrar la entrega deben adjuntarse
-los registros de competencia y defensa. El estudio histórico de Amdahl y roofline
-aporta contexto de co-diseño, pero no reemplaza una comparación de alternativas
-con la política lenta. Mantener separados esos alcances hace que el informe
-sea reproducible y que sus conclusiones respondan a lo realmente comprobado.
+La comparación final cierra el estudio de co-diseño con cuatro implementaciones
+de la misma política y 640\,000 ticks sin diferencias. El perfil regional,
+Amdahl, roofline, recursos y timing justifican conservar MMIO incremental.
+La alternativa de barrido también cabe; Custom-0 funciona digitalmente pero
+excede el área disponible. Esta evidencia cubre los tres apartados técnicos
+de algoritmo, métricas Assembly y co-diseño, sin atribuirles una nota oficial.
 
-\appendix\clearpage\section{Gráficos de las ocho series}
+La flash actual terminó con VERIFY OK. Sin embargo, la prueba posterior con
+la maestra dejó solo D1 encendido: sigue pendiente demostrar recepción SPI
+física. Para acreditar toda la entrega deben adjuntarse también los resultados
+oficiales de las tres rondas y la defensa. La simulación no sustituye esos registros.
+
+\appendix\clearpage\input{codisenio_historico.tex}
+\clearpage\section{Gráficos de las ocho series}
 Misma política y contabilidad en todos los casos. Los marcadores son ejecuciones.
 \input{graficos_series.tex}
 \clearpage\section{Resultados de los 78 escenarios}

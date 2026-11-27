@@ -1,0 +1,38 @@
+[
+  {
+    "unidad": "custom0",
+    "estado": "PASS",
+    "salida": "PASS custom0 1024 vectores modulo32 y cinco codificaciones invalidas",
+    "fuentes": {
+      "proyecto4/alternativas/codisenio_lento/tb_custom0_unit.sv": "63d64ed2d40cd7fdb69ee8dfe9bff15fb487ff04f155977a70d5f0042fdea4c9",
+      "proyecto4/alternativas/codisenio_lento/custom0/rtl/espino_alu.v": "094e6026c8e64335fe7829e114d551fd868aa698a6be44b41a0a4d924cddddee",
+      "proyecto4/alternativas/codisenio_lento/custom0/rtl/espino_decoder.v": "2101b2913a42f51cbabca048f10cb2796072cd65d540ea2212ca976e61166ff0"
+    },
+    "log": "build/codisenio_lento/unidades/custom0.log"
+  },
+  {
+    "unidad": "mmio_incremental",
+    "estado": "PASS",
+    "salida": "PASS SMA10 20040 precios, suma, READY y reinicio con BRAM no borrada",
+    "fuentes": {
+      "proyecto4/alternativas/codisenio_lento/tb_sma10_unit.sv": "876021023bf22ebe4ecac819f98fe5a51419a445531a5444ad827b9d81f3f3a3",
+      "rtl/trader/pochoco_sma10.v": "e1a1878e14a6c1e5b17d1ad97fb0703714f1e58bad84badf21a641ba9a44a7a8"
+    },
+    "log": "build/codisenio_lento/unidades/mmio_incremental.log"
+  },
+  {
+    "unidad": "mmio_scan",
+    "estado": "PASS",
+    "salida": "PASS SMA10 20040 precios, suma, READY y reinicio con BRAM no borrada",
+    "fuentes": {
+      "proyecto4/alternativas/codisenio_lento/tb_sma10_unit.sv": "876021023bf22ebe4ecac819f98fe5a51419a445531a5444ad827b9d81f3f3a3",
+      "proyecto4/alternativas/codisenio_lento/mmio_scan/rtl/pochoco_sma10.v": "8c9c7b9197c61660dbafb26f3071a2d9c2dc5282c33da23bc824d45aac033d99"
+    },
+    "log": "build/codisenio_lento/unidades/mmio_scan.log"
+  },
+  {
+    "unidad": "assembler_custom0",
+    "estado": "PASS",
+    "salida": "Codificacion de campos, RV32E y rechazo de shifts"
+  }
+]

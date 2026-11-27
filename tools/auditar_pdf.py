@@ -47,37 +47,43 @@ def main():
     assert sum(s['ticks'] for s in full['series'])==160000
     assert all(s['discrepancias']==0 for s in full['series'])
     for path,h in full['fuentes'].items():assert sha(ROOT/path)==h,path
+    final=json.loads((ROOT/'docs/evidencia_codisenio_final/auditoria.json').read_text())
+    assert final['estado']=='PASS' and final['ticks']==640000
+    flash=json.loads((ROOT/'docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json').read_text())
+    assert flash['resultado']=='VERIFY OK' and flash['sha256_bin_referencia']==validation['sha256_bin']
+    assert norm('Co-diseño con la política final de tendencia lenta') in normalized
+    assert '640 000' in normalized or '640000' in normalized.replace(' ','')
     historical=json.loads((ROOT/'docs/evidencia_codisenio/procedencia.json').read_text())
     assert sum(t['ticks'] for t in historical['trazas'])==60000
     for name,item in historical['archivos'].items():assert sha(ROOT/'docs/evidencia_codisenio'/name)==item['sha256']
     times=json.loads((ROOT/'docs/evidencia_informe/metricas_finales.json').read_text())
     assert sum(s['ticks'] for s in times['series'])==160000
     def pages(name):return int(re.search(r'Pages:\s*(\d+)',(build/name).read_text())[1])
-    report=dict(fecha='2026-11-26',integrantes=AUTHORS,
-        dictamen='CUMPLIMIENTO_DOCUMENTAL_AMPLIO_CON_PENDIENTES; ENTREGA_INTEGRAL_NO_ACREDITADA',
+    report=dict(fecha='2026-11-27',integrantes=AUTHORS,
+        dictamen='TRES_APARTADOS_TECNICOS_DOCUMENTADOS_Y_VERIFICADOS; ENTREGA_INTEGRAL_NO_ACREDITADA',
         enunciado=dict(ruta='docs/referencia/enunciado_proyecto4.pdf',sha256=sha(ROOT/'docs/referencia/enunciado_proyecto4.pdf'),paginas_rubrica=[3,4,5]),
         informe=dict(ruta='docs/INFORME_FINAL.pdf',sha256=sha(ROOT/'docs/INFORME_FINAL.pdf'),paginas=pages('pdfinfo.txt')),
         auditoria=dict(ruta='docs/AUDITORIA_ENTREGA.pdf',sha256=sha(ROOT/'docs/AUDITORIA_ENTREGA.pdf'),paginas=pages('auditoria_pdfinfo.txt')),
         comprobaciones=dict(autores_y_secciones=True,sin_desbordes=True,firmas_bin_y_fuentes=True,
-            ticks_rtl=1557620,escenarios=78,repeticion_zip=dict(ticks=160000,series=8,compras=98,ventas=92,zip_sha256=direct['zip_sha256'],datos_nuevos=False),ventajas_conocidas='5/8',ventajas_adicionales=['16/35 proporcional','18/35 afin'],filas_codisenio_cotejadas=60000,metricas_finales_resumidas=160000),
-        prueba_fisica=dict(estado=physical['estado'],alcance=physical['alcance'],
+            ticks_rtl=1557620,escenarios=78,repeticion_zip=dict(ticks=160000,series=8,compras=98,ventas=92,zip_sha256=direct['zip_sha256'],datos_nuevos=False),ventajas_conocidas='5/8',ventajas_adicionales=['16/35 proporcional','18/35 afin'],filas_codisenio_final=640000,variantes_finales=4,filas_codisenio_historico=60000,metricas_finales_resumidas=160000),
+        prueba_fisica=dict(estado='FLASH_VERIFY_OK; SPI_MAESTRA_PENDIENTE_SOLO_D1',alcance=flash['alcance'],comparacion_flash='docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json',incidente='docs/evidencia_fisica/incidente_maestra_solo_d1.json',
             evidencia=physical_path.relative_to(ROOT).as_posix(),sha256=sha(physical_path),
             resultados_tres_rondas='NO_APORTADOS'),
         pendientes=['Traza fisica de la maestra asociada a la reprogramacion reportada',
             'Ocho series completas a 1 ms y 10 ms si se exige esa extension; actualmente integracion de 396 ticks por cadencia larga',
             'Patrimonio/referencia/posicion de las tres rondas oficiales',
             'Acreditacion de defensa y entrega original dentro del plazo',
-            'Perfil regional y comparacion de hardware bajo la politica final'])
+            'Recepcion SPI fisica de la maestra: usuario reporto solo D1'])
     (ROOT/'docs/AUDITORIA_ENTREGA.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
     compilation=dict(pdf_sha256=report['informe']['sha256'],paginas=report['informe']['paginas'],
         auditoria_pdf_sha256=report['auditoria']['sha256'],paginas_auditoria=report['auditoria']['paginas'],
         compilador='pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023',pasadas=3,pasadas_auditoria=2,
         revisado='Autores, conclusiones, metricas, evidencia fisica, roofline y auditoria; sin cajas desbordadas',
         fuentes={p.relative_to(ROOT).as_posix():sha(p) for p in sorted([*folder.glob('*.tex'),*folder.glob('figuras/*.png'),folder/'compilar.sh'])},
-        prueba_fisica='REPROGRAMACION_REPORTADA_POR_USUARIO; RESULTADOS FINANCIEROS DE CAMPANA RTL')
+        prueba_fisica='FLASH_VERIFY_OK; SPI_MAESTRA_PENDIENTE; RESULTADOS FINANCIEROS DE CAMPANA RTL')
     (ROOT/'docs/INFORME_FINAL.sha256').write_text(report['informe']['sha256']+'  INFORME_FINAL.pdf\n',encoding='ascii')
     (folder/'compilacion.json').write_text(json.dumps(compilation,indent=2),encoding='utf-8')
     print('PASS integridad y lectura PDF:',report['informe']['paginas'],'paginas; auditoria',report['auditoria']['paginas'],'paginas')
-    print('DICTAMEN: faltan resultados oficiales, defensa/plazo y perfil de hardware de la politica final')
+    print('DICTAMEN: tres apartados tecnicos documentados; faltan SPI fisico, resultados oficiales y defensa/plazo')
 
 if __name__=='__main__':main()
