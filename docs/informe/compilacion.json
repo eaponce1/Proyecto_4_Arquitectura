@@ -1,7 +1,7 @@
 {
-  "pdf_sha256": "dee05592687a70c19397ef0188026c2baa9cac236410cb93facae094709f66b9",
+  "pdf_sha256": "4921fe97e89a6c041acbc5cb9f088cb40e703be8738ef65a2db6b275880a0f24",
   "paginas": 27,
-  "auditoria_pdf_sha256": "e3be99b7c1cbfd029a0f36f65bced306d3959f00e6af9b5594f6144cc3ebe5af",
+  "auditoria_pdf_sha256": "7b881203eb4a02b6837db649090bbba7df92d3baa547411fcf1d3046b7d01518",
   "paginas_auditoria": 2,
   "compilador": "pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023",
   "pasadas": 3,
@@ -18,7 +18,7 @@
     "docs/informe/figuras/amd_mayo.png": "04ecb9b6b2511f2791ad0696fc7d9f5f65b584b189eaae74beca24af0ab2105d",
     "docs/informe/figuras/apple_2022.png": "f9472004b74185446427b5e81a7c222ccd654782c996c2de7f95ff96815305bc",
     "docs/informe/figuras/apple_2023.png": "ebaaaa4d69c716e15939b6819e64b1068dff416a31e78fdc78b324f3135598a1",
-    "docs/informe/figuras/codisenio_final.png": "0ace3bbaf2f386827c31097fe1ffbe7a59c80480bb92e7136431a2cc1c0573d9",
+    "docs/informe/figuras/codisenio_final.png": "0d1de36d5c3345f425380235c5ce8d6a5046fc110b2a88af92f2ae6550faef05",
     "docs/informe/figuras/meta_2022.png": "4ca9df8316c52311e5679d0274976e85db7d40253ffd6babdd4a689a793fca5b",
     "docs/informe/figuras/netflix_2022.png": "7a8af559f4e80e339f83694d2828b7777bbd4873beead7205a90e7efa760e82b",
     "docs/informe/figuras/netflix_2023.png": "77c302d37e3b1777068a5b12a48ff8f458b6ac57929e33d3fde8501e7bfd4b54",

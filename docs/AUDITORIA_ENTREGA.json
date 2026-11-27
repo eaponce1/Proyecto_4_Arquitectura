@@ -17,12 +17,12 @@
   },
   "informe": {
     "ruta": "docs/INFORME_FINAL.pdf",
-    "sha256": "dee05592687a70c19397ef0188026c2baa9cac236410cb93facae094709f66b9",
+    "sha256": "4921fe97e89a6c041acbc5cb9f088cb40e703be8738ef65a2db6b275880a0f24",
     "paginas": 27
   },
   "auditoria": {
     "ruta": "docs/AUDITORIA_ENTREGA.pdf",
-    "sha256": "e3be99b7c1cbfd029a0f36f65bced306d3959f00e6af9b5594f6144cc3ebe5af",
+    "sha256": "7b881203eb4a02b6837db649090bbba7df92d3baa547411fcf1d3046b7d01518",
     "paginas": 2
   },
   "comprobaciones": {
