@@ -1,0 +1,4 @@
+PASS SMA10 20040 precios, suma, READY y reinicio con BRAM no borrada
+C:\Users\Edu Ponce\Downloads\Proyecto-2_Juego-en-Assembly-main (1)\Proyecto_4_Arquitectura-main\proyecto4\alternativas\codisenio_lento\tb_sma10_unit.sv:34: $finish called at 22445440000 (1ps)
+
+Salida=0; segundos=1.683

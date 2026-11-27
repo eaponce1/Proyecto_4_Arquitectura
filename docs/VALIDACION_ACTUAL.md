@@ -1,4 +1,4 @@
-# Validación de la imagen actual — 26/11/2026
+# Validación de la imagen actual — 27/11/2026
 
 - Política: tendencia lenta, SUM10/128 ticks/5%, 130 palabras RV32E.
 - Top: `rtl/trade_spi_externo.v`; memoria: `sw/trade.hex`; Assembly: `sw/trade.s`.
@@ -15,6 +15,16 @@
 - Netlist y BIN reconstruido: compras/ventas en 396 ticks, CS de 20/40/1000 ns. Modelo funcional de rutas con retardo uniforme de 1 ns; no timing físico.
 - Reprogramación: reportada por el usuario y registrada en `evidencia_fisica/reprogramacion_tendencia_lenta.json`.
 
-Las cifras financieras son del testbench y no se presentan como resultados de competencia física. Las dos escalas de los adicionales comparten datos, usan extremos retrospectivos y no son muestras independientes. Los resultados oficiales de las tres rondas, defensa/plazo y perfil regional final siguen siendo pendientes documentales.
+La comparación final de co-diseño completó 32 ejecuciones y 640.000 ticks sobre
+cuatro variantes de la misma política, sin diferencias. Perfil regional,
+Amdahl, roofline y recursos están en `evidencia_codisenio_final/`. Software:
+127,07 ciclos medios; MMIO activo y barrido: 83,98 (1,513×). Los periféricos
+caben con 1219 y 1227 LC. Custom-0, 1368 LC, no cabe en HX1K.
+
+La comparación directa de flash dio VERIFY OK para el BIN vigente, sin escritura:
+`evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json`. La posterior
+conexión a maestra dejó solo D1 según el usuario; no acredita recepción SPI.
+
+Las cifras financieras son del testbench y no se presentan como resultados de competencia física. Las dos escalas adicionales comparten datos y extremos retrospectivos. Siguen pendientes recepción física de la maestra, resultados oficiales de las tres rondas y defensa/plazo. Los tres apartados técnicos solicitados están documentados y verificados; eso no asigna una nota.
 
 Comprobaciones: `python -B tools/trader.py verify`, `python -B tools/auditar_lenta.py` y `python -B tools/auditar_campania_acciones.py`. Ver resultados en el PDF principal y `resultados_simulacion/testbench_todas_acciones/`.

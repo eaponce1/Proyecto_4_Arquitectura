@@ -1,14 +1,16 @@
 {
-  "pdf_sha256": "1c45e6bd307f969fd9703eb3fe20d544c043d50f04de23c15a682a8795dba41e",
-  "paginas": 22,
-  "auditoria_pdf_sha256": "63235d663c8ae32564ac8a3e062eb6af1ee936eeddd9ab5a2601d77fae1b66e9",
+  "pdf_sha256": "dee05592687a70c19397ef0188026c2baa9cac236410cb93facae094709f66b9",
+  "paginas": 27,
+  "auditoria_pdf_sha256": "e3be99b7c1cbfd029a0f36f65bced306d3959f00e6af9b5594f6144cc3ebe5af",
   "paginas_auditoria": 2,
   "compilador": "pdfLaTeX / pdfTeX 1.40.25, TeX Live 2023",
   "pasadas": 3,
   "pasadas_auditoria": 2,
   "revisado": "Autores, conclusiones, metricas, evidencia fisica, roofline y auditoria; sin cajas desbordadas",
   "fuentes": {
-    "docs/informe/auditoria_entrega.tex": "dc129c5b09945ff84ced78a64c85b6d8a5bb4171ba28ac310794bd0eda7cb13e",
+    "docs/informe/auditoria_entrega.tex": "c367c6fedbee1afdfc443a053ed8572870a947649eafe7d7ce09ba5f607dcb71",
+    "docs/informe/codisenio_datos.tex": "1ee0a7cf00a62c4a1f2fef6993d89eb3b058b28da7ea0bc4079afa5a3d834799",
+    "docs/informe/codisenio_final.tex": "cca82f773b3a7e01b6c0a36cebf6f567587626deba69573f9312e85396bec3ec",
     "docs/informe/codisenio_historico.tex": "4103916f9713c17400e82dcdfe76e49083d3911a799d3a87a84765e8fc3880d6",
     "docs/informe/compilar.sh": "d11baf67f1b07870919b2d01711939d30a74ce3089887ef619d311295de4ec2d",
     "docs/informe/datos_generados.tex": "ede133e413dbb8d3ddaeb822e90528a32870ae4cdce8919da299e87f27a200cd",
@@ -16,6 +18,7 @@
     "docs/informe/figuras/amd_mayo.png": "04ecb9b6b2511f2791ad0696fc7d9f5f65b584b189eaae74beca24af0ab2105d",
     "docs/informe/figuras/apple_2022.png": "f9472004b74185446427b5e81a7c222ccd654782c996c2de7f95ff96815305bc",
     "docs/informe/figuras/apple_2023.png": "ebaaaa4d69c716e15939b6819e64b1068dff416a31e78fdc78b324f3135598a1",
+    "docs/informe/figuras/codisenio_final.png": "0ace3bbaf2f386827c31097fe1ffbe7a59c80480bb92e7136431a2cc1c0573d9",
     "docs/informe/figuras/meta_2022.png": "4ca9df8316c52311e5679d0274976e85db7d40253ffd6babdd4a689a793fca5b",
     "docs/informe/figuras/netflix_2022.png": "7a8af559f4e80e339f83694d2828b7777bbd4873beead7205a90e7efa760e82b",
     "docs/informe/figuras/netflix_2023.png": "77c302d37e3b1777068a5b12a48ff8f458b6ac57929e33d3fde8501e7bfd4b54",
@@ -23,8 +26,8 @@
     "docs/informe/figuras/tesla_2022.png": "e774a0754a4aebe12424292d95787c97c56007061bda1b6d0952586c14827602",
     "docs/informe/figuras/todas_acciones_resumen.png": "5ace37f3e8bdb49705a90ff3343812b7222cd65a57c90e155f9d25f18a364c1d",
     "docs/informe/graficos_series.tex": "9aa4f0c51ff374bb08f91db877aa501731a4a3d7b82991396642a318e9d4e767",
-    "docs/informe/informe_final.tex": "76afca2e9e15bfc371221f5bd01aa4f592ef0dd4a9427d2872691c3f257a142e",
+    "docs/informe/informe_final.tex": "07022a3195a8b59472c9bd0d8753ea937fcda4ef85bdb99fca8212338a206162",
     "docs/informe/resultados_todas_acciones.tex": "c3121d1e4da29c95469ebd000ae3f8943ecd4d272dc813b4674a2142b18d6a0e"
   },
-  "prueba_fisica": "REPROGRAMACION_REPORTADA_POR_USUARIO; RESULTADOS FINANCIEROS DE CAMPANA RTL"
+  "prueba_fisica": "FLASH_VERIFY_OK; SPI_MAESTRA_PENDIENTE; RESULTADOS FINANCIEROS DE CAMPANA RTL"
 }

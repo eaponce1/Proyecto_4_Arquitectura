@@ -1,0 +1,218 @@
+{
+  "politica": "SUM10/128/5%; misma cartera causal en cuatro variantes",
+  "ticks": 640000,
+  "variantes": [
+    {
+      "variante": "software",
+      "ticks": 160000,
+      "ciclos": 127.07279375,
+      "ciclos_max": 303,
+      "ic": 55.03695625,
+      "cpi": 2.3088630332822957,
+      "tiempo_us": 10.1658235,
+      "tiempo_max_us": 24.240000000000002,
+      "ticks_s": 98368.8138988445,
+      "kernel_ciclos": 49.1006,
+      "kernel_ic": 21.10055,
+      "kernel_lecturas": 4,
+      "kernel_escrituras": 3.0005,
+      "rx_ciclos": 11.50064375,
+      "cartera_ciclos": 7.1323625,
+      "decision_ciclos": 59.3391875,
+      "alu_kernel": 10.1005,
+      "lut4": 1087,
+      "lc": 1199,
+      "bram": 8,
+      "fmax_soc_MHz": 50.7125129699707,
+      "ruta": "PASS",
+      "fraccion_kernel": 0.3863974226977283,
+      "speedup_kernel": 1.0,
+      "speedup_amdahl": 1.0,
+      "speedup_medido": 1.0,
+      "residuo_ciclos": 0.0
+    },
+    {
+      "variante": "custom0",
+      "ticks": 160000,
+      "ciclos": 125.07309375,
+      "ciclos_max": 303,
+      "ic": 54.0372125,
+      "cpi": 2.314573383110759,
+      "tiempo_us": 10.0058475,
+      "tiempo_max_us": 24.240000000000002,
+      "ticks_s": 99941.55917327343,
+      "kernel_ciclos": 47.1006,
+      "kernel_ic": 20.10055,
+      "kernel_lecturas": 4,
+      "kernel_escrituras": 3.0005,
+      "rx_ciclos": 11.50094375,
+      "cartera_ciclos": 7.1323625,
+      "decision_ciclos": 59.3391875,
+      "alu_kernel": 10.1005,
+      "lut4": 1258,
+      "lc": 1368,
+      "bram": 10,
+      "fmax_soc_MHz": null,
+      "ruta": "FAIL",
+      "fraccion_kernel": 0.3863974226977283,
+      "speedup_kernel": 1.0424623040895444,
+      "speedup_amdahl": 1.0159906878229463,
+      "speedup_medido": 1.0159882508703035,
+      "residuo_ciclos": 0.0002999999999957481
+    },
+    {
+      "variante": "mmio",
+      "ticks": 160000,
+      "ciclos": 83.97834375,
+      "ciclos_max": 259,
+      "ic": 35.94050625,
+      "cpi": 2.336593234548553,
+      "tiempo_us": 6.7182675,
+      "tiempo_max_us": 20.72,
+      "ticks_s": 148847.89865839668,
+      "kernel_ciclos": 6,
+      "kernel_ic": 2,
+      "kernel_lecturas": 2,
+      "kernel_escrituras": 0,
+      "rx_ciclos": 11.50679375,
+      "cartera_ciclos": 7.1323625,
+      "decision_ciclos": 59.3391875,
+      "alu_kernel": 0,
+      "lut4": 1104,
+      "lc": 1219,
+      "bram": 9,
+      "fmax_soc_MHz": 50.666263580322266,
+      "ruta": "PASS",
+      "fraccion_kernel": 0.3863974226977283,
+      "speedup_kernel": 8.183433333333333,
+      "speedup_amdahl": 1.5132722878280167,
+      "speedup_medido": 1.5131614661071475,
+      "residuo_ciclos": 0.006149999999990996
+    },
+    {
+      "variante": "mmio_scan",
+      "ticks": 160000,
+      "ciclos": 83.97834375,
+      "ciclos_max": 259,
+      "ic": 35.94050625,
+      "cpi": 2.336593234548553,
+      "tiempo_us": 6.7182675,
+      "tiempo_max_us": 20.72,
+      "ticks_s": 148847.89865839668,
+      "kernel_ciclos": 6,
+      "kernel_ic": 2,
+      "kernel_lecturas": 2,
+      "kernel_escrituras": 0,
+      "rx_ciclos": 11.50679375,
+      "cartera_ciclos": 7.1323625,
+      "decision_ciclos": 59.3391875,
+      "alu_kernel": 0,
+      "lut4": 1109,
+      "lc": 1227,
+      "bram": 9,
+      "fmax_soc_MHz": 51.043846130371094,
+      "ruta": "PASS",
+      "fraccion_kernel": 0.3863974226977283,
+      "speedup_kernel": 8.183433333333333,
+      "speedup_amdahl": 1.5132722878280167,
+      "speedup_medido": 1.5131614661071475,
+      "residuo_ciclos": 0.006149999999990996
+    }
+  ],
+  "frecuencia_MHz": 12.5,
+  "periodo_us": 100,
+  "ops_definicion": "Una operacion util es un tick completo con DECISION; ticks_s es capacidad de servicio, no tasa de entradas ni operaciones de compra.",
+  "archivos": {
+    "docs/evidencia_codisenio_final/implantacion/software/yosys.log": {
+      "sha256": "179bb68ae64f29f2f3e13475099ce99c0e2e3152f9109f57dc83590b9f47be2f",
+      "sha256_original": "179bb68ae64f29f2f3e13475099ce99c0e2e3152f9109f57dc83590b9f47be2f"
+    },
+    "docs/evidencia_codisenio_final/implantacion/software/nextpnr.log": {
+      "sha256": "e9bea6edee73607cb975b5e17e2851c30998e05f021ef5d15999a6d32b72df5a",
+      "sha256_original": "e9bea6edee73607cb975b5e17e2851c30998e05f021ef5d15999a6d32b72df5a"
+    },
+    "docs/evidencia_codisenio_final/implantacion/software/sintesis.json.gz": {
+      "sha256": "711e7787b93ccac9dd9a5aaebca388cb56976d2ee2d0847a31f64d574e899b7b",
+      "sha256_original": "577ab7d69b309a6718bbd8d015da33bb589b689b56011ee536bc4e0ea64c917b"
+    },
+    "docs/evidencia_codisenio_final/implantacion/software/timing.json": {
+      "sha256": "2ded34365c99466e1bd5ae0edfe288afbc3be77d76e2437a24d4da88a75f4c0d",
+      "sha256_original": "2ded34365c99466e1bd5ae0edfe288afbc3be77d76e2437a24d4da88a75f4c0d"
+    },
+    "docs/evidencia_codisenio_final/implantacion/software/ruta.asc.gz": {
+      "sha256": "339fbfd4d494aeffaee2c806f5083bbae1de48f110f0e88506b62c9d92972a60",
+      "sha256_original": "9f1e9845f44fd0db1292766492f3eade25ee8e8b8775f5caf5f4f528bdba0074"
+    },
+    "docs/evidencia_codisenio_final/implantacion/custom0/yosys.log": {
+      "sha256": "913f9992c0be8b81be129cf4f8e376026bbfb4c7693f712536c42dd6a0ed5729",
+      "sha256_original": "913f9992c0be8b81be129cf4f8e376026bbfb4c7693f712536c42dd6a0ed5729"
+    },
+    "docs/evidencia_codisenio_final/implantacion/custom0/nextpnr.log": {
+      "sha256": "b13da1b43e3289d84dfe9eedc0d0a4a0f496accb0f1c3a137f59b7783c697491",
+      "sha256_original": "b13da1b43e3289d84dfe9eedc0d0a4a0f496accb0f1c3a137f59b7783c697491"
+    },
+    "docs/evidencia_codisenio_final/implantacion/custom0/sintesis.json.gz": {
+      "sha256": "5e9830c99533ed16752722376d233925f4dbe2528db9612c2c3248715d902893",
+      "sha256_original": "0ad292171974eaa8b7c03d6024ec3736b5d94c2d0578e3b644a9f1a73cf0170a"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio/yosys.log": {
+      "sha256": "a6db30b90177a465b4da0e4a3d5f2829dbb7078773b74f3b193913edc8272065",
+      "sha256_original": "a6db30b90177a465b4da0e4a3d5f2829dbb7078773b74f3b193913edc8272065"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio/nextpnr.log": {
+      "sha256": "7c97bbd392215e1601dfea6a1b42fa1923f105503284c541f9ac50bfc86eaa4c",
+      "sha256_original": "7c97bbd392215e1601dfea6a1b42fa1923f105503284c541f9ac50bfc86eaa4c"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio/sintesis.json.gz": {
+      "sha256": "866e0c07a363b083f0a83ffc0b9f0adfa0ff3027c5eb36f2f0aeac511a83cc06",
+      "sha256_original": "c00880090800589bcfd1793f1500c5d1c9096d7e5a2bf1e6ba6ab3613dde5ac6"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio/timing.json": {
+      "sha256": "3c3b35e9264151f31fa70ca171a39a552c7e9f320f7b7cda662bf7ee85d5383a",
+      "sha256_original": "3c3b35e9264151f31fa70ca171a39a552c7e9f320f7b7cda662bf7ee85d5383a"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio/ruta.asc.gz": {
+      "sha256": "d9a3b7235213b6608f55dafb10a141e76db8407c681c90325a69efa6d273af91",
+      "sha256_original": "5a64ec40e8d48a208f4dbb3eb2b9a9289f735fcbc472a0c6b410467161a6cec3"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio_scan/yosys.log": {
+      "sha256": "48af78e02bff8c66c1a1d3a96c708bc9ef5efbaa7805bcb886203fe633cf932b",
+      "sha256_original": "48af78e02bff8c66c1a1d3a96c708bc9ef5efbaa7805bcb886203fe633cf932b"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio_scan/nextpnr.log": {
+      "sha256": "48eb910f65e9142a68261bac059f623edcb864d009b6e97461ddc9356add4649",
+      "sha256_original": "48eb910f65e9142a68261bac059f623edcb864d009b6e97461ddc9356add4649"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio_scan/sintesis.json.gz": {
+      "sha256": "6257ed8b30f3ce12c78248be79f4bcb0abada9ad3ab819e731dc3f6ec1dc83a9",
+      "sha256_original": "08416ecef894d6d51f1dfddd68515d0e5d1647c1405e4bf77b1db65995733997"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio_scan/timing.json": {
+      "sha256": "8ff606d5b71565b45941f5759c55204eeaf9ed59b96c936a13dd429fa66ec2e0",
+      "sha256_original": "8ff606d5b71565b45941f5759c55204eeaf9ed59b96c936a13dd429fa66ec2e0"
+    },
+    "docs/evidencia_codisenio_final/implantacion/mmio_scan/ruta.asc.gz": {
+      "sha256": "e0512823b6631c224227b4450b67ebeb421f6de39eb665664f49754b7c5bffbc",
+      "sha256_original": "d04e138508de4bcabe4edadec408281b315efc1ba5f332d38a6ea3400e9e5118"
+    },
+    "docs/evidencia_codisenio_final/unidades/custom0.log": {
+      "sha256": "d3beca5aa35b23c971ca5a03bb8c4b9870aa2f6e52c889b5d943fae1fea1d2f4"
+    },
+    "docs/evidencia_codisenio_final/unidades/custom0_compile.log": {
+      "sha256": "d3763af34cdb9c032c3fbe41a01e232c9e20423ad45b1d25f88b4f8aeaa60a9e"
+    },
+    "docs/evidencia_codisenio_final/unidades/mmio_incremental.log": {
+      "sha256": "66204b0904566fe4a9a7b3341b37f902ecf426a985167f20b588db28b823fea5"
+    },
+    "docs/evidencia_codisenio_final/unidades/mmio_incremental_compile.log": {
+      "sha256": "d3763af34cdb9c032c3fbe41a01e232c9e20423ad45b1d25f88b4f8aeaa60a9e"
+    },
+    "docs/evidencia_codisenio_final/unidades/mmio_scan.log": {
+      "sha256": "1e7f09e7ed70aef60da696045beef4b5f9c5e11f7d702668f3218cc1a29a3a85"
+    },
+    "docs/evidencia_codisenio_final/unidades/mmio_scan_compile.log": {
+      "sha256": "1d7eeb26394cf75780ef5f597afe7bd369471f21d4c65a52b3dd1c19540a7267"
+    }
+  },
+  "bin_sha256": "1f514301f1a7300351f4d3d8f48b77c2c85dcd2a274f44910d11d00df406db45"
+}

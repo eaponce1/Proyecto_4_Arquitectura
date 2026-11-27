@@ -1,0 +1,10 @@
+{
+  "estado": "PASS",
+  "ticks": 640000,
+  "series": 32,
+  "variantes": 4,
+  "modelo_y_precios": true,
+  "regiones": true,
+  "sintesis": true,
+  "bin_sin_cambios": true
+}

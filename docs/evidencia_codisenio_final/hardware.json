@@ -1,0 +1,81 @@
+[
+  {
+    "variante": "software",
+    "lut4": 1087,
+    "bram_sintesis": 8,
+    "lc": 1199,
+    "bram": 8,
+    "ruta": "PASS",
+    "clocks": {
+      "clk_soc": {
+        "achieved": 50.7125129699707,
+        "constraint": 25
+      },
+      "i_Clk$SB_IO_IN_$glb_clk": {
+        "achieved": 683.5269775390625,
+        "constraint": 25
+      }
+    },
+    "fmax_soc_MHz": 50.7125129699707,
+    "sintesis_sha256": "577ab7d69b309a6718bbd8d015da33bb589b689b56011ee536bc4e0ea64c917b",
+    "yosys_log": "build/codisenio_lento/software/yosys.log",
+    "pnr_log": "build/codisenio_lento/software/nextpnr.log"
+  },
+  {
+    "variante": "custom0",
+    "lut4": 1258,
+    "bram_sintesis": 10,
+    "lc": 1368,
+    "bram": 10,
+    "ruta": "FAIL",
+    "clocks": {},
+    "fmax_soc_MHz": null,
+    "sintesis_sha256": "0ad292171974eaa8b7c03d6024ec3736b5d94c2d0578e3b644a9f1a73cf0170a",
+    "yosys_log": "build/codisenio_lento/custom0/yosys.log",
+    "pnr_log": "build/codisenio_lento/custom0/nextpnr.log"
+  },
+  {
+    "variante": "mmio",
+    "lut4": 1104,
+    "bram_sintesis": 9,
+    "lc": 1219,
+    "bram": 9,
+    "ruta": "PASS",
+    "clocks": {
+      "clk_soc": {
+        "achieved": 50.666263580322266,
+        "constraint": 25
+      },
+      "i_Clk$SB_IO_IN_$glb_clk": {
+        "achieved": 683.5269775390625,
+        "constraint": 25
+      }
+    },
+    "fmax_soc_MHz": 50.666263580322266,
+    "sintesis_sha256": "c00880090800589bcfd1793f1500c5d1c9096d7e5a2bf1e6ba6ab3613dde5ac6",
+    "yosys_log": "build/codisenio_lento/mmio/yosys.log",
+    "pnr_log": "build/codisenio_lento/mmio/nextpnr.log"
+  },
+  {
+    "variante": "mmio_scan",
+    "lut4": 1109,
+    "bram_sintesis": 9,
+    "lc": 1227,
+    "bram": 9,
+    "ruta": "PASS",
+    "clocks": {
+      "clk_soc": {
+        "achieved": 51.043846130371094,
+        "constraint": 25
+      },
+      "i_Clk$SB_IO_IN_$glb_clk": {
+        "achieved": 683.5269775390625,
+        "constraint": 25
+      }
+    },
+    "fmax_soc_MHz": 51.043846130371094,
+    "sintesis_sha256": "08416ecef894d6d51f1dfddd68515d0e5d1647c1405e4bf77b1db65995733997",
+    "yosys_log": "build/codisenio_lento/mmio_scan/yosys.log",
+    "pnr_log": "build/codisenio_lento/mmio_scan/nextpnr.log"
+  }
+]

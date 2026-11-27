@@ -15,8 +15,10 @@ Cadencias 1 y 10 ms,PASS integración,396 ticks por cadencia; no ocho series com
 Estrés de precios,"PASS técnico, pérdida financiera","936 ticks; patrimonio 69; 263 ciclos, 21.04 us"
 Netlist y BIN reconstruido,PASS digital,"396 ticks, CS 20/40/1000 ns; retardo funcional 1 ns"
 HX1K y timing,PASS,"1219/1280 LC, 9/16 BRAM; 50.67 MHz de enrutado"
-Programación Go Board,REPORTADA POR USUARIO,docs/evidencia_fisica/reprogramacion_tendencia_lenta.json
+Programación Go Board,FLASH VERIFY OK,docs/evidencia_fisica/verificacion_flash_lenta_20261127T004337Z.json
 Resultados de tres rondas oficiales,NO APORTADOS,Requiere registros oficiales; no se sustituyen por backtests
 Defensa y entrega original,SIN ACREDITAR,"Integración 25 y revisión 26 de noviembre, posteriores al cierre original"
-Amdahl y roofline,HISTÓRICOS,SMA10; no speedups de la política lenta
-Perfil regional de política final,PENDIENTE,Separar mejora de algoritmo y de hardware
+Amdahl y roofline finales,PASS DOCUMENTAL,Cuatro variantes; política lenta idéntica; docs/evidencia_codisenio_final/resumen.json
+Perfil regional de política final,PASS,640000 ticks y 32 series; RX cartera kernel decisión
+Dos aceleradores hardware viables,PASS,MMIO incremental 1219 LC y barrido 1227 LC; custom0 excede HX1K
+Conexión con maestra,PENDIENTE,Usuario reportó solo D1; no acredita recepción SPI

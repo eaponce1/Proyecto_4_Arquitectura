@@ -41,6 +41,10 @@ jobs:
         run: python -B tools/auditar_campania_acciones.py
       - name: Audit the direct practice ZIP replay
         run: python -B tools/auditar_zip_practica.py
+      - name: Audit final-policy co-design traces and synthesis
+        run: python -B tools/auditar_codisenio_final.py
+      - name: Exercise custom instruction and both SMA10 reset paths
+        run: python -B tools/probar_unidades_codisenio.py
       - name: Accounting and causality invariants
         run: python -B proyecto4/alternativas/tendencia_lenta/test_invariantes.py
       - name: Reassemble and compare Python with RV32E on 160000 ticks

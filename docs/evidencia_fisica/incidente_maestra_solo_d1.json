@@ -1,0 +1,12 @@
+{
+  "fecha_registro": "2026-11-27",
+  "fuente": "Declaración del usuario en el chat: la d1",
+  "observacion": "Solo D1 encendido durante conexión a FPGA maestra",
+  "significado": "CPU inició; no se registró byte SPI completo en D2",
+  "serie": null,
+  "cadencia": null,
+  "duracion": null,
+  "causa": "NO DETERMINADA",
+  "estado": "PENDIENTE_REVISION_RECEPCION_FISICA",
+  "alcance": "No demuestra fallo de la política lenta ni recepción de precios. Faltan captura y revisión de cableado."
+}

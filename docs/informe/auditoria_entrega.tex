@@ -5,48 +5,50 @@
 \setlength{\emergencystretch}{3em}
 \begin{document}
 \begin{center}{\LARGE Auditoría de entrega -- Proyecto 4}\\[6pt]
-{\large Tendencia lenta y campaña ampliada -- 26 de noviembre de 2026}\\[6pt]
+{\large Cierre técnico -- 27 de noviembre de 2026}\\[6pt]
 Cristian Acevedo · Guillermo Arriaza · Eduardo Ponce\end{center}
 
-\section*{Dictamen y criterio}
-La evidencia no permite acreditar toda la entrega. El firmware, las ocho series
-y los 78 escenarios cuentan con validación digital; el grupo confirmó la
-reprogramación. Falta documentar las tres rondas oficiales, defensa y cumplimiento
-del plazo. La auditoría usa el enunciado conservado en
-\path{docs/referencia/enunciado_proyecto4.pdf}; no certifica una nota.
+\section*{Dictamen}
+Los tres apartados técnicos solicitados están documentados y verificados:
+algoritmo y referencias (1,0), Assembly y métricas (0,8), co-diseño (1,2).
+Estos 3,0 puntos son el peso de la rúbrica, no una nota asignada.
+La evidencia no permite acreditar toda la entrega: faltan recepción física
+desde la maestra, resultados oficiales de tres rondas, defensa y cumplimiento
+del plazo. Se contrasta con \path{docs/referencia/enunciado_proyecto4.pdf}.
 
-\begin{longtable}{p{0.29\linewidth}p{0.16\linewidth}p{0.46\linewidth}}
+\begin{longtable}{p{0.27\linewidth}p{0.16\linewidth}p{0.48\linewidth}}
 \toprule Elemento & Estado & Evidencia y alcance \\\midrule\endhead
-Informe y autores & Incluidos & PDF compilado desde LaTeX; tres integrantes y conclusiones ampliadas. \\
-Política y contabilidad & PASS digital & SUM10/128/5\%, comisión 5, límites 63 y cartera causal. \\
-Práctica conocida & PASS digital & 8 series, 160\,000 ticks Python/RV32E/RTL sin diferencias. \\
-Todos los CSV & PASS digital & 43 CSV, 78 escenarios, 1\,557\,620 ticks RTL; 428 compras y 364 ventas. Trazas comprimidas y manifiesto incluidos. \\
-Rendimiento financiero & Mixto & Ventaja 5/8; patrimonio medio menor que Momentum32 anterior. \\
-CSV adicionales & Mixto & 16/35 ventajas proporcionales y 18/35 afines. Mismos CSV con dos escalas retrospectivas; no son muestras independientes. \\
-Cadencias & Parcial en extensión & 160\,000 ticks a 100 microsegundos; 396 de integración a 1 ms y 396 a 10 ms. \\
-Bancos oficiales & PASS adaptados & Dos bancos de 2\,000 ticks; 4/4 cada uno, tarea y criterios preservados, diffs archivados. \\
-SPI y empaquetado & PASS digital & CS 20/40/1000 ns; compras/ventas RTL, netlist y BIN reconstruido; cuatro estados en BIN. \\
-Área y timing & PASS & 1219/1280 LC, 9/16 BRAM; 50,67 MHz enrutado frente a 12,5 MHz de operación. \\
-CPI y tiempos & Incluidos & Práctica: 259 ciclos/20,72 microsegundos. Incluyendo estrés: 263/21,04; margen 69,22 microsegundos. \\
-Co-diseño & Histórico & Amdahl y roofline de SMA10; no se atribuye su speedup a tendencia lenta. \\
-Programación actual & Reportada por el grupo & Declaración de reprogramación registrada para el BIN 1f514301. No se adjuntó una traza física nueva. \\
-Prueba anterior & Conservada & Dos VERIFY OK y compras/ventas del BIN Momentum32 con hash inicial 5e1579ca. \\
+Algoritmo y referencias & Documentado & SUM10/128/5\%; no operar, mantener y política anterior. Ventaja 5/8; sin superioridad universal. \\
+Assembly y métricas & Verificado & Fuentes, registros y memoria; IC, ciclos, CPI y tiempos medidos. Activo: máximo 259 ciclos en práctica y 263 incluyendo estrés. \\
+Co-diseño final & Verificado & Misma política en software, Custom-0, MMIO incremental y barrido: 32 ejecuciones, 640\,000 ticks sin diferencias. Perfil regional, Amdahl y roofline actuales. \\
+Dos aceleradores viables & Verificado & Incremental: 1219 LC/9 BRAM. Barrido: 1227 LC/9 BRAM. Custom-0: 1368 LC, excede HX1K; sin Fmax válido. \\
+Todos los CSV & PASS digital & 43 CSV, 78 escenarios, 1\,557\,620 ticks. 428 compras y 364 ventas; trazas archivadas. \\
+ZIP de práctica & PASS digital & Repetición de 160\,000 ticks, 98 compras y 92 ventas. Mismos datos conocidos, no muestras independientes. \\
+Finanzas & Mixto & Media 10\,971,125; 5/8 ventajas. Adicionales: 16/35 proporcional y 18/35 afín. Estrés termina en 69. \\
+Cadencias & Alcance explícito & Series completas a 100 microsegundos; integración de 396 ticks a 1 ms y a 10 ms. \\
+Bancos oficiales & PASS adaptados & Dos bancos de 2000 ticks y 4/4 cada uno; diffs conservados. \\
+SPI y BIN & PASS digital & CS 20/40/1000 ns, RTL, netlist y BIN reconstruido. No sustituye conexión física. \\
+Flash actual & VERIFY OK & iceprog -c compara BIN 1f514301 sin escritura; reinicia FPGA. Registro UTC 27/11, hora local 26/11. \\
+Maestra real & Pendiente & Usuario reportó solo D1. CPU inició; no se registró byte completo en D2. Serie, cadencia y causa desconocidas. \\
 Competencia y defensa & Sin acreditar & Faltan registros oficiales por ronda y acreditación de defensa. \\
-Entrega a tiempo & Sin acreditar & Integración del 25 posterior al cierre original del 24 de noviembre. \\
+Entrega a tiempo & Sin acreditar & Trabajo del 25--27 posterior al cierre original del 24 de noviembre. \\
 \bottomrule\end{longtable}
 
-\section*{Acciones necesarias para cerrar los pendientes}
-Conservar evidencia con hash, período, precios, MISO y patrimonio. Registrar por
-cada una de las tres rondas la referencia mantener y el resultado oficial.
-Adjuntar el respaldo de defensa y entrega original. Si se exige comparación
-de hardware de la política final, completar su perfil regional con las mismas
-entradas y reglas en todas las variantes.
+\section*{Reproducción y comprobaciones}
+El estudio final conserva 32 trazas comprimidas, hashes de fuentes, netlists,
+logs y pruebas unitarias. \path{tools/auditar_codisenio_final.py} coteja todas
+las filas contra precios originales y modelo causal, regiones y síntesis.
+El estudio histórico de 60\,000 filas permanece separado.
+Las pruebas unitarias incluyen reinicio lógico conservando BRAM y 1024
+vectores de la instrucción personalizada. El BIN activo no se modifica.
+El README incluye comandos y versiones. La auditoría PDF verifica autores,
+secciones, firmas y ausencia de desbordes.
 
-La primera compra posible es en tick 257 y puede no ocurrir si no hay señal.
-Permanecer en caja no demuestra por sí solo que falle SPI ni que la estrategia
-sea rentable. Se deben observar D1, D2, D3 y el registro de la maestra.
-
-Las comprobaciones automáticas verifican firmas, contenido del PDF, autores,
-ocho resultados de práctica, 78 escenarios ampliados y ausencia de desbordes LaTeX. No convierten
-pendientes físicos o académicos en requisitos cumplidos.
+\section*{Pendientes externos}
+Revisar GND común, pines, CS y SCLK con la maestra y registrar precios/MISO.
+Solo D1 no se explica por la espera de 128 ticks: antes debe observarse D2.
+D4 puede esperar hasta tick 257 o más según la serie.
+Conservar patrimonio, referencia y resultado oficial de cada una de las tres
+rondas; adjuntar defensa y comprobante de entrega original.
+Si se exige ampliar la cobertura, repetir ocho series completas a 1 ms y 10 ms.
 \end{document}
